@@ -771,9 +771,9 @@ export function App() {
           <small>TOP {Math.max(...history.map((r) => r.maxRow))}</small>
         )}
       </div>
-      {!home && info.eagle && (info.eagle.captured || (info.eagle.warning && !info.death)) && (
-        <div className="eagle-warning" role="status">
-          {info.eagle.captured ? "CAUGHT BY THE EAGLE" : `MOVE FORWARD · EAGLE IN ${(info.eagle.remainingTicks / 60).toFixed(1)}s`}
+      {!home && info.eagle?.captured && (
+        <div className="eagle-capture" role="status">
+          CAUGHT BY THE EAGLE
         </div>
       )}
       {!home && (
@@ -1015,7 +1015,7 @@ export function App() {
         </div>
         <p className="rules-note">
           {config.simulation.eagle
-            ? "Eagle rules: reach a new highest row within 10s. Warning at 7s. Arrow keys in manual play."
+            ? "Eagle rules: reach a new highest row within 10s. Arrow keys in manual play."
             : "Historical replay: no eagle. New training and manual play use the eagle rule."}
         </p>
         {config.simulation.eagle && demo && !demo.config.simulation.eagle && <p className="rules-note">

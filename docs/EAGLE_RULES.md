@@ -1,6 +1,6 @@
 # Eagle and inactivity
 
-New browser training, fresh `train`/`train:long` runs, eagle transfer branches, manual play and the Variant 2 preset enable the eagle. Reach a **new highest row within 10 simulated seconds** or die. A warning and circling eagle appear after 7 seconds; at 10 seconds it swoops down and carries the chicken away. These are this project's chosen timings.
+New browser training, fresh `train`/`train:long` runs, eagle transfer branches, manual play and the Variant 2 preset enable the eagle. Reach a **new highest row within 10 simulated seconds** or die. The eagle starts circling after 7 seconds; at 10 seconds it swoops down and carries the chicken away. The HUD only displays **Caught by the eagle** after capture, with no advance warning or countdown. These are this project's chosen timings.
 
 Waiting, blocked hops, sideways movement and returning to a previously reached row do not reset the deadline. Only a fully completed, surviving hop to a new best row does. A collision on the deadline takes priority; otherwise the eagle wins a simultaneous episode timeout or last-moment progress attempt. Capture is a terminal death, with the same −2 reward penalty as a traffic collision.
 
@@ -10,4 +10,4 @@ Historical Variant 1 checkpoints omit `simulation.eagle` and retain their exact 
 
 The archived mean-score experiment drivers retain their explicit historical configurations for reproducibility; they are not the entry points for the next training phase. Native checkpoint resume also retains saved rules. New variant training needs newly declared development/final suites; the completed Variant1 tests must not guide its selection.
 
-Use **Evolution controls → Watch with eagle** to replay the current trained chickens under the new rule, or **Play with eagle** for manual play on map42. Arrow keys move; taking no action demonstrates the warning and capture. Both are unassessed demonstrations and start no training. The historical test panel is labelled separately. Current sensor versions remain unchanged; a future learning phase should add a versioned inactivity input before comparing eagle-trained policies.
+Use **Evolution controls → Watch with eagle** to replay the current trained chickens under the new rule, or **Play with eagle** for manual play on map42. Arrow keys move; taking no action demonstrates the circling eagle and capture. Both are unassessed demonstrations and start no training. The historical test panel is labelled separately. Current sensor versions remain unchanged; a future learning phase should add a versioned inactivity input before comparing eagle-trained policies.
