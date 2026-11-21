@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-11-21T23:50:09.652308+00:00",
+  "run": "paired-004",
+  "rules": "clustered-traffic-v3",
+  "branches": {
+    "scratch": {
+      "pid": 70132,
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--import",
+        "tsx",
+        "scripts/train-variant-two.ts",
+        "scratch",
+        "--run=paired-004"
+      ]
+    },
+    "transfer": {
+      "pid": 70133,
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--import",
+        "tsx",
+        "scripts/train-variant-two.ts",
+        "transfer",
+        "--run=paired-004"
+      ]
+    }
+  }
+}

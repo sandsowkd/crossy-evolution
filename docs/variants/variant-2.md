@@ -2,7 +2,7 @@
 
 Open `http://127.0.0.1:5173/?variant=2` for mechanics demos, maps and actual 100-chicken replays. Original Evan Bacon models, train assembly and the source support/collision behavior remain in use. [Source audit](variant-2-upstream-audit.md).
 
-**Map review pending:** further training must wait for the user's confirmation. The example map opens paused at row0; use Opening, First river, First tracks or the row slider to inspect it. Play animates traffic and logs. [Review status](../../results/variants/variant-2/map-review-status.json).
+**Map approved for training:** the user confirmed the current map and requested both fresh and Variant 1 transfer training. The example map opens paused at row 0; use Opening, First river, First tracks or the row slider to inspect it. Play animates traffic and logs. [Review status](../../results/variants/variant-2/map-review-status.json).
 
 The current **`clustered-traffic-v3`** rules are explicit project changes:
 
@@ -36,26 +36,24 @@ A reproducible audit of **400,000 rows after the opening**, on 200 seeds, measur
 
 ## Training and provenance
 
-`paired-003` used the previous **`clustered-traffic-v2`** timing: separate fresh and Variant1-transfer populations, 100 chickens × 16 common training maps/generation, a 600-second horizon and 64-generation budgets. Selection uses 64 development maps. The 512 final maps remain reserved and unopened. The transfer branch inherits the actual final Variant1 generation150 population and its 1,174 parent phase positions; fresh inherits no trained weights.
+**`paired-004`: first approved-map comparison complete.** Two concurrent NEAT lines each trained 100 chickens for 64 generations: **102,400 training episodes per line**, 204,800 total. Both use the same 16 changing training maps per generation, 600-second episodes and 64 development maps for selection. All 512 final maps remain unopened.
 
-Earlier results remain reproducible under their saved configurations. `paired-002` used **`varied-traffic-v1`**; its selected development means were 5.22 fresh and 8.58 transfer after 64 new generations each. Those scores do not describe the new clustered maps. [Previous concise report](variant-2-varied-traffic-v1.md). `paired-001` is the earlier synchronized-clock prototype.
-
-Both branches completed 64 new generations (102,400 training episodes each). Full population archives, native checkpoints, saved viewer populations and selected development episodes were verified.
-
-| Branch | New generations | Best development generation | Development mean | Training episodes |
+| Line | Generation 1 development mean | Best development mean | Best generation | Best single development-map score |
 | --- | ---: | ---: | ---: | ---: |
-| scratch | 64 | 60 | 45.59 | 102,400 |
-| transfer | 64 | 16 | 54.91 | 102,400 |
+| Fresh | 10.72 | 38.39 | 64 | 124 |
+| Variant 1 transfer | 55.23 | 58.28 | 12 | 218 |
 
-These preliminary scores use the previous clustered-v2 timing and remain below the 1,000-average goal. No training has started with the new clustered-v3 timing; map review remains pending. [Counts and replay verification](../../results/variants/variant-2/paired-003/verification.json).
+Fresh starts with random weights. Transfer starts with the actual final Variant 1 generation 150 population, preserving its weights/topology and adding zero-weight new sensors. It inherits 1,174 Variant 1 phase positions; both lines inherit **zero previous Variant 2 generations**. The training map seed stream matches `paired-003`, with the approved slower logs and shorter train intervals.
+
+Transfer provides a strong head start, but this first batch has not learned reliable river crossing: 59/64 selected transfer episodes end in water. These development scores remain far below the 1,000-average goal. This is one paired experiment, not evidence that transfer always wins.
+
+[Concise comparison](../../results/variants/variant-2/paired-004/comparison.json), [fresh generation data](../../results/variants/variant-2/paired-004/scratch/generation-metrics.csv), [transfer generation data](../../results/variants/variant-2/paired-004/transfer/generation-metrics.csv), [checkpoint/population/replay verification](../../results/variants/variant-2/paired-004/verification.json). All 128 full populations, native checkpoints and selected episodes were verified; 15 targeted mechanics/evolution tests passed. The viewer buttons replay the actual generation 64 populations, while the best selected policies are saved separately.
+
+Earlier rules remain reproducible: `paired-003` used clustered-v2 timing (45.59 fresh / 54.91 transfer); `paired-002` used varied-traffic-v1 (5.22 / 8.58). Each ran 64 generations per line. Their scores are not directly comparable to the current timing. `paired-001` is the earlier synchronized-clock prototype. [Previous concise report](variant-2-varied-traffic-v1.md).
 
 ```sh
 npx tsx scripts/audit-variant-two.ts
-npx tsx scripts/train-variant-two.ts prepare --run=paired-004
-# After user confirmation, use separate terminals; --resume continues an interrupted branch.
-npx tsx scripts/train-variant-two.ts scratch --run=paired-004
-npx tsx scripts/train-variant-two.ts transfer --run=paired-004
 npx tsx scripts/verify-variant-two.ts --run=paired-004
 ```
 
-Protocols, ancestry, generation counts, selected policies and summaries live in `results/variants/variant-2/`. Every native snapshot and full evaluated generation is retained locally. Git includes both final 100-chicken viewer populations in `public/variant-2/`.
+The initial runs have stopped at their declared 64-generation budgets. Protocols, ancestry, generation counts, selected policies and summaries live in `results/variants/variant-2/`. Every native snapshot and full evaluated generation is retained locally. Git includes both final 100-chicken viewer populations in `public/variant-2/`.

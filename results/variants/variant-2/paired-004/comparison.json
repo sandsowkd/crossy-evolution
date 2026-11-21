@@ -1,0 +1,55 @@
+{
+  "run": "paired-004",
+  "rules": "clustered-traffic-v3",
+  "status": "completed-initial-comparison",
+  "populationPerLine": 100,
+  "mapsPerGeneration": 16,
+  "episodeHorizonSeconds": 600,
+  "newGenerationsPerLine": 64,
+  "totalNewTrainingEpisodes": 204800,
+  "developmentMaps": 64,
+  "reservedFinalMapsOpened": false,
+  "branches": [
+    {
+      "branch": "scratch",
+      "inheritedVariantOnePhasePositions": 0,
+      "inheritedVariantTwoGenerations": 0,
+      "firstGenerationDevelopmentMean": 10.71875,
+      "bestDevelopmentMean": 38.390625,
+      "bestDevelopmentGeneration": 64,
+      "bestDevelopmentMaximumSingleMapScore": 124,
+      "newTrainingEpisodes": 102400,
+      "trainingSeconds": 68.704801791,
+      "mainSelectedPolicyDeathCounts": {
+        "water": 26,
+        "car": 34,
+        "eagle": 3,
+        "train": 1
+      }
+    },
+    {
+      "branch": "transfer",
+      "inheritedVariantOnePhasePositions": 1174,
+      "inheritedVariantTwoGenerations": 0,
+      "firstGenerationDevelopmentMean": 55.234375,
+      "bestDevelopmentMean": 58.28125,
+      "bestDevelopmentGeneration": 12,
+      "bestDevelopmentMaximumSingleMapScore": 218,
+      "newTrainingEpisodes": 102400,
+      "trainingSeconds": 165.585166125,
+      "mainSelectedPolicyDeathCounts": {
+        "water": 59,
+        "eagle": 2,
+        "train": 1,
+        "car": 2
+      }
+    }
+  ],
+  "notes": [
+    "Each line starts at Variant 2 generation 0; scratch has no inherited weights, transfer inherits only the frozen Variant 1 generation 150 population.",
+    "Both lines use identical changing training-map seeds and the same evaluation budget.",
+    "Map layout seed stream matches paired-003, but the log and train timing rules changed. No Variant 2 training was inherited.",
+    "Development maps choose policies. These are development scores, not independent final-test results.",
+    "All 128 full 100-genome populations and native resumable snapshots remain local; Git includes metrics, selected policies and both final viewer populations."
+  ]
+}
