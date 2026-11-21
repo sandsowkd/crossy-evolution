@@ -1,0 +1,44 @@
+{
+  "name": "crossy-evolution",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src scripts",
+    "test": "tsx --test src/tests/*.test.ts",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "train": "tsx scripts/train.ts",
+    "evaluate": "tsx scripts/evaluate.ts",
+    "demo": "tsx scripts/demo.ts",
+    "bundle-demo": "tsx scripts/bundle-demo.ts",
+    "verify:visuals": "tsx scripts/verify-visuals.ts",
+    "setup:assets": "tsx scripts/setup-assets.ts",
+    "train:long": "tsx scripts/train-long.ts",
+    "evaluate:long": "tsx scripts/evaluate-long.ts",
+    "bundle:learned": "tsx scripts/bundle-learned.ts"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "0.182.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "0.182.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^9.39.5",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0",
+    "vite": "^8.3.8"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=24"
+  }
+}

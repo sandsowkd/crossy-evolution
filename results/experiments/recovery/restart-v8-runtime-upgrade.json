@@ -1,0 +1,22 @@
+{
+  "reason": "The running restart driver cached sensor versions1\u20137 before optional version8 was implemented. Upgrade before registering version8 parents.",
+  "oldPid": 41286,
+  "round": 36,
+  "targetRounds": 50,
+  "state": "new-version8-capable-driver-running",
+  "condition": "Send SIGTERM only while round36 checkpoint is generation2 and its full generation3 archive already exists; synchronous third-generation validation/checkpoint and ledger finish before signal is handled.",
+  "newParentCandidates": [
+    "results/experiments/average/wide-score-memory-100",
+    "results/experiments/average/wide-score-memory-focused-100"
+  ],
+  "instruction": "Inspect actual process, saved generation and ledger before restarting. Never run two drivers or register version8 parents with the old cached runtime.",
+  "signalRequestedAt": "2026-11-21T17:45:14.438361+00:00",
+  "completedAt": "2026-11-21T17:46:25.315570+00:00",
+  "checkpointGeneration": 3,
+  "lastCompletedRound": 36,
+  "round36CheckpointSha256": "fa7b6b390d705d141a488420bbdf13a3600a1de34666a64935a90a5119e35c30",
+  "repeatedTrainingEpisodes": 0,
+  "registeredVersion8Parents": true,
+  "newPid": 46804,
+  "confirmedAt": "2026-11-21T17:48:34.925219+00:00"
+}

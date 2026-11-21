@@ -1,0 +1,62 @@
+exact source=results/continued/selected.json version=1 curriculum=roads episodes=16 decisions=27545
+exact source=results/continued/selected.json version=1 curriculum=trains episodes=16 decisions=15721
+exact source=results/continued/selected.json version=2 curriculum=roads episodes=16 decisions=5724
+exact source=results/continued/selected.json version=2 curriculum=trains episodes=16 decisions=14092
+exact source=results/continued/selected.json version=3 curriculum=roads episodes=16 decisions=32681
+exact source=results/continued/selected.json version=3 curriculum=trains episodes=16 decisions=12652
+exact source=results/continued/selected.json version=4 curriculum=roads episodes=16 decisions=20357
+exact source=results/continued/selected.json version=4 curriculum=trains episodes=16 decisions=13818
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=1 curriculum=roads episodes=16 decisions=5398
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=1 curriculum=trains episodes=16 decisions=5230
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=2 curriculum=roads episodes=16 decisions=15204
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=2 curriculum=trains episodes=16 decisions=21060
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=3 curriculum=roads episodes=16 decisions=26790
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=3 curriculum=trains episodes=16 decisions=10958
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=4 curriculum=roads episodes=16 decisions=20823
+exact source=results/experiments/trajectory/warm-v3-100/selected.json version=4 curriculum=trains episodes=16 decisions=21233
+{
+  source: 'results/continued/selected.json',
+  genome: 93863,
+  observationVersion: 1,
+  episodesPerRound: 64,
+  referenceSeconds: [
+    1.3313198339999999,
+    1.1908202500000007,
+    1.2217167090000003,
+    1.1789902909999983
+  ],
+  optimizedSeconds: [
+    0.6511110829999998,
+    0.6430717500000009,
+    0.5988548329999994,
+    0.6007234999999982
+  ],
+  meanReferenceSeconds: 1.2307117709999997,
+  meanOptimizedSeconds: 0.6234402914999996,
+  speedup: 1.9740651795842434,
+  physicsTicksPerRound: 1254108,
+  meanRow: 459.203125
+}
+{
+  source: 'results/experiments/trajectory/warm-v3-100/selected.json',
+  genome: 1977,
+  observationVersion: 3,
+  episodesPerRound: 64,
+  referenceSeconds: [
+    1.5072754999999998,
+    1.511783292,
+    1.5368473329999979,
+    1.4975797499999972
+  ],
+  optimizedSeconds: [
+    0.7686602919999969,
+    0.8004400830000014,
+    0.8218851250000007,
+    0.8120288330000003
+  ],
+  meanReferenceSeconds: 1.5133714687499988,
+  meanOptimizedSeconds: 0.8007535832499998,
+  speedup: 1.88993405762571,
+  physicsTicksPerRound: 1256415,
+  meanRow: 625.953125
+}

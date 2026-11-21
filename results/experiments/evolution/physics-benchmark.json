@@ -1,0 +1,1840 @@
+{
+  "machine": "Apple M5",
+  "node": "v23.6.0",
+  "config": {
+    "curriculum": "roads",
+    "maxTicks": 36000,
+    "difficulty": 1
+  },
+  "seeds": [
+    2701131776,
+    2701197313,
+    2701262850,
+    2701328387,
+    2701393924,
+    2701459461,
+    2701524998,
+    2701590535,
+    2701656072,
+    2701721609,
+    2701787146,
+    2701852683,
+    2701918220,
+    2701983757,
+    2702049294,
+    2702114831,
+    2702180368,
+    2702245905,
+    2702311442,
+    2702376979,
+    2702442516,
+    2702508053,
+    2702573590,
+    2702639127,
+    2702704664,
+    2702770201,
+    2702835738,
+    2702901275,
+    2702966812,
+    2703032349,
+    2703097886,
+    2703163423,
+    2703228960,
+    2703294497,
+    2703360034,
+    2703425571,
+    2703491108,
+    2703556645,
+    2703622182,
+    2703687719,
+    2703753256,
+    2703818793,
+    2703884330,
+    2703949867,
+    2704015404,
+    2704080941,
+    2704146478,
+    2704212015,
+    2704277552,
+    2704343089,
+    2704408626,
+    2704474163,
+    2704539700,
+    2704605237,
+    2704670774,
+    2704736311,
+    2704801848,
+    2704867385,
+    2704932922,
+    2704998459,
+    2705063996,
+    2705129533,
+    2705195070,
+    2705260607
+  ],
+  "note": "Frozen pre-optimization physics + sparse encoder compared with allocation-free road collisions and scalar slab tests + the same sparse encoder. Full per-decision consumed observations, neural scores/actions, every physics result and agent state match exactly. Source sensor versions are retagged only for equivalence coverage, not model selection. Alternating order, warmup excluded; concurrent training jobs may affect timings.",
+  "exactMatchedEpisodes": 256,
+  "exactMatchedDecisions": 269286,
+  "exact": [
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 1,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 27545,
+      "traceSha256": "3168d3302a66c87470defec44ac67bb6679325418a57f583606133c4c8dbb578",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 314,
+          "ticks": 6258,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 574,
+          "ticks": 13090,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701262850,
+          "score": 483,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701328387,
+          "score": 19,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 1214,
+          "ticks": 26837,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 59,
+          "ticks": 1314,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 372,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701590535,
+          "score": 964,
+          "ticks": 21221,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 490,
+          "ticks": 12343,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 291,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 790,
+          "ticks": 15461,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 757,
+          "ticks": 16456,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 197,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701983757,
+          "score": 55,
+          "ticks": 1132,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 18,
+          "ticks": 372,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 59,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 1,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 15721,
+      "traceSha256": "9308c92a4a1343f1becf170d72007a451db217e4d6355cf542fed54588f2f994",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 22,
+          "ticks": 456,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701197313,
+          "score": 26,
+          "ticks": 614,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701262850,
+          "score": 226,
+          "ticks": 6157,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 33,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 326,
+          "ticks": 7049,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701459461,
+          "score": 154,
+          "ticks": 3396,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701524998,
+          "score": 435,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701590535,
+          "score": 154,
+          "ticks": 3556,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701656072,
+          "score": 27,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701721609,
+          "score": 10,
+          "ticks": 233,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 154,
+          "ticks": 3895,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701852683,
+          "score": 272,
+          "ticks": 6919,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 211,
+          "ticks": 4661,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 12,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702049294,
+          "score": 242,
+          "ticks": 4816,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702114831,
+          "score": 130,
+          "ticks": 2812,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 2,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 5724,
+      "traceSha256": "3433914f4cc5c808c5c56349c35e53d23fdf1f81cdd9a7bd2a0d90bb4390c771",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 134,
+          "ticks": 6322,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 6,
+          "ticks": 294,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701262850,
+          "score": 46,
+          "ticks": 2725,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 314,
+          "ticks": 14575,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 33,
+          "ticks": 1724,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 138,
+          "ticks": 7557,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 30,
+          "ticks": 3741,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 86,
+          "ticks": 3816,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 37,
+          "ticks": 1417,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 50,
+          "ticks": 2178,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 146,
+          "ticks": 5240,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 22,
+          "ticks": 822,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 38,
+          "ticks": 2411,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 114,
+          "ticks": 7089,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 134,
+          "ticks": 6570,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 37,
+          "ticks": 2132,
+          "deathReason": "car"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 2,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 14092,
+      "traceSha256": "2e8faa8558dcece6bd2bed7b608f2a4e7dd02e15f1130b2525339f8c557dd35f",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 26,
+          "ticks": 994,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 54,
+          "ticks": 1743,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701262850,
+          "score": 130,
+          "ticks": 6231,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 30,
+          "ticks": 1292,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 130,
+          "ticks": 5550,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701459461,
+          "score": 67,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701524998,
+          "score": 58,
+          "ticks": 2289,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 70,
+          "ticks": 3055,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 27,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701721609,
+          "score": 38,
+          "ticks": 1493,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 10,
+          "ticks": 681,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 18,
+          "ticks": 691,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701918220,
+          "score": 88,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701983757,
+          "score": 63,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702049294,
+          "score": 14,
+          "ticks": 497,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 18,
+          "ticks": 520,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 3,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 32681,
+      "traceSha256": "3415a8c09bb2ad762bc38701e94529f5bc395a79d49d08148570afdd0ac01b06",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 142,
+          "ticks": 3012,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701197313,
+          "score": 442,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 654,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701328387,
+          "score": 19,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 754,
+          "ticks": 18602,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 58,
+          "ticks": 1313,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 372,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701590535,
+          "score": 374,
+          "ticks": 9221,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 34,
+          "ticks": 794,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 22,
+          "ticks": 581,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 877,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701852683,
+          "score": 34,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701918220,
+          "score": 197,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701983757,
+          "score": 1519,
+          "ticks": 34587,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 47,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702114831,
+          "score": 59,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 3,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 12652,
+      "traceSha256": "408fb983719b98ed4ca0995906da995cfddcfb05b4b4df18d4bcf12245766b42",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 22,
+          "ticks": 456,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701197313,
+          "score": 134,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 103,
+          "ticks": 2730,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 266,
+          "ticks": 15338,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701393924,
+          "score": 158,
+          "ticks": 4036,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701459461,
+          "score": 126,
+          "ticks": 3364,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 110,
+          "ticks": 2632,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701590535,
+          "score": 114,
+          "ticks": 2539,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701656072,
+          "score": 26,
+          "ticks": 630,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701721609,
+          "score": 28,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 154,
+          "ticks": 3894,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701852683,
+          "score": 94,
+          "ticks": 2565,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 88,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701983757,
+          "score": 30,
+          "ticks": 774,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702049294,
+          "score": 57,
+          "ticks": 1081,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 174,
+          "ticks": 3687,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 4,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 20357,
+      "traceSha256": "b63255192f07508d9d10df6f51bfe82adf9ba0b20ba18f55a7b733199b29c6cb",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 518,
+          "ticks": 19528,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 581,
+          "ticks": 20118,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701262850,
+          "score": 70,
+          "ticks": 2691,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 134,
+          "ticks": 3684,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 33,
+          "ticks": 1589,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 115,
+          "ticks": 3520,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 305,
+          "ticks": 11344,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 223,
+          "ticks": 8031,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 446,
+          "ticks": 14187,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 399,
+          "ticks": 14246,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 558,
+          "ticks": 19265,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 34,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701918220,
+          "score": 78,
+          "ticks": 2907,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 422,
+          "ticks": 15072,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2702049294,
+          "score": 315,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702114831,
+          "score": 59,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ]
+    },
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 4,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 13818,
+      "traceSha256": "b649a0484283666d835a0d1fe1ddee3f5488ad8714ef0ca56453c93585b51884",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 77,
+          "ticks": 3081,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 82,
+          "ticks": 2573,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701262850,
+          "score": 46,
+          "ticks": 1405,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 30,
+          "ticks": 1300,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701459461,
+          "score": 78,
+          "ticks": 2297,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701524998,
+          "score": 58,
+          "ticks": 1838,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 58,
+          "ticks": 1649,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701656072,
+          "score": 27,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701721609,
+          "score": 48,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 30,
+          "ticks": 1050,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 50,
+          "ticks": 2268,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701918220,
+          "score": 98,
+          "ticks": 3210,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701983757,
+          "score": 12,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702049294,
+          "score": 18,
+          "ticks": 544,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702114831,
+          "score": 18,
+          "ticks": 520,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 1,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 5398,
+      "traceSha256": "f29713355604caf69d4dedb842ec78810b8ef464d61f82b7d0c3c88d97f471b0",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 127,
+          "ticks": 2490,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 355,
+          "ticks": 7156,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701262850,
+          "score": 101,
+          "ticks": 2204,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 154,
+          "ticks": 3512,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 186,
+          "ticks": 3990,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 58,
+          "ticks": 1322,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 25,
+          "ticks": 484,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 282,
+          "ticks": 6174,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 275,
+          "ticks": 5871,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 114,
+          "ticks": 2260,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 274,
+          "ticks": 5582,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 110,
+          "ticks": 2095,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 110,
+          "ticks": 2695,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 243,
+          "ticks": 6016,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 413,
+          "ticks": 10048,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 74,
+          "ticks": 2765,
+          "deathReason": "car"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 1,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 5230,
+      "traceSha256": "0d8acf4d13eac4120653a9cdc2ab98745c9feec5a78ef3ae38807adfdb8b0ee0",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 109,
+          "ticks": 2273,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 122,
+          "ticks": 3554,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701262850,
+          "score": 46,
+          "ticks": 857,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 20,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 78,
+          "ticks": 1663,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 94,
+          "ticks": 1831,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 173,
+          "ticks": 4493,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 18,
+          "ticks": 499,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701656072,
+          "score": 98,
+          "ticks": 2093,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 10,
+          "ticks": 233,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 230,
+          "ticks": 4961,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701852683,
+          "score": 26,
+          "ticks": 797,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 27,
+          "ticks": 536,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 58,
+          "ticks": 1316,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 58,
+          "ticks": 1119,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 10,
+          "ticks": 436,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 2,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 15204,
+      "traceSha256": "37c8ac92056dd91a96513b3c740dca5c8e14dad69db71f046e96edf0ac0fa5c0",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 310,
+          "ticks": 14912,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 12,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 70,
+          "ticks": 4112,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 38,
+          "ticks": 3497,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 394,
+          "ticks": 18846,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 50,
+          "ticks": 1598,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 30,
+          "ticks": 4085,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 538,
+          "ticks": 24907,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 37,
+          "ticks": 1590,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 279,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 146,
+          "ticks": 7051,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 202,
+          "ticks": 8457,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 74,
+          "ticks": 6005,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 26,
+          "ticks": 1784,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 134,
+          "ticks": 8669,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 82,
+          "ticks": 4855,
+          "deathReason": "car"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 2,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 21060,
+      "traceSha256": "c25121d006b665b197e8ed469cefe4f453fb392f13eb3a8fd8346e9c8da6dd9c",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 195,
+          "ticks": 10421,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701197313,
+          "score": 134,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 374,
+          "ticks": 19064,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 20,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 198,
+          "ticks": 9725,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701459461,
+          "score": 67,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701524998,
+          "score": 58,
+          "ticks": 2289,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 70,
+          "ticks": 3269,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 522,
+          "ticks": 25554,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701721609,
+          "score": 393,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 178,
+          "ticks": 6844,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 26,
+          "ticks": 1133,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 198,
+          "ticks": 9103,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 22,
+          "ticks": 930,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702049294,
+          "score": 234,
+          "ticks": 12175,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702114831,
+          "score": 150,
+          "ticks": 8144,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 3,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 26790,
+      "traceSha256": "a54875f9e1f821063cf7cbec7df1c680f897329d0ef8cba393ac6ede0bd1369c",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 1549,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701197313,
+          "score": 442,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 342,
+          "ticks": 7769,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 1001,
+          "ticks": 22336,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701393924,
+          "score": 142,
+          "ticks": 3689,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 58,
+          "ticks": 1322,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701524998,
+          "score": 362,
+          "ticks": 8452,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701590535,
+          "score": 803,
+          "ticks": 17896,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 795,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701721609,
+          "score": 1482,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701787146,
+          "score": 330,
+          "ticks": 6888,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701852683,
+          "score": 914,
+          "ticks": 20837,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 906,
+          "ticks": 21593,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 163,
+          "ticks": 4951,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 201,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702114831,
+          "score": 1110,
+          "ticks": 25660,
+          "deathReason": "car"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 3,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 10958,
+      "traceSha256": "0b5bcdf2881eeb80fc6e534796c866977028ddf603c191b156cd4a510bdbe601",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 146,
+          "ticks": 3735,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701197313,
+          "score": 134,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701262850,
+          "score": 46,
+          "ticks": 857,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 20,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 470,
+          "ticks": 13782,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701459461,
+          "score": 102,
+          "ticks": 2474,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701524998,
+          "score": 206,
+          "ticks": 5466,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701590535,
+          "score": 18,
+          "ticks": 499,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701656072,
+          "score": 26,
+          "ticks": 618,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701721609,
+          "score": 190,
+          "ticks": 6458,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 102,
+          "ticks": 2462,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701852683,
+          "score": 374,
+          "ticks": 8234,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701918220,
+          "score": 70,
+          "ticks": 1360,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701983757,
+          "score": 70,
+          "ticks": 5834,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702049294,
+          "score": 266,
+          "ticks": 7166,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702114831,
+          "score": 10,
+          "ticks": 436,
+          "deathReason": "train"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 4,
+      "curriculum": "roads",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 20823,
+      "traceSha256": "fe02007b92b6247ff2cf29bd54e1433e86a6d1d975a2893715827e303054ae28",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 490,
+          "ticks": 15411,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701197313,
+          "score": 230,
+          "ticks": 8044,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701262850,
+          "score": 70,
+          "ticks": 2558,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701328387,
+          "score": 230,
+          "ticks": 7740,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701393924,
+          "score": 970,
+          "ticks": 35697,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701459461,
+          "score": 202,
+          "ticks": 8424,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701524998,
+          "score": 305,
+          "ticks": 12840,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 2701590535,
+          "score": 86,
+          "ticks": 3796,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 314,
+          "ticks": 11573,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701721609,
+          "score": 114,
+          "ticks": 3461,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701787146,
+          "score": 146,
+          "ticks": 5248,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701852683,
+          "score": 458,
+          "ticks": 16553,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701918220,
+          "score": 910,
+          "ticks": 32429,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 150,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702049294,
+          "score": 640,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2702114831,
+          "score": 318,
+          "ticks": 13982,
+          "deathReason": "car"
+        }
+      ]
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 4,
+      "curriculum": "trains",
+      "matchedEpisodes": 16,
+      "matchedDecisions": 21233,
+      "traceSha256": "cfff18b8ffed90866954bb65296a694fe2d84968617a78f8361af79ac9d04441",
+      "episodes": [
+        {
+          "seed": 2701131776,
+          "score": 210,
+          "ticks": 9954,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701197313,
+          "score": 278,
+          "ticks": 9760,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701262850,
+          "score": 318,
+          "ticks": 10214,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701328387,
+          "score": 20,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701393924,
+          "score": 320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701459461,
+          "score": 1050,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701524998,
+          "score": 166,
+          "ticks": 5473,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701590535,
+          "score": 21,
+          "ticks": 658,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701656072,
+          "score": 159,
+          "ticks": 6110,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701721609,
+          "score": 130,
+          "ticks": 4287,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701787146,
+          "score": 977,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 2701852683,
+          "score": 182,
+          "ticks": 5708,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2701918220,
+          "score": 426,
+          "ticks": 13264,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2701983757,
+          "score": 338,
+          "ticks": 18051,
+          "deathReason": "car"
+        },
+        {
+          "seed": 2702049294,
+          "score": 142,
+          "ticks": 3771,
+          "deathReason": "train"
+        },
+        {
+          "seed": 2702114831,
+          "score": 570,
+          "ticks": 23455,
+          "deathReason": "train"
+        }
+      ]
+    }
+  ],
+  "timings": [
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 1,
+      "episodesPerRound": 64,
+      "referenceSeconds": [
+        1.3313198339999999,
+        1.1908202500000007,
+        1.2217167090000003,
+        1.1789902909999983
+      ],
+      "optimizedSeconds": [
+        0.6511110829999998,
+        0.6430717500000009,
+        0.5988548329999994,
+        0.6007234999999982
+      ],
+      "meanReferenceSeconds": 1.2307117709999997,
+      "meanOptimizedSeconds": 0.6234402914999996,
+      "speedup": 1.9740651795842434,
+      "physicsTicksPerRound": 1254108,
+      "meanRow": 459.203125
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100/selected.json",
+      "genome": 1977,
+      "observationVersion": 3,
+      "episodesPerRound": 64,
+      "referenceSeconds": [
+        1.5072754999999998,
+        1.511783292,
+        1.5368473329999979,
+        1.4975797499999972
+      ],
+      "optimizedSeconds": [
+        0.7686602919999969,
+        0.8004400830000014,
+        0.8218851250000007,
+        0.8120288330000003
+      ],
+      "meanReferenceSeconds": 1.5133714687499988,
+      "meanOptimizedSeconds": 0.8007535832499998,
+      "speedup": 1.88993405762571,
+      "physicsTicksPerRound": 1256415,
+      "meanRow": 625.953125
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "model": {
+    "source": "warm-v3-100",
+    "generation": 20,
+    "genome": 1977,
+    "observationVersion": 3
+  },
+  "config": {
+    "curriculum": "roads",
+    "maxTicks": 36000,
+    "difficulty": 1
+  },
+  "seeds": [
+    3607101440,
+    3607134211,
+    3607166982,
+    3607199753,
+    3607232524,
+    3607265295,
+    3607298066,
+    3607330837,
+    3607363608,
+    3607396379,
+    3607429150,
+    3607461921,
+    3607494692,
+    3607527463,
+    3607560234,
+    3607593005,
+    3607625776,
+    3607658547,
+    3607691318,
+    3607724089,
+    3607756860,
+    3607789631,
+    3607822402,
+    3607855173,
+    3607887944,
+    3607920715,
+    3607953486,
+    3607986257,
+    3608019028,
+    3608051799,
+    3608084570,
+    3608117341
+  ],
+  "mapsPerRepeat": 32,
+  "repeats": 5,
+  "physics": "Same current optimized physics for both frozen encoder and pruned encoder",
+  "methodology": "32 complete actual learned-policy episodes; four warmup maps; alternating variant order; medians of five repeats; all episode scores/ticks/deaths identical",
+  "measurements": {
+    "unprunedDense": [
+      0.435371333,
+      0.41137437500000035,
+      0.41111687500000016,
+      0.4176620410000005,
+      0.42673433399999977
+    ],
+    "prunedDense": [
+      0.37740370800000006,
+      0.3658012920000001,
+      0.3726111250000004,
+      0.3694249170000003,
+      0.3832197919999999
+    ],
+    "unprunedSparse": [
+      0.340727333,
+      0.33924387499999964,
+      0.3389466250000005,
+      0.3372417089999999,
+      0.344194708
+    ],
+    "prunedSparse": [
+      0.2961265410000001,
+      0.29442270800000003,
+      0.29561041599999954,
+      0.29675004199999966,
+      0.33500591600000007
+    ]
+  },
+  "medians": {
+    "unprunedDense": 0.4176620410000005,
+    "prunedDense": 0.3726111250000004,
+    "unprunedSparse": 0.33924387499999964,
+    "prunedSparse": 0.2961265410000001
+  },
+  "denseSpeedup": 1.1209059874420015,
+  "sparseSpeedup": 1.1456044225363762,
+  "combinedSparsePrunedVersusDense": 1.4104174505587475,
+  "physicsTicksPerRepeat": 680935,
+  "meanRow": 711.3125,
+  "episodes": [
+    {
+      "seed": 3607101440,
+      "score": 385,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607134211,
+      "score": 1536,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607166982,
+      "score": 523,
+      "ticks": 12077,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607199753,
+      "score": 466,
+      "ticks": 10517,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607232524,
+      "score": 282,
+      "ticks": 7201,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607265295,
+      "score": 930,
+      "ticks": 20930,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607298066,
+      "score": 83,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607330837,
+      "score": 522,
+      "ticks": 12101,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607363608,
+      "score": 510,
+      "ticks": 12154,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607396379,
+      "score": 208,
+      "ticks": 6701,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607429150,
+      "score": 47,
+      "ticks": 1057,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607461921,
+      "score": 1165,
+      "ticks": 29775,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607494692,
+      "score": 934,
+      "ticks": 20765,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607527463,
+      "score": 1015,
+      "ticks": 24688,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607560234,
+      "score": 854,
+      "ticks": 20275,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607593005,
+      "score": 566,
+      "ticks": 13805,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607625776,
+      "score": 1116,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607658547,
+      "score": 686,
+      "ticks": 16277,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607691318,
+      "score": 704,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607724089,
+      "score": 762,
+      "ticks": 16481,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607756860,
+      "score": 118,
+      "ticks": 3281,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607789631,
+      "score": 1590,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607822402,
+      "score": 541,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607855173,
+      "score": 257,
+      "ticks": 6377,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607887944,
+      "score": 591,
+      "ticks": 14347,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607920715,
+      "score": 534,
+      "ticks": 23249,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3607953486,
+      "score": 940,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3607986257,
+      "score": 558,
+      "ticks": 12282,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3608019028,
+      "score": 1443,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3608051799,
+      "score": 23,
+      "ticks": 595,
+      "deathReason": "car"
+    },
+    {
+      "seed": 3608084570,
+      "score": 1528,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    },
+    {
+      "seed": 3608117341,
+      "score": 1345,
+      "ticks": 36000,
+      "deathReason": "timeout"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-11-21T19:07:57.197818+00:00",
+  "source": "results/experiments/frozen-development/restart-043-g1",
+  "control": "results/experiments/average/wide-score-batch-100-r9",
+  "memory": "results/experiments/average/wide-score-memory-100-r9",
+  "generation": 0,
+  "population": 100,
+  "trainingMapsPerChicken": 32,
+  "evolutionSeed": 203520,
+  "initialTopologyAndInnovationIdsMatch": true,
+  "nativeRngAndTrackerMatch": true,
+  "configurationDifferenceOnlyObservationVersion": [
+    5,
+    8
+  ],
+  "exact768InheritedOutcomesMatch": true,
+  "inheritedMeanRow": 1357.51171875,
+  "note": "Version8 explicitly zeros outgoing weights of the roads-silent signal channel before learning previous horizontal action. This one matched pair tests that representation plus initialization, not independent training-seed uncertainty.",
+  "initialCheckpointSha256": {
+    "control": "c068cd3fb493f1a77983dbb985c502a237d35593ef5465b76d0714ec404cdd31",
+    "memory": "4cf0d49a849a9d87d631dcbb2d4b8b832ae7e3192c2b09328a3d045b99dbb560"
+  },
+  "initialCheckpointArchives": {
+    "control": "results/experiments/matched-memory-r9-initial-checkpoints/control.json.gz",
+    "memory": "results/experiments/matched-memory-r9-initial-checkpoints/memory.json.gz"
+  }
+}

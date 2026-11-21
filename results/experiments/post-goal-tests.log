@@ -1,0 +1,65 @@
+
+> crossy-evolution@1.0.0 test
+> tsx --test src/tests/*.test.ts
+
+✔ core and evolution evaluate with no renderer imports; core has no ambient randomness or clock (1.763458ms)
+✔ complete gzip populations load losslessly, cache by content hash and reject mismatched archives (314.710292ms)
+✔ population namespaces preserve legacy paths and reject unsafe or nested archive locations (356.863792ms)
+✔ same seed/actions reproduce every observation, collision, score and snapshot (23.836ms)
+✔ continuous local sensors are bounded and deterministic and cannot change physics (3.520292ms)
+✔ row access order and cache eviction cannot change content (1.432083ms)
+✔ cars wrap continuously and speed scales in simulated seconds (0.642375ms)
+✔ trajectory sensors see an intervening hazard while preserving legacy observations and physics (1.7885ms)
+✔ swept collisions catch fast trains, mid-hop contact and reject mismatched axis times (0.09275ms)
+✔ blocked trees consume a decision, bounds kill, timeout truncates (0.400292ms)
+✔ train warning precedes entering playable bounds and schedules repeat (0.136167ms)
+✔ actual physics kills a chicken while hopping; fatal hop earns no row (0.820959ms)
+✔ observation fixed, finite and normalized with explicit unknowns (0.850625ms)
+✔ a winding static route remains clear across many seeds (5.518584ms)
+✔ fast train crosses an occupied lane in one tick without tunneling (0.335208ms)
+✔ wrapping a distant car never sweeps a phantom collision through the map (0.287791ms)
+✔ invalid boundary action takes precedence over a simultaneous hazard (0.118959ms)
+✔ omitted parameters preserve frozen legacy and robust NEAT RNG/population trajectories (2861.965625ms)
+✔ serialized profile operators reproduce the frozen parameter experiment including stale species state (3930.722417ms)
+✔ custom training seed schedule, risk objective, monitor maps and operators survive native checkpoint continuation exactly (6156.871083ms)
+✔ checkpoint import rejects malformed or inconsistent explicit training parameters (398.21ms)
+✔ optional low thresholds split nearby warm genomes and survive exact native continuation (1515.912833ms)
+✔ checkpoint archive references accept one safe run namespace and legacy root paths (314.718334ms)
+✔ five finite action scores; exact forward inference (2.26275ms)
+✔ innovation alignment, node splitting, acyclic connections and crossover inheritance (4.821667ms)
+✔ speciation, elitism and breeding create actual distinct topologies (123.266334ms)
+✔ baseline episodes terminate and map suite is not used as selection seeds (123.253958ms)
+✔ checkpoint restores RNG, innovations, population and next generation exactly (822.676542ms)
+✔ evaluation order independent and saved champion exactly replays (1.459458ms)
+✔ pausing between evaluation batches preserves exact generation outcome (263.036584ms)
+✔ manual curriculum transition preserves the evolved population at a generation boundary (308.675042ms)
+✔ full 200-chicken generations remain archived before breeding and replay their actual outcomes (740.72925ms)
+✔ compact archives retain all genomes, weights, hidden nodes and exact continuation; legacy JSON still imports (524.5605ms)
+✔ robust training preserves sensor versions, adaptive species state and exact checkpoint continuation (519.750042ms)
+✔ legacy sensor/training checkpoints retain the original generation-one behavior (124.076292ms)
+✔ training, validation, historical monitor and both final test seed spaces are disjoint (0.189458ms)
+✔ two-hop sensors expose local future traffic without changing existing motion sensors or physics (3.675708ms)
+✔ memory sensors expose the previous action and blockage without changing simulation state (2.025667ms)
+✔ clock-preserving memory starts with exactly the inherited roads policy (8.137417ms)
+✔ 64-map, sensor-versioned training checkpoints preserve the exact next generation (975.5205ms)
+✔ average-score selection and the reserved long test suite are explicit and separate (0.654916ms)
+✔ row-objective training exactly optimizes mean score and persists through continuation (481.987833ms)
+✔ focused mutation changes only the declared neural control weights and persists through restore (368.218125ms)
+✔ memory-only weight mutations retain the learned controller and resume natively (360.135333ms)
+✔ allocation-free scalar slabs match the frozen original at grazing, static and randomized boundaries (50.031791ms)
+✔ optimized road collisions match every frozen step across random states, extreme speeds, wraps and train reset edges (819.146875ms)
+✔ frozen and optimized physics produce identical neural traces for all four sensor versions (81.210167ms)
+✔ whole-hop clear paths preserve partial timeout positions and conservative grazing contacts (2.737875ms)
+✔ sparse sensor encoding is bit-exact on requested channels for all sensor versions and terrain (338.736209ms)
+✔ general episode callbacks retain distinct observation arrays unless reuse is explicitly requested (0.467584ms)
+✔ network input mask follows enabled graph edges and preserves all scores and actions (67.962708ms)
+✔ sparse training episodes match dense traces and renderer replay exactly (186.212542ms)
+✔ trajectory pruning preserves frozen dense and sparse sensors across random states, wraps, extreme speeds and grazing (715.703833ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15459.440292

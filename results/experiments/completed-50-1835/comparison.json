@@ -1,0 +1,185 @@
+{
+  "recordedAt": "2026-11-21T18:42:15.646882+00:00",
+  "horizonSeconds": 600,
+  "developmentMaps": 768,
+  "finalTestsUsed": false,
+  "interpretation": "One matched reward/rows pair; one ordinary/focused memory comparison. Different parameter strategies and initialization; no universal causal claim. Generation0 means inherited. Preserve all search budgets and archives.",
+  "runs": [
+    {
+      "run": "wide-reward-explore-100-r6",
+      "generation": 50,
+      "trainingEpisodes": 80000,
+      "developmentEpisodes": 85248,
+      "parent": {
+        "source": "results/experiments/frozen-development/restart-030",
+        "selectedGeneration": 3,
+        "selectedGenome": 238
+      },
+      "selectedGeneration": 0,
+      "selectedMeanRow": 1304.7057291666667,
+      "bestAssessedChild": {
+        "generation": 1,
+        "genome": 5,
+        "meanRow": 1280.1263020833333
+      },
+      "config": {
+        "population": 100,
+        "seed": 200490,
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "trainingSeeds": 16,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "observationVersion": 5,
+        "evolutionParameters": {
+          "weightMutationRate": 0.22,
+          "weightMutationSigma": 0.12,
+          "weightResetRate": 0.001,
+          "addNodeRate": 0.04,
+          "addConnectionRate": 0.15,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.35,
+          "parentFraction": 0.25
+        },
+        "trainingSeedStride": 19,
+        "fitnessRiskWeight": 0
+      }
+    },
+    {
+      "run": "wide-score-explore-100-r6",
+      "generation": 50,
+      "trainingEpisodes": 80000,
+      "developmentEpisodes": 85248,
+      "parent": {
+        "source": "results/experiments/frozen-development/restart-030",
+        "selectedGeneration": 3,
+        "selectedGenome": 238
+      },
+      "selectedGeneration": 0,
+      "selectedMeanRow": 1304.7057291666667,
+      "bestAssessedChild": {
+        "generation": 1,
+        "genome": 5,
+        "meanRow": 1280.1263020833333
+      },
+      "config": {
+        "population": 100,
+        "seed": 200490,
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "trainingSeeds": 16,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "observationVersion": 5,
+        "evolutionParameters": {
+          "weightMutationRate": 0.22,
+          "weightMutationSigma": 0.12,
+          "weightResetRate": 0.001,
+          "addNodeRate": 0.04,
+          "addConnectionRate": 0.15,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.35,
+          "parentFraction": 0.25
+        },
+        "fitnessObjective": "rows",
+        "trainingSeedStride": 19,
+        "fitnessRiskWeight": 0
+      }
+    },
+    {
+      "run": "wide-score-memory-100",
+      "generation": 50,
+      "trainingEpisodes": 160000,
+      "developmentEpisodes": 85248,
+      "parent": {
+        "source": "results/experiments/frozen-development/restart-030",
+        "selectedGeneration": 3,
+        "selectedGenome": 238
+      },
+      "selectedGeneration": 30,
+      "selectedMeanRow": 1343.0364583333333,
+      "bestAssessedChild": {
+        "generation": 30,
+        "genome": 2965,
+        "meanRow": 1343.0364583333333
+      },
+      "config": {
+        "population": 100,
+        "seed": 194439,
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "trainingSeeds": 32,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "observationVersion": 8,
+        "evolutionParameters": {
+          "weightMutationRate": 0.16,
+          "weightMutationSigma": 0.06,
+          "weightResetRate": 0.001,
+          "addNodeRate": 0.02,
+          "addConnectionRate": 0.1,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.35,
+          "parentFraction": 0.25
+        },
+        "fitnessObjective": "rows",
+        "trainingSeedStride": 35,
+        "fitnessRiskWeight": 0
+      }
+    },
+    {
+      "run": "wide-score-memory-focused-100",
+      "generation": 50,
+      "trainingEpisodes": 160000,
+      "developmentEpisodes": 85248,
+      "parent": {
+        "source": "results/experiments/frozen-development/restart-030",
+        "selectedGeneration": 3,
+        "selectedGenome": 238
+      },
+      "selectedGeneration": 0,
+      "selectedMeanRow": 1304.7057291666667,
+      "bestAssessedChild": {
+        "generation": 1,
+        "genome": 87,
+        "meanRow": 1288.3138020833333
+      },
+      "config": {
+        "population": 100,
+        "seed": 194439,
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "trainingSeeds": 32,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "observationVersion": 8,
+        "evolutionParameters": {
+          "weightMutationRate": 0.9,
+          "weightMutationSigma": 0.5,
+          "weightResetRate": 0,
+          "addNodeRate": 0,
+          "addConnectionRate": 0,
+          "toggleConnectionRate": 0,
+          "crossoverRate": 0.35,
+          "parentFraction": 0.25,
+          "weightMutationScope": "memory-input"
+        },
+        "fitnessObjective": "rows",
+        "trainingSeedStride": 35,
+        "fitnessRiskWeight": 0
+      }
+    }
+  ]
+}

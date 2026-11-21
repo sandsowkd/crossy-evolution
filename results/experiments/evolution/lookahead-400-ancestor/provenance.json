@@ -1,0 +1,18 @@
+{
+  "label": "Development-selected lookahead generation 400",
+  "initialization": "warm-start-neat",
+  "ancestry": [
+    "Earlier 500-generation binary search: 800,000 training episodes; warm selected generation 470.",
+    "Motion adaptation selected generation 30 after 24,000 training episodes; the complete earlier search is also retained.",
+    "Lookahead generation 400: 640,000 branch generation-position training episodes; additional interrupted work may not be completely counted."
+  ],
+  "trainingEpisodes": 640000,
+  "source": "results/experiments/frozen-development/lookahead-400",
+  "archiveDirectory": "results/experiments/frozen-development/lookahead-400/generations",
+  "auditDirectory": "results/experiments/wide-candidates/lookahead-100",
+  "developmentMean": 1177.3411458333333,
+  "policySha256": "be16d87c1d926307eb95b0a5ae43f88442f56cd6d652186dbf6755c36eee0454",
+  "selectedGeneration": 400,
+  "selectedGenome": 39949,
+  "unopenedNextFinalSuite": "E9-prefix 512; evaluate only after the strongest development mean reaches at least 1200 and the model is frozen."
+}

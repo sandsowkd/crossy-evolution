@@ -1,0 +1,105 @@
+{
+  "config": {
+    "population": 100,
+    "seed": 402419,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 64,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 5,
+    "trainingSeedStride": 67,
+    "fitnessObjective": "rows",
+    "evolutionParameters": {
+      "weightMutationRate": 0.12,
+      "weightMutationSigma": 0.02,
+      "weightResetRate": 0,
+      "addNodeRate": 0.01,
+      "addConnectionRate": 0.06,
+      "toggleConnectionRate": 0.003,
+      "crossoverRate": 0.2,
+      "parentFraction": 0.2
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 3,
+  "trainingEpisodes": 19200,
+  "repeatedRecoveryTrainingEpisodes": 6400,
+  "knownTrainingEpisodesIncludingRecovery": 25600,
+  "validationEpisodes": 16128,
+  "validation": [
+    {
+      "generation": 3,
+      "genome": 252,
+      "meanRow": 1144.6692708333333
+    },
+    {
+      "generation": 3,
+      "genome": 210,
+      "meanRow": 1122.2734375
+    },
+    {
+      "generation": 3,
+      "genome": 297,
+      "meanRow": 1101.4544270833333
+    },
+    {
+      "generation": 3,
+      "genome": 217,
+      "meanRow": 1142.7513020833333
+    },
+    {
+      "generation": 3,
+      "genome": 256,
+      "meanRow": 1121.2356770833333
+    },
+    {
+      "generation": 3,
+      "genome": 296,
+      "meanRow": 1119.8203125
+    },
+    {
+      "generation": 3,
+      "genome": 206,
+      "meanRow": 1002.80078125
+    },
+    {
+      "generation": 3,
+      "genome": 267,
+      "meanRow": 1143.05078125
+    },
+    {
+      "generation": 3,
+      "genome": 281,
+      "meanRow": 1141.2044270833333
+    },
+    {
+      "generation": 3,
+      "genome": 272,
+      "meanRow": 1141.55078125
+    }
+  ],
+  "seconds": 182.32369116700002,
+  "recovery": {
+    "startGeneration": 2,
+    "checkpointSha256": "02527e1ce97c245c62a607c698b43745d891be10f9fe9a5c9011b92e341079de",
+    "selectedSha256": "fc8dd496f102dea31d7c01c9f54ce40bfbc64bd509833c9aad9c27e8b318c6dd",
+    "uncheckpointedGenerationsReproducedExactly": [
+      3
+    ],
+    "repeatedRecoveryTrainingEpisodes": 6400,
+    "validationEpisodesAreKnownMinimum": true,
+    "priorNonwinningNomineeScoresUnavailable": true,
+    "priorUncheckpointedDevelopmentWorkMayHaveOccurred": true,
+    "secondsScope": "Recovery only; original partial-run timing unavailable",
+    "checkpointVerificationEpisodes": 768
+  },
+  "ancestry": {
+    "source": "results/experiments/wide-restarts/round-017",
+    "genome": 272,
+    "meanRow": 1159.4908854166667
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "label": "Further evolved roads chicken",
+  "initialization": "Warm start \u00b7 real NEAT refinement",
+  "ancestry": [
+    "Earlier binary500-generation search (800000 episodes), motion adaptation and lookahead training are inherited, not restarted from scratch.",
+    "Lookahead ancestor selected generation490; its protected generation515 checkpoint records824000 lookahead training positions. The full coarse search later reached600/960000 positions.",
+    "Rows replica3 supplied generation30 genome2923 to restart29; restart30 subsequently selected the1304.7057291666667 ancestor. Full earlier100-chicken populations and checkpoints remain preserved.",
+    "The200-chicken \u00d716-map batch selected generation40 genome7930 at1307.5572916666667 on768 development maps. Its50-generation search consumed160000 training episodes and all50 complete populations remain archived.",
+    "Restart38 starts from that inherited200-chicken model, then runs three new100-chicken \u00d764-map NEAT generations (19200 training episodes). Its generation3 model is chosen on768 development maps before F9 opens."
+  ],
+  "trainingEpisodes": 19200,
+  "selectedBranchTrainingEpisodes": 19200,
+  "parent": {
+    "source": "results/experiments/average/wide-score-batch-200",
+    "selectedGeneration": 40,
+    "selectedGenome": 7930,
+    "selectedMean768": 1307.5572916666667,
+    "sourceArchiveDirectory": "results/experiments/average/wide-score-batch-200/generations",
+    "ancestorCheckpointSha256": "a438a8da8fdf5fd4eb5979e9fdcf92577938a1303e78a5d36ba4d2bd223cbcc5"
+  },
+  "trainingAccounting": "Per-phase saved episode positions are separate; parallel and earlier interrupted search is retained, and a complete total is not claimed. Generation3 is only this warm branch.",
+  "developmentMean": 1335.9348958333333,
+  "policySha256": "06d3a194f0ca1c2a30dea229fd00c9877e6c74137aabe69b7d5b0ac475f2d419",
+  "checkpointSha256": "9d9e624d9108972de49bf2daf2bcb9bdbbcc069fee3cb8c1658eedeaabf8dd23",
+  "frozenAt": "2026-11-21T18:06:21.616Z",
+  "finalTestProtocol": "F9-prefix512, reserved before this model was chosen, fixed600-second roads with unchanged traffic/physics; compare frozen generation460 on identical fresh maps."
+}

@@ -1,0 +1,663 @@
+{
+  "protocol": "Same inherited model per sensor-group; rotating common training maps, unchanged 600s roads simulation, genuine mutation/crossover/speciation. Only A1 development maps used for candidate selection. Populations and mutation/parent/crossover/risk settings vary together, so profile comparison does not isolate individual causal effects. No final suite read.",
+  "trainingEpisodes": 104800,
+  "entries": [
+    {
+      "group": "binary-v1",
+      "profile": "precise-50",
+      "config": {
+        "population": 50,
+        "seed": 712049,
+        "trainingSeeds": 8,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.12,
+          "weightMutationSigma": 0.045,
+          "weightResetRate": 0,
+          "addNodeRate": 0.01,
+          "addConnectionRate": 0.04,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.25,
+          "parentFraction": 0.25,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.5,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ]
+      },
+      "ancestry": {
+        "source": "results/continued",
+        "checkpointGeneration": 500,
+        "selectedGeneration": 470,
+        "selectedGenome": 93863,
+        "observationVersion": 1,
+        "config": {
+          "population": 200,
+          "seed": 42,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 3600,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2"
+        }
+      },
+      "generations": 10,
+      "trainingEpisodes": 4000,
+      "validationEpisodes": 992,
+      "trainingComputeSeconds": 66.12473896000002,
+      "criterionSelected": {
+        "generation": 10,
+        "genome": 100664,
+        "mean": 563.34375,
+        "median": 510,
+        "lowerHalf": 205.6875,
+        "max": 1563,
+        "reach1000": 0.15625,
+        "goalUtility": 690.828125
+      },
+      "goalSelected": {
+        "generation": 10,
+        "genome": 100664,
+        "mean": 563.34375,
+        "median": 510,
+        "lowerHalf": 205.6875,
+        "max": 1563,
+        "reach1000": 0.15625,
+        "goalUtility": 690.828125
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 10
+    },
+    {
+      "group": "binary-v1",
+      "profile": "balanced-100",
+      "config": {
+        "population": 100,
+        "seed": 712049,
+        "trainingSeeds": 8,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.2,
+          "weightMutationSigma": 0.09,
+          "weightResetRate": 0.0025,
+          "addNodeRate": 0.03,
+          "addConnectionRate": 0.15,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.5,
+          "parentFraction": 0.3,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.5,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ]
+      },
+      "ancestry": {
+        "source": "results/continued",
+        "checkpointGeneration": 500,
+        "selectedGeneration": 470,
+        "selectedGenome": 93863,
+        "observationVersion": 1,
+        "config": {
+          "population": 200,
+          "seed": 42,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 3600,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2"
+        }
+      },
+      "generations": 10,
+      "trainingEpisodes": 8000,
+      "validationEpisodes": 992,
+      "trainingComputeSeconds": 122.31476900000001,
+      "criterionSelected": {
+        "generation": 10,
+        "genome": 101193,
+        "mean": 548.3125,
+        "median": 440,
+        "lowerHalf": 185.09375,
+        "max": 1630,
+        "reach1000": 0.171875,
+        "goalUtility": 676.0078125
+      },
+      "goalSelected": {
+        "generation": 10,
+        "genome": 101193,
+        "mean": 548.3125,
+        "median": 440,
+        "lowerHalf": 185.09375,
+        "max": 1630,
+        "reach1000": 0.171875,
+        "goalUtility": 676.0078125
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 10
+    },
+    {
+      "group": "binary-v1",
+      "profile": "diverse-200",
+      "config": {
+        "population": 200,
+        "seed": 712049,
+        "trainingSeeds": 8,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.25,
+          "weightMutationSigma": 0.18,
+          "weightResetRate": 0.015,
+          "addNodeRate": 0.08,
+          "addConnectionRate": 0.3,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.75,
+          "parentFraction": 0.4,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.5,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ]
+      },
+      "ancestry": {
+        "source": "results/continued",
+        "checkpointGeneration": 500,
+        "selectedGeneration": 470,
+        "selectedGenome": 93863,
+        "observationVersion": 1,
+        "config": {
+          "population": 200,
+          "seed": 42,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 3600,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2"
+        }
+      },
+      "generations": 10,
+      "trainingEpisodes": 16000,
+      "validationEpisodes": 992,
+      "trainingComputeSeconds": 233.73020937400005,
+      "criterionSelected": {
+        "generation": 0,
+        "genome": 93863,
+        "mean": 459.203125,
+        "median": 371,
+        "lowerHalf": 169.8125,
+        "max": 1498,
+        "reach1000": 0.078125,
+        "goalUtility": 540.71875
+      },
+      "goalSelected": {
+        "generation": 10,
+        "genome": 102085,
+        "mean": 458.765625,
+        "median": 239.5,
+        "lowerHalf": 136.34375,
+        "max": 1591,
+        "reach1000": 0.15625,
+        "goalUtility": 567.6328125
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 10
+    },
+    {
+      "group": "binary-v1",
+      "profile": "risk-100",
+      "config": {
+        "population": 100,
+        "seed": 712049,
+        "trainingSeeds": 16,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.15,
+          "weightMutationSigma": 0.065,
+          "weightResetRate": 0.001,
+          "addNodeRate": 0.02,
+          "addConnectionRate": 0.1,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.4,
+          "parentFraction": 0.25,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.8,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ]
+      },
+      "ancestry": {
+        "source": "results/continued",
+        "checkpointGeneration": 500,
+        "selectedGeneration": 470,
+        "selectedGenome": 93863,
+        "observationVersion": 1,
+        "config": {
+          "population": 200,
+          "seed": 42,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 3600,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2"
+        }
+      },
+      "generations": 10,
+      "trainingEpisodes": 16000,
+      "validationEpisodes": 992,
+      "trainingComputeSeconds": 239.783431792,
+      "criterionSelected": {
+        "generation": 10,
+        "genome": 101193,
+        "mean": 560.03125,
+        "median": 394.5,
+        "lowerHalf": 157.03125,
+        "max": 1678,
+        "reach1000": 0.21875,
+        "goalUtility": 696.6484375
+      },
+      "goalSelected": {
+        "generation": 10,
+        "genome": 101193,
+        "mean": 560.03125,
+        "median": 394.5,
+        "lowerHalf": 157.03125,
+        "max": 1678,
+        "reach1000": 0.21875,
+        "goalUtility": 696.6484375
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 10
+    },
+    {
+      "group": "v3-refinement",
+      "profile": "precise-50",
+      "config": {
+        "population": 50,
+        "seed": 712049,
+        "trainingSeeds": 8,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.12,
+          "weightMutationSigma": 0.045,
+          "weightResetRate": 0,
+          "addNodeRate": 0.01,
+          "addConnectionRate": 0.04,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.25,
+          "parentFraction": 0.25,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.5,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ],
+        "observationVersion": 3
+      },
+      "ancestry": {
+        "source": "results/experiments/evolution/v3-ancestor",
+        "checkpointGeneration": 30,
+        "selectedGeneration": 30,
+        "selectedGenome": 2978,
+        "observationVersion": 3,
+        "config": {
+          "population": 100,
+          "seed": 1951,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 36000,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2",
+          "observationVersion": 3
+        }
+      },
+      "generations": 50,
+      "trainingEpisodes": 20000,
+      "validationEpisodes": 3424,
+      "trainingComputeSeconds": 220.01241424900013,
+      "criterionSelected": {
+        "generation": 1,
+        "genome": 3147,
+        "mean": 985.84375,
+        "median": 1085,
+        "lowerHalf": 568.8125,
+        "max": 1538,
+        "reach1000": 0.515625,
+        "goalUtility": 1384.296875
+      },
+      "goalSelected": {
+        "generation": 1,
+        "genome": 3147,
+        "mean": 985.84375,
+        "median": 1085,
+        "lowerHalf": 568.8125,
+        "max": 1538,
+        "reach1000": 0.515625,
+        "goalUtility": 1384.296875
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 50
+    },
+    {
+      "group": "v3-refinement",
+      "profile": "balanced-100",
+      "config": {
+        "population": 100,
+        "seed": 712049,
+        "trainingSeeds": 8,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.2,
+          "weightMutationSigma": 0.09,
+          "weightResetRate": 0.0025,
+          "addNodeRate": 0.03,
+          "addConnectionRate": 0.15,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.5,
+          "parentFraction": 0.3,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.5,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ],
+        "observationVersion": 3
+      },
+      "ancestry": {
+        "source": "results/experiments/evolution/v3-ancestor",
+        "checkpointGeneration": 30,
+        "selectedGeneration": 30,
+        "selectedGenome": 2978,
+        "observationVersion": 3,
+        "config": {
+          "population": 100,
+          "seed": 1951,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 36000,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2",
+          "observationVersion": 3
+        }
+      },
+      "generations": 25,
+      "trainingEpisodes": 20000,
+      "validationEpisodes": 2000,
+      "trainingComputeSeconds": 211.86110849899993,
+      "criterionSelected": {
+        "generation": 0,
+        "genome": 2978,
+        "mean": 975.8125,
+        "median": 1047,
+        "lowerHalf": 564.375,
+        "max": 1523,
+        "reach1000": 0.515625,
+        "goalUtility": 1374.1875
+      },
+      "goalSelected": {
+        "generation": 0,
+        "genome": 2978,
+        "mean": 975.8125,
+        "median": 1047,
+        "lowerHalf": 564.375,
+        "max": 1523,
+        "reach1000": 0.515625,
+        "goalUtility": 1374.1875
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 25
+    },
+    {
+      "group": "v3-refinement",
+      "profile": "risk-100",
+      "config": {
+        "population": 100,
+        "seed": 712049,
+        "trainingSeeds": 16,
+        "autoCurriculum": false,
+        "profile": "robust-v2",
+        "simulation": {
+          "curriculum": "roads",
+          "maxTicks": 36000,
+          "difficulty": 1
+        },
+        "evolutionParameters": {
+          "weightMutationRate": 0.15,
+          "weightMutationSigma": 0.065,
+          "weightResetRate": 0.001,
+          "addNodeRate": 0.02,
+          "addConnectionRate": 0.1,
+          "toggleConnectionRate": 0.005,
+          "crossoverRate": 0.4,
+          "parentFraction": 0.25,
+          "retainStaleSpeciesProgress": true
+        },
+        "fitnessRiskWeight": 0.8,
+        "trainingSeedStride": 31,
+        "trainingSeedStream": 573,
+        "monitorSeeds": [
+          2701131776,
+          2701197313,
+          2701262850,
+          2701328387,
+          2701393924,
+          2701459461,
+          2701524998,
+          2701590535,
+          2701656072,
+          2701721609,
+          2701787146,
+          2701852683,
+          2701918220,
+          2701983757,
+          2702049294,
+          2702114831
+        ],
+        "observationVersion": 3
+      },
+      "ancestry": {
+        "source": "results/experiments/evolution/v3-ancestor",
+        "checkpointGeneration": 30,
+        "selectedGeneration": 30,
+        "selectedGenome": 2978,
+        "observationVersion": 3,
+        "config": {
+          "population": 100,
+          "seed": 1951,
+          "simulation": {
+            "curriculum": "roads",
+            "maxTicks": 36000,
+            "difficulty": 1
+          },
+          "trainingSeeds": 8,
+          "autoCurriculum": false,
+          "profile": "robust-v2",
+          "observationVersion": 3
+        }
+      },
+      "generations": 13,
+      "trainingEpisodes": 20800,
+      "validationEpisodes": 784,
+      "trainingComputeSeconds": 218.134942123,
+      "criterionSelected": {
+        "generation": 0,
+        "genome": 2978,
+        "mean": 975.8125,
+        "median": 1047,
+        "lowerHalf": 564.375,
+        "max": 1523,
+        "reach1000": 0.515625,
+        "goalUtility": 1374.1875
+      },
+      "goalSelected": {
+        "generation": 0,
+        "genome": 2978,
+        "mean": 975.8125,
+        "median": 1047,
+        "lowerHalf": 564.375,
+        "max": 1523,
+        "reach1000": 0.515625,
+        "goalUtility": 1374.1875
+      },
+      "nativeCheckpointValidated": true,
+      "fullArchivedCohorts": 13
+    }
+  ]
+}

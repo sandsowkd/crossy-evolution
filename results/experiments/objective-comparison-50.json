@@ -1,0 +1,67 @@
+{
+  "completedAt": "2026-11-21T17:05:15.610Z",
+  "kind": "development-comparison",
+  "horizonSeconds": 600,
+  "developmentMaps": 768,
+  "sameAncestor": "results/experiments/evolution/lookahead-490-ancestor",
+  "pairs": [
+    {
+      "replicate": 3,
+      "results": [
+        {
+          "objective": "reward",
+          "source": "results/experiments/average/wide-reward-explore-100-r3",
+          "generations": 50,
+          "trainingEpisodes": 80000,
+          "developmentEpisodes": 85248,
+          "seed": 197463,
+          "selectedGeneration": 5,
+          "selectedGenome": 483,
+          "mean768": 1289.8072916666667
+        },
+        {
+          "objective": "score",
+          "source": "results/experiments/average/wide-score-explore-100-r3",
+          "generations": 50,
+          "trainingEpisodes": 80000,
+          "developmentEpisodes": 85248,
+          "seed": 197463,
+          "selectedGeneration": 50,
+          "selectedGenome": 4914,
+          "mean768": 1293.6979166666667
+        }
+      ],
+      "rewardMinusRows": -3.890625
+    },
+    {
+      "replicate": 4,
+      "results": [
+        {
+          "objective": "reward",
+          "source": "results/experiments/average/wide-reward-explore-100-r4",
+          "generations": 50,
+          "trainingEpisodes": 80000,
+          "developmentEpisodes": 85248,
+          "seed": 198472,
+          "selectedGeneration": 45,
+          "selectedGenome": 4460,
+          "mean768": 1300.6575520833333
+        },
+        {
+          "objective": "score",
+          "source": "results/experiments/average/wide-score-explore-100-r4",
+          "generations": 50,
+          "trainingEpisodes": 80000,
+          "developmentEpisodes": 85248,
+          "seed": 198472,
+          "selectedGeneration": 1,
+          "selectedGenome": 3,
+          "mean768": 1272.2083333333333
+        }
+      ],
+      "rewardMinusRows": 28.44921875
+    }
+  ],
+  "meanPairedRewardMinusRows": 12.279296875,
+  "interpretation": "Two matched seeds, inconsistent winner: no robust objective preference. Best-of-search development means, not independent final-test or population-average results."
+}

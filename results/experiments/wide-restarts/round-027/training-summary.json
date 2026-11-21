@@ -1,0 +1,139 @@
+{
+  "config": {
+    "population": 100,
+    "seed": 402427,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 64,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 5,
+    "trainingSeedStride": 67,
+    "fitnessObjective": "rows",
+    "evolutionParameters": {
+      "weightMutationRate": 0.12,
+      "weightMutationSigma": 0.1,
+      "weightResetRate": 0,
+      "addNodeRate": 0.01,
+      "addConnectionRate": 0.06,
+      "toggleConnectionRate": 0.003,
+      "crossoverRate": 0.2,
+      "parentFraction": 0.2
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 3,
+  "trainingEpisodes": 19200,
+  "validationEpisodes": 15360,
+  "validation": [
+    {
+      "generation": 1,
+      "genome": 82,
+      "meanRow": 1277.2669270833333
+    },
+    {
+      "generation": 1,
+      "genome": 50,
+      "meanRow": 1282.1770833333333
+    },
+    {
+      "generation": 1,
+      "genome": 14,
+      "meanRow": 1276.4973958333333
+    },
+    {
+      "generation": 1,
+      "genome": 64,
+      "meanRow": 1280.8997395833333
+    },
+    {
+      "generation": 1,
+      "genome": 60,
+      "meanRow": 1261.7903645833333
+    },
+    {
+      "generation": 1,
+      "genome": 16,
+      "meanRow": 1250.6666666666667
+    },
+    {
+      "generation": 1,
+      "genome": 58,
+      "meanRow": 1241.4166666666667
+    },
+    {
+      "generation": 1,
+      "genome": 76,
+      "meanRow": 1235.953125
+    },
+    {
+      "generation": 1,
+      "genome": 0,
+      "meanRow": 1289.8072916666667
+    },
+    {
+      "generation": 1,
+      "genome": 47,
+      "meanRow": 1277.1236979166667
+    },
+    {
+      "generation": 3,
+      "genome": 281,
+      "meanRow": 1267.0208333333333
+    },
+    {
+      "generation": 3,
+      "genome": 271,
+      "meanRow": 1257.3229166666667
+    },
+    {
+      "generation": 3,
+      "genome": 211,
+      "meanRow": 1248.2591145833333
+    },
+    {
+      "generation": 3,
+      "genome": 245,
+      "meanRow": 1262.0989583333333
+    },
+    {
+      "generation": 3,
+      "genome": 222,
+      "meanRow": 1270.8645833333333
+    },
+    {
+      "generation": 3,
+      "genome": 203,
+      "meanRow": 1280.98828125
+    },
+    {
+      "generation": 3,
+      "genome": 269,
+      "meanRow": 1270.7708333333333
+    },
+    {
+      "generation": 3,
+      "genome": 256,
+      "meanRow": 1280.63671875
+    },
+    {
+      "generation": 3,
+      "genome": 258,
+      "meanRow": 1254.0703125
+    },
+    {
+      "generation": 3,
+      "genome": 272,
+      "meanRow": 1270.74609375
+    }
+  ],
+  "seconds": 473.72953633400004,
+  "ancestry": {
+    "source": "results/experiments/average/wide-reward-explore-100-r3",
+    "genome": 483,
+    "meanRow": 1289.8072916666667
+  }
+}

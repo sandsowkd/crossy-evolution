@@ -1,0 +1,88 @@
+{
+  "config": {
+    "population": 100,
+    "seed": 402402,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 64,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 5,
+    "trainingSeedStride": 67,
+    "evolutionParameters": {
+      "weightMutationRate": 0.12,
+      "weightMutationSigma": 0.05,
+      "weightResetRate": 0,
+      "addNodeRate": 0.01,
+      "addConnectionRate": 0.06,
+      "toggleConnectionRate": 0.003,
+      "crossoverRate": 0.2,
+      "parentFraction": 0.2
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 1,
+  "trainingEpisodes": 6400,
+  "validationEpisodes": 7680,
+  "validation": [
+    {
+      "generation": 1,
+      "genome": 78,
+      "meanRow": 965.49609375
+    },
+    {
+      "generation": 1,
+      "genome": 30,
+      "meanRow": 940.7591145833334
+    },
+    {
+      "generation": 1,
+      "genome": 91,
+      "meanRow": 924.30859375
+    },
+    {
+      "generation": 1,
+      "genome": 17,
+      "meanRow": 979.4049479166666
+    },
+    {
+      "generation": 1,
+      "genome": 26,
+      "meanRow": 932.53515625
+    },
+    {
+      "generation": 1,
+      "genome": 67,
+      "meanRow": 946.8177083333334
+    },
+    {
+      "generation": 1,
+      "genome": 39,
+      "meanRow": 979.4765625
+    },
+    {
+      "generation": 1,
+      "genome": 81,
+      "meanRow": 935.1041666666666
+    },
+    {
+      "generation": 1,
+      "genome": 48,
+      "meanRow": 935.0963541666666
+    },
+    {
+      "generation": 1,
+      "genome": 45,
+      "meanRow": 962.0364583333334
+    }
+  ],
+  "seconds": 235.78811775000008,
+  "ancestry": {
+    "source": "results/experiments/wide-restarts/round-001",
+    "genome": 47,
+    "meanRow": 970.3033854166666
+  }
+}

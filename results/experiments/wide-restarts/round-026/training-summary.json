@@ -1,0 +1,139 @@
+{
+  "config": {
+    "population": 100,
+    "seed": 402426,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 64,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 5,
+    "trainingSeedStride": 67,
+    "fitnessObjective": "rows",
+    "evolutionParameters": {
+      "weightMutationRate": 0.12,
+      "weightMutationSigma": 0.05,
+      "weightResetRate": 0,
+      "addNodeRate": 0.01,
+      "addConnectionRate": 0.06,
+      "toggleConnectionRate": 0.003,
+      "crossoverRate": 0.2,
+      "parentFraction": 0.2
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 3,
+  "trainingEpisodes": 19200,
+  "validationEpisodes": 15360,
+  "validation": [
+    {
+      "generation": 1,
+      "genome": 91,
+      "meanRow": 1234.8828125
+    },
+    {
+      "generation": 1,
+      "genome": 94,
+      "meanRow": 1239.0807291666667
+    },
+    {
+      "generation": 1,
+      "genome": 19,
+      "meanRow": 1264.78125
+    },
+    {
+      "generation": 1,
+      "genome": 25,
+      "meanRow": 1224.4700520833333
+    },
+    {
+      "generation": 1,
+      "genome": 21,
+      "meanRow": 1252.90234375
+    },
+    {
+      "generation": 1,
+      "genome": 82,
+      "meanRow": 1248.2239583333333
+    },
+    {
+      "generation": 1,
+      "genome": 32,
+      "meanRow": 1228.93359375
+    },
+    {
+      "generation": 1,
+      "genome": 38,
+      "meanRow": 1244.2864583333333
+    },
+    {
+      "generation": 1,
+      "genome": 3,
+      "meanRow": 1263.9947916666667
+    },
+    {
+      "generation": 1,
+      "genome": 62,
+      "meanRow": 1235.0442708333333
+    },
+    {
+      "generation": 3,
+      "genome": 206,
+      "meanRow": 1209.7109375
+    },
+    {
+      "generation": 3,
+      "genome": 292,
+      "meanRow": 1205.6223958333333
+    },
+    {
+      "generation": 3,
+      "genome": 248,
+      "meanRow": 1197.16796875
+    },
+    {
+      "generation": 3,
+      "genome": 269,
+      "meanRow": 1259.8919270833333
+    },
+    {
+      "generation": 3,
+      "genome": 202,
+      "meanRow": 1242.625
+    },
+    {
+      "generation": 3,
+      "genome": 289,
+      "meanRow": 1238.9296875
+    },
+    {
+      "generation": 3,
+      "genome": 200,
+      "meanRow": 1227.0807291666667
+    },
+    {
+      "generation": 3,
+      "genome": 240,
+      "meanRow": 1205.0182291666667
+    },
+    {
+      "generation": 3,
+      "genome": 278,
+      "meanRow": 1231.57421875
+    },
+    {
+      "generation": 3,
+      "genome": 250,
+      "meanRow": 1251.4010416666667
+    }
+  ],
+  "seconds": 465.94430954100005,
+  "ancestry": {
+    "source": "results/experiments/evolution/lookahead-490-ancestor",
+    "genome": 48986,
+    "meanRow": 1265.546875
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "config": {
+    "curriculum": "roads",
+    "maxTicks": 36000,
+    "difficulty": 1
+  },
+  "seeds": [
+    2701131776,
+    2701197313,
+    2701262850,
+    2701328387,
+    2701393924,
+    2701459461,
+    2701524998,
+    2701590535,
+    2701656072,
+    2701721609,
+    2701787146,
+    2701852683,
+    2701918220,
+    2701983757,
+    2702049294,
+    2702114831,
+    2702180368,
+    2702245905,
+    2702311442,
+    2702376979,
+    2702442516,
+    2702508053,
+    2702573590,
+    2702639127,
+    2702704664,
+    2702770201,
+    2702835738,
+    2702901275,
+    2702966812,
+    2703032349,
+    2703097886,
+    2703163423
+  ],
+  "results": [
+    {
+      "source": "results/continued/selected.json",
+      "genome": 93863,
+      "observationVersion": 1,
+      "exactEpisodes": 12,
+      "exactDecisions": 21419,
+      "traceSha256": "6f2835f7df6e7e47d7aa935fdbdab1f3d40620b2a5fa9c850feebf3876825b97",
+      "timedEpisodesPerRound": 32,
+      "tickSeconds": [
+        0.3600220000000002,
+        0.33958333300000004,
+        0.33387591600000044,
+        0.32181529200000025
+      ],
+      "hopSeconds": [
+        0.2679930420000003,
+        0.23135566699999982,
+        0.2594053749999998,
+        0.24453683300000012
+      ],
+      "speedup": 1.3508510024715001
+    },
+    {
+      "source": "results/experiments/evolution/lookahead-ancestor/selected.json",
+      "genome": 8486,
+      "observationVersion": 5,
+      "exactEpisodes": 12,
+      "exactDecisions": 34619,
+      "traceSha256": "43f6157b2a05867f259d78170fbc53c8b21b8a72cca48257e0953a8549cc4a7a",
+      "timedEpisodesPerRound": 32,
+      "tickSeconds": [
+        0.7375341670000007,
+        0.7796389999999992,
+        0.7526638330000005,
+        0.7472264999999989
+      ],
+      "hopSeconds": [
+        0.5504855420000003,
+        0.5497506249999997,
+        0.5769710000000013,
+        0.5369339999999992
+      ],
+      "speedup": 1.3626337583921533
+    }
+  ],
+  "note": "Frozen original physics traces match exactly using the same current sensor encoder on both worlds (including version5). Timing compares the existing scalar per-tick path with the new conservative clear-hop broad phase; alternating order, warmups excluded, concurrent training load."
+}

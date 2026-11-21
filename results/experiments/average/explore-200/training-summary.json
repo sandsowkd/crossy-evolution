@@ -1,0 +1,7572 @@
+{
+  "config": {
+    "population": 200,
+    "seed": 194422,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 4,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 3,
+    "evolutionParameters": {
+      "weightMutationRate": 0.22,
+      "weightMutationSigma": 0.14,
+      "weightResetRate": 0.001,
+      "addNodeRate": 0.06,
+      "addConnectionRate": 0.2,
+      "toggleConnectionRate": 0.005,
+      "crossoverRate": 0.35,
+      "parentFraction": 0.25
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 45,
+  "requestedGenerations": 100,
+  "trainingEpisodes": 36000,
+  "validationEpisodes": 5952,
+  "validation": [
+    {
+      "generation": 1,
+      "genome": 93,
+      "meanRow": 802.4114583333334
+    },
+    {
+      "generation": 1,
+      "genome": 153,
+      "meanRow": 848.6354166666666
+    },
+    {
+      "generation": 1,
+      "genome": 86,
+      "meanRow": 804.78125
+    },
+    {
+      "generation": 5,
+      "genome": 986,
+      "meanRow": 668.4479166666666
+    },
+    {
+      "generation": 5,
+      "genome": 952,
+      "meanRow": 674.5833333333334
+    },
+    {
+      "generation": 5,
+      "genome": 848,
+      "meanRow": 600.5
+    },
+    {
+      "generation": 10,
+      "genome": 1866,
+      "meanRow": 711.5729166666666
+    },
+    {
+      "generation": 10,
+      "genome": 1936,
+      "meanRow": 743.3385416666666
+    },
+    {
+      "generation": 10,
+      "genome": 1895,
+      "meanRow": 829.2447916666666
+    },
+    {
+      "generation": 15,
+      "genome": 2835,
+      "meanRow": 790.5833333333334
+    },
+    {
+      "generation": 15,
+      "genome": 2857,
+      "meanRow": 667.5677083333334
+    },
+    {
+      "generation": 15,
+      "genome": 2993,
+      "meanRow": 706.015625
+    },
+    {
+      "generation": 20,
+      "genome": 3894,
+      "meanRow": 791.7239583333334
+    },
+    {
+      "generation": 20,
+      "genome": 3976,
+      "meanRow": 734.6041666666666
+    },
+    {
+      "generation": 20,
+      "genome": 3881,
+      "meanRow": 770.3802083333334
+    },
+    {
+      "generation": 25,
+      "genome": 4916,
+      "meanRow": 675.25
+    },
+    {
+      "generation": 25,
+      "genome": 4832,
+      "meanRow": 749.6666666666666
+    },
+    {
+      "generation": 25,
+      "genome": 4873,
+      "meanRow": 723.0989583333334
+    },
+    {
+      "generation": 30,
+      "genome": 5973,
+      "meanRow": 775.4114583333334
+    },
+    {
+      "generation": 30,
+      "genome": 5816,
+      "meanRow": 700.0052083333334
+    },
+    {
+      "generation": 30,
+      "genome": 5917,
+      "meanRow": 753.1927083333334
+    },
+    {
+      "generation": 35,
+      "genome": 6954,
+      "meanRow": 650.5052083333334
+    },
+    {
+      "generation": 35,
+      "genome": 6882,
+      "meanRow": 804.359375
+    },
+    {
+      "generation": 35,
+      "genome": 6922,
+      "meanRow": 749.6302083333334
+    },
+    {
+      "generation": 40,
+      "genome": 7986,
+      "meanRow": 813.3854166666666
+    },
+    {
+      "generation": 40,
+      "genome": 7810,
+      "meanRow": 619.4895833333334
+    },
+    {
+      "generation": 40,
+      "genome": 7904,
+      "meanRow": 797.8854166666666
+    },
+    {
+      "generation": 45,
+      "genome": 8825,
+      "meanRow": 839.4270833333334
+    },
+    {
+      "generation": 45,
+      "genome": 8928,
+      "meanRow": 704.9947916666666
+    },
+    {
+      "generation": 45,
+      "genome": 8814,
+      "meanRow": 793.0833333333334
+    }
+  ],
+  "seconds": 551.9835286250001,
+  "ancestry": {
+    "source": "results/experiments/evolution/v3-ancestor",
+    "selectedGeneration": 30,
+    "selectedGenome": 2978
+  },
+  "selectedGeneration": 0,
+  "selectedMeanRow": 888.3854166666666,
+  "history": [
+    {
+      "generation": 1,
+      "curriculum": "roads",
+      "bestFitness": 11925,
+      "meanFitness": 6407.398937499995,
+      "meanRow": 661.94125,
+      "maxRow": 1555,
+      "evalRow": 887.6875,
+      "species": 1,
+      "nodes": 33,
+      "connections": 258,
+      "seeds": [
+        664544054,
+        772055308,
+        469461860,
+        245538418
+      ],
+      "training": [
+        {
+          "seed": 664544054,
+          "score": 519,
+          "fitness": 4830,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 772055308,
+          "score": 1409,
+          "fitness": 13730,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 469461860,
+          "score": 1534,
+          "fitness": 14980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 245538418,
+          "score": 1452,
+          "fitness": 14160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.7,
+          "ticks": 7030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1418,
+          "fitness": 13820,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 638,
+          "fitness": 6205.1,
+          "ticks": 17290,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1460,
+          "fitness": 14240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 378,
+          "fitness": 3680.15,
+          "ticks": 9785,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1492,
+          "fitness": 14560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 774,
+          "fitness": 7549.39,
+          "ticks": 18861,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 451,
+          "fitness": 4401.61,
+          "ticks": 10639,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1452,
+          "fitness": 14160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 350,
+          "fitness": 3412.15,
+          "ticks": 8585,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1406,
+          "fitness": 13700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1115,
+          "fitness": 10855.18,
+          "ticks": 29282,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1474,
+          "fitness": 14380,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.64,
+          "ticks": 4036,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 293,
+          "fitness": 2849.29,
+          "ticks": 7871,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00001.json.gz"
+    },
+    {
+      "generation": 2,
+      "curriculum": "roads",
+      "bestFitness": 12297.72,
+      "meanFitness": 5655.80995,
+      "meanRow": 589.7675,
+      "maxRow": 1553,
+      "evalRow": 860.75,
+      "species": 1,
+      "nodes": 33,
+      "connections": 259,
+      "seeds": [
+        336581600,
+        598958728,
+        133882052,
+        542803716
+      ],
+      "training": [
+        {
+          "seed": 336581600,
+          "score": 1226,
+          "fitness": 11900,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 598958728,
+          "score": 1306,
+          "fitness": 12720.88,
+          "ticks": 33712,
+          "deathReason": "car"
+        },
+        {
+          "seed": 133882052,
+          "score": 1381,
+          "fitness": 13450,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 542803716,
+          "score": 1148,
+          "fitness": 11120,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.75,
+          "ticks": 7025,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1198,
+          "fitness": 11674.43,
+          "ticks": 30357,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1141,
+          "fitness": 11125.88,
+          "ticks": 28212,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1096,
+          "fitness": 10600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1158,
+          "fitness": 11267.03,
+          "ticks": 31097,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1431,
+          "fitness": 13950,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 774,
+          "fitness": 7549.43,
+          "ticks": 18857,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1398,
+          "fitness": 13619.17,
+          "ticks": 35883,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 238,
+          "fitness": 2321.25,
+          "ticks": 5675,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 978,
+          "fitness": 9514.94,
+          "ticks": 26306,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1345,
+          "fitness": 13090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 531,
+          "fitness": 4950,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 778,
+          "fitness": 7594.35,
+          "ticks": 18365,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 826,
+          "fitness": 8026.6,
+          "ticks": 23340,
+          "deathReason": "bounds"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00002.json.gz"
+    },
+    {
+      "generation": 3,
+      "curriculum": "roads",
+      "bestFitness": 11777.665,
+      "meanFitness": 6366.993999999999,
+      "meanRow": 654.5,
+      "maxRow": 1569,
+      "evalRow": 928.5625,
+      "species": 1,
+      "nodes": 33,
+      "connections": 278,
+      "seeds": [
+        565836630,
+        731135981,
+        784110517,
+        58895835
+      ],
+      "training": [
+        {
+          "seed": 565836630,
+          "score": 1318,
+          "fitness": 12858.11,
+          "ticks": 31989,
+          "deathReason": "car"
+        },
+        {
+          "seed": 731135981,
+          "score": 598,
+          "fitness": 5812.55,
+          "ticks": 16545,
+          "deathReason": "car"
+        },
+        {
+          "seed": 784110517,
+          "score": 1465,
+          "fitness": 14290,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 58895835,
+          "score": 1451,
+          "fitness": 14150,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 725,
+          "fitness": 7070.15,
+          "ticks": 17785,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 62,
+          "fitness": 600.92,
+          "ticks": 1708,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 368,
+          "fitness": 3320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1425,
+          "fitness": 13890,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 730,
+          "fitness": 6940,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1492,
+          "fitness": 14560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 950,
+          "fitness": 9140,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1453,
+          "fitness": 14170,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1477,
+          "fitness": 14410,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1437,
+          "fitness": 14010,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1209,
+          "fitness": 11791.79,
+          "ticks": 29621,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1402,
+          "fitness": 13660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 762,
+          "fitness": 7426.85,
+          "ticks": 19115,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00003.json.gz"
+    },
+    {
+      "generation": 4,
+      "curriculum": "roads",
+      "bestFitness": 13995,
+      "meanFitness": 8537.790062499997,
+      "meanRow": 876.97875,
+      "maxRow": 1554,
+      "evalRow": 874.9375,
+      "species": 1,
+      "nodes": 33,
+      "connections": 259,
+      "seeds": [
+        941174552,
+        54747249,
+        802116883,
+        83132425
+      ],
+      "training": [
+        {
+          "seed": 941174552,
+          "score": 1361,
+          "fitness": 13250,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 54747249,
+          "score": 1472,
+          "fitness": 14360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 802116883,
+          "score": 1428,
+          "fitness": 13920,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 83132425,
+          "score": 1481,
+          "fitness": 14450,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.76,
+          "ticks": 7024,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1226,
+          "fitness": 11964.67,
+          "ticks": 29333,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 462,
+          "fitness": 4485.46,
+          "ticks": 13254,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1436,
+          "fitness": 14000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 133,
+          "fitness": 1293.03,
+          "ticks": 3497,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1431,
+          "fitness": 13950,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1502,
+          "fitness": 14660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 334,
+          "fitness": 3262.85,
+          "ticks": 7515,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1495,
+          "fitness": 14590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1506,
+          "fitness": 14700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 511,
+          "fitness": 4970.79,
+          "ticks": 13721,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 499,
+          "fitness": 4855.17,
+          "ticks": 13283,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1293,
+          "fitness": 12570,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1138,
+          "fitness": 11075.43,
+          "ticks": 30257,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00004.json.gz"
+    },
+    {
+      "generation": 5,
+      "curriculum": "roads",
+      "bestFitness": 11868.43,
+      "meanFitness": 6774.247687499998,
+      "meanRow": 698.14,
+      "maxRow": 1560,
+      "evalRow": 669.1875,
+      "species": 1,
+      "nodes": 33,
+      "connections": 273,
+      "seeds": [
+        622740951,
+        425923650,
+        1060530129,
+        16357971
+      ],
+      "training": [
+        {
+          "seed": 622740951,
+          "score": 1474,
+          "fitness": 14380,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 425923650,
+          "score": 1453,
+          "fitness": 14170,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1060530129,
+          "score": 995,
+          "fitness": 9695.57,
+          "ticks": 25243,
+          "deathReason": "car"
+        },
+        {
+          "seed": 16357971,
+          "score": 946,
+          "fitness": 9228.15,
+          "ticks": 22985,
+          "deathReason": "car"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1398,
+          "fitness": 13620,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1442,
+          "fitness": 14060,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 66,
+          "fitness": 645.01,
+          "ticks": 1299,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 683,
+          "fitness": 6470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 770,
+          "fitness": 7520.6,
+          "ticks": 17740,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 166,
+          "fitness": 1622.02,
+          "ticks": 3598,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 143,
+          "fitness": 1070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 159,
+          "fitness": 1546.09,
+          "ticks": 4191,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1481,
+          "fitness": 14450,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1042,
+          "fitness": 10175.29,
+          "ticks": 24271,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 91,
+          "fitness": 875.43,
+          "ticks": 3257,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 182,
+          "fitness": 1775.33,
+          "ticks": 4267,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 533,
+          "fitness": 5205.82,
+          "ticks": 12218,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1460,
+          "fitness": 14240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 631,
+          "fitness": 6152.87,
+          "ticks": 15513,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00005.json.gz"
+    },
+    {
+      "generation": 6,
+      "curriculum": "roads",
+      "bestFitness": 12420.369999999999,
+      "meanFitness": 6988.431075000001,
+      "meanRow": 722.71375,
+      "maxRow": 1632,
+      "evalRow": 793,
+      "species": 1,
+      "nodes": 33,
+      "connections": 270,
+      "seeds": [
+        81328985,
+        388763075,
+        781607211,
+        876955385
+      ],
+      "training": [
+        {
+          "seed": 81328985,
+          "score": 1490,
+          "fitness": 14540,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 388763075,
+          "score": 1337,
+          "fitness": 13044.09,
+          "ticks": 32391,
+          "deathReason": "car"
+        },
+        {
+          "seed": 781607211,
+          "score": 799,
+          "fitness": 7797.39,
+          "ticks": 19061,
+          "deathReason": "car"
+        },
+        {
+          "seed": 876955385,
+          "score": 1466,
+          "fitness": 14300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1427,
+          "fitness": 13910,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1511,
+          "fitness": 14750,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 607,
+          "fitness": 5924.67,
+          "ticks": 14333,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1107,
+          "fitness": 10790.1,
+          "ticks": 27790,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 71,
+          "fitness": 688.98,
+          "ticks": 1902,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1439,
+          "fitness": 14030,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 850,
+          "fitness": 8299.58,
+          "ticks": 19842,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 159,
+          "fitness": 1546.09,
+          "ticks": 4191,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1454,
+          "fitness": 14180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 661,
+          "fitness": 6464.03,
+          "ticks": 14397,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 425,
+          "fitness": 4134.52,
+          "ticks": 11348,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 46,
+          "fitness": 449.25,
+          "ticks": 875,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 878,
+          "fitness": 8576.98,
+          "ticks": 20102,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 593,
+          "fitness": 5783.79,
+          "ticks": 14421,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 406,
+          "fitness": 3956.7,
+          "ticks": 10130,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00006.json.gz"
+    },
+    {
+      "generation": 7,
+      "curriculum": "roads",
+      "bestFitness": 12592.5,
+      "meanFitness": 6876.161587499998,
+      "meanRow": 711.07375,
+      "maxRow": 1577,
+      "evalRow": 693.9375,
+      "species": 1,
+      "nodes": 33,
+      "connections": 261,
+      "seeds": [
+        891668243,
+        192649777,
+        259176909,
+        923855265
+      ],
+      "training": [
+        {
+          "seed": 891668243,
+          "score": 1203,
+          "fitness": 11670,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 192649777,
+          "score": 1462,
+          "fitness": 14260,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 259176909,
+          "score": 1016,
+          "fitness": 9800,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 923855265,
+          "score": 1500,
+          "fitness": 14640,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 570,
+          "fitness": 5340,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 802,
+          "fitness": 7808.09,
+          "ticks": 20991,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 97,
+          "fitness": 941.23,
+          "ticks": 2677,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 835,
+          "fitness": 8137.71,
+          "ticks": 21029,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1470,
+          "fitness": 14340,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 378,
+          "fitness": 3680.15,
+          "ticks": 9785,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 841,
+          "fitness": 8193.86,
+          "ticks": 21414,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 975,
+          "fitness": 9523.43,
+          "ticks": 22457,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1421,
+          "fitness": 13850,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 71,
+          "fitness": 687.56,
+          "ticks": 2044,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 35,
+          "fitness": 339.79,
+          "ticks": 821,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 510,
+          "fitness": 4965.48,
+          "ticks": 13252,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 622,
+          "fitness": 6072.05,
+          "ticks": 14595,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1486,
+          "fitness": 14500,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 614,
+          "fitness": 5991.65,
+          "ticks": 14635,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00007.json.gz"
+    },
+    {
+      "generation": 8,
+      "curriculum": "roads",
+      "bestFitness": 13966.1375,
+      "meanFitness": 6578.065324999995,
+      "meanRow": 680.01,
+      "maxRow": 1588,
+      "evalRow": 833.4375,
+      "species": 1,
+      "nodes": 34,
+      "connections": 259,
+      "seeds": [
+        518240646,
+        319752588,
+        282633192,
+        452532365
+      ],
+      "training": [
+        {
+          "seed": 518240646,
+          "score": 1450,
+          "fitness": 14144.55,
+          "ticks": 35345,
+          "deathReason": "car"
+        },
+        {
+          "seed": 319752588,
+          "score": 1459,
+          "fitness": 14230,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 282633192,
+          "score": 1493,
+          "fitness": 14570,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 452532365,
+          "score": 1328,
+          "fitness": 12920,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.76,
+          "ticks": 7024,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 436,
+          "fitness": 4000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1527,
+          "fitness": 14910,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 686,
+          "fitness": 6696.63,
+          "ticks": 16137,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1460,
+          "fitness": 14240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1158,
+          "fitness": 11267.04,
+          "ticks": 31096,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 743,
+          "fitness": 7234.84,
+          "ticks": 19316,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1049,
+          "fitness": 10130,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 1412,
+          "fitness": 13760,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 371,
+          "fitness": 3605.92,
+          "ticks": 10208,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1409,
+          "fitness": 13730,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 254,
+          "fitness": 2470.76,
+          "ticks": 6724,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 499,
+          "fitness": 4855.17,
+          "ticks": 13283,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 531,
+          "fitness": 4950,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 134,
+          "fitness": 1309.21,
+          "ticks": 2879,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1392,
+          "fitness": 13560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00008.json.gz"
+    },
+    {
+      "generation": 9,
+      "curriculum": "roads",
+      "bestFitness": 14182.5,
+      "meanFitness": 7135.612587499997,
+      "meanRow": 733.24125,
+      "maxRow": 1642,
+      "evalRow": 853.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 260,
+      "seeds": [
+        219820144,
+        783584289,
+        914779116,
+        1036055384
+      ],
+      "training": [
+        {
+          "seed": 219820144,
+          "score": 1445,
+          "fitness": 14090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 783584289,
+          "score": 1488,
+          "fitness": 14520,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 914779116,
+          "score": 1438,
+          "fitness": 14020,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1036055384,
+          "score": 1446,
+          "fitness": 14100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1346,
+          "fitness": 13118.67,
+          "ticks": 33933,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1334,
+          "fitness": 12980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1381,
+          "fitness": 13450,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1426,
+          "fitness": 13900,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1166,
+          "fitness": 11332.63,
+          "ticks": 32537,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 869,
+          "fitness": 8363.47,
+          "ticks": 32453,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 222,
+          "fitness": 2166.41,
+          "ticks": 5159,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1408,
+          "fitness": 13720,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 946,
+          "fitness": 9217.72,
+          "ticks": 24028,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1287,
+          "fitness": 12539.05,
+          "ticks": 32895,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 198,
+          "fitness": 1929.89,
+          "ticks": 4811,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 203,
+          "fitness": 1972.63,
+          "ticks": 5537,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1154,
+          "fitness": 11261.57,
+          "ticks": 27643,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00009.json.gz"
+    },
+    {
+      "generation": 10,
+      "curriculum": "roads",
+      "bestFitness": 13437.5,
+      "meanFitness": 6532.248775000003,
+      "meanRow": 676.81375,
+      "maxRow": 1544,
+      "evalRow": 791.4375,
+      "species": 1,
+      "nodes": 33,
+      "connections": 282,
+      "seeds": [
+        918931263,
+        990155110,
+        293090506,
+        441620579
+      ],
+      "training": [
+        {
+          "seed": 918931263,
+          "score": 1417,
+          "fitness": 13810,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 990155110,
+          "score": 1519,
+          "fitness": 14830,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 293090506,
+          "score": 1219,
+          "fitness": 11830,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 441620579,
+          "score": 1364,
+          "fitness": 13280,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1621,
+          "fitness": 15850,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 495,
+          "fitness": 4823.77,
+          "ticks": 12423,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8138.18,
+          "ticks": 19982,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1382,
+          "fitness": 13491.56,
+          "ticks": 32644,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1520,
+          "fitness": 14840,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1462,
+          "fitness": 14260,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 474,
+          "fitness": 4624.82,
+          "ticks": 11318,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 466,
+          "fitness": 4520.02,
+          "ticks": 13798,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1454,
+          "fitness": 14180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1582,
+          "fitness": 15460,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 418,
+          "fitness": 4086.99,
+          "ticks": 9101,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 321,
+          "fitness": 3135.82,
+          "ticks": 7218,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 361,
+          "fitness": 3529.25,
+          "ticks": 7875,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.64,
+          "ticks": 4036,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 90,
+          "fitness": 873.36,
+          "ticks": 2464,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00010.json.gz"
+    },
+    {
+      "generation": 11,
+      "curriculum": "roads",
+      "bestFitness": 11774.2275,
+      "meanFitness": 6019.458675000001,
+      "meanRow": 623.04625,
+      "maxRow": 1545,
+      "evalRow": 771.875,
+      "species": 1,
+      "nodes": 34,
+      "connections": 280,
+      "seeds": [
+        5598030,
+        471464983,
+        529457252,
+        791312481
+      ],
+      "training": [
+        {
+          "seed": 5598030,
+          "score": 1488,
+          "fitness": 14520,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 471464983,
+          "score": 1235,
+          "fitness": 12036.91,
+          "ticks": 31109,
+          "deathReason": "car"
+        },
+        {
+          "seed": 529457252,
+          "score": 1450,
+          "fitness": 14140,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 791312481,
+          "score": 676,
+          "fitness": 6400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1485,
+          "fitness": 14490,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1356,
+          "fitness": 13200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 817,
+          "fitness": 7968.56,
+          "ticks": 19944,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 66,
+          "fitness": 645.01,
+          "ticks": 1299,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 850,
+          "fitness": 8280.41,
+          "ticks": 21759,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 770,
+          "fitness": 7498.51,
+          "ticks": 19949,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 173,
+          "fitness": 1678.97,
+          "ticks": 4903,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 869,
+          "fitness": 8330,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 206,
+          "fitness": 2008.16,
+          "ticks": 4984,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1365,
+          "fitness": 13290,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1476,
+          "fitness": 14400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1411,
+          "fitness": 13750,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 357,
+          "fitness": 3481.94,
+          "ticks": 8606,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 474,
+          "fitness": 4634.07,
+          "ticks": 10393,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 579,
+          "fitness": 5621.27,
+          "ticks": 16673,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 96,
+          "fitness": 600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00011.json.gz"
+    },
+    {
+      "generation": 12,
+      "curriculum": "roads",
+      "bestFitness": 10650,
+      "meanFitness": 5211.927325000001,
+      "meanRow": 545.015,
+      "maxRow": 1550,
+      "evalRow": 796.625,
+      "species": 1,
+      "nodes": 34,
+      "connections": 260,
+      "seeds": [
+        906891111,
+        599264035,
+        64136708,
+        890205927
+      ],
+      "training": [
+        {
+          "seed": 906891111,
+          "score": 1449,
+          "fitness": 14130,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 599264035,
+          "score": 1461,
+          "fitness": 14250,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 64136708,
+          "score": 123,
+          "fitness": 870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 890205927,
+          "score": 1371,
+          "fitness": 13350,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 725,
+          "fitness": 7062.72,
+          "ticks": 18528,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 357,
+          "fitness": 3475.02,
+          "ticks": 9298,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 50,
+          "fitness": 488.06,
+          "ticks": 994,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 202,
+          "fitness": 1963.44,
+          "ticks": 5456,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1106,
+          "fitness": 10760.71,
+          "ticks": 29729,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 770,
+          "fitness": 7496.22,
+          "ticks": 20178,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1445,
+          "fitness": 14090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 70,
+          "fitness": 682.36,
+          "ticks": 1764,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1350,
+          "fitness": 13140,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 814,
+          "fitness": 7927.01,
+          "ticks": 21099,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1426,
+          "fitness": 13900,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 990,
+          "fitness": 9659.46,
+          "ticks": 23854,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 230,
+          "fitness": 2236.76,
+          "ticks": 6324,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1327,
+          "fitness": 12910,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1424,
+          "fitness": 13880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00012.json.gz"
+    },
+    {
+      "generation": 13,
+      "curriculum": "roads",
+      "bestFitness": 13501.27,
+      "meanFitness": 7101.747725000003,
+      "meanRow": 733.0975,
+      "maxRow": 1597,
+      "evalRow": 705.1875,
+      "species": 1,
+      "nodes": 34,
+      "connections": 285,
+      "seeds": [
+        896972804,
+        404527756,
+        462111911,
+        948036593
+      ],
+      "training": [
+        {
+          "seed": 896972804,
+          "score": 1129,
+          "fitness": 10985.08,
+          "ticks": 30292,
+          "deathReason": "car"
+        },
+        {
+          "seed": 404527756,
+          "score": 1432,
+          "fitness": 13960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 462111911,
+          "score": 1466,
+          "fitness": 14300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 948036593,
+          "score": 1512,
+          "fitness": 14760,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.81,
+          "ticks": 7019,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 352,
+          "fitness": 3431.07,
+          "ticks": 8693,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1110,
+          "fitness": 10820.03,
+          "ticks": 27797,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 321,
+          "fitness": 3129.75,
+          "ticks": 7825,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1402,
+          "fitness": 13660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 563,
+          "fitness": 5488.25,
+          "ticks": 13975,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1038,
+          "fitness": 10118.09,
+          "ticks": 25991,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 143,
+          "fitness": 1070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1338,
+          "fitness": 13020,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1513,
+          "fitness": 14771.92,
+          "ticks": 35608,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1315,
+          "fitness": 12790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 433,
+          "fitness": 4213.95,
+          "ticks": 11405,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 993,
+          "fitness": 9570,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 90,
+          "fitness": 873.31,
+          "ticks": 2469,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00013.json.gz"
+    },
+    {
+      "generation": 14,
+      "curriculum": "roads",
+      "bestFitness": 13897.5,
+      "meanFitness": 7576.839324999993,
+      "meanRow": 780.85625,
+      "maxRow": 1589,
+      "evalRow": 663.3125,
+      "species": 1,
+      "nodes": 34,
+      "connections": 279,
+      "seeds": [
+        607751991,
+        542269164,
+        775069563,
+        515875564
+      ],
+      "training": [
+        {
+          "seed": 607751991,
+          "score": 1402,
+          "fitness": 13660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 542269164,
+          "score": 1392,
+          "fitness": 13560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 775069563,
+          "score": 1423,
+          "fitness": 13870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 515875564,
+          "score": 1486,
+          "fitness": 14500,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.7,
+          "ticks": 7030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1145,
+          "fitness": 11171.77,
+          "ticks": 27623,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 882,
+          "fitness": 8593.81,
+          "ticks": 22419,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8137.96,
+          "ticks": 20004,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1294,
+          "fitness": 12639.71,
+          "ticks": 29829,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 106,
+          "fitness": 1033.35,
+          "ticks": 2465,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 770,
+          "fitness": 7496.22,
+          "ticks": 20178,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1471,
+          "fitness": 14350,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 33,
+          "fitness": 322.31,
+          "ticks": 569,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 161,
+          "fitness": 1570.69,
+          "ticks": 3731,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 611,
+          "fitness": 5970.06,
+          "ticks": 13794,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1315,
+          "fitness": 12790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 58,
+          "fitness": 558.51,
+          "ticks": 1949,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1392,
+          "fitness": 13560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 245,
+          "fitness": 2393.21,
+          "ticks": 5479,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00014.json.gz"
+    },
+    {
+      "generation": 15,
+      "curriculum": "roads",
+      "bestFitness": 13350,
+      "meanFitness": 7023.6624124999935,
+      "meanRow": 721.43875,
+      "maxRow": 1557,
+      "evalRow": 898.875,
+      "species": 1,
+      "nodes": 34,
+      "connections": 274,
+      "seeds": [
+        808032266,
+        506112708,
+        1031082688,
+        506734487
+      ],
+      "training": [
+        {
+          "seed": 808032266,
+          "score": 1308,
+          "fitness": 12720,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 506112708,
+          "score": 1386,
+          "fitness": 13500,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1031082688,
+          "score": 1454,
+          "fitness": 14180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 506734487,
+          "score": 1336,
+          "fitness": 13000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1518,
+          "fitness": 14820,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8138.15,
+          "ticks": 19985,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 683,
+          "fitness": 6470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1476,
+          "fitness": 14400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1464,
+          "fitness": 14280,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 143,
+          "fitness": 1070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1043,
+          "fitness": 10164.08,
+          "ticks": 26392,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1443,
+          "fitness": 14070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1432,
+          "fitness": 13960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 402,
+          "fitness": 3922.77,
+          "ticks": 9523,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1395,
+          "fitness": 13590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1405,
+          "fitness": 13690,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00015.json.gz"
+    },
+    {
+      "generation": 16,
+      "curriculum": "roads",
+      "bestFitness": 11109.0125,
+      "meanFitness": 5993.030962500005,
+      "meanRow": 620.3675,
+      "maxRow": 1589,
+      "evalRow": 857.6875,
+      "species": 1,
+      "nodes": 33,
+      "connections": 285,
+      "seeds": [
+        129354032,
+        903533968,
+        934600276,
+        370253386
+      ],
+      "training": [
+        {
+          "seed": 129354032,
+          "score": 1341,
+          "fitness": 13050,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 903533968,
+          "score": 1502,
+          "fitness": 14660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 934600276,
+          "score": 943,
+          "fitness": 9216.05,
+          "ticks": 21195,
+          "deathReason": "car"
+        },
+        {
+          "seed": 370253386,
+          "score": 787,
+          "fitness": 7510,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 238,
+          "fitness": 2324.45,
+          "ticks": 5355,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 862,
+          "fitness": 8417.18,
+          "ticks": 20082,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 530,
+          "fitness": 5159.35,
+          "ticks": 13865,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1315,
+          "fitness": 12821.91,
+          "ticks": 32609,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1142,
+          "fitness": 11148.3,
+          "ticks": 26970,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1284,
+          "fitness": 12527.67,
+          "ticks": 31033,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 422,
+          "fitness": 4109.58,
+          "ticks": 10842,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1397,
+          "fitness": 13643.06,
+          "ticks": 32494,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1604,
+          "fitness": 15680,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 418,
+          "fitness": 4086.99,
+          "ticks": 9101,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 746,
+          "fitness": 7275.07,
+          "ticks": 18293,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1462,
+          "fitness": 14260,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.64,
+          "ticks": 4036,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 699,
+          "fitness": 6809.28,
+          "ticks": 17872,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00016.json.gz"
+    },
+    {
+      "generation": 17,
+      "curriculum": "roads",
+      "bestFitness": 13993.4125,
+      "meanFitness": 7341.439212499999,
+      "meanRow": 756.905,
+      "maxRow": 1654,
+      "evalRow": 705.5,
+      "species": 1,
+      "nodes": 34,
+      "connections": 281,
+      "seeds": [
+        764998714,
+        275048359,
+        644911555,
+        1027947642
+      ],
+      "training": [
+        {
+          "seed": 764998714,
+          "score": 1430,
+          "fitness": 13955.79,
+          "ticks": 34221,
+          "deathReason": "car"
+        },
+        {
+          "seed": 275048359,
+          "score": 1407,
+          "fitness": 13737.86,
+          "ticks": 33014,
+          "deathReason": "car"
+        },
+        {
+          "seed": 644911555,
+          "score": 1456,
+          "fitness": 14200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1027947642,
+          "score": 1444,
+          "fitness": 14080,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.7,
+          "ticks": 7030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1450,
+          "fitness": 14148.36,
+          "ticks": 34964,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8137.96,
+          "ticks": 20004,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1084,
+          "fitness": 10480,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 910,
+          "fitness": 8865.39,
+          "ticks": 23261,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 166,
+          "fitness": 1616.9,
+          "ticks": 4110,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 143,
+          "fitness": 1070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 758,
+          "fitness": 7220,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1542,
+          "fitness": 15060,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 150,
+          "fitness": 1462.64,
+          "ticks": 3536,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1315,
+          "fitness": 12790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1174,
+          "fitness": 11447.42,
+          "ticks": 29058,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 474,
+          "fitness": 4634.13,
+          "ticks": 10387,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 762,
+          "fitness": 7426.85,
+          "ticks": 19115,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00017.json.gz"
+    },
+    {
+      "generation": 18,
+      "curriculum": "roads",
+      "bestFitness": 13577.5,
+      "meanFitness": 7155.561912500003,
+      "meanRow": 736.50375,
+      "maxRow": 1584,
+      "evalRow": 745.5,
+      "species": 1,
+      "nodes": 33,
+      "connections": 274,
+      "seeds": [
+        456628675,
+        1023113645,
+        988474125,
+        386412803
+      ],
+      "training": [
+        {
+          "seed": 456628675,
+          "score": 1417,
+          "fitness": 13810,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1023113645,
+          "score": 1395,
+          "fitness": 13590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 988474125,
+          "score": 1304,
+          "fitness": 12680,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 386412803,
+          "score": 1459,
+          "fitness": 14230,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1093,
+          "fitness": 10654.93,
+          "ticks": 27307,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2243.84,
+          "ticks": 5616,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1418,
+          "fitness": 13820,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 807,
+          "fitness": 7871.65,
+          "ticks": 19635,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1406,
+          "fitness": 13702.47,
+          "ticks": 35553,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 381,
+          "fitness": 3708.88,
+          "ticks": 9912,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 743,
+          "fitness": 7235.13,
+          "ticks": 19287,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1266,
+          "fitness": 12300.11,
+          "ticks": 35789,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 222,
+          "fitness": 2166.41,
+          "ticks": 5159,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 430,
+          "fitness": 4188.86,
+          "ticks": 10914,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 778,
+          "fitness": 7581.75,
+          "ticks": 19625,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 978,
+          "fitness": 9514.94,
+          "ticks": 26306,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 242,
+          "fitness": 2360.92,
+          "ticks": 5708,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1290,
+          "fitness": 12540,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 498,
+          "fitness": 4620,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1419.91,
+          "ticks": 3809,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00018.json.gz"
+    },
+    {
+      "generation": 19,
+      "curriculum": "roads",
+      "bestFitness": 13682.5,
+      "meanFitness": 7052.693275000003,
+      "meanRow": 726.85375,
+      "maxRow": 1603,
+      "evalRow": 846.375,
+      "species": 1,
+      "nodes": 34,
+      "connections": 276,
+      "seeds": [
+        99909807,
+        677507983,
+        217742611,
+        945058465
+      ],
+      "training": [
+        {
+          "seed": 99909807,
+          "score": 1468,
+          "fitness": 14320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 677507983,
+          "score": 1425,
+          "fitness": 13890,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 217742611,
+          "score": 1432,
+          "fitness": 13960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 945058465,
+          "score": 1292,
+          "fitness": 12560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 806,
+          "fitness": 7853.47,
+          "ticks": 20453,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2243.84,
+          "ticks": 5616,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1456,
+          "fitness": 14200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1323,
+          "fitness": 12870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1125,
+          "fitness": 10890,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1337,
+          "fitness": 13010,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 694,
+          "fitness": 6754.96,
+          "ticks": 18304,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 774,
+          "fitness": 7549.44,
+          "ticks": 18856,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 287,
+          "fitness": 2794.99,
+          "ticks": 7301,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1376,
+          "fitness": 13400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 978,
+          "fitness": 9514.94,
+          "ticks": 26306,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1336,
+          "fitness": 13000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 769,
+          "fitness": 7470.26,
+          "ticks": 21774,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1419.91,
+          "ticks": 3809,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00019.json.gz"
+    },
+    {
+      "generation": 20,
+      "curriculum": "roads",
+      "bestFitness": 13450.49,
+      "meanFitness": 7653.704737500001,
+      "meanRow": 786.495,
+      "maxRow": 1630,
+      "evalRow": 922.75,
+      "species": 1,
+      "nodes": 34,
+      "connections": 289,
+      "seeds": [
+        329944975,
+        31503414,
+        822007843,
+        925003555
+      ],
+      "training": [
+        {
+          "seed": 329944975,
+          "score": 1396,
+          "fitness": 13600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 31503414,
+          "score": 1528,
+          "fitness": 14920,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 822007843,
+          "score": 1074,
+          "fitness": 10471.96,
+          "ticks": 26604,
+          "deathReason": "car"
+        },
+        {
+          "seed": 925003555,
+          "score": 1517,
+          "fitness": 14810,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1404,
+          "fitness": 13680,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 230,
+          "fitness": 2241.72,
+          "ticks": 5628,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1062,
+          "fitness": 10351.19,
+          "ticks": 26681,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1496,
+          "fitness": 14600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1470,
+          "fitness": 14340,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1386,
+          "fitness": 13508.15,
+          "ticks": 34985,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1074,
+          "fitness": 10455.56,
+          "ticks": 28244,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 122,
+          "fitness": 1183.82,
+          "ticks": 3418,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 159,
+          "fitness": 1546.19,
+          "ticks": 4181,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 619,
+          "fitness": 6031.73,
+          "ticks": 15627,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1426,
+          "fitness": 13900,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1096,
+          "fitness": 10637.67,
+          "ticks": 32033,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1356,
+          "fitness": 13200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1380,
+          "fitness": 13440,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1693.17,
+          "ticks": 4483,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 310,
+          "fitness": 3019.22,
+          "ticks": 7878,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00020.json.gz"
+    },
+    {
+      "generation": 21,
+      "curriculum": "roads",
+      "bestFitness": 14212.5,
+      "meanFitness": 6662.980849999998,
+      "meanRow": 685.03625,
+      "maxRow": 1644,
+      "evalRow": 874.375,
+      "species": 1,
+      "nodes": 35,
+      "connections": 279,
+      "seeds": [
+        25766844,
+        644738982,
+        984026587,
+        527916558
+      ],
+      "training": [
+        {
+          "seed": 25766844,
+          "score": 1501,
+          "fitness": 14650,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 644738982,
+          "score": 1514,
+          "fitness": 14780,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 984026587,
+          "score": 1548,
+          "fitness": 15120,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 527916558,
+          "score": 1266,
+          "fitness": 12300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 158,
+          "fitness": 1536.26,
+          "ticks": 4174,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 243,
+          "fitness": 2372.25,
+          "ticks": 5575,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1429,
+          "fitness": 13930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 105,
+          "fitness": 1026.71,
+          "ticks": 2129,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1096,
+          "fitness": 10600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 951,
+          "fitness": 9278.44,
+          "ticks": 22956,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1278,
+          "fitness": 12458.03,
+          "ticks": 31997,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1524,
+          "fitness": 14880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1406,
+          "fitness": 13700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1558,
+          "fitness": 15220,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 422,
+          "fitness": 4121.47,
+          "ticks": 9653,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 178,
+          "fitness": 1725.57,
+          "ticks": 5243,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1523,
+          "fitness": 14870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1214,
+          "fitness": 11847.91,
+          "ticks": 29009,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00021.json.gz"
+    },
+    {
+      "generation": 22,
+      "curriculum": "roads",
+      "bestFitness": 12163.8225,
+      "meanFitness": 6779.739275,
+      "meanRow": 699.71625,
+      "maxRow": 1591,
+      "evalRow": 1005.4375,
+      "species": 1,
+      "nodes": 35,
+      "connections": 280,
+      "seeds": [
+        944709846,
+        718840380,
+        352710856,
+        753091543
+      ],
+      "training": [
+        {
+          "seed": 944709846,
+          "score": 1491,
+          "fitness": 14550,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 718840380,
+          "score": 1450,
+          "fitness": 14139.37,
+          "ticks": 35863,
+          "deathReason": "car"
+        },
+        {
+          "seed": 352710856,
+          "score": 569,
+          "fitness": 5555.92,
+          "ticks": 13208,
+          "deathReason": "car"
+        },
+        {
+          "seed": 753091543,
+          "score": 1477,
+          "fitness": 14410,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 274,
+          "fitness": 2667.81,
+          "ticks": 7019,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1398,
+          "fitness": 13640.28,
+          "ticks": 33972,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1525,
+          "fitness": 14890,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 105,
+          "fitness": 1026.71,
+          "ticks": 2129,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1259,
+          "fitness": 12268.75,
+          "ticks": 31925,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1466,
+          "fitness": 14300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1439,
+          "fitness": 14030,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1572,
+          "fitness": 15360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 159,
+          "fitness": 1546.19,
+          "ticks": 4181,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1475,
+          "fitness": 14390,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1511,
+          "fitness": 14750,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 418,
+          "fitness": 4083.75,
+          "ticks": 9425,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1504,
+          "fitness": 14680,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.93,
+          "ticks": 4007,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1279,
+          "fitness": 12430,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00022.json.gz"
+    },
+    {
+      "generation": 23,
+      "curriculum": "roads",
+      "bestFitness": 14337.5,
+      "meanFitness": 7564.724012500006,
+      "meanRow": 780.25375,
+      "maxRow": 1577,
+      "evalRow": 612.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 288,
+      "seeds": [
+        104513072,
+        792841445,
+        367655897,
+        582486890
+      ],
+      "training": [
+        {
+          "seed": 104513072,
+          "score": 1463,
+          "fitness": 14270,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 792841445,
+          "score": 1529,
+          "fitness": 14930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 367655897,
+          "score": 1474,
+          "fitness": 14380,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 582486890,
+          "score": 1413,
+          "fitness": 13770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 866,
+          "fitness": 8452.63,
+          "ticks": 20537,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 417,
+          "fitness": 4062.19,
+          "ticks": 10581,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 382,
+          "fitness": 3711.52,
+          "ticks": 10848,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774897357,
+          "score": 991,
+          "fitness": 9667.86,
+          "ticks": 24014,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1097,
+          "fitness": 10610,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 166,
+          "fitness": 1616.83,
+          "ticks": 4117,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 495,
+          "fitness": 4815.38,
+          "ticks": 13262,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 121,
+          "fitness": 1180.57,
+          "ticks": 2743,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 518,
+          "fitness": 5034.61,
+          "ticks": 14339,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 489,
+          "fitness": 4766.63,
+          "ticks": 12137,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1097,
+          "fitness": 10712.11,
+          "ticks": 25589,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1182,
+          "fitness": 11541.54,
+          "ticks": 27646,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1577,
+          "fitness": 15410,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 230,
+          "fitness": 2236.76,
+          "ticks": 6324,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1426.79,
+          "ticks": 3121,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00023.json.gz"
+    },
+    {
+      "generation": 24,
+      "curriculum": "roads",
+      "bestFitness": 13517.5,
+      "meanFitness": 6117.202700000002,
+      "meanRow": 628.5175,
+      "maxRow": 1584,
+      "evalRow": 756.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 278,
+      "seeds": [
+        1030983499,
+        1050704023,
+        475074326,
+        86477539
+      ],
+      "training": [
+        {
+          "seed": 1030983499,
+          "score": 1389,
+          "fitness": 13530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1050704023,
+          "score": 1358,
+          "fitness": 13220,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 475074326,
+          "score": 1480,
+          "fitness": 14440,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 86477539,
+          "score": 1324,
+          "fitness": 12880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 586,
+          "fitness": 5697.87,
+          "ticks": 16013,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 490,
+          "fitness": 4760.08,
+          "ticks": 13792,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1392,
+          "fitness": 13560,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1365,
+          "fitness": 13290,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 534,
+          "fitness": 5203.51,
+          "ticks": 13449,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1134,
+          "fitness": 11027.39,
+          "ticks": 31061,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 40,
+          "fitness": 385.11,
+          "ticks": 1289,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1343,
+          "fitness": 13070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 371,
+          "fitness": 3602.71,
+          "ticks": 10529,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 309,
+          "fitness": 3006.14,
+          "ticks": 8186,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 27,
+          "fitness": 255.70999999999998,
+          "ticks": 1229,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1345,
+          "fitness": 13090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 46,
+          "fitness": 448.23,
+          "ticks": 977,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 529,
+          "fitness": 4930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1247,
+          "fitness": 12110,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1342,
+          "fitness": 13060,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00024.json.gz"
+    },
+    {
+      "generation": 25,
+      "curriculum": "roads",
+      "bestFitness": 13349.285,
+      "meanFitness": 6382.034825000002,
+      "meanRow": 659.0225,
+      "maxRow": 1556,
+      "evalRow": 655.75,
+      "species": 1,
+      "nodes": 35,
+      "connections": 279,
+      "seeds": [
+        761547186,
+        973134354,
+        639122678,
+        52026287
+      ],
+      "training": [
+        {
+          "seed": 761547186,
+          "score": 1369,
+          "fitness": 13330,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 973134354,
+          "score": 1326,
+          "fitness": 12907.28,
+          "ticks": 35072,
+          "deathReason": "car"
+        },
+        {
+          "seed": 639122678,
+          "score": 1500,
+          "fitness": 14640,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 52026287,
+          "score": 1286,
+          "fitness": 12519.86,
+          "ticks": 33814,
+          "deathReason": "car"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 158,
+          "fitness": 1536.26,
+          "ticks": 4174,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 121,
+          "fitness": 1174.8,
+          "ticks": 3320,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1161,
+          "fitness": 11318.73,
+          "ticks": 28927,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8137.96,
+          "ticks": 20004,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 891,
+          "fitness": 8680.81,
+          "ticks": 22719,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 166,
+          "fitness": 1616.83,
+          "ticks": 4117,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 770,
+          "fitness": 7496.22,
+          "ticks": 20178,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 474,
+          "fitness": 4624.82,
+          "ticks": 11318,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 362,
+          "fitness": 3503.35,
+          "ticks": 11465,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1043,
+          "fitness": 10164.35,
+          "ticks": 26365,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 782,
+          "fitness": 7614.56,
+          "ticks": 20544,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774960709,
+          "score": 146,
+          "fitness": 1100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1412,
+          "fitness": 13760,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1452,
+          "fitness": 14160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 698,
+          "fitness": 6813.68,
+          "ticks": 16632,
+          "deathReason": "bounds"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00025.json.gz"
+    },
+    {
+      "generation": 26,
+      "curriculum": "roads",
+      "bestFitness": 12686.6775,
+      "meanFitness": 6420.072862499999,
+      "meanRow": 663.94625,
+      "maxRow": 1580,
+      "evalRow": 520.25,
+      "species": 1,
+      "nodes": 33,
+      "connections": 296,
+      "seeds": [
+        277648638,
+        420183354,
+        1066111100,
+        358351267
+      ],
+      "training": [
+        {
+          "seed": 277648638,
+          "score": 1354,
+          "fitness": 13180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 420183354,
+          "score": 1332,
+          "fitness": 12960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1066111100,
+          "score": 1218,
+          "fitness": 11856.71,
+          "ticks": 32129,
+          "deathReason": "car"
+        },
+        {
+          "seed": 358351267,
+          "score": 1311,
+          "fitness": 12750,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 240,
+          "fitness": 2040,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 778,
+          "fitness": 7573.48,
+          "ticks": 20652,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774897357,
+          "score": 463,
+          "fitness": 4495.46,
+          "ticks": 13254,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 298,
+          "fitness": 2867.22,
+          "ticks": 11078,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 770,
+          "fitness": 7498.51,
+          "ticks": 19949,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 129,
+          "fitness": 1253.99,
+          "ticks": 3401,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1217,
+          "fitness": 11848.99,
+          "ticks": 31901,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 234,
+          "fitness": 1980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1182,
+          "fitness": 11508.06,
+          "ticks": 30994,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 713,
+          "fitness": 6933.05,
+          "ticks": 19495,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 203,
+          "fitness": 1972.61,
+          "ticks": 5539,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 990,
+          "fitness": 9645.47,
+          "ticks": 25253,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 368,
+          "fitness": 3583.73,
+          "ticks": 9427,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00026.json.gz"
+    },
+    {
+      "generation": 27,
+      "curriculum": "roads",
+      "bestFitness": 13132.4375,
+      "meanFitness": 7049.767925000005,
+      "meanRow": 726.95375,
+      "maxRow": 1612,
+      "evalRow": 754.5625,
+      "species": 1,
+      "nodes": 34,
+      "connections": 290,
+      "seeds": [
+        828959979,
+        781663017,
+        125272304,
+        1015252617
+      ],
+      "training": [
+        {
+          "seed": 828959979,
+          "score": 1330,
+          "fitness": 12940,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 781663017,
+          "score": 1121,
+          "fitness": 10909.75,
+          "ticks": 29825,
+          "deathReason": "car"
+        },
+        {
+          "seed": 125272304,
+          "score": 1430,
+          "fitness": 13940,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1015252617,
+          "score": 1510,
+          "fitness": 14740,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 626,
+          "fitness": 6106.39,
+          "ticks": 15161,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 239,
+          "fitness": 2030,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 357,
+          "fitness": 3475.02,
+          "ticks": 9298,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8127.34,
+          "ticks": 21066,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 390,
+          "fitness": 3803.2,
+          "ticks": 9480,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 283,
+          "fitness": 2757.81,
+          "ticks": 7019,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 39,
+          "fitness": 375.11,
+          "ticks": 1289,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1414,
+          "fitness": 13780,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 1183,
+          "fitness": 11470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1438,
+          "fitness": 14035.2,
+          "ticks": 34280,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1354,
+          "fitness": 13206.01,
+          "ticks": 33199,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1315,
+          "fitness": 12790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 616,
+          "fitness": 5800,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 533,
+          "fitness": 4970,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1046,
+          "fitness": 10208.11,
+          "ticks": 24989,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 406,
+          "fitness": 3962.25,
+          "ticks": 9575,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00027.json.gz"
+    },
+    {
+      "generation": 28,
+      "curriculum": "roads",
+      "bestFitness": 12470.885,
+      "meanFitness": 6875.456949999998,
+      "meanRow": 707.6725,
+      "maxRow": 1554,
+      "evalRow": 898.8125,
+      "species": 1,
+      "nodes": 34,
+      "connections": 278,
+      "seeds": [
+        556719252,
+        492112733,
+        554412851,
+        744125343
+      ],
+      "training": [
+        {
+          "seed": 556719252,
+          "score": 1232,
+          "fitness": 11960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 492112733,
+          "score": 1437,
+          "fitness": 14010,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 554412851,
+          "score": 1090,
+          "fitness": 10614.32,
+          "ticks": 28368,
+          "deathReason": "car"
+        },
+        {
+          "seed": 744125343,
+          "score": 1366,
+          "fitness": 13299.22,
+          "ticks": 35878,
+          "deathReason": "car"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1180,
+          "fitness": 11466.13,
+          "ticks": 33187,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 490,
+          "fitness": 4760.08,
+          "ticks": 13792,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1389,
+          "fitness": 13530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1306,
+          "fitness": 12700.35,
+          "ticks": 35765,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 678,
+          "fitness": 6595.4,
+          "ticks": 18260,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 282,
+          "fitness": 2716.83,
+          "ticks": 10117,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 502,
+          "fitness": 4891,
+          "ticks": 12700,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 389,
+          "fitness": 3530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 430,
+          "fitness": 4185.99,
+          "ticks": 11201,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1376,
+          "fitness": 13400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1324,
+          "fitness": 12880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1452,
+          "fitness": 14160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1388,
+          "fitness": 13520,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 498,
+          "fitness": 4620,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1343,
+          "fitness": 13070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00028.json.gz"
+    },
+    {
+      "generation": 29,
+      "curriculum": "roads",
+      "bestFitness": 14855,
+      "meanFitness": 8147.922624999996,
+      "meanRow": 839.025,
+      "maxRow": 1581,
+      "evalRow": 759.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 294,
+      "seeds": [
+        851075373,
+        462781554,
+        897038801,
+        416428223
+      ],
+      "training": [
+        {
+          "seed": 851075373,
+          "score": 1549,
+          "fitness": 15130,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 462781554,
+          "score": 1546,
+          "fitness": 15100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 897038801,
+          "score": 1489,
+          "fitness": 14530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 416428223,
+          "score": 1502,
+          "fitness": 14660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 146,
+          "fitness": 1422.3,
+          "ticks": 3570,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 854,
+          "fitness": 8341.8,
+          "ticks": 19620,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1561,
+          "fitness": 15250,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 511,
+          "fitness": 4991.28,
+          "ticks": 11672,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 106,
+          "fitness": 1033.13,
+          "ticks": 2487,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 906,
+          "fitness": 8828.14,
+          "ticks": 22986,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1550,
+          "fitness": 15140,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 138,
+          "fitness": 1336.61,
+          "ticks": 4139,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1475,
+          "fitness": 14390,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1163,
+          "fitness": 11340.68,
+          "ticks": 28732,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 406,
+          "fitness": 3972.3,
+          "ticks": 8570,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 501,
+          "fitness": 4885.7,
+          "ticks": 12230,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1421,
+          "fitness": 13850,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1693.17,
+          "ticks": 4483,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 182,
+          "fitness": 1773.07,
+          "ticks": 4493,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00029.json.gz"
+    },
+    {
+      "generation": 30,
+      "curriculum": "roads",
+      "bestFitness": 12069.4575,
+      "meanFitness": 5714.3169,
+      "meanRow": 589.32375,
+      "maxRow": 1589,
+      "evalRow": 800.75,
+      "species": 1,
+      "nodes": 34,
+      "connections": 297,
+      "seeds": [
+        468496997,
+        1016517272,
+        890902713,
+        118415454
+      ],
+      "training": [
+        {
+          "seed": 468496997,
+          "score": 426,
+          "fitness": 4163.52,
+          "ticks": 9448,
+          "deathReason": "car"
+        },
+        {
+          "seed": 1016517272,
+          "score": 1513,
+          "fitness": 14770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 890902713,
+          "score": 1466,
+          "fitness": 14324.31,
+          "ticks": 33369,
+          "deathReason": "car"
+        },
+        {
+          "seed": 118415454,
+          "score": 1538,
+          "fitness": 15020,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 158,
+          "fitness": 1536.26,
+          "ticks": 4174,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 118,
+          "fitness": 1150.23,
+          "ticks": 2777,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1212,
+          "fitness": 11832.91,
+          "ticks": 28509,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8127.34,
+          "ticks": 21066,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1254,
+          "fitness": 12249.35,
+          "ticks": 28865,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1218,
+          "fitness": 11892.22,
+          "ticks": 28578,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 743,
+          "fitness": 7247.59,
+          "ticks": 18041,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1513,
+          "fitness": 14770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 1283,
+          "fitness": 12470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1497,
+          "fitness": 14610,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 150,
+          "fitness": 1462.64,
+          "ticks": 3536,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 839,
+          "fitness": 8183.23,
+          "ticks": 20477,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 46,
+          "fitness": 448.23,
+          "ticks": 977,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 535,
+          "fitness": 5220.42,
+          "ticks": 12758,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1390,
+          "fitness": 13577.63,
+          "ticks": 32037,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00030.json.gz"
+    },
+    {
+      "generation": 31,
+      "curriculum": "roads",
+      "bestFitness": 13964.5525,
+      "meanFitness": 6697.6807,
+      "meanRow": 689.77625,
+      "maxRow": 1597,
+      "evalRow": 856.3125,
+      "species": 1,
+      "nodes": 33,
+      "connections": 295,
+      "seeds": [
+        251667869,
+        946747793,
+        397892867,
+        111942362
+      ],
+      "training": [
+        {
+          "seed": 251667869,
+          "score": 1534,
+          "fitness": 14980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 946747793,
+          "score": 1482,
+          "fitness": 14460,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 397892867,
+          "score": 1242,
+          "fitness": 12118.21,
+          "ticks": 29979,
+          "deathReason": "car"
+        },
+        {
+          "seed": 111942362,
+          "score": 1466,
+          "fitness": 14300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 240,
+          "fitness": 2040,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1154,
+          "fitness": 11212.63,
+          "ticks": 32537,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 607,
+          "fitness": 5924.79,
+          "ticks": 14321,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 301,
+          "fitness": 2936.54,
+          "ticks": 7146,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1434,
+          "fitness": 13992.13,
+          "ticks": 34587,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1206,
+          "fitness": 11755.33,
+          "ticks": 30267,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1517,
+          "fitness": 14810,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1491,
+          "fitness": 14550,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1447,
+          "fitness": 14110,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 479,
+          "fitness": 4657.51,
+          "ticks": 13049,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1055,
+          "fitness": 10303.28,
+          "ticks": 24472,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 474,
+          "fitness": 4634.07,
+          "ticks": 10393,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1314,
+          "fitness": 12810.5,
+          "ticks": 32750,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1426.79,
+          "ticks": 3121,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00031.json.gz"
+    },
+    {
+      "generation": 32,
+      "curriculum": "roads",
+      "bestFitness": 12845.025,
+      "meanFitness": 7593.1691875,
+      "meanRow": 781.5875,
+      "maxRow": 1617,
+      "evalRow": 567.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 291,
+      "seeds": [
+        953453469,
+        251797220,
+        447497797,
+        172559844
+      ],
+      "training": [
+        {
+          "seed": 953453469,
+          "score": 1282,
+          "fitness": 12508.1,
+          "ticks": 30990,
+          "deathReason": "car"
+        },
+        {
+          "seed": 251797220,
+          "score": 1415,
+          "fitness": 13790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 447497797,
+          "score": 1138,
+          "fitness": 11082,
+          "ticks": 29600,
+          "deathReason": "car"
+        },
+        {
+          "seed": 172559844,
+          "score": 1436,
+          "fitness": 14000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 314,
+          "fitness": 3061.88,
+          "ticks": 7612,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 418,
+          "fitness": 4078.59,
+          "ticks": 9941,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 387,
+          "fitness": 3775.95,
+          "ticks": 9205,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 87,
+          "fitness": 847.7,
+          "ticks": 2030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 270,
+          "fitness": 2597.54,
+          "ticks": 10046,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1309,
+          "fitness": 12730,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 810,
+          "fitness": 7891.34,
+          "ticks": 20666,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 314,
+          "fitness": 3046.26,
+          "ticks": 9174,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 619,
+          "fitness": 6032.68,
+          "ticks": 15532,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 150,
+          "fitness": 1462.64,
+          "ticks": 3536,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1421,
+          "fitness": 13850,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 242,
+          "fitness": 2360.92,
+          "ticks": 5708,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 222,
+          "fitness": 2158.42,
+          "ticks": 5958,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1483,
+          "fitness": 14470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 654,
+          "fitness": 6387.59,
+          "ticks": 15041,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00032.json.gz"
+    },
+    {
+      "generation": 33,
+      "curriculum": "roads",
+      "bestFitness": 14407.5,
+      "meanFitness": 7568.694399999997,
+      "meanRow": 777.5475,
+      "maxRow": 1621,
+      "evalRow": 1108.5,
+      "species": 1,
+      "nodes": 35,
+      "connections": 288,
+      "seeds": [
+        812380665,
+        279927885,
+        730224298,
+        778635852
+      ],
+      "training": [
+        {
+          "seed": 812380665,
+          "score": 1382,
+          "fitness": 13460,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 279927885,
+          "score": 1543,
+          "fitness": 15070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 730224298,
+          "score": 1475,
+          "fitness": 14390,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 778635852,
+          "score": 1507,
+          "fitness": 14710,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 568,
+          "fitness": 5320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1149,
+          "fitness": 11220.69,
+          "ticks": 26731,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 659,
+          "fitness": 6421.39,
+          "ticks": 16661,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1096,
+          "fitness": 10600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1480,
+          "fitness": 14440,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1457,
+          "fitness": 14210,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1495,
+          "fitness": 14590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1509,
+          "fitness": 14730,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1521,
+          "fitness": 14850,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1407,
+          "fitness": 13710,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 618,
+          "fitness": 6024.84,
+          "ticks": 15316,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1485,
+          "fitness": 14490,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1508,
+          "fitness": 14720,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00033.json.gz"
+    },
+    {
+      "generation": 34,
+      "curriculum": "roads",
+      "bestFitness": 13024.5425,
+      "meanFitness": 6407.606400000001,
+      "meanRow": 661.625,
+      "maxRow": 1619,
+      "evalRow": 976.6875,
+      "species": 1,
+      "nodes": 35,
+      "connections": 289,
+      "seeds": [
+        179404929,
+        369294178,
+        398226955,
+        654343010
+      ],
+      "training": [
+        {
+          "seed": 179404929,
+          "score": 1433,
+          "fitness": 13970,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 369294178,
+          "score": 1331,
+          "fitness": 12950,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 398226955,
+          "score": 1024,
+          "fitness": 9880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 654343010,
+          "score": 1566,
+          "fitness": 15298.17,
+          "ticks": 35983,
+          "deathReason": "car"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 568,
+          "fitness": 5320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1551,
+          "fitness": 15150,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 87,
+          "fitness": 847.7,
+          "ticks": 2030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1395,
+          "fitness": 13590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1549,
+          "fitness": 15130,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1468,
+          "fitness": 14320,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 334,
+          "fitness": 3262.85,
+          "ticks": 7515,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 866,
+          "fitness": 8446.16,
+          "ticks": 21184,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 289,
+          "fitness": 2530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1484,
+          "fitness": 14480,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1506,
+          "fitness": 14700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 131,
+          "fitness": 1277.59,
+          "ticks": 3041,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1483,
+          "fitness": 14470,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1508,
+          "fitness": 14720,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00034.json.gz"
+    },
+    {
+      "generation": 35,
+      "curriculum": "roads",
+      "bestFitness": 12099.6025,
+      "meanFitness": 6535.7278124999975,
+      "meanRow": 678.135,
+      "maxRow": 1646,
+      "evalRow": 792.25,
+      "species": 1,
+      "nodes": 34,
+      "connections": 283,
+      "seeds": [
+        247800275,
+        900120585,
+        610742061,
+        529431161
+      ],
+      "training": [
+        {
+          "seed": 247800275,
+          "score": 1382,
+          "fitness": 13478.41,
+          "ticks": 33959,
+          "deathReason": "car"
+        },
+        {
+          "seed": 900120585,
+          "score": 707,
+          "fitness": 6710,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 610742061,
+          "score": 1386,
+          "fitness": 13500,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 529431161,
+          "score": 1507,
+          "fitness": 14710,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 518,
+          "fitness": 5053.98,
+          "ticks": 12402,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 240,
+          "fitness": 2040,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 850,
+          "fitness": 8277.39,
+          "ticks": 22061,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1272,
+          "fitness": 12360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1451,
+          "fitness": 14150,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 1446,
+          "fitness": 14100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 1206,
+          "fitness": 11755.33,
+          "ticks": 30267,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 106,
+          "fitness": 1033.23,
+          "ticks": 2477,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1484,
+          "fitness": 14480,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1477,
+          "fitness": 14410,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 318,
+          "fitness": 3094.04,
+          "ticks": 8396,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1178,
+          "fitness": 11471.8,
+          "ticks": 30620,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 70,
+          "fitness": 682.11,
+          "ticks": 1589,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1693.17,
+          "ticks": 4483,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 510,
+          "fitness": 4969.9,
+          "ticks": 12810,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00035.json.gz"
+    },
+    {
+      "generation": 36,
+      "curriculum": "roads",
+      "bestFitness": 13747.9475,
+      "meanFitness": 7577.957737500001,
+      "meanRow": 780.8875,
+      "maxRow": 1548,
+      "evalRow": 838.4375,
+      "species": 1,
+      "nodes": 35,
+      "connections": 286,
+      "seeds": [
+        1003114559,
+        412470477,
+        840456753,
+        786524366
+      ],
+      "training": [
+        {
+          "seed": 1003114559,
+          "score": 1445,
+          "fitness": 14090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 412470477,
+          "score": 1202,
+          "fitness": 11721.79,
+          "ticks": 29621,
+          "deathReason": "car"
+        },
+        {
+          "seed": 840456753,
+          "score": 1466,
+          "fitness": 14300,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 786524366,
+          "score": 1524,
+          "fitness": 14880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 854,
+          "fitness": 8337.98,
+          "ticks": 20002,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1574,
+          "fitness": 15380,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1272,
+          "fitness": 12360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1154,
+          "fitness": 11252.47,
+          "ticks": 28553,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 247,
+          "fitness": 2110,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 880,
+          "fitness": 8568.39,
+          "ticks": 22961,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1508,
+          "fitness": 14720,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 17,
+          "fitness": 163.38,
+          "ticks": 462,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1258,
+          "fitness": 12260.26,
+          "ticks": 31774,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1507,
+          "fitness": 14710,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1526,
+          "fitness": 14900,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 358,
+          "fitness": 3491.92,
+          "ticks": 8608,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 530,
+          "fitness": 4940,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.93,
+          "ticks": 4007,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 96,
+          "fitness": 600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00036.json.gz"
+    },
+    {
+      "generation": 37,
+      "curriculum": "roads",
+      "bestFitness": 14507.5,
+      "meanFitness": 6790.113674999996,
+      "meanRow": 703.32875,
+      "maxRow": 1599,
+      "evalRow": 835.75,
+      "species": 1,
+      "nodes": 33,
+      "connections": 276,
+      "seeds": [
+        426875224,
+        604069508,
+        1035638431,
+        522189016
+      ],
+      "training": [
+        {
+          "seed": 426875224,
+          "score": 1470,
+          "fitness": 14340,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 604069508,
+          "score": 1518,
+          "fitness": 14820,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1035638431,
+          "score": 1523,
+          "fitness": 14870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 522189016,
+          "score": 1436,
+          "fitness": 14000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 460,
+          "fitness": 4240,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1239,
+          "fitness": 12030,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 386,
+          "fitness": 3757.61,
+          "ticks": 10039,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 835,
+          "fitness": 8137.47,
+          "ticks": 21053,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1472,
+          "fitness": 14360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 379,
+          "fitness": 3697.94,
+          "ticks": 9006,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 646,
+          "fitness": 6313.71,
+          "ticks": 14429,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 578,
+          "fitness": 5600.35,
+          "ticks": 17765,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 243,
+          "fitness": 2367.95,
+          "ticks": 6005,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1432,
+          "fitness": 13960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1572,
+          "fitness": 15360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1338,
+          "fitness": 13043.39,
+          "ticks": 33461,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1529,
+          "fitness": 14930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 70,
+          "fitness": 682.11,
+          "ticks": 1589,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 538,
+          "fitness": 5256.38,
+          "ticks": 12162,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 655,
+          "fitness": 6397.71,
+          "ticks": 15029,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00037.json.gz"
+    },
+    {
+      "generation": 38,
+      "curriculum": "roads",
+      "bestFitness": 14696.79,
+      "meanFitness": 7121.401225000004,
+      "meanRow": 734.12625,
+      "maxRow": 1624,
+      "evalRow": 502.5,
+      "species": 1,
+      "nodes": 33,
+      "connections": 292,
+      "seeds": [
+        489991810,
+        864778623,
+        280822285,
+        65027036
+      ],
+      "training": [
+        {
+          "seed": 489991810,
+          "score": 1609,
+          "fitness": 15730,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 864778623,
+          "score": 1237,
+          "fitness": 12077.16,
+          "ticks": 29084,
+          "deathReason": "car"
+        },
+        {
+          "seed": 280822285,
+          "score": 1546,
+          "fitness": 15100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 65027036,
+          "score": 1624,
+          "fitness": 15880,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 95,
+          "fitness": 926.47,
+          "ticks": 2153,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 95,
+          "fitness": 927.43,
+          "ticks": 2057,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 855,
+          "fitness": 8360.87,
+          "ticks": 18713,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 82,
+          "fitness": 802.26,
+          "ticks": 1574,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1096,
+          "fitness": 10600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 730,
+          "fitness": 6940,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 322,
+          "fitness": 3143.08,
+          "ticks": 7692,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1513,
+          "fitness": 14770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 540,
+          "fitness": 5272.92,
+          "ticks": 12708,
+          "deathReason": "bounds"
+        },
+        {
+          "seed": 3774952790,
+          "score": 238,
+          "fitness": 2321.25,
+          "ticks": 5675,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 254,
+          "fitness": 2470.76,
+          "ticks": 6724,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 498,
+          "fitness": 4831.41,
+          "ticks": 14659,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 474,
+          "fitness": 4629.83,
+          "ticks": 10817,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.93,
+          "ticks": 4007,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 698,
+          "fitness": 6811.63,
+          "ticks": 16637,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00038.json.gz"
+    },
+    {
+      "generation": 39,
+      "curriculum": "roads",
+      "bestFitness": 12792.5,
+      "meanFitness": 7003.872737500001,
+      "meanRow": 720.635,
+      "maxRow": 1612,
+      "evalRow": 890.4375,
+      "species": 1,
+      "nodes": 35,
+      "connections": 290,
+      "seeds": [
+        933552269,
+        324187059,
+        1068217454,
+        509647924
+      ],
+      "training": [
+        {
+          "seed": 933552269,
+          "score": 1006,
+          "fitness": 9700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 324187059,
+          "score": 1456,
+          "fitness": 14200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1068217454,
+          "score": 1414,
+          "fitness": 13780,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 509647924,
+          "score": 1385,
+          "fitness": 13490,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 51,
+          "fitness": 496.64,
+          "ticks": 1136,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1405,
+          "fitness": 13690,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 467,
+          "fitness": 4310,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1505,
+          "fitness": 14690,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 494,
+          "fitness": 4809.53,
+          "ticks": 12847,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 774,
+          "fitness": 7549.39,
+          "ticks": 18861,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 222,
+          "fitness": 2166.41,
+          "ticks": 5159,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1272,
+          "fitness": 12387.47,
+          "ticks": 33053,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1248,
+          "fitness": 12179.47,
+          "ticks": 29853,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1427,
+          "fitness": 13910,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1146,
+          "fitness": 11174.84,
+          "ticks": 28316,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1163,
+          "fitness": 11270,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.64,
+          "ticks": 4036,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1491,
+          "fitness": 14550,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00039.json.gz"
+    },
+    {
+      "generation": 40,
+      "curriculum": "roads",
+      "bestFitness": 12705,
+      "meanFitness": 7169.194187500006,
+      "meanRow": 741.155,
+      "maxRow": 1582,
+      "evalRow": 723.4375,
+      "species": 1,
+      "nodes": 35,
+      "connections": 286,
+      "seeds": [
+        687017400,
+        968145955,
+        182258387,
+        678594774
+      ],
+      "training": [
+        {
+          "seed": 687017400,
+          "score": 1317,
+          "fitness": 12810,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 968145955,
+          "score": 1369,
+          "fitness": 13330,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 182258387,
+          "score": 1311,
+          "fitness": 12750,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 678594774,
+          "score": 1229,
+          "fitness": 11930,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 570,
+          "fitness": 5340,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1042,
+          "fitness": 10156.7,
+          "ticks": 26130,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 71,
+          "fitness": 683.71,
+          "ticks": 2429,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1250,
+          "fitness": 12174.7,
+          "ticks": 32330,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1363,
+          "fitness": 13270,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 71,
+          "fitness": 688.98,
+          "ticks": 1902,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 186,
+          "fitness": 1807.2,
+          "ticks": 5080,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 502,
+          "fitness": 4890.94,
+          "ticks": 12706,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 107,
+          "fitness": 1039.87,
+          "ticks": 2813,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1373,
+          "fitness": 13370,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1381,
+          "fitness": 13450,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1388,
+          "fitness": 13520,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 342,
+          "fitness": 3326.42,
+          "ticks": 9158,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 230,
+          "fitness": 2234.64,
+          "ticks": 6336,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 547,
+          "fitness": 5328.08,
+          "ticks": 13992,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1152,
+          "fitness": 11160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00040.json.gz"
+    },
+    {
+      "generation": 41,
+      "curriculum": "roads",
+      "bestFitness": 13599.2975,
+      "meanFitness": 7552.1878874999975,
+      "meanRow": 776.90125,
+      "maxRow": 1673,
+      "evalRow": 642.0625,
+      "species": 1,
+      "nodes": 36,
+      "connections": 297,
+      "seeds": [
+        19805317,
+        516541130,
+        964009807,
+        556955138
+      ],
+      "training": [
+        {
+          "seed": 19805317,
+          "score": 1472,
+          "fitness": 14360,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 516541130,
+          "score": 1555,
+          "fitness": 15190,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 964009807,
+          "score": 1506,
+          "fitness": 14700,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 556955138,
+          "score": 1044,
+          "fitness": 10147.19,
+          "ticks": 29081,
+          "deathReason": "car"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 882,
+          "fitness": 8611.81,
+          "ticks": 20619,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1556,
+          "fitness": 15200,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 834,
+          "fitness": 8146.82,
+          "ticks": 19118,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1322,
+          "fitness": 12914.23,
+          "ticks": 30377,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 107,
+          "fitness": 1043.38,
+          "ticks": 2462,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 278,
+          "fitness": 2717.23,
+          "ticks": 6077,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1513,
+          "fitness": 14770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 494,
+          "fitness": 4824.91,
+          "ticks": 11309,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 401,
+          "fitness": 3922.91,
+          "ticks": 8509,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 254,
+          "fitness": 2456.12,
+          "ticks": 8188,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1546,
+          "fitness": 15100,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 533,
+          "fitness": 5206.98,
+          "ticks": 12102,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 22,
+          "fitness": 212.09,
+          "ticks": 591,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1426.79,
+          "ticks": 3121,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00041.json.gz"
+    },
+    {
+      "generation": 42,
+      "curriculum": "roads",
+      "bestFitness": 14617.5,
+      "meanFitness": 7959.9444625,
+      "meanRow": 816.9575,
+      "maxRow": 1687,
+      "evalRow": 864.5,
+      "species": 1,
+      "nodes": 34,
+      "connections": 290,
+      "seeds": [
+        759548237,
+        779706112,
+        384157027,
+        199681455
+      ],
+      "training": [
+        {
+          "seed": 759548237,
+          "score": 1477,
+          "fitness": 14410,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 779706112,
+          "score": 1494,
+          "fitness": 14580,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 384157027,
+          "score": 1540,
+          "fitness": 15040,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 199681455,
+          "score": 1480,
+          "fitness": 14440,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 1103,
+          "fitness": 10754.23,
+          "ticks": 27377,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1198,
+          "fitness": 11698.31,
+          "ticks": 27969,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 227,
+          "fitness": 2217.7,
+          "ticks": 5030,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1436,
+          "fitness": 14000,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 652,
+          "fitness": 6160,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774921114,
+          "score": 646,
+          "fitness": 6306.39,
+          "ticks": 15161,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 143,
+          "fitness": 1070,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 494,
+          "fitness": 4826.59,
+          "ticks": 11141,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1386,
+          "fitness": 13511.03,
+          "ticks": 34697,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 870,
+          "fitness": 8469.5,
+          "ticks": 22850,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1404,
+          "fitness": 13680,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1498,
+          "fitness": 14620,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 515,
+          "fitness": 5025.31,
+          "ticks": 12269,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 830,
+          "fitness": 8098.62,
+          "ticks": 19938,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00042.json.gz"
+    },
+    {
+      "generation": 43,
+      "curriculum": "roads",
+      "bestFitness": 14802.5,
+      "meanFitness": 8022.4011250000085,
+      "meanRow": 824.75875,
+      "maxRow": 1649,
+      "evalRow": 650.125,
+      "species": 1,
+      "nodes": 37,
+      "connections": 292,
+      "seeds": [
+        267728700,
+        1049127576,
+        219518092,
+        632689469
+      ],
+      "training": [
+        {
+          "seed": 267728700,
+          "score": 1502,
+          "fitness": 14660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 1049127576,
+          "score": 1582,
+          "fitness": 15460,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 219518092,
+          "score": 1585,
+          "fitness": 15490,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 632689469,
+          "score": 1396,
+          "fitness": 13600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 1557,
+          "fitness": 15210,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774897357,
+          "score": 231,
+          "fitness": 2256.73,
+          "ticks": 5127,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 606,
+          "fitness": 5928.71,
+          "ticks": 12929,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 107,
+          "fitness": 1043.48,
+          "ticks": 2452,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 354,
+          "fitness": 3180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1139,
+          "fitness": 11137.77,
+          "ticks": 25023,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774936952,
+          "score": 222,
+          "fitness": 2166.48,
+          "ticks": 5152,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 721,
+          "fitness": 7040.84,
+          "ticks": 16716,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774952790,
+          "score": 106,
+          "fitness": 1034.34,
+          "ticks": 2366,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1418,
+          "fitness": 13820,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 746,
+          "fitness": 7275.07,
+          "ticks": 18293,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 534,
+          "fitness": 4980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1108,
+          "fitness": 10810.47,
+          "ticks": 26753,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 490,
+          "fitness": 4781.47,
+          "ticks": 11653,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00043.json.gz"
+    },
+    {
+      "generation": 44,
+      "curriculum": "roads",
+      "bestFitness": 12295.157500000001,
+      "meanFitness": 6525.732587500004,
+      "meanRow": 675.1425,
+      "maxRow": 1636,
+      "evalRow": 736.0625,
+      "species": 1,
+      "nodes": 36,
+      "connections": 290,
+      "seeds": [
+        148280575,
+        889345163,
+        320458801,
+        451383346
+      ],
+      "training": [
+        {
+          "seed": 148280575,
+          "score": 662,
+          "fitness": 6370.63,
+          "ticks": 24737,
+          "deathReason": "car"
+        },
+        {
+          "seed": 889345163,
+          "score": 1533,
+          "fitness": 14970,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 320458801,
+          "score": 1601,
+          "fitness": 15650,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 451383346,
+          "score": 1255,
+          "fitness": 12190,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1054,
+          "fitness": 10180,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774889438,
+          "score": 14,
+          "fitness": 135.43,
+          "ticks": 257,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 227,
+          "fitness": 2218.15,
+          "ticks": 4985,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774905276,
+          "score": 1096,
+          "fitness": 10600,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774913195,
+          "score": 662,
+          "fitness": 6412.85,
+          "ticks": 20515,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 463,
+          "fitness": 4523.43,
+          "ticks": 10457,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 869,
+          "fitness": 8330,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 376,
+          "fitness": 3400,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1451,
+          "fitness": 14150,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1478,
+          "fitness": 14420,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 145,
+          "fitness": 1090,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1194,
+          "fitness": 11659.91,
+          "ticks": 27809,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774976547,
+          "score": 1163,
+          "fitness": 11270,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774984466,
+          "score": 174,
+          "fitness": 1697.93,
+          "ticks": 4007,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774992385,
+          "score": 1402,
+          "fitness": 13660,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00044.json.gz"
+    },
+    {
+      "generation": 45,
+      "curriculum": "roads",
+      "bestFitness": 12802.2375,
+      "meanFitness": 6376.6601875000015,
+      "meanRow": 656.915,
+      "maxRow": 1643,
+      "evalRow": 886.125,
+      "species": 1,
+      "nodes": 36,
+      "connections": 292,
+      "seeds": [
+        1062940627,
+        276871316,
+        206369179,
+        1015107768
+      ],
+      "training": [
+        {
+          "seed": 1062940627,
+          "score": 1395,
+          "fitness": 13590,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 276871316,
+          "score": 1205,
+          "fitness": 11690,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 206369179,
+          "score": 1166,
+          "fitness": 11378.95,
+          "ticks": 27905,
+          "deathReason": "car"
+        },
+        {
+          "seed": 1015107768,
+          "score": 1491,
+          "fitness": 14550,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        }
+      ],
+      "evaluation": [
+        {
+          "seed": 3774873600,
+          "score": 9,
+          "fitness": 85.78,
+          "ticks": 222,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774881519,
+          "score": 1362,
+          "fitness": 13277.63,
+          "ticks": 34037,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774889438,
+          "score": 14,
+          "fitness": 135.43,
+          "ticks": 257,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774897357,
+          "score": 1432,
+          "fitness": 13960,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774905276,
+          "score": 718,
+          "fitness": 7012.01,
+          "ticks": 16599,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774913195,
+          "score": 106,
+          "fitness": 1033.13,
+          "ticks": 2487,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774921114,
+          "score": 906,
+          "fitness": 8828.15,
+          "ticks": 22985,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774929033,
+          "score": 1513,
+          "fitness": 14770,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774936952,
+          "score": 222,
+          "fitness": 2166.41,
+          "ticks": 5159,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774944871,
+          "score": 1400,
+          "fitness": 13640,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774952790,
+          "score": 1478,
+          "fitness": 14420,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774960709,
+          "score": 1315,
+          "fitness": 12790,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774968628,
+          "score": 1534,
+          "fitness": 14980,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774976547,
+          "score": 534,
+          "fitness": 5215.82,
+          "ticks": 12218,
+          "deathReason": "car"
+        },
+        {
+          "seed": 3774984466,
+          "score": 1489,
+          "fitness": 14530,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        {
+          "seed": 3774992385,
+          "score": 146,
+          "fitness": 1426.43,
+          "ticks": 3157,
+          "deathReason": "car"
+        }
+      ],
+      "populationSize": 200,
+      "cohortFile": "/training-cohorts/00045.json.gz"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+node_modules/
+dist/
+.reference/
+.vite/
+*.local
+# Generated full checkpoints; the recorded distribution copy is in public/.
+results/checkpoint.json
+results/trains/checkpoint.json
+
+results/batch-200/checkpoint.json
+
+# Reproducible long-run datasets (hundreds of complete populations).
+results/learned/generations/
+results/learned/checkpoint.json
+results/probe-original/
+results/probe-v2/
+public/training-cohorts/*
+!public/training-cohorts/further-1335-restart038/
+
+results/unused-overrun/
+
+results/continued/generations/
+results/continued/checkpoint.json
+
+# Full experiment populations and resumable states are generated locally.
+results/experiments/**/generations/
+results/experiments/**/checkpoint.json
+results/previews/**/generations/
+results/previews/**/checkpoint.json
+results/experiments/**/ancestor-checkpoint.json
+results/**/*.tmp
+results/frozen/**/checkpoint.json
+results/frozen/**/generations/
+results/releases/**/checkpoint.json
+results/releases/**/generations/
+results/releases/**/ancestor-checkpoint.json
+results/releases/**/browser-checkpoint-*.json
+
+# Local reference art is fetched from the pinned upstream commit, not redistributed.
+public/upstream/*
+!public/upstream/LICENSE.txt
+docs/*.png
+docs/*.jpg
+.publication/
