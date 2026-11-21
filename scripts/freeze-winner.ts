@@ -8,7 +8,7 @@ import { parseCheckpoint } from "../src/evolution/checkpoint";
 import { parseEvolution } from "../src/evolution/serialization";
 import { type Genome } from "../src/evolution/genome";
 import { evaluateGenome,mean,type Episode } from "../src/evolution/evaluation";
-import { LONG_TEST_SEEDS, LONG_IMPROVEMENT_TEST_SEEDS, LONG_FURTHER_TEST_SEEDS,LONG_POST_FURTHER_TEST_SEEDS } from "../src/evolution/suites";
+import { LONG_TEST_SEEDS, LONG_IMPROVEMENT_TEST_SEEDS, LONG_FURTHER_TEST_SEEDS,LONG_POST_FURTHER_TEST_SEEDS,VARIANT_ONE_CLOSE_SEEDS } from "../src/evolution/suites";
 const source=process.argv[2],output=process.argv[3],archives=process.argv[4]??`${source}/generations`;
 if(!source||!output)throw new Error("Usage: source new-output [archive-directory]");
 if(fs.existsSync(output))throw new Error("Refusing to overwrite a frozen model");
@@ -22,6 +22,7 @@ assert.ok(selected.validationSeeds.every(seed=>!LONG_TEST_SEEDS.includes(seed)))
 assert.ok(selected.validationSeeds.every(seed=>!LONG_IMPROVEMENT_TEST_SEEDS.includes(seed)));
 assert.ok(selected.validationSeeds.every(seed=>!LONG_FURTHER_TEST_SEEDS.includes(seed)));
 assert.ok(selected.validationSeeds.every(seed=>!LONG_POST_FURTHER_TEST_SEEDS.includes(seed)));
+assert.ok(selected.validationSeeds.every(seed=>!VARIANT_ONE_CLOSE_SEEDS.includes(seed)));
 function policyHash(genome:Genome){
  return createHash("sha256").update(JSON.stringify({version:genome.observationVersion??1,nodes:genome.nodes,connections:genome.connections})).digest("hex");
 }

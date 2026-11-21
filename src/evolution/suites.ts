@@ -43,3 +43,8 @@ export const LONG_POST_FURTHER_TEST_SEEDS = Array.from(
   { length: 512 },
   (_, i) => (0xfa000000 + i * 104729) >>> 0,
 );
+/** Separate final maps for the user-requested Variant1 closeout, declared before opening. */
+export const VARIANT_ONE_CLOSE_SEEDS = Array.from(
+  { length: 512 },
+  (_, i) => (0xfb000000 + i * 104729) >>> 0,
+);

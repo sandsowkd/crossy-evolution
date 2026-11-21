@@ -1,0 +1,64 @@
+{
+  "status": "provisional-until-existing-final-runs-complete",
+  "currentProtectedDevelopmentMean": 1386.5559895833333,
+  "selectedModelLineageGenerations": 1127,
+  "phases": [
+    {
+      "phase": "binary original and native continuation",
+      "source": "results/continued",
+      "selectedGeneration": 470,
+      "checkpointGeneration": 500,
+      "selectedGenome": 93863,
+      "note": "Generation470 is cumulative from scratch; do not add the earlier300 again."
+    },
+    {
+      "phase": "motion adaptation",
+      "source": "results/experiments/trajectory/warm-v3-100",
+      "selectedGeneration": 30,
+      "note": "Actual warm parent generation470 verified in script and summary."
+    },
+    {
+      "phase": "two-hop lookahead",
+      "source": "results/experiments/evolution/lookahead-490-ancestor",
+      "selectedGeneration": 490
+    },
+    {
+      "phase": "rows replica3",
+      "source": "results/experiments/average/wide-score-explore-100-r3",
+      "selectedGeneration": 30,
+      "selectedGenome": 2923,
+      "note": "Chosen ancestor preserved by restart29; later branch selected generation50 does not rewrite this parent."
+    },
+    {
+      "phase": "restart29",
+      "source": "results/experiments/wide-restarts/round-029",
+      "selectedGeneration": 1,
+      "selectedGenome": 47
+    },
+    {
+      "phase": "restart30",
+      "source": "results/experiments/wide-restarts/round-030",
+      "selectedGeneration": 3,
+      "selectedGenome": 238
+    },
+    {
+      "phase": "memory evolution",
+      "source": "results/experiments/frozen-development/lookahead-memory-g100-audit1370",
+      "selectedGeneration": 100,
+      "selectedGenome": 9922,
+      "note": "Wider audit selects peer within same generation; adds no training generations."
+    },
+    {
+      "phase": "restart52",
+      "source": "results/experiments/frozen-development/restart-052",
+      "selectedGeneration": 3,
+      "selectedGenome": 254
+    }
+  ],
+  "interpretation": "Sum of selected generation positions along successive warm-start phases. NEAT crossover gives a population ancestry graph, so this is a phase-lineage count, not a single-parent mutation count or the total search budget. Side experiments, discarded later generations, repeated recovery and audits are excluded.",
+  "rawSearchRecordAtPublication": {
+    "generationRows": 3948,
+    "runSummaries": 116,
+    "note": "Dated raw records, not unique generations or final count. Updated final accounting must avoid native-continuation/frozen duplicates."
+  }
+}

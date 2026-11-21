@@ -12,7 +12,7 @@ import {
 } from "../src/evolution/evaluation";
 import { alwaysUp, heuristic, randomPolicy } from "../src/evolution/baselines";
 import { RNG } from "../src/core/rng";
-import { CONTINUATION_TEST_SEEDS, FINAL_TEST_SEEDS, LONG_TEST_SEEDS,LONG_IMPROVEMENT_TEST_SEEDS,LONG_FURTHER_TEST_SEEDS,LONG_POST_FURTHER_TEST_SEEDS } from "../src/evolution/suites";
+import { CONTINUATION_TEST_SEEDS, FINAL_TEST_SEEDS, LONG_TEST_SEEDS,LONG_IMPROVEMENT_TEST_SEEDS,LONG_FURTHER_TEST_SEEDS,LONG_POST_FURTHER_TEST_SEEDS,VARIANT_ONE_CLOSE_SEEDS } from "../src/evolution/suites";
 import { writeAtomic } from "./atomic-write";
 
 const output = process.argv[2] ?? "results/learned";
@@ -24,13 +24,18 @@ const selected = parseEvolution<{ genome: Genome; generation: number; validation
 );
 // Only open this suite after training/validation and model choice have finished.
 const suite = process.argv[3] ?? "original";
-if (suite !== "original" && suite !== "continued" && suite !== "long" && suite !== "long-next" && suite !== "long-further" && suite !== "long-post-further")
+if (suite !== "original" && suite !== "continued" && suite !== "long" && suite !== "long-next" && suite !== "long-further" && suite !== "long-post-further" && suite !== "variant-1-close")
   throw new Error("Unknown test suite");
-const seeds = suite === "long-post-further" ? LONG_POST_FURTHER_TEST_SEEDS : suite === "long-further" ? LONG_FURTHER_TEST_SEEDS : suite === "long-next" ? LONG_IMPROVEMENT_TEST_SEEDS : suite === "long" ? LONG_TEST_SEEDS : suite === "continued" ? CONTINUATION_TEST_SEEDS : FINAL_TEST_SEEDS;
+const seeds = suite === "variant-1-close" ? VARIANT_ONE_CLOSE_SEEDS : suite === "long-post-further" ? LONG_POST_FURTHER_TEST_SEEDS : suite === "long-further" ? LONG_FURTHER_TEST_SEEDS : suite === "long-next" ? LONG_IMPROVEMENT_TEST_SEEDS : suite === "long" ? LONG_TEST_SEEDS : suite === "continued" ? CONTINUATION_TEST_SEEDS : FINAL_TEST_SEEDS;
 const config = c.config.simulation;
 let reservedRecord:Record<string,unknown>|undefined;
 const reservedFile=`results/experiments/final-tests/${suite}.json`;
-const reservedSuite=suite==="long-next"||suite==="long-further"||suite==="long-post-further",minimumMean=suite==="long-post-further"?1450:suite==="long-further"?1325:1200;
+const reservedSuite=suite==="variant-1-close"||suite==="long-next"||suite==="long-further"||suite==="long-post-further",minimumMean=suite==="variant-1-close"?0:suite==="long-post-further"?1450:suite==="long-further"?1325:1200;
+if(suite === "variant-1-close") {
+  const plan=JSON.parse(fs.readFileSync("results/variants/variant-1/closeout-plan.json","utf8"));
+  if(plan.status!=="model-frozen" || path.resolve(plan.frozenDirectory)!==path.resolve(output))
+    throw new Error("Variant1 closure requires completed training and the predeclared frozen winner");
+}
 if(reservedSuite){
   if(fs.existsSync(path.join(output,"evaluation.json")))throw new Error("Frozen final report already exists; preserve it");
   const frozen=JSON.parse(fs.readFileSync(path.join(output,"freeze.json"),"utf8"));
