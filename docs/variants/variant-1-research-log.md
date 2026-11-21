@@ -364,3 +364,8 @@ The existing driver completed restart52, selecting version8 generation3 genome#2
 ## User-directed Variant1 closure
 
 The user ended open-ended optimization and requested concise variant-based reports. Restart54 completed all three100-chicken generations and exited gracefully; no round55 will start. Existing final average batches retain their original50/150 total-generation targets and no new runs will be launched. A guarded watcher waits for actual process exit before selecting/freezing the strongest768-map development winner. Its independent closing assessment uses newly declared512 FB maps; the old improvement-gated FA suite stays unopened. Variant1 rules remain cars/roads, at most3 consecutive road lanes, no eagle. The provisional strongest lineage spans1127 selected phase generations, excluding side searches and duplicate archives. Full legacy detail is retained here while the README/project summary become concise.
+
+
+## Final Variant1 closure — November21,2026
+
+Training ended at memory-branch generation150, genome14920. The frozen policy selected at1393.3098958333 on768 development maps averages1361.208984375 on the independently reserved512-map FB closing test. Its selected inherited phase lineage totals1174; the earlier1127 count belonged to another intermediate branch. All150 native populations and the later data delta are in the [final release](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21). The training monitor is paused. See the [concise final report](variant-1.md) and [six highlights/batch comparison](variant-1-highlights.md). The newly implemented eagle rule applies to new games; these historical comparisons keep their original no-eagle physics.

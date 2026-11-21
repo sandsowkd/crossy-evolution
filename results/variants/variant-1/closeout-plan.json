@@ -1,7 +1,7 @@
 {
   "declaredAt": "2026-11-21T20:15:36.640171+00:00",
-  "userRequest": "Finish current training, close Variant1, concise reports, prepare variants2–4; do not continue endless optimization.",
-  "status": "assessment-complete-report-pending",
+  "userRequest": "Finish current training, close Variant1, concise reports, prepare variants2\u20134; do not continue endless optimization.",
+  "status": "complete",
   "newTrainingRunsAllowed": false,
   "rules": {
     "curriculum": "roads",
@@ -29,9 +29,9 @@
   "afterCompletion": "Publish concise Variant1 report/data supplement; pause closeout heartbeat. Do not start Variant2 training without next implementation phase.",
   "variants": {
     "1": "cars/roads, max3 consecutive roads, no eagle",
-    "2": "add trains; separate configuration and evaluation",
-    "3": "add rivers/logs/lily pads and water motion/death",
-    "4": "longer road sequences and eagle/no-progress pressure; broader full-game rules, not an unverified exact clone"
+    "2": "add trains and enable current eagle rules; separate configuration and evaluation",
+    "3": "add rivers/logs/lily pads and water motion/death; retain eagle",
+    "4": "longer road sequences and broader full-game rules; retain eagle"
   },
   "restartFinalRound": 54,
   "restartStoppedAtCompleteRound": 54,
@@ -41,5 +41,19 @@
   "selectedGeneration": 150,
   "selectedGenome": 14920,
   "frozenAt": "2026-11-21T20:30:54.522Z",
-  "assessedAt": "2026-11-21T20:31:15.881Z"
+  "assessedAt": "2026-11-21T20:31:15.881Z",
+  "completedAt": "2026-11-21T20:50:31.015179+00:00",
+  "selectedModelLineageGenerations": 1174,
+  "independentFinalMean": 1361.208984375,
+  "independentFinalMaps": 512,
+  "finalDataRelease": "https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21",
+  "viewerNamespace": "variant-1-final",
+  "trainingAutomation": "PAUSED",
+  "activeTrainingProcesses": 0,
+  "newRulesAfterHistoricalCloseout": {
+    "eagleAfterSeconds": 10,
+    "warningAfterSeconds": 7,
+    "historicalVariantOneReportsUnchanged": true,
+    "implementation": "docs/EAGLE_RULES.md"
+  }
 }
