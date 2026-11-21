@@ -1,22 +1,25 @@
 export const ACTIONS = ["UP", "DOWN", "LEFT", "RIGHT", "WAIT"] as const;
 export type Action = (typeof ACTIONS)[number];
-export type DeathReason = "car" | "train" | "tree" | "bounds" | "timeout" | "eagle";
-export type Curriculum = "roads" | "trains";
+export type DeathReason = "car" | "train" | "tree" | "bounds" | "timeout" | "eagle" | "water";
+export type Curriculum = "roads" | "trains" | "mixed";
 export type Config = {
   curriculum: Curriculum;
   maxTicks: number;
   difficulty: number;
+  mechanics?: "upstream-v2";
+  /** Explicit project rules; absent preserves the initial source-port experiment. */
+  variantTwoRules?: "varied-traffic-v1";
   /** Missing means historical rules. New games explicitly opt in. */
   eagle?: { afterTicks: number; warningTicks: number };
 };
 export type Vehicle = {
   offset: number;
   length: number;
-  variant: "car" | "truck";
+  variant: string;
 };
 export type Row = {
   index: number;
-  type: "grass" | "road" | "rail";
+  type: "grass" | "road" | "rail" | "water";
   blocked: number[];
   speed: number;
   vehicles: Vehicle[];
@@ -24,6 +27,10 @@ export type Row = {
   phase: number;
   length: number;
   warning: number;
+  upstream?: true;
+  trainMiddles?: number;
+  trainSchedule?: { arrivals: number[]; warningTicks: number };
+  platforms?: { offset: number; length: number; speed: number; kind: "log" | "lily"; variant: number }[];
 };
 export type Hazard = {
   id: string;
@@ -33,7 +40,10 @@ export type Hazard = {
   speed: number;
   kind: "car" | "train";
   variant: string;
+  upstream?: true;
+  trainMiddles?: number;
 };
+export type Support = { id: string; row: number; x: number; length: number; speed: number; kind: "log" | "lily"; variant: number };
 export type AgentState = {
   x: number;
   row: number;
@@ -43,6 +53,9 @@ export type AgentState = {
   blocked: boolean;
   deathReason?: DeathReason;
   lastProgressTick?: number;
+  ridingOn?: string;
+  ridingSpeed?: number;
+  visualY?: number;
 };
 export type GameState = {
   version: 1;
@@ -53,6 +66,7 @@ export type GameState = {
   rows: Row[];
   hazards: Hazard[];
   signals: number[];
+  supports?: Support[];
 };
 export type StepResult = {
   observation: Float32Array;

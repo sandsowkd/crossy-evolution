@@ -1,4 +1,6 @@
 import { RNG, hash, modulo } from "./rng";
+import { generateUpstreamRow, upstreamHazardsAt, upstreamSignalAt } from "./upstream";
+export { platformsAt } from "./upstream";
 import {
   DT,
   TRAFFIC_LOOP,
@@ -9,6 +11,7 @@ import {
 } from "./types";
 
 export function generateRow(seed: number, index: number, config: Config): Row {
+  if (config.mechanics === "upstream-v2") return generateUpstreamRow(seed, index, config);
   const rng = new RNG(
     hash(seed, index, config.curriculum === "trains" ? 19 : 13),
   );
@@ -65,6 +68,7 @@ export function generateRow(seed: number, index: number, config: Config): Row {
   return row;
 }
 export function hazardsAt(row: Row, tick: number): Hazard[] {
+  if (row.upstream) return upstreamHazardsAt(row, tick);
   const t = tick * DT;
   if (row.type === "road")
     return row.vehicles.map((v, i) => ({
@@ -96,6 +100,7 @@ export function hazardsAt(row: Row, tick: number): Hazard[] {
   return [];
 }
 export function signalAt(row: Row, tick: number) {
+  if (row.upstream) return upstreamSignalAt(row, tick);
   if (row.type !== "rail") return false;
   const elapsed = modulo(tick * DT + row.phase, row.period);
   const enter = (TRAIN_START - 4.5 - row.length / 2) / Math.abs(row.speed),

@@ -4,6 +4,7 @@ import { type Policy } from "./baselines";
 import { type Genome } from "./genome";
 import { Network } from "./network";
 import { INPUT_COUNT } from "../core/observation";
+import { sensorCount } from "../core/sensor-version";
 export const HELD_OUT_SEEDS = Array.from(
   { length: 16 },
   (_, i) => (0xe1000000 + i * 7919) >>> 0,
@@ -27,7 +28,7 @@ export type Trace = {
 };
 export function fitness(score: number, ticks: number, death?: DeathReason) {
   return (
-    10 * score - 0.01 * ticks - (death === "car" || death === "train" || death === "eagle" ? 2 : 0)
+    10 * score - 0.01 * ticks - (death === "car" || death === "train" || death === "eagle" || death === "water" ? 2 : 0)
   );
 }
 export function episode(
@@ -36,7 +37,7 @@ export function episode(
   config: Partial<Config> = {},
   trace?: Trace[],
   network?: Network,
-  observationVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = network?.observationVersion ?? 1,
+  observationVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 = network?.observationVersion ?? 1,
   observationBuffer?: Float32Array,
 ): Episode {
   const s = new GameSimulation(config, seed);
@@ -78,7 +79,7 @@ export function evaluateGenome(
   const n = new Network(g);
   // Only this fixed, synchronous native policy opts into buffer reuse. General
   // episode callbacks and inspection traces keep their existing ownership rules.
-  const buffer=new Float32Array(INPUT_COUNT);
+  const buffer=new Float32Array(n.observationVersion === 9 ? sensorCount(9) : INPUT_COUNT);
   return seeds.map((seed) => episode((o) => n.decide(o), seed, config, undefined, n,n.observationVersion,buffer));
 }
 export const mean = (values: number[]) =>

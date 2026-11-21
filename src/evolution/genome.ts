@@ -1,5 +1,6 @@
 import { RNG } from "../core/rng";
 import { INPUT_COUNT, GLOBAL_OFFSET } from "../core/observation";
+import { sensorCount, sensorNodeId } from "../core/sensor-version";
 export const BIAS = INPUT_COUNT,
   OUTPUT_START = BIAS + 1,
   BASE_NODES = OUTPUT_START + 5;
@@ -21,7 +22,7 @@ export type Genome = {
   connections: Connection[];
   fitness: number;
   species: number;
-  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 };
 /** Explicit experimental tuning; omission preserves the historical profile. */
 export type EvolutionParameters = {
@@ -126,7 +127,7 @@ export function minimalGenome(
   rng: RNG,
   tracker: Innovations,
   robust = false,
-  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8,
+  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,
 ): Genome {
   const nodes: NodeGene[] = Array.from({ length: INPUT_COUNT }, (_, i) => ({
     id: i,
@@ -144,6 +145,7 @@ export function minimalGenome(
       ...Array.from({ length: robust ? 16 : 6 }, () =>
         robust ? rng.pick(LOCAL_INPUTS) : rng.int(GLOBAL_OFFSET),
       ),
+      ...(observationVersion === 9 ? Array.from({length:20},()=>sensorNodeId(INPUT_COUNT+rng.int(sensorCount(9)-INPUT_COUNT))) : []),
     ]);
     for (const from of inputs)
       connections.push({
@@ -154,6 +156,7 @@ export function minimalGenome(
         enabled: true,
       });
   }
+  if (observationVersion === 9) for (let n=INPUT_COUNT;n<sensorCount(9);n++) nodes.push({id:sensorNodeId(n),kind:"input",depth:0});
   return {
     id,
     nodes,

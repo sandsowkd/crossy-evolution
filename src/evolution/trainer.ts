@@ -15,12 +15,13 @@ export type TrainingConfig = {
   trainingSeeds: number;
   autoCurriculum: boolean;
   profile?: "robust-v2";
-  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   evolutionParameters?: EvolutionParameters;
   fitnessRiskWeight?: number;
   fitnessObjective?: "reward" | "rows";
   trainingSeedStride?: number;
   trainingSeedStream?: number;
+  trainingSeedPrefix?: number;
   monitorSeeds?: number[];
 };
 export const DEFAULT_TRAINING: TrainingConfig = {
@@ -82,9 +83,9 @@ export class Trainer {
       this.seeds = Array.from(
         { length: this.config.trainingSeeds },
         (_, i) =>
-          hash(this.config.seed,
+          ((hash(this.config.seed,
             this.generation * (this.config.trainingSeedStride ?? 17) + i,
-            this.config.trainingSeedStream ?? 33) & 0x3fffffff,
+            this.config.trainingSeedStream ?? 33) & 0x3fffffff) | (this.config.trainingSeedPrefix ?? 0)) >>> 0,
       );
       this.results = [];
     }

@@ -21,7 +21,7 @@ const baseConfig: Config = { curriculum: "roads", maxTicks: 36000, difficulty: 1
 function simulate(g: Genome, seed: number, config: Config, reference: boolean): Episode {
   const s = reference ? new ReferenceSimulation(config, seed) : new GameSimulation(config, seed), n = new Network(g);
   const version=n.observationVersion;
-  if(version===5||version===6||version===7||version===8)throw new Error("Frozen physics benchmark sensor fixture covers versions1–4");
+  if(version===5||version===6||version===7||version===8||version===9)throw new Error("Frozen physics benchmark sensor fixture covers versions1–4");
   while (s.agent.alive) s.step(n.decide(s.getObservation(version, n.requiredInputs)), false);
   return { seed, score: s.agent.maxRow, ticks: s.tick, deathReason: s.agent.deathReason,
     fitness: fitness(s.agent.maxRow, s.tick, s.agent.deathReason) };

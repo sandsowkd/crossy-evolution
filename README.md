@@ -5,8 +5,8 @@ Teach chickens to cross procedurally generated terrain using genuine NEAT. Simul
 | Variant | Mechanics | Status |
 | --- | --- | --- |
 | [1](docs/variants/variant-1.md) | Cars/roads; at most three consecutive road lanes | Complete: 1,361.21 independent-test average |
-| [2](docs/variants/variant-2.md) | Add trains; enable eagle pressure | Mechanics present; training pending |
-| [3](docs/variants/variant-3.md) | Add rivers, logs and lily pads | Planned |
+| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Custom traffic rules; paired fresh/transfer experiments |
+| [3](docs/variants/variant-3.md) | Reserved; rivers were included in Variant2 | Pending scope |
 | [4](docs/variants/variant-4.md) | Longer roads and broader full-game rules | Planned |
 
 **Variant 1 is complete.** The frozen policy averages **1,361.21** on 512 separately reserved final maps (95% map-bootstrap interval **1,313.32–1,409.09**), with median 1,697; 392/512 runs reach 1,000. It was selected on 768 development maps, averaging 1,393.31, before the final assessment.

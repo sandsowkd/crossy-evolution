@@ -2,6 +2,7 @@ import { observation } from "./observation";
 import { World, hazardsAt, signalAt } from "./world";
 import { sweptHit } from "./collision";
 import { modulo } from "./rng";
+import { advanceUpstream, platformsAt } from "./upstream";
 import {
   DEFAULT_CONFIG,
   DELTA,
@@ -30,6 +31,9 @@ export class GameSimulation {
       this.config.difficulty <= 0
     )
       throw new Error("Invalid simulation configuration");
+    if (this.config.variantTwoRules !== undefined && (this.config.variantTwoRules !== "varied-traffic-v1" ||
+      this.config.mechanics !== "upstream-v2" || this.config.curriculum !== "mixed"))
+      throw new Error("Invalid Variant 2 rules");
     const eagle=this.config.eagle;
     if(eagle !== undefined && (!eagle || !Number.isInteger(eagle.afterTicks)||eagle.afterTicks<12||eagle.afterTicks>36000||
       !Number.isInteger(eagle.warningTicks)||eagle.warningTicks<0||eagle.warningTicks>=eagle.afterTicks))
@@ -55,12 +59,13 @@ export class GameSimulation {
     this.agent = this.initial();
     return this.getObservation();
   }
-  getObservation(version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 1, requiredInputs?: Uint8Array,target?:Float32Array) {
+  getObservation(version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 = 1, requiredInputs?: Uint8Array,target?:Float32Array) {
     return observation(this.world, this.agent, this.tick, version, requiredInputs,target);
   }
   /** One decision advances 12 physics ticks (0.2 simulated seconds), unless terminal. */
   step(action: Action, encode = true): StepResult {
     if (!this.agent.alive) return this.result(0, encode);
+    if (this.config.mechanics === "upstream-v2") return this.result(advanceUpstream(this, action), encode);
     const old = this.agent.maxRow,
       [dx, dy] = DELTA[action],
       a = this.agent,
@@ -237,6 +242,7 @@ export class GameSimulation {
       rows: structuredClone(rows),
       hazards: rows.flatMap((r) => hazardsAt(r, this.tick)),
       signals: rows.filter((r) => signalAt(r, this.tick)).map((r) => r.index),
+      ...(this.config.mechanics === "upstream-v2" ? { supports: rows.flatMap(r => platformsAt(r, this.tick)) } : {}),
     };
   }
 }

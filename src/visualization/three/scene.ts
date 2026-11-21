@@ -3,10 +3,17 @@
  * Physics remains exclusively in core/. */
 import * as THREE from "three";
 import { Assets } from "./assets";
+import type { Support } from "../../core/types";
+import { scheduledTrainSignal } from "../../core/variant-two-rules";
+import type { Row } from "../../core/types";
 export type SceneRow = {
   index: number;
-  type: "grass" | "road" | "rail";
+  type: "grass" | "road" | "rail" | "water";
   blocked: number[];
+  upstream?: true;
+  trainSchedule?: Row["trainSchedule"];
+  speed?: number;
+  length?: number;
 };
 export type SceneHazard = {
   id: string;
@@ -16,6 +23,8 @@ export type SceneHazard = {
   speed: number;
   kind: "car" | "train";
   variant: string;
+  upstream?: true;
+  trainMiddles?: number;
 };
 export type SceneAgent = {
   id: number;
@@ -24,6 +33,8 @@ export type SceneAgent = {
   alive: boolean;
   hop?: number;
   color?: string;
+  visualY?: number;
+  deathReason?: string;
   eagle?: { remainingTicks: number; warning: boolean; captured: boolean; captureTicks: number };
 };
 export type SceneSnapshot = {
@@ -33,6 +44,7 @@ export type SceneSnapshot = {
   signals: number[];
   tick?: number;
   focus: number;
+  supports?: Support[];
 };
 
 const STARTING_ROW = 8,
@@ -51,6 +63,7 @@ export class WorldView {
   private hazards = new Map<string, THREE.Group>();
   private agents = new Map<number, THREE.Group>();
   private signals = new Map<number, THREE.Group[]>();
+  private supports = new Map<string, THREE.Group>();
   private eagle = new THREE.Group();
   private eagleWings: THREE.Group[] = [];
   private eagleGeometry = new THREE.BoxGeometry(1, 1, 1);
@@ -221,7 +234,7 @@ export class WorldView {
             ? "grass0"
             : row.type === "road"
               ? `road${previous?.type === "road" ? 0 : 1}`
-              : "rail",
+              : row.type === "water" ? "water" : "rail",
         );
         g.add(floor);
         if (row.type === "grass") {
@@ -254,8 +267,10 @@ export class WorldView {
         }
       }
     for (const [r, lights] of this.signals) {
+      const row = snapshot.rows.find(row => row.index === r);
       const active = snapshot.signals.includes(r),
-        phase = Math.floor((snapshot.tick ?? 0) / 12) % 2;
+        phase = row?.trainSchedule ? scheduledTrainSignal(row as Row, snapshot.tick ?? 0).phase :
+          Math.floor(((snapshot.tick ?? 0) - (row?.upstream ? 138 : 0)) / 12) % 2;
       lights[0].visible = !active;
       lights[1].visible = active && phase === 0;
       lights[2].visible = active && phase === 1;
@@ -271,7 +286,8 @@ export class WorldView {
       if (!g) {
         g =
           h.kind === "train"
-            ? this.assets.train(h.length)
+            ? h.upstream ? this.assets.sourceTrain(h.trainMiddles ?? 2) : this.assets.train(h.length)
+            : h.upstream ? this.assets.node(h.variant)
             : this.assets.vehicle(
                 h.length,
                 h.variant,
@@ -286,7 +302,7 @@ export class WorldView {
         h.row + STARTING_ROW + (h.kind === "train" ? 0.1 : 0),
       );
       g.rotation.y =
-        h.kind === "train"
+        h.upstream ? (h.kind === "train" ? 0 : h.speed < 0 ? Math.PI / 2 : -Math.PI / 2) : h.kind === "train"
           ? h.speed < 0
             ? 0
             : Math.PI
@@ -328,7 +344,7 @@ export class WorldView {
           ground(Math.ceil(a.row)) * fraction;
       g.position.set(
         -a.x,
-        height + Math.sin((a.hop ?? 0) * Math.PI) * 0.5,
+        (a.visualY ?? height) + Math.sin((a.hop ?? 0) * Math.PI) * 0.5,
         a.row + STARTING_ROW,
       );
       // CrossyPlayer's squash on death; no renderer callback alters the core state.
@@ -336,8 +352,17 @@ export class WorldView {
       const capture = Math.min(1, (a.eagle?.captureTicks ?? 0) / 60);
       g.visible = !captured || capture < .95;
       g.scale.set(1, a.alive || captured ? 1 : 0.2, 1);
+      if (a.deathReason === "water") { g.scale.set(1,1,1); g.position.y = -.2; }
       if (captured && capture > .35) g.position.y += (capture - .35) * 13;
       g.userData.previous = { x: -a.x, row: a.row };
+    }
+    const supportIds = new Set((snapshot.supports ?? []).map(p => p.id));
+    for (const [id, object] of this.supports) if (!supportIds.has(id)) { this.world.remove(object); this.supports.delete(id); }
+    for (const p of snapshot.supports ?? []) {
+      let object = this.supports.get(p.id);
+      if (!object) { object = this.assets.node(p.kind === "lily" ? "lily" : `log${p.variant}`); this.supports.set(p.id,object); this.world.add(object); }
+      object.position.set(-p.x, p.kind === "lily" ? .125 : -.1, p.row + STARTING_ROW);
+      if (p.kind === "lily") object.rotation.y = Math.sin((snapshot.tick ?? 0) / 180) * .5;
     }
     const target = selected ?? snapshot.agents[0];
     const eagle = target?.eagle;
@@ -361,7 +386,7 @@ export class WorldView {
   }
   clear() {
     this.snapFollow = true;
-    for (const map of [this.rows, this.hazards, this.agents]) {
+    for (const map of [this.rows, this.hazards, this.agents, this.supports]) {
       for (const g of map.values()) this.world.remove(g);
       map.clear();
     }

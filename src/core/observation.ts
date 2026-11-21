@@ -1,4 +1,6 @@
 import { hazardsAt, signalAt, type World } from "./world";
+import { platformsAt } from "./upstream";
+import { sensorIndex, sensorCount, VARIANT_TWO_EXTRA_INPUTS, VARIANT_TWO_INPUT_START } from "./sensor-version";
 import {
   DELTA,
   ACTIONS,
@@ -44,6 +46,12 @@ function observationBuffer(target?:Float32Array){
   return target;
 }
 export function inputLabel(i: number, version = 1) {
+  if (version === 9 && i >= VARIANT_TWO_INPUT_START) {
+    const extra = sensorIndex(i) - INPUT_COUNT;
+    if (extra >= CELL_COUNT * 3) return ["inactivity fraction","current rail signal","next rail signal","riding velocity","fractional x","up landing support","down landing support","current water"][extra-CELL_COUNT*3];
+    const cell = Math.floor(extra / 3);
+    return `r${ROW_OFFSETS[Math.floor(cell/9)]} c${cell%9-4} ${["water","support now","support at landing"][extra%3]}`;
+  }
   if (i >= GLOBAL_OFFSET) {
     const global = i - GLOBAL_OFFSET;
     if ((version === 5 || version === 8) && global === 1) return "two-hop forward hazard proximity";
@@ -70,10 +78,36 @@ export function observation(
   world: World,
   agent: AgentState,
   tick: number,
-  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 1,
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 = 1,
   requiredInputs?: Uint8Array,
   target?: Float32Array,
 ): Float32Array {
+  if (version === 9) {
+    const size = sensorCount(9);
+    if (target && target.length !== size) throw new Error(`Observation buffer must contain ${size} channels`);
+    const out = target ?? new Float32Array(size);
+    out.fill(0);
+    out.set(observation(world,agent,tick,8));
+    const cx=Math.round(agent.x),cy=Math.round(agent.row);
+    let extra=INPUT_COUNT;
+    const supported=(row:Row,time:number,x:number)=>+platformsAt(row,time).some(p=>Math.abs(p.x-x)<p.length/2+.25);
+    for(const dy of ROW_OFFSETS){const row=world.row(cy+dy);for(let dx=-4;dx<=4;dx++){
+      const x=cx+dx;
+      if(Math.abs(x)<=5&&cy+dy>=0){out[extra]=+(row.type==="water");out[extra+1]=supported(row,tick,x);out[extra+2]=supported(row,tick+HOP_TICKS,x);}
+      extra+=3;
+    }}
+    out[extra++]=world.config.eagle?Math.min(1,(tick-(agent.lastProgressTick??0))/world.config.eagle.afterTicks):0;
+    out[extra++]=+signalAt(world.row(cy),tick);
+    out[extra++]=+signalAt(world.row(cy+1),tick);
+    out[extra++]=(agent.ridingSpeed??0)/4.2;
+    out[extra++]=agent.x-Math.round(agent.x);
+    out[extra++]=supported(world.row(cy+1),tick+HOP_TICKS,Math.round(agent.x));
+    out[extra++]=supported(world.row(cy-1),tick+HOP_TICKS,Math.round(agent.x));
+    out[extra++]=+(world.row(cy).type==="water");
+    if(extra!==INPUT_COUNT+VARIANT_TWO_EXTRA_INPUTS)throw new Error("V9 layout mismatch");
+    for(let n=0;n<out.length;n++){out[n]=Math.max(-1,Math.min(1,out[n]));if(requiredInputs&&!requiredInputs[n])out[n]=0;}
+    return out;
+  }
   if (requiredInputs)
     return sparseObservation(world, agent, tick, version, requiredInputs,target);
   const o = observationBuffer(target),
@@ -225,7 +259,7 @@ function sparseObservation(
   world: World,
   agent: AgentState,
   tick: number,
-  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,
   requiredInputs: Uint8Array,
   target?: Float32Array,
 ): Float32Array {

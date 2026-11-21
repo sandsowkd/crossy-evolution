@@ -5,6 +5,7 @@ import {
 } from "./genome";
 import { type Checkpoint } from "./trainer";
 import { parseEvolution } from "./serialization";
+import { sensorCount, sensorNodeId, VARIANT_TWO_INPUT_START } from "../core/sensor-version";
 /** Accommodate resumed full-population histories while keeping imports bounded. */
 export const MAX_CHECKPOINT_CHARACTERS = 128_000_000;
 export function validGenome(g: Genome) {
@@ -16,7 +17,7 @@ export function validGenome(g: Genome) {
     g.nodes.length > 2000 ||
     g.connections.length > 15000 ||
     !Number.isFinite(g.fitness) ||
-    (g.observationVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8].includes(g.observationVersion))
+    (g.observationVersion !== undefined && ![2, 3, 4, 5, 6, 7, 8, 9].includes(g.observationVersion))
   )
     return false;
   const nodes = new Map(g.nodes.map((n) => [n.id, n]));
@@ -24,6 +25,8 @@ export function validGenome(g: Genome) {
   for (let i = 0; i < INPUT_COUNT; i++)
     if (nodes.get(i)?.kind !== "input" || nodes.get(i)?.depth !== 0)
       return false;
+  if(g.observationVersion===9)for(let i=INPUT_COUNT;i<sensorCount(9);i++)if(nodes.get(sensorNodeId(i))?.kind!=="input"||nodes.get(sensorNodeId(i))?.depth!==0)return false;
+  if(g.nodes.some(n=>n.id>=VARIANT_TWO_INPUT_START&&(g.observationVersion!==9||n.kind!=="input"||n.id>=VARIANT_TWO_INPUT_START+sensorCount(9)-INPUT_COUNT)))return false;
   if (nodes.get(BIAS)?.kind !== "bias" || nodes.get(BIAS)?.depth !== 0)
     return false;
   for (let i = 0; i < 5; i++)
@@ -88,7 +91,10 @@ export function parseCheckpoint(text: string): Checkpoint {
     !Number.isInteger(c.generation) ||
     c.generation < 0 ||
     !s ||
-    !["roads", "trains"].includes(s.curriculum) ||
+    !["roads", "trains", "mixed"].includes(s.curriculum) ||
+    (s.mechanics !== undefined && s.mechanics !== "upstream-v2") ||
+    (s.curriculum === "mixed" && s.mechanics !== "upstream-v2") ||
+    (s.variantTwoRules !== undefined && (s.variantTwoRules !== "varied-traffic-v1" || s.mechanics !== "upstream-v2" || s.curriculum !== "mixed")) ||
     !Number.isInteger(s.maxTicks) ||
     s.maxTicks < 12 ||
     s.maxTicks > 36000 ||
@@ -104,7 +110,7 @@ export function parseCheckpoint(text: string): Checkpoint {
     (c.config.fitnessObjective !== undefined && !["reward","rows"].includes(c.config.fitnessObjective)) ||
     (c.config.profile !== undefined && c.config.profile !== "robust-v2") ||
     (c.config.observationVersion !== undefined &&
-      ![2, 3, 4, 5, 6, 7, 8].includes(c.config.observationVersion))
+      ![2, 3, 4, 5, 6, 7, 8, 9].includes(c.config.observationVersion))
   )
     throw new Error("Invalid evaluator configuration");
   if (
@@ -123,6 +129,7 @@ export function parseCheckpoint(text: string): Checkpoint {
       (!Number.isInteger(c.config.trainingSeedStride) || c.config.trainingSeedStride < 1 || c.config.trainingSeedStride > 1_000_000)) ||
     (c.config.trainingSeedStream !== undefined &&
       (!Number.isInteger(c.config.trainingSeedStream) || c.config.trainingSeedStream < 0 || c.config.trainingSeedStream > 0xffffffff)) ||
+    (c.config.trainingSeedPrefix !== undefined && ![0,0x40000000,0x80000000,0xc0000000].includes(c.config.trainingSeedPrefix)) ||
     (c.config.monitorSeeds !== undefined &&
       (!Array.isArray(c.config.monitorSeeds) || !c.config.monitorSeeds.length || c.config.monitorSeeds.length > 512 ||
         !c.config.monitorSeeds.every((seed) => Number.isInteger(seed) && seed >= 0 && seed <= 0xffffffff)))
@@ -172,7 +179,7 @@ export function parseCheckpoint(text: string): Checkpoint {
         (h.cohortHash === undefined || /^[0-9a-f]{64}$/.test(h.cohortHash)) &&
         (h.cohortFile === undefined ||
           /^\/training-cohorts\/(?:[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?\/)?\d{5}\.json\.gz$/.test(h.cohortFile)) &&
-        ["roads", "trains"].includes(h.curriculum) &&
+        ["roads", "trains", "mixed"].includes(h.curriculum) &&
         Array.isArray(h.seeds) &&
         h.seeds.every(Number.isInteger) &&
         [h.bestFitness, h.meanFitness, h.meanRow, h.maxRow, h.evalRow].every(

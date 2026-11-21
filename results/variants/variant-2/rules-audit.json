@@ -1,0 +1,60 @@
+{
+  "rules": {
+    "version": "varied-traffic-v1",
+    "trainFirstArrivalTicks": [
+      360,
+      1080
+    ],
+    "trainArrivalGapTicks": [
+      720,
+      1440
+    ],
+    "trainWarningTicks": 120,
+    "logSpeedMin": 1.2,
+    "logSpeedMax": 4.2,
+    "logSpeedDifferenceMin": 0.8,
+    "maxWaterRows": 5,
+    "maxSameLogDirection": 2,
+    "movingWaterProbability": 0.7
+  },
+  "config": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "varied-traffic-v1"
+  },
+  "seeds": 180,
+  "rowsPerSeed": 400,
+  "totalRows": 72000,
+  "counts": {
+    "grass": 24460,
+    "road": 17719,
+    "rail": 5916,
+    "water": 23905,
+    "logRows": 16720,
+    "lilyRows": 7185,
+    "positiveLogs": 8461,
+    "negativeLogs": 8259
+  },
+  "maximumWaterRun": 5,
+  "maximumLogRun": 5,
+  "maximumSameDirection": 2,
+  "minimumLogSpeed": 1.2000752527732401,
+  "maximumLogSpeed": 4.1998189491219815,
+  "minimumAdjacentSpeedDifference": 0.8001288977917285,
+  "centerPadViolations": 0,
+  "centerObstacleViolations": 0,
+  "distinctFirstTrainArrivalTicks": 721,
+  "distinctTrainGapTicks": 721,
+  "minimumTrainGapSeconds": 12,
+  "maximumTrainGapSeconds": 24,
+  "fiveLogExample": {
+    "seed": 3,
+    "startRow": 70
+  }
+}

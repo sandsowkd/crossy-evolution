@@ -40,7 +40,7 @@ export class NEAT {
     public size: number,
     seed: number,
     public robust = false,
-    observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    observationVersion?: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,
     parameters?: EvolutionParameters,
   ) {
     this.parameters = parameters ? structuredClone(parameters) : undefined;

@@ -5,8 +5,8 @@ A deterministic headless Crossy Road simulator with genuine NEAT, population rep
 | Variant | Scope | Status |
 | --- | --- | --- |
 | [1](variants/variant-1.md) | Cars/roads; maximum three consecutive road lanes; no eagle | Complete |
-| [2](variants/variant-2.md) | Add trains | Engine mechanics present; training pending |
-| [3](variants/variant-3.md) | Add rivers, logs and lily pads | Planned |
+| [2](variants/variant-2.md) | Trains, rivers/logs/lily pads; custom traffic rules and eagle | Fresh/transfer experiments |
+| [3](variants/variant-3.md) | Reserved; rivers moved into Variant2 | Pending scope |
 | [4](variants/variant-4.md) | Longer road stretches and eagle pressure | Planned |
 
 Variant 1's frozen generation 150 memory policy averages **1,361.21 on 512 reserved final maps**, with median 1,697 and 76.56% reaching 1,000. Its 95% map-bootstrap mean interval is 1,313.32–1,409.09. The policy was selected beforehand using 768 development maps (mean 1,393.31); final results did not select or retrain it.

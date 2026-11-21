@@ -1,10 +1,10 @@
 # Training experiments
 
-All historical training belongs to **Variant1: cars/roads, maximum three consecutive road lanes, no eagle**. Existing train smoke tests are engineering checks, not Variant2 learning results.
+Historical road training belongs to **Variant1: cars/roads, maximum three consecutive road lanes, no eagle**. Variant2 adds trains and rivers together, with separately versioned traffic rules and fresh/transfer experiments.
 
 - [Variant1 results and closeout](variants/variant-1.md)
-- [Variant2: trains](variants/variant-2.md)
-- [Variant3: rivers/logs/lily pads](variants/variant-3.md)
+- [Variant2: trains, rivers/logs/lily pads and paired experiments](variants/variant-2.md)
+- [Variant3: reserved after rivers moved into Variant2](variants/variant-3.md)
 - [Variant4: longer roads and broader rules](variants/variant-4.md)
 - [Six replay highlights and population-size comparison](variants/variant-1-highlights.md)
 - [Eagle rule for new runs](EAGLE_RULES.md)

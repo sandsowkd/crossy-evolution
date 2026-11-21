@@ -28,7 +28,7 @@ test("Variant1 remains roads-only with at most three consecutive roads and no in
 
 test("Variant2 maps contain rails; planned variants cannot silently run Variant1", () => {
   const config = variantSimulation(2);
-  assert.equal(config.curriculum, "trains");
+  assert.equal(config.curriculum, "mixed");
   assert.deepEqual(config.eagle, { afterTicks: 600, warningTicks: 180 });
   assert.ok(Array.from({length: 1000}, (_, row) => generateRow(42, row, config)).some(r => r.type === "rail"));
   assert.throws(() => variantSimulation(3), /not implemented/);

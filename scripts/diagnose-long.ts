@@ -22,7 +22,7 @@ if (process.argv[2] === "benchmark") {
   const run = (encoder: typeof referenceObservation, sparse: boolean, maps: number[]) => {
     const network = new Network(model.genome);
     const version=network.observationVersion;
-    if(version===5||version===6||version===7||version===8)throw new Error("Frozen encoder benchmark covers sensor versions1–4");
+    if(version===5||version===6||version===7||version===8||version===9)throw new Error("Frozen encoder benchmark covers sensor versions1–4");
     return maps.map((seed) => {
       const sim = new GameSimulation(config, seed);
       while (sim.agent.alive) {

@@ -1,6 +1,7 @@
 import { GameSimulation } from "../core/simulation";
 import { HOP_TICKS, type AgentState, type Config } from "../core/types";
 import { hazardsAt, signalAt } from "../core/world";
+import { platformsAt } from "../core/upstream";
 import { type Genome } from "./genome";
 import { Network } from "./network";
 export class Replay {
@@ -72,6 +73,7 @@ export class Replay {
       rows,
       hazards: rows.flatMap((r) => hazardsAt(r, tick)),
       signals: rows.filter((r) => signalAt(r, tick)).map((r) => r.index),
+      ...(this.config.mechanics === "upstream-v2" ? { supports: rows.flatMap(r => platformsAt(r, tick)) } : {}),
       agents: this.agents
         .map((a, id) => {
           const duration = (a.sim.tick - a.ticks) / HOP_TICKS,
@@ -85,6 +87,7 @@ export class Replay {
             row: from.row + (to.row - from.row) * progress,
             alive: to.alive || (from.alive && alpha < duration),
             hop: moved ? progress : 0,
+            ...(this.config.mechanics === "upstream-v2" ? {visualY: to.visualY, deathReason: to.deathReason} : {}),
             ...(a.sim.eagleState ? { eagle: {
               ...a.sim.eagleState,
               captureTicks: a.sim.eagleState.captured ? Math.max(0, tick - a.sim.tick) + terminalSeconds * 60 : 0,

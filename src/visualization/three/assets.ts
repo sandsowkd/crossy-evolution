@@ -40,6 +40,10 @@ const descriptors: Descriptor[] = [
     texture: "environment/railroad/0.png",
     receive: true,
   },
+  ...[{key:"water", folder:"river"}, {key:"lily", folder:"lily_pad"}].map(d => ({
+    key:d.key, model:`environment/${d.folder}/0.obj`, texture:`environment/${d.folder}/0.png`, receive:true,
+  })),
+  ...[0,1,2,3].map(i => ({key:`log${i}`,model:`environment/log/${i}/0.obj`,texture:`environment/log/${i}/0.png`,cast:true,receive:true})),
   ...[0, 1, 2, 3].map((i) => ({
     key: `tree${i}`,
     model: `environment/tree/${i}/0.obj`,
@@ -190,6 +194,15 @@ export class Assets {
       offset += span;
     }
     return g;
+  }
+  sourceTrain(middles: number) {
+    const group = new THREE.Group();
+    group.add(this.node("train_front"));
+    for (let i = 0; i < middles; i++) {
+      const middle = this.node("train_middle"); middle.position.x = (i + 1) * 5; group.add(middle);
+    }
+    const back = this.node("train_back"); back.position.x = (middles + 1) * 5; group.add(back);
+    return group;
   }
   private release() {
     for (const g of this.geometries) g.dispose();

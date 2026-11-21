@@ -1,7 +1,3 @@
-# Variant 3 — rivers, logs and lily pads
+# Variant 3 — reserved
 
-**Planned; water mechanics are not implemented.**
-
-Add deterministic rivers, moving logs, stable lily pads, current/carry motion, falling into water, and safe hopping between supports. Retain the eagle rule from Variant2. Implement water in the headless simulator before rendering or training. Add water/support observations under a new version; never reinterpret old checkpoints.
-
-Next: test swept support transitions, log wrapping, mid-hop drowning, bounds and deterministic replays; then train/evaluate on independent mixed road/rail/water maps. Preserve Variant2 as a separate baseline.
+The user combined rivers, logs, lily pads and trains into [Variant2](variant-2.md). Variant3 has no separate training runs or model yet. Variant4 remains the planned expansion to longer roads and broader full-game rules.
