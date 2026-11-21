@@ -1,9 +1,16 @@
-import { hash, RNG } from "./rng";
+import { hash, modulo, RNG } from "./rng";
 import type { Config, Row } from "./types";
 
 /** User-requested Variant 2 rules, distinct from the pinned upstream mechanics. */
 export const VARIANT_TWO_RULES = {
-  version: "varied-traffic-v1",
+  version: "clustered-traffic-v2",
+  introLastRow: 25,
+  waterRowFraction: 1 / 6,
+  railRowFraction: 1 / 24,
+  waterCrossingLengthWeights: [.20, .35, .25, .15, .05],
+  railCrossingLengthWeights: [.45, .40, .15],
+  meanWaterCrossingLength: 2.5,
+  meanRailCrossingLength: 1.7,
   trainFirstArrivalTicks: [360, 1080],
   trainArrivalGapTicks: [720, 1440],
   trainWarningTicks: 120,
@@ -13,24 +20,56 @@ export const VARIANT_TWO_RULES = {
   maxWaterRows: 5,
   maxSameLogDirection: 2,
   movingWaterProbability: .7,
+  logLengthWeights: [.10, .25, .35, .30],
+  logGapWeights: [.70, .25, .05],
+  minimumLogsPerRow: 6,
+  minimumLogLoopLength: 24,
 } as const;
 
-function rawType(seed: number, index: number): Row["type"] {
-  if (index <= 1) return "grass";
-  const rng = new RNG(hash(seed, index, 720)), category = rng.int(3);
-  return category === 0 ? "grass" : category === 2 ? "water" : rng.int(4) === 0 ? "rail" : "road";
+type RowPlan = Readonly<{type:Row["type"]; waterKind?:"log"|"lily"; crossingStart?:number; crossingLength?:number}>;
+type Plan = {rng:RNG; rows:RowPlan[]; pending?:{type:"water"|"rail"; waterKind?:"log"|"lily"; start:number; length:number; left:number}};
+// Generation is deterministic; this bounded cache only avoids rebuilding a shared map for every chicken.
+const plans = new Map<number, Plan>();
+function weightedIndex(rng: RNG, weights: readonly number[]) {
+  let choice = rng.next();
+  for (let i = 0; i < weights.length - 1; i++) { choice -= weights[i]; if (choice < 0) return i; }
+  return weights.length - 1;
 }
-export function variantTwoRowType(seed: number, index: number): Row["type"] {
-  const type = rawType(seed, index);
-  if (type !== "road" && type !== "water") return type;
-  let run = 1;
-  for (let previous = index - 1; rawType(seed, previous) === type; previous--) run++;
-  const maximum = type === "road" ? 3 : VARIANT_TWO_RULES.maxWaterRows;
-  return run % (maximum + 1) === 0 ? "grass" : type;
+export function variantTwoRowPlan(seed: number, index: number): RowPlan {
+  if (index < 0) return {type:"grass"};
+  let plan = plans.get(seed);
+  if (!plan) {
+    if (plans.size >= 32) plans.delete(plans.keys().next().value!);
+    plan = {rng:new RNG(hash(seed,0,747)),rows:[]};
+  } else plans.delete(seed);
+  plans.set(seed,plan);
+  const {waterRowFraction: water, railRowFraction: rail, meanWaterCrossingLength: waterMean, meanRailCrossingLength: railMean} = VARIANT_TWO_RULES;
+  // Mandatory baseline row between groups. These initiation rates target total ROW fractions,
+  // rather than accidentally multiplying density when crossing lengths increase.
+  const baseline = 1 - water - rail, startWater = water / (waterMean * baseline), startRail = rail / (railMean * baseline);
+  while (plan.rows.length <= index) {
+    const row = plan.rows.length, pending = plan.pending;
+    if (pending) {
+      plan.rows.push(Object.freeze({type:pending.type,waterKind:pending.waterKind,crossingStart:pending.start,crossingLength:pending.length}));
+      if (--pending.left === 0) plan.pending = undefined;
+    } else {
+      const road = row > 1 && new RNG(hash(seed,row,748)).next() < 3 / 7 && !plan.rows.slice(-3).every(r=>r.type==="road");
+      plan.rows.push(Object.freeze({type:road?"road":"grass"}));
+      if (row < VARIANT_TWO_RULES.introLastRow) continue;
+      const choice = plan.rng.next();
+      if (choice < startWater + startRail) {
+        const type = choice < startWater ? "water" : "rail";
+        const length = weightedIndex(plan.rng, type === "water" ? VARIANT_TWO_RULES.waterCrossingLengthWeights : VARIANT_TWO_RULES.railCrossingLengthWeights) + 1;
+        plan.pending = {type,start:row+1,length,left:length,
+          ...(type==="water"?{waterKind:plan.rng.next()<VARIANT_TWO_RULES.movingWaterProbability?"log":"lily"}:{})};
+      }
+    }
+  }
+  return plan.rows[index];
 }
+export const variantTwoRowType = (seed:number,index:number) => variantTwoRowPlan(seed,index).type;
 function movingWater(seed: number, index: number) {
-  return variantTwoRowType(seed, index) === "water" &&
-    new RNG(hash(seed, index, 743)).next() < VARIANT_TWO_RULES.movingWaterProbability;
+  return variantTwoRowPlan(seed,index).waterKind === "log";
 }
 /** Uniform over the allowed speed intervals; no clamping or repeated random retries. */
 function differentSpeed(previous: number, rng: RNG) {
@@ -81,12 +120,23 @@ export function generateVariantTwoRow(seed: number, index: number, config: Confi
       row.speed = 0;
     } else {
       row.speed = logMotion(seed, index);
-      const direction = Math.sign(row.speed);
-      let x = -6 * direction;
-      for (let i = 0; i < count; i++) {
-        const variant = rng.int(4);
-        row.platforms.push({offset: x, length: variant + 1, speed: row.speed, kind: "log", variant});
-        x -= rng.range(5, 8) * direction;
+      const widths = [1,2,3,3.875], variants:number[] = [], gaps:number[] = [];
+      let circumference = 0;
+      while (variants.length < VARIANT_TWO_RULES.minimumLogsPerRow || circumference < VARIANT_TWO_RULES.minimumLogLoopLength) {
+        let variant = weightedIndex(rng,VARIANT_TWO_RULES.logLengthWeights);
+        if (variants.length===VARIANT_TWO_RULES.minimumLogsPerRow-1 && variants.every(v=>v===variant)) variant=(variant+1)%4;
+        const gap = weightedIndex(rng,VARIANT_TWO_RULES.logGapWeights)+1;
+        variants.push(variant); gaps.push(gap); circumference += widths[variant]+gap;
+      }
+      row.platformLoop = circumference;
+      const phase = rng.range(0,circumference);
+      let center = 0;
+      for (let i = 0; i < variants.length; i++) {
+        const variant = variants[i];
+        row.platforms.push({offset:modulo(center+phase+circumference/2,circumference)-circumference/2,
+          length:variant+1,visualLength:widths[variant],speed:row.speed,kind:"log",variant});
+        const next = variants[(i+1)%variants.length];
+        center += widths[variant]/2+gaps[i]+widths[next]/2;
       }
     }
   }

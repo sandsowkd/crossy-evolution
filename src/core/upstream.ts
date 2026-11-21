@@ -1,14 +1,16 @@
 /** Deterministic 60Hz adaptation of Evan Bacon's MIT Row/Water, Row/RailRoad,
  * Row/Road and GameEngine. Full attribution and compatibility limits are in docs/variants/variant-2-upstream-audit.md. */
-import { RNG, hash } from "./rng";
+import { RNG, hash, modulo } from "./rng";
 import { DELTA, HOP_TICKS, type Action, type AgentState, type Config, type Row, type Hazard, type Support } from "./types";
 import { generateVariantTwoRow, scheduledTrainAt, scheduledTrainSignal } from "./variant-two-rules";
+import { generateVariantTwoRow as generateVariantTwoV1Row } from "./variant-two-rules-v1";
 
 export const UPSTREAM_VARIANT_TWO_CONFIG: Config = {
   curriculum: "mixed", mechanics: "upstream-v2", maxTicks: 36000, difficulty: 1,
   eagle: { afterTicks: 600, warningTicks: 180 },
 };
-export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "varied-traffic-v1" };
+export const VARIED_VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "varied-traffic-v1" };
+export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v2" };
 export const SOURCE_CARS = ["police_car", "blue_car", "blue_truck", "green_car", "orange_car", "purple_car", "red_truck", "taxi"] as const;
 export const SOURCE_CAR_WIDTHS = [2, 1, 3, 2, 2, 2, 3, 2];
 export const SOURCE_LOG_WIDTHS = [1, 2, 3, 4];
@@ -33,6 +35,8 @@ function rawType(seed: number, index: number): Row["type"] {
 }
 export function generateUpstreamRow(seed: number, index: number, config: Config): Row {
   if (config.variantTwoRules === "varied-traffic-v1")
+    return generateVariantTwoV1Row(seed, index, config, type => generateSourceRow(seed, index, config, type));
+  if (config.variantTwoRules === "clustered-traffic-v2")
     return generateVariantTwoRow(seed, index, config, type => generateSourceRow(seed, index, config, type));
   return generateSourceRow(seed, index, config);
 }
@@ -115,7 +119,8 @@ export function upstreamSignalAt(row: Row, tick: number) {
 }
 export function platformsAt(row: Row, tick: number): Support[] {
   return (row.platforms ?? []).map((p, i) => ({...p, id: `${row.index}:support:${i}`, row: row.index,
-    x: sourceFramePosition(p.offset, p.speed / 60, tick)}));
+    x: row.platformLoop ? modulo(p.offset + p.speed * tick / 60 + row.platformLoop / 2, row.platformLoop) - row.platformLoop / 2 :
+      sourceFramePosition(p.offset, p.speed / 60, tick)}));
 }
 export function upstreamSupportAt(row: Row, tick: number, x: number) {
   // Source loops through all matches; last attachment wins.

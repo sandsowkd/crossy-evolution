@@ -31,7 +31,7 @@ export class GameSimulation {
       this.config.difficulty <= 0
     )
       throw new Error("Invalid simulation configuration");
-    if (this.config.variantTwoRules !== undefined && (this.config.variantTwoRules !== "varied-traffic-v1" ||
+    if (this.config.variantTwoRules !== undefined && (!["varied-traffic-v1", "clustered-traffic-v2"].includes(this.config.variantTwoRules) ||
       this.config.mechanics !== "upstream-v2" || this.config.curriculum !== "mixed"))
       throw new Error("Invalid Variant 2 rules");
     const eagle=this.config.eagle;

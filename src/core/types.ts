@@ -8,7 +8,7 @@ export type Config = {
   difficulty: number;
   mechanics?: "upstream-v2";
   /** Explicit project rules; absent preserves the initial source-port experiment. */
-  variantTwoRules?: "varied-traffic-v1";
+  variantTwoRules?: "varied-traffic-v1" | "clustered-traffic-v2";
   /** Missing means historical rules. New games explicitly opt in. */
   eagle?: { afterTicks: number; warningTicks: number };
 };
@@ -30,7 +30,8 @@ export type Row = {
   upstream?: true;
   trainMiddles?: number;
   trainSchedule?: { arrivals: number[]; warningTicks: number };
-  platforms?: { offset: number; length: number; speed: number; kind: "log" | "lily"; variant: number }[];
+  platformLoop?: number;
+  platforms?: { offset: number; length: number; visualLength?: number; speed: number; kind: "log" | "lily"; variant: number }[];
 };
 export type Hazard = {
   id: string;
@@ -43,7 +44,7 @@ export type Hazard = {
   upstream?: true;
   trainMiddles?: number;
 };
-export type Support = { id: string; row: number; x: number; length: number; speed: number; kind: "log" | "lily"; variant: number };
+export type Support = { id: string; row: number; x: number; length: number; visualLength?: number; speed: number; kind: "log" | "lily"; variant: number };
 export type AgentState = {
   x: number;
   row: number;

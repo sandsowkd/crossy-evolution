@@ -16,14 +16,14 @@ import { acquireVariantTwoLock, archiveVariantTwoPopulation, assertVariantTwoSee
   VARIANT_TWO_PARAMETERS, VARIANT_TWO_DEVELOPMENT_SEEDS, VARIANT_TWO_RESERVED_FINAL_SEEDS,
   type VariantTwoProtocol, type VariantTwoSnapshot, type VariantTwoBranch } from "../src/evolution/variant-two-experiment";
 
-const run = process.argv.find(a => a.startsWith("--run="))?.slice(6) ?? "paired-002";
+const run = process.argv.find(a => a.startsWith("--run="))?.slice(6) ?? "paired-003";
 assert.match(run, /^paired-\d{3}$/);
 const root=`results/variants/variant-2/${run}`,source="results/variants/variant-1/final";
 const branch=process.argv[2] as VariantTwoBranch;
 if(!["prepare","scratch","transfer"].includes(branch))throw new Error("Usage: train-variant-two.ts prepare|scratch|transfer [--resume]");
 const protocolFile=path.join(root,"protocol.json");
 const sourceHash=(file:string)=>sha256(fs.readFileSync(`${source}/${file}`));
-const codeFiles=["src/core/types.ts","src/core/world.ts","src/core/upstream.ts","src/core/variant-two-rules.ts","src/core/simulation.ts","src/core/observation.ts","src/core/sensor-version.ts","src/evolution/neat.ts","src/evolution/genome.ts","src/evolution/network.ts","src/evolution/trainer.ts","src/evolution/evaluation.ts","src/evolution/variant-two-transfer.ts","src/evolution/variant-two-experiment.ts","scripts/train-variant-two.ts"];
+const codeFiles=["src/core/types.ts","src/core/world.ts","src/core/upstream.ts","src/core/variant-two-rules.ts","src/core/variant-two-rules-v1.ts","src/core/simulation.ts","src/core/observation.ts","src/core/sensor-version.ts","src/evolution/neat.ts","src/evolution/genome.ts","src/evolution/network.ts","src/evolution/trainer.ts","src/evolution/evaluation.ts","src/evolution/variant-two-transfer.ts","src/evolution/variant-two-experiment.ts","scripts/train-variant-two.ts"];
 const codeHash=()=>sha256(codeFiles.map(f=>`${f}:${sha256(fs.readFileSync(f))}`).join("\n"));
 const config:TrainingConfig={population:100,seed:VARIANT_TWO_SEED,simulation:structuredClone(VARIANT_TWO_CONFIG),
   trainingSeeds:16,autoCurriculum:false,profile:"robust-v2",observationVersion:9,evolutionParameters:VARIANT_TWO_PARAMETERS,

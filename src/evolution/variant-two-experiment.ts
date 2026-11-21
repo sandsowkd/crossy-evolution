@@ -16,7 +16,7 @@ import { type Checkpoint, type TrainingConfig } from "./trainer";
 export type VariantTwoBranch = "scratch" | "transfer";
 export const VARIANT_TWO_SEED = 20261121;
 export const VARIANT_TWO_TRAINING_PREFIX = 0x40000000;
-export const VARIANT_TWO_TRAINING_STREAM = 2306;
+export const VARIANT_TWO_TRAINING_STREAM = 2307;
 export const VARIANT_TWO_TRAINING_STRIDE = 19;
 export const VARIANT_TWO_POPULATION = 100;
 export const VARIANT_TWO_TRAINING_MAPS = 16;

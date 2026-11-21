@@ -8,7 +8,9 @@ import type { Genome } from "../src/evolution/genome";
 import { protocolSha256, readVariantTwoSnapshot, sha256, summarizeVariantTwo, writeVariantTwoAtomic,
   type VariantTwoProtocol } from "../src/evolution/variant-two-experiment";
 
-const root = "results/variants/variant-2/paired-002";
+const run=process.argv.find(a=>a.startsWith("--run="))?.slice(6)??"paired-003";
+assert.match(run,/^paired-\d{3}$/);
+const root = `results/variants/variant-2/${run}`;
 const protocol = JSON.parse(fs.readFileSync(`${root}/protocol.json`, "utf8")) as VariantTwoProtocol;
 const hash = protocolSha256(protocol);
 const results = [];
@@ -16,7 +18,7 @@ for (const branch of ["scratch", "transfer"] as const) {
   // Validates committed native snapshot and every full evaluated population archive.
   const {head, snapshot} = readVariantTwoSnapshot(`${root}/${branch}`, hash, branch);
   assert.equal(head.generation, protocol.generationCap);
-  assert.equal(snapshot.checkpoint.config.simulation.variantTwoRules, "varied-traffic-v1");
+  assert.equal(snapshot.checkpoint.config.simulation.variantTwoRules, protocol.simulation.variantTwoRules);
   const selected = snapshot.selected!; assert.ok(selected);
   const cohortFile = `${root}/${branch}/generations/${String(selected.generation).padStart(5,"0")}.json.gz`;
   const cohort = parseEvolution<{contenders:Genome[]}>(gunzipSync(fs.readFileSync(cohortFile)).toString()).contenders;

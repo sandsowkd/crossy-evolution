@@ -7,6 +7,7 @@ import type { Genome } from "../evolution/genome";
 import { Replay } from "../evolution/replay";
 import { parseEvolution } from "../evolution/serialization";
 import { WorldView } from "./three/scene";
+import { variantTwoRowPlan } from "../core/variant-two-rules";
 
 type Mode = "logs" | "lilies" | "trains" | "scratch" | "transfer";
 type Preview = { branch: string; generation: number; genomes: Genome[]; seed: number; simulation: Config; meanRow?: number };
@@ -30,14 +31,19 @@ export function VariantTwo() {
         if (!response.ok) throw new Error("This training branch has not saved its first generation yet. Use the mechanics demos while it starts.");
         const saved = parseEvolution<Preview>(await response.text());
         if (saved.simulation.variantTwoRules !== VARIANT_TWO_CONFIG.variantTwoRules)
-          throw new Error("The previous training run uses older rules. The new run is starting; use the mechanics demos in the meantime.");
+          throw new Error("This saved training run uses earlier rules. Use the mechanics demos to see the current map and log spacing.");
         if (modeRef.current !== choice) return;
         replay.current = new Replay(saved.genomes, saved.seed, saved.simulation); setRecord(saved);
       } catch (e) { setMessage(String(e)); }
     } else {
       const s = new GameSimulation(VARIANT_TWO_CONFIG,previewSeed.current);
-      const rows = Array.from({length:100},(_,i)=>s.world.row(i+2));
-      const row = rows.find(r => choice === "trains" ? r.type === "rail" : r.platforms?.[0]?.kind === (choice === "logs" ? "log" : "lily"))!;
+      const rows = Array.from({length:1200},(_,i)=>s.world.row(i+2));
+      const row = rows.find(r => {
+        const plan=variantTwoRowPlan(previewSeed.current,r.index);
+        return choice === "trains" ? r.type === "rail" && plan.crossingStart===r.index && plan.crossingLength!>=2 :
+          r.platforms?.[0]?.kind === (choice === "logs" ? "log" : "lily") && (choice!=="logs" || plan.crossingLength!>=2);
+      });
+      if (!row) {setMessage("No matching crossing found on this map. Choose New map.");return;}
       s.tick = choice === "trains" ? row.trainSchedule!.arrivals[0] - 180 : 180;
       s.agent.row = choice === "trains" ? rows.filter(r=>r.type==="grass").sort((a,b)=>Math.abs(a.index-row.index)-Math.abs(b.index-row.index))[0].index : row.index;
       s.agent.maxRow = s.agent.row; s.agent.lastProgressTick = s.tick;
@@ -90,7 +96,7 @@ export function VariantTwo() {
     </div>
     {status.death&&<div className="eagle-capture" style={{top:175}} role="status">{status.death==="eagle"?"CAUGHT BY THE EAGLE":status.death==="water"?"FELL INTO THE WATER":`EPISODE ENDED · ${status.death.toUpperCase()}`}</div>}
     {!ready&&<div className="asset-loading">Loading original models…</div>}
-    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${record.seed} · ${record.meanRow===undefined?"First saved generation":`Best development mean ${record.meanRow.toFixed(2)}`} · no final tests opened`:`Map ${seed} · ${mode==="trains"?"Independent train arrivals · 12–24s between crossings":mode==="logs"?"Logs: 1.2–4.2 tiles/s · arrows to hop":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
+    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${record.seed} · ${record.meanRow===undefined?"First saved generation":`Best development mean ${record.meanRow.toFixed(2)}`} · no final tests opened`:`Map ${seed} · ${mode==="trains"?"Grouped tracks · independent trains every 12–24s":mode==="logs"?"Grouped rivers · mixed logs · 1–3 tile gaps":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
     {message&&<div className="game-error" role="alert">{message}</div>}
     <div className="quick-replay">
       <button onClick={()=>setPlaying(!playing)}>{playing?"Pause":"Play"}</button><button onClick={()=>void install(mode)}>Restart / refresh</button>

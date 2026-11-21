@@ -15,7 +15,8 @@ import { upgradeToVariantTwo } from "../evolution/variant-two-transfer";
 import { assertVariantTwoSeedSeparation, variantTwoTrainingSeeds } from "../evolution/variant-two-experiment";
 
 test("V9 preserves the legacy input prefix and adds explicit bounded support/rail/eagle channels",()=>{
-  const sim=new GameSimulation(UPSTREAM_VARIANT_TWO_CONFIG,42),old=sim.getObservation(8),next=sim.getObservation(9);
+  const sim=new GameSimulation(UPSTREAM_VARIANT_TWO_CONFIG,42);sim.tick=120;
+  const old=sim.getObservation(8),next=sim.getObservation(9);
   assert.equal(next.length,sensorCount(9));assert.deepEqual(next.slice(0,old.length),old);
   assert.ok(next.every(n=>Number.isFinite(n)&&n>=-1&&n<=1));
   const tracker=new Innovations(),genome=minimalGenome(0,new RNG(51),tracker,true,9),net=new Network(genome);
@@ -44,7 +45,7 @@ test("V9 native checkpoint resumes exact NEAT state and headless population repl
 });
 test("paired runs share training maps and use separately reserved unobserved final seeds",()=>{
   assertVariantTwoSeedSeparation();
-  const trainer=new Trainer({population:50,seed:20261121,trainingSeeds:16,trainingSeedPrefix:0x40000000,trainingSeedStream:2306,trainingSeedStride:19,
+  const trainer=new Trainer({population:50,seed:20261121,trainingSeeds:16,trainingSeedPrefix:0x40000000,trainingSeedStream:2307,trainingSeedStride:19,
     observationVersion:9,simulation:{...UPSTREAM_VARIANT_TWO_CONFIG,maxTicks:12}});
   assert.deepEqual(trainer.runGeneration().seeds,variantTwoTrainingSeeds(0));
 });

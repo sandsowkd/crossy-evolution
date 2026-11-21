@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { World, hazardsAt, signalAt } from "../core/world";
-import { VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
+import { VARIANT_TWO_CONFIG, VARIED_VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
 import { VARIANT_TWO_RULES, scheduledTrainSignal } from "../core/variant-two-rules";
 import { GameSimulation } from "../core/simulation";
 
@@ -41,7 +41,7 @@ test("mixed maps allow five water/log rows, cap direction streaks and enforce me
 
 test("train arrivals are sparse, irregular, independent by track and shared by signals, hazards and physics", () => {
   const world = new World(42, VARIANT_TWO_CONFIG);
-  const rails = Array.from({length:500}, (_, i) => world.row(i)).filter(r => r.type === "rail");
+  const rails = Array.from({length:2000}, (_, i) => world.row(i)).filter(r => r.type === "rail");
   assert.ok(rails.length > 20);
   const firstArrivals = new Set<number>(), gaps = new Set<number>();
   for (const row of rails) {
@@ -72,15 +72,19 @@ test("new rules are independent of row query order, cache eviction and renderer;
   const a = new World(57, VARIANT_TWO_CONFIG), b = new World(57, VARIANT_TWO_CONFIG);
   const rows = Array.from({length:300}, (_, i) => structuredClone(a.row(i)));
   for (let i = 299; i >= 0; i--) assert.deepEqual(b.row(i), rows[i]);
+  for (let seed=1000;seed<1064;seed++)new World(seed,VARIANT_TWO_CONFIG).row(300);
   for (let i = 0; i < 300; i++) assert.deepEqual(a.row(i), rows[i]);
   const old = new World(42, UPSTREAM_VARIANT_TWO_CONFIG);
   assert.equal(old.row(8).trainSchedule, undefined);
   assert.equal(hazardsAt(old.row(8), 100)[0].x, -80);
   assert.equal(old.row(7).platforms![0].kind, "log");
+  const v1 = new World(42,VARIED_VARIANT_TWO_CONFIG);
+  assert.equal(v1.row(8).trainSchedule!.arrivals[0], 822);
+  assert.equal(v1.row(7).platforms!.length,2);
 });
 
 test("lily center is usable, log carry uses the generated speed, and inactivity still kills", () => {
-  const world = new World(42, VARIANT_TWO_CONFIG), rows = Array.from({length:100}, (_, i) => world.row(i));
+  const world = new World(42, VARIANT_TWO_CONFIG), rows = Array.from({length:1200}, (_, i) => world.row(i));
   const lily = rows.find(r => r.platforms?.[0]?.kind === "lily")!;
   const onLily = new GameSimulation(VARIANT_TWO_CONFIG, 42);
   Object.assign(onLily.agent, {row:lily.index, maxRow:lily.index, x:0});
@@ -93,4 +97,52 @@ test("lily center is usable, log carry uses the generated speed, and inactivity 
   Object.assign(rider.agent, {row:log.index, maxRow:log.index, x:p.x, lastProgressTick:180});
   rider.step("WAIT", false);
   assert.equal(rider.agent.alive, true); assert.ok(Math.abs(rider.agent.x - p.x - log.speed * .2) < 1e-9);
+});
+
+test("first 25 rows are road/grass and grouped hazards halve row density with the requested crossing means",()=>{
+  const counts={newWater:0,newLog:0,newRail:0,oldWater:0,oldLog:0,oldRail:0,rows:0};
+  const lengths={log:[] as number[],rail:[] as number[]};
+  for(let seed=0;seed<120;seed++){
+    const world=new World(seed,VARIANT_TWO_CONFIG),old=new World(seed,VARIED_VARIANT_TWO_CONFIG);
+    for(let index=0;index<=25;index++)assert.ok(["grass","road"].includes(world.row(index).type));
+    let log=0,rail=0;
+    for(let index=26;index<2026;index++){
+      const row=world.row(index),prior=old.row(index);counts.rows++;
+      counts.newWater+=+(row.type==="water");counts.newLog+=+(row.platforms?.[0]?.kind==="log");counts.newRail+=+(row.type==="rail");
+      counts.oldWater+=+(prior.type==="water");counts.oldLog+=+(prior.platforms?.[0]?.kind==="log");counts.oldRail+=+(prior.type==="rail");
+      if(row.platforms?.[0]?.kind==="log")log++;else if(log){lengths.log.push(log);log=0;}
+      if(row.type==="rail")rail++;else if(rail){lengths.rail.push(rail);rail=0;}
+    }
+  }
+  for(const kind of ["Water","Log","Rail"] as const){
+    const ratio=counts[`new${kind}`]/counts[`old${kind}`];assert.ok(Math.abs(ratio-.5)<.035,`${kind} ratio ${ratio}`);
+  }
+  const average=(a:number[])=>a.reduce((s,v)=>s+v,0)/a.length;
+  assert.ok(Math.abs(average(lengths.log)-2.5)<.04,`Log length ${average(lengths.log)}`);
+  assert.ok(Math.abs(average(lengths.rail)-1.7)<.04,`Rail length ${average(lengths.rail)}`);
+  for(const length of [1,2,3,4,5])assert.ok(lengths.log.includes(length));
+  for(const length of [1,2,3])assert.ok(lengths.rail.includes(length));
+});
+
+test("dense log conveyors have mixed original sizes and 1/2/3-tile edge gaps, including the wrap seam",()=>{
+  const gaps={1:0,2:0,3:0};let checked=0;
+  for(let seed=0;seed<25;seed++){
+    const world=new World(seed,VARIANT_TWO_CONFIG);
+    for(let index=26;index<400;index++){
+      const row=world.row(index);if(!row.platformLoop)continue;
+      checked++;assert.ok(row.platforms!.length>=6);assert.ok(new Set(row.platforms!.map(p=>p.variant)).size>=2);
+      for(const tick of [0,1,137,600,36000]){
+        const supports=platformsAt(row,tick).sort((a,b)=>a.x-b.x);
+        for(let i=0;i<supports.length;i++){
+          const a=supports[i],b=supports[(i+1)%supports.length];
+          const distance:number=(i+1===supports.length?row.platformLoop:0)+b.x-a.x;
+          const gap:number=distance-(a.visualLength!+b.visualLength!)/2;
+          assert.ok(gap>=1-1e-9&&gap<=3+1e-9,`Gap ${gap} at tick ${tick}`);
+          assert.ok(Math.abs(gap-Math.round(gap))<1e-9);
+          if(tick===0)gaps[Math.round(gap) as 1|2|3]++;
+        }
+      }
+    }
+  }
+  assert.ok(checked>500);assert.ok(gaps[1]>gaps[2]&&gaps[2]>gaps[3]&&gaps[3]>0);
 });
