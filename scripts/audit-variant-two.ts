@@ -53,9 +53,10 @@ const mean=(a:number[])=>a.reduce((sum,n)=>sum+n,0)/a.length;
 const histogram=(a:number[])=>Object.fromEntries([...new Set(a)].sort((a,b)=>a-b).map(n=>[n,a.filter(v=>v===n).length]));
 const ratio={water:counts.water/prior.water,logRows:counts.logRows/prior.logRows,rail:counts.rail/prior.rail};
 assert.equal(introViolations+centerPadViolations+centerObstacleViolations,0);assert.equal(maximumSameDirection,2);
-assert.ok(minimumGap>=1-1e-9&&maximumGap<=3+1e-9);assert.ok(minimumAdjacentSpeedDifference>=.8-1e-9);
+assert.ok(minimumGap>=1-1e-9&&maximumGap<=3+1e-9);assert.ok(minimumAdjacentSpeedDifference>=VARIANT_TWO_RULES.logSpeedDifferenceMin-1e-9);
 assert.ok(Math.abs(mean(crossingLengths.log)-2.5)<.04);assert.ok(Math.abs(mean(crossingLengths.rail)-1.7)<.04);
 assert.ok(Object.values(ratio).every(r=>Math.abs(r-.5)<.035));
+assert.ok(Math.min(...trainGaps)>=VARIANT_TWO_RULES.trainArrivalGapTicks[0]&&Math.max(...trainGaps)<=VARIANT_TWO_RULES.trainArrivalGapTicks[1]);
 const report={rules:VARIANT_TWO_RULES,config:VARIANT_TWO_CONFIG,seeds,rowsPerSeed,measuredRowRange:[firstRow,endRow-1],totalMeasuredRows:seeds*rowsPerSeed,
   counts,previousRulesCountsOnSameRows:prior,densityRatioVsPrevious:ratio,
   meanLogCrossingLength:mean(crossingLengths.log),meanWaterCrossingLength:mean(crossingLengths.water),meanRailCrossingLength:mean(crossingLengths.rail),

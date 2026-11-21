@@ -8,7 +8,7 @@ export type Config = {
   difficulty: number;
   mechanics?: "upstream-v2";
   /** Explicit project rules; absent preserves the initial source-port experiment. */
-  variantTwoRules?: "varied-traffic-v1" | "clustered-traffic-v2";
+  variantTwoRules?: "varied-traffic-v1" | "clustered-traffic-v2" | "clustered-traffic-v3";
   /** Missing means historical rules. New games explicitly opt in. */
   eagle?: { afterTicks: number; warningTicks: number };
 };

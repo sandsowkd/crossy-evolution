@@ -10,7 +10,8 @@ export const UPSTREAM_VARIANT_TWO_CONFIG: Config = {
   eagle: { afterTicks: 600, warningTicks: 180 },
 };
 export const VARIED_VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "varied-traffic-v1" };
-export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v2" };
+export const CLUSTERED_VARIANT_TWO_V2_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v2" };
+export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v3" };
 export const SOURCE_CARS = ["police_car", "blue_car", "blue_truck", "green_car", "orange_car", "purple_car", "red_truck", "taxi"] as const;
 export const SOURCE_CAR_WIDTHS = [2, 1, 3, 2, 2, 2, 3, 2];
 export const SOURCE_LOG_WIDTHS = [1, 2, 3, 4];
@@ -36,7 +37,7 @@ function rawType(seed: number, index: number): Row["type"] {
 export function generateUpstreamRow(seed: number, index: number, config: Config): Row {
   if (config.variantTwoRules === "varied-traffic-v1")
     return generateVariantTwoV1Row(seed, index, config, type => generateSourceRow(seed, index, config, type));
-  if (config.variantTwoRules === "clustered-traffic-v2")
+  if (config.variantTwoRules === "clustered-traffic-v2" || config.variantTwoRules === "clustered-traffic-v3")
     return generateVariantTwoRow(seed, index, config, type => generateSourceRow(seed, index, config, type));
   return generateSourceRow(seed, index, config);
 }

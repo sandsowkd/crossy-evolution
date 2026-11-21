@@ -1,6 +1,6 @@
 {
   "rules": {
-    "version": "clustered-traffic-v2",
+    "version": "clustered-traffic-v3",
     "introLastRow": 25,
     "waterRowFraction": 0.16666666666666666,
     "railRowFraction": 0.041666666666666664,
@@ -19,17 +19,17 @@
     "meanWaterCrossingLength": 2.5,
     "meanRailCrossingLength": 1.7,
     "trainFirstArrivalTicks": [
-      360,
-      1080
+      252,
+      756
     ],
     "trainArrivalGapTicks": [
-      720,
-      1440
+      504,
+      1008
     ],
     "trainWarningTicks": 120,
-    "logSpeedMin": 1.2,
-    "logSpeedMax": 4.2,
-    "logSpeedDifferenceMin": 0.8,
+    "logSpeedMin": 0.96,
+    "logSpeedMax": 3.36,
+    "logSpeedDifferenceMin": 0.64,
     "maxWaterRows": 5,
     "maxSameLogDirection": 2,
     "movingWaterProbability": 0.7,
@@ -56,7 +56,7 @@
       "afterTicks": 600,
       "warningTicks": 180
     },
-    "variantTwoRules": "clustered-traffic-v2"
+    "variantTwoRules": "clustered-traffic-v3"
   },
   "seeds": 200,
   "rowsPerSeed": 2000,
@@ -113,16 +113,16 @@
     "3": 14772
   },
   "maximumSameDirection": 2,
-  "minimumLogSpeed": 1.2000460986513644,
-  "maximumLogSpeed": 4.199980646185577,
-  "minimumAdjacentSpeedDifference": 0.8000418674200773,
+  "minimumLogSpeed": 0.9600368789210916,
+  "maximumLogSpeed": 3.3599845169484617,
+  "minimumAdjacentSpeedDifference": 0.6400334939360617,
   "centerPadViolations": 0,
   "centerObstacleViolations": 0,
   "introViolations": 0,
-  "distinctFirstTrainArrivalTicks": 721,
-  "distinctTrainGapTicks": 721,
-  "minimumTrainGapSeconds": 12,
-  "maximumTrainGapSeconds": 24,
+  "distinctFirstTrainArrivalTicks": 505,
+  "distinctTrainGapTicks": 505,
+  "minimumTrainGapSeconds": 8.4,
+  "maximumTrainGapSeconds": 16.8,
   "examples": {
     "rail-1": {
       "seed": 0,

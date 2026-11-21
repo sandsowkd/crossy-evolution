@@ -1,9 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { World, hazardsAt, signalAt } from "../core/world";
-import { VARIANT_TWO_CONFIG, VARIED_VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
+import { VARIANT_TWO_CONFIG, CLUSTERED_VARIANT_TWO_V2_CONFIG, VARIED_VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
 import { VARIANT_TWO_RULES, scheduledTrainSignal } from "../core/variant-two-rules";
 import { GameSimulation } from "../core/simulation";
+import type { Row } from "../core/types";
 
 test("mixed maps allow five water/log rows, cap direction streaks and enforce meaningful speed differences", () => {
   const counts = {rows:0, logs:0, lilies:0, positive:0, fiveWater:0, fiveLogs:0};
@@ -19,9 +20,9 @@ test("mixed maps allow five water/log rows, cap direction streaks and enforce me
       assert.equal(row.blocked.includes(0), false);
       if (row.platforms?.[0]?.kind === "log") {
         counts.logs++; if (row.speed > 0) counts.positive++;
-        assert.ok(Math.abs(row.speed) >= 1.2 && Math.abs(row.speed) <= 4.2);
+        assert.ok(Math.abs(row.speed) >= .96 && Math.abs(row.speed) <= 3.36);
         assert.ok(row.platforms.every(p => p.speed === row.speed));
-        if (logs) assert.ok(Math.abs(Math.abs(row.speed) - Math.abs(previous)) >= .8 - 1e-12);
+        if (logs) assert.ok(Math.abs(Math.abs(row.speed) - Math.abs(previous)) >= .64 - 1e-12);
         same = logs && Math.sign(previous) === Math.sign(row.speed) ? same + 1 : 1;
         assert.ok(same <= 2); logs++; if (logs === 5) counts.fiveLogs++;
         previous = row.speed;
@@ -46,9 +47,9 @@ test("train arrivals are sparse, irregular, independent by track and shared by s
   const firstArrivals = new Set<number>(), gaps = new Set<number>();
   for (const row of rails) {
     const times = row.trainSchedule!.arrivals; firstArrivals.add(times[0]);
-    assert.ok(times[0] >= 360 && times[0] <= 1080);
+    assert.ok(times[0] >= 252 && times[0] <= 756);
     for (let i = 1; i < times.length; i++) {
-      const gap = times[i] - times[i-1]; gaps.add(gap); assert.ok(gap >= 720 && gap <= 1440);
+      const gap = times[i] - times[i-1]; gaps.add(gap); assert.ok(gap >= 504 && gap <= 1008);
     }
     const tick = times[0], train = hazardsAt(row, tick)[0];
     assert.equal(train.x, 0); assert.equal(signalAt(row, tick), true);
@@ -65,7 +66,36 @@ test("train arrivals are sparse, irregular, independent by track and shared by s
   }
   assert.ok(firstArrivals.size > rails.length * .8); assert.ok(gaps.size > 100);
   // No common 276-tick train wrap schedule is used by the new rules.
-  assert.equal(VARIANT_TWO_RULES.trainArrivalGapTicks[0] > 276 * 2, true);
+  assert.equal(VARIANT_TWO_RULES.trainArrivalGapTicks[0] > 276, true);
+});
+
+test("pace revision scales every log by 20% and train arrival clocks by 30% through the full horizon",()=>{
+  let logs=0,rails=0;
+  for(let seed=0;seed<12;seed++){
+    const previous=new World(seed,CLUSTERED_VARIANT_TWO_V2_CONFIG),current=new World(seed,VARIANT_TWO_CONFIG);
+    for(let index=0;index<400;index++){
+      const before=previous.row(index),after=current.row(index);
+      assert.equal(after.type,before.type);assert.deepEqual(after.blocked,before.blocked);
+      if(after.platforms?.[0]?.kind==="log"){
+        logs++;assert.equal(after.speed,before.speed*.8);
+        assert.equal(after.platformLoop,before.platformLoop);
+        for(let i=0;i<after.platforms.length;i++){
+          const p:NonNullable<Row["platforms"]>[number]=after.platforms[i],old:NonNullable<Row["platforms"]>[number]=before.platforms![i];
+          assert.deepEqual({...p,speed:old.speed},old);assert.equal(p.speed,old.speed*.8);
+        }
+        const slow=platformsAt(after,600),old=platformsAt(before,480);
+        for(let i=0;i<slow.length;i++)assert.ok(Math.abs(slow[i].x-old[i].x)<1e-9);
+      }else if(after.trainSchedule){
+        rails++;const old=before.trainSchedule!.arrivals,next=after.trainSchedule.arrivals;
+        assert.deepEqual(next.slice(0,old.length),old.map(tick=>Math.round(tick*7/10)));
+        for(let i=1;i<next.length;i++)assert.ok(next[i]-next[i-1]>=504&&next[i]-next[i-1]<=1008);
+        assert.ok(next.at(-1)!>36000+120,"Trains must continue through the 600-second horizon");
+        const late=next.find(tick=>tick>34000)!;
+        assert.ok(hazardsAt(after,late).some(h=>h.x===0));
+      }else assert.deepEqual(after,before);
+    }
+  }
+  assert.ok(logs>300&&rails>100);
 });
 
 test("new rules are independent of row query order, cache eviction and renderer; old experiments retain their clock", () => {

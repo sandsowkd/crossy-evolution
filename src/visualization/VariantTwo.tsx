@@ -118,7 +118,7 @@ export function VariantTwo() {
     </div>}
     {status.death&&!(mode==="map"&&inspectedRow!==null)&&<div className="eagle-capture" style={{top:mode==="map"?285:175}} role="status">{status.death==="eagle"?"CAUGHT BY THE EAGLE":status.death==="water"?"FELL INTO THE WATER":`EPISODE ENDED · ${status.death.toUpperCase()}`}</div>}
     {!ready&&<div className="asset-loading">Loading original models…</div>}
-    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${record.seed} · ${record.meanRow===undefined?"First saved generation":`Best development mean ${record.meanRow.toFixed(2)}`} · no final tests opened`:`Map ${seed} · ${mode==="map"?"Rows 0–25: cars and grass · browse without moving the chicken":mode==="trains"?"Grouped tracks · independent trains every 12–24s":mode==="logs"?"Grouped rivers · mixed logs · 1–3 tile gaps":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
+    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${record.seed} · ${record.meanRow===undefined?"First saved generation":`Best development mean ${record.meanRow.toFixed(2)}`} · no final tests opened`:`Map ${seed} · ${mode==="map"?"Logs 20% slower · train intervals 30% shorter":mode==="trains"?"Grouped tracks · independent trains every 8.4–16.8s":mode==="logs"?"Logs: 0.96–3.36 tiles/s · 1–3 tile gaps":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
     {message&&<div className="game-error" role="alert">{message}</div>}
     <div className="quick-replay">
       <button onClick={()=>setPlaying(!playing)}>{playing?"Pause":"Play"}</button><button onClick={()=>void install(mode)}>Restart / refresh</button>

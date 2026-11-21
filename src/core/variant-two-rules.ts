@@ -2,7 +2,7 @@ import { hash, modulo, RNG } from "./rng";
 import type { Config, Row } from "./types";
 
 /** User-requested Variant 2 rules, distinct from the pinned upstream mechanics. */
-export const VARIANT_TWO_RULES = {
+export const CLUSTERED_VARIANT_TWO_RULES_V2 = {
   version: "clustered-traffic-v2",
   introLastRow: 25,
   waterRowFraction: 1 / 6,
@@ -43,7 +43,7 @@ export function variantTwoRowPlan(seed: number, index: number): RowPlan {
     plan = {rng:new RNG(hash(seed,0,747)),rows:[]};
   } else plans.delete(seed);
   plans.set(seed,plan);
-  const {waterRowFraction: water, railRowFraction: rail, meanWaterCrossingLength: waterMean, meanRailCrossingLength: railMean} = VARIANT_TWO_RULES;
+  const {waterRowFraction: water, railRowFraction: rail, meanWaterCrossingLength: waterMean, meanRailCrossingLength: railMean} = CLUSTERED_VARIANT_TWO_RULES_V2;
   // Mandatory baseline row between groups. These initiation rates target total ROW fractions,
   // rather than accidentally multiplying density when crossing lengths increase.
   const baseline = 1 - water - rail, startWater = water / (waterMean * baseline), startRail = rail / (railMean * baseline);
@@ -55,13 +55,13 @@ export function variantTwoRowPlan(seed: number, index: number): RowPlan {
     } else {
       const road = row > 1 && new RNG(hash(seed,row,748)).next() < 3 / 7 && !plan.rows.slice(-3).every(r=>r.type==="road");
       plan.rows.push(Object.freeze({type:road?"road":"grass"}));
-      if (row < VARIANT_TWO_RULES.introLastRow) continue;
+      if (row < CLUSTERED_VARIANT_TWO_RULES_V2.introLastRow) continue;
       const choice = plan.rng.next();
       if (choice < startWater + startRail) {
         const type = choice < startWater ? "water" : "rail";
-        const length = weightedIndex(plan.rng, type === "water" ? VARIANT_TWO_RULES.waterCrossingLengthWeights : VARIANT_TWO_RULES.railCrossingLengthWeights) + 1;
+        const length = weightedIndex(plan.rng, type === "water" ? CLUSTERED_VARIANT_TWO_RULES_V2.waterCrossingLengthWeights : CLUSTERED_VARIANT_TWO_RULES_V2.railCrossingLengthWeights) + 1;
         plan.pending = {type,start:row+1,length,left:length,
-          ...(type==="water"?{waterKind:plan.rng.next()<VARIANT_TWO_RULES.movingWaterProbability?"log":"lily"}:{})};
+          ...(type==="water"?{waterKind:plan.rng.next()<CLUSTERED_VARIANT_TWO_RULES_V2.movingWaterProbability?"log":"lily"}:{})};
       }
     }
   }
@@ -73,7 +73,7 @@ function movingWater(seed: number, index: number) {
 }
 /** Uniform over the allowed speed intervals; no clamping or repeated random retries. */
 function differentSpeed(previous: number, rng: RNG) {
-  const {logSpeedMin: min, logSpeedMax: max, logSpeedDifferenceMin: gap} = VARIANT_TWO_RULES;
+  const {logSpeedMin: min, logSpeedMax: max, logSpeedDifferenceMin: gap} = CLUSTERED_VARIANT_TWO_RULES_V2;
   const low = Math.max(0, previous - gap - min), high = Math.max(0, max - previous - gap);
   const distance = rng.next() * (low + high);
   return distance < low ? min + distance : previous + gap + distance - low;
@@ -84,9 +84,9 @@ function logMotion(seed: number, index: number) {
   let speed = 0, direction = 0, same = 0;
   for (let r = start; r <= index; r++) {
     const rng = new RNG(hash(seed, r, 744));
-    speed = r === start ? rng.range(VARIANT_TWO_RULES.logSpeedMin, VARIANT_TWO_RULES.logSpeedMax) : differentSpeed(speed, rng);
+    speed = r === start ? rng.range(CLUSTERED_VARIANT_TWO_RULES_V2.logSpeedMin, CLUSTERED_VARIANT_TWO_RULES_V2.logSpeedMax) : differentSpeed(speed, rng);
     let next = rng.next() < .5 ? -1 : 1;
-    if (same === VARIANT_TWO_RULES.maxSameLogDirection && next === direction) next = -next;
+    if (same === CLUSTERED_VARIANT_TWO_RULES_V2.maxSameLogDirection && next === direction) next = -next;
     same = next === direction ? same + 1 : 1;
     direction = next;
   }
@@ -94,16 +94,16 @@ function logMotion(seed: number, index: number) {
 }
 const integerRange = (rng: RNG, range: readonly [number, number]) => range[0] + rng.int(range[1] - range[0] + 1);
 
-export function generateVariantTwoRow(seed: number, index: number, config: Config, sourceRow: (type: Row["type"]) => Row): Row {
+function generateClusteredVariantTwoRow(seed: number, index: number, config: Config, sourceRow: (type: Row["type"]) => Row): Row {
   const row = sourceRow(variantTwoRowType(seed, index));
   if (row.type === "grass") row.blocked = row.blocked.filter(x => x !== 0);
   if (row.type === "rail") {
     const rng = new RNG(hash(seed, index, 745));
-    const arrivals = [integerRange(rng, VARIANT_TWO_RULES.trainFirstArrivalTicks)];
+    const arrivals = [integerRange(rng, CLUSTERED_VARIANT_TWO_RULES_V2.trainFirstArrivalTicks)];
     while (arrivals.at(-1)! <= config.maxTicks + 180)
-      arrivals.push(arrivals.at(-1)! + integerRange(rng, VARIANT_TWO_RULES.trainArrivalGapTicks));
-    row.trainSchedule = { arrivals, warningTicks: VARIANT_TWO_RULES.trainWarningTicks };
-    row.warning = VARIANT_TWO_RULES.trainWarningTicks / 60;
+      arrivals.push(arrivals.at(-1)! + integerRange(rng, CLUSTERED_VARIANT_TWO_RULES_V2.trainArrivalGapTicks));
+    row.trainSchedule = { arrivals, warningTicks: CLUSTERED_VARIANT_TWO_RULES_V2.trainWarningTicks };
+    row.warning = CLUSTERED_VARIANT_TWO_RULES_V2.trainWarningTicks / 60;
   }
   if (row.type === "water") {
     const rng = new RNG(hash(seed, index, 746)), count = rng.int(2) + 2;
@@ -122,10 +122,10 @@ export function generateVariantTwoRow(seed: number, index: number, config: Confi
       row.speed = logMotion(seed, index);
       const widths = [1,2,3,3.875], variants:number[] = [], gaps:number[] = [];
       let circumference = 0;
-      while (variants.length < VARIANT_TWO_RULES.minimumLogsPerRow || circumference < VARIANT_TWO_RULES.minimumLogLoopLength) {
-        let variant = weightedIndex(rng,VARIANT_TWO_RULES.logLengthWeights);
-        if (variants.length===VARIANT_TWO_RULES.minimumLogsPerRow-1 && variants.every(v=>v===variant)) variant=(variant+1)%4;
-        const gap = weightedIndex(rng,VARIANT_TWO_RULES.logGapWeights)+1;
+      while (variants.length < CLUSTERED_VARIANT_TWO_RULES_V2.minimumLogsPerRow || circumference < CLUSTERED_VARIANT_TWO_RULES_V2.minimumLogLoopLength) {
+        let variant = weightedIndex(rng,CLUSTERED_VARIANT_TWO_RULES_V2.logLengthWeights);
+        if (variants.length===CLUSTERED_VARIANT_TWO_RULES_V2.minimumLogsPerRow-1 && variants.every(v=>v===variant)) variant=(variant+1)%4;
+        const gap = weightedIndex(rng,CLUSTERED_VARIANT_TWO_RULES_V2.logGapWeights)+1;
         variants.push(variant); gaps.push(gap); circumference += widths[variant]+gap;
       }
       row.platformLoop = circumference;
@@ -163,4 +163,30 @@ export function scheduledTrainSignal(row: Row, tick: number) {
   const clear = (arrival ?? 0) + Math.ceil((5 + row.length / 2 + .25) / (Math.abs(row.speed) / 60));
   const active = arrival !== undefined && tick >= start && tick <= clear;
   return {active, phase: Math.floor((tick - start) / 12) % 2};
+}
+
+
+/** Current pace revision; historical clustered-v2 maps keep their exact velocities and clocks. */
+export const VARIANT_TWO_RULES = {
+  ...CLUSTERED_VARIANT_TWO_RULES_V2,
+  version: "clustered-traffic-v3",
+  logSpeedMin: .96,
+  logSpeedMax: 3.36,
+  logSpeedDifferenceMin: .64,
+  trainFirstArrivalTicks: [252, 756],
+  trainArrivalGapTicks: [504, 1008],
+} as const;
+
+export function generateVariantTwoRow(seed: number, index: number, config: Config, sourceRow: (type: Row["type"]) => Row): Row {
+  const revised = config.variantTwoRules === "clustered-traffic-v3";
+  // Generate enough of the old timeline before compression to cover the entire new episode.
+  const sourceConfig = revised ? {...config, maxTicks:Math.ceil(config.maxTicks * 10 / 7)} : config;
+  const row = generateClusteredVariantTwoRow(seed,index,sourceConfig,sourceRow);
+  if (!revised) return row;
+  if (row.platforms?.[0]?.kind === "log") {
+    row.speed *= .8;
+    for (const platform of row.platforms) platform.speed *= .8;
+  }
+  if (row.trainSchedule) row.trainSchedule.arrivals = row.trainSchedule.arrivals.map(tick=>Math.floor((tick*7+5)/10));
+  return row;
 }

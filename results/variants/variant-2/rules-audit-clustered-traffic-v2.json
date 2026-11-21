@@ -1,0 +1,180 @@
+{
+  "rules": {
+    "version": "clustered-traffic-v2",
+    "introLastRow": 25,
+    "waterRowFraction": 0.16666666666666666,
+    "railRowFraction": 0.041666666666666664,
+    "waterCrossingLengthWeights": [
+      0.2,
+      0.35,
+      0.25,
+      0.15,
+      0.05
+    ],
+    "railCrossingLengthWeights": [
+      0.45,
+      0.4,
+      0.15
+    ],
+    "meanWaterCrossingLength": 2.5,
+    "meanRailCrossingLength": 1.7,
+    "trainFirstArrivalTicks": [
+      360,
+      1080
+    ],
+    "trainArrivalGapTicks": [
+      720,
+      1440
+    ],
+    "trainWarningTicks": 120,
+    "logSpeedMin": 1.2,
+    "logSpeedMax": 4.2,
+    "logSpeedDifferenceMin": 0.8,
+    "maxWaterRows": 5,
+    "maxSameLogDirection": 2,
+    "movingWaterProbability": 0.7,
+    "logLengthWeights": [
+      0.1,
+      0.25,
+      0.35,
+      0.3
+    ],
+    "logGapWeights": [
+      0.7,
+      0.25,
+      0.05
+    ],
+    "minimumLogsPerRow": 6,
+    "minimumLogLoopLength": 24
+  },
+  "config": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v2"
+  },
+  "seeds": 200,
+  "rowsPerSeed": 2000,
+  "measuredRowRange": [
+    26,
+    2025
+  ],
+  "totalMeasuredRows": 400000,
+  "counts": {
+    "grass": 185247,
+    "road": 131273,
+    "rail": 16842,
+    "water": 66638,
+    "logRows": 46903,
+    "lilyRows": 19735,
+    "positiveLogs": 23267,
+    "negativeLogs": 23636
+  },
+  "previousRulesCountsOnSameRows": {
+    "rail": 33321,
+    "water": 133456,
+    "logRows": 93537
+  },
+  "densityRatioVsPrevious": {
+    "water": 0.49932562042920514,
+    "logRows": 0.5014379336519238,
+    "rail": 0.5054470153956964
+  },
+  "meanLogCrossingLength": 2.507077613375354,
+  "meanWaterCrossingLength": 2.503058964831288,
+  "meanRailCrossingLength": 1.7009695011108867,
+  "logCrossingLengths": {
+    "1": 3645,
+    "2": 6630,
+    "3": 4661,
+    "4": 2878,
+    "5": 907
+  },
+  "railCrossingLengths": {
+    "1": 4444,
+    "2": 3975,
+    "3": 1483
+  },
+  "logsPerMovingRow": {
+    "minimum": 6,
+    "maximum": 9,
+    "mean": 6.426817047950024
+  },
+  "minimumGap": 1,
+  "maximumGap": 3,
+  "gapCounts": {
+    "1": 211183,
+    "2": 75482,
+    "3": 14772
+  },
+  "maximumSameDirection": 2,
+  "minimumLogSpeed": 1.2000460986513644,
+  "maximumLogSpeed": 4.199980646185577,
+  "minimumAdjacentSpeedDifference": 0.8000418674200773,
+  "centerPadViolations": 0,
+  "centerObstacleViolations": 0,
+  "introViolations": 0,
+  "distinctFirstTrainArrivalTicks": 721,
+  "distinctTrainGapTicks": 721,
+  "minimumTrainGapSeconds": 12,
+  "maximumTrainGapSeconds": 24,
+  "examples": {
+    "rail-1": {
+      "seed": 0,
+      "startRow": 27
+    },
+    "rail-3": {
+      "seed": 0,
+      "startRow": 34
+    },
+    "log-2": {
+      "seed": 0,
+      "startRow": 38
+    },
+    "water-2": {
+      "seed": 0,
+      "startRow": 38
+    },
+    "log-1": {
+      "seed": 0,
+      "startRow": 58
+    },
+    "water-1": {
+      "seed": 0,
+      "startRow": 58
+    },
+    "water-4": {
+      "seed": 0,
+      "startRow": 109
+    },
+    "log-4": {
+      "seed": 0,
+      "startRow": 122
+    },
+    "log-3": {
+      "seed": 0,
+      "startRow": 156
+    },
+    "water-3": {
+      "seed": 0,
+      "startRow": 156
+    },
+    "water-5": {
+      "seed": 0,
+      "startRow": 182
+    },
+    "rail-2": {
+      "seed": 0,
+      "startRow": 196
+    },
+    "log-5": {
+      "seed": 0,
+      "startRow": 359
+    }
+  }
+}
