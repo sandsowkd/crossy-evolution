@@ -1,0 +1,43 @@
+.highlight-page { position: fixed; inset: 0; display: grid; grid-template-columns: 330px minmax(0,1fr); color: #f5f8f5; background: #112f32; }
+.highlight-sidebar { padding: 27px 24px; overflow-y: auto; background: #153b3e; border-right: 1px solid #ffffff24; }
+.highlight-sidebar a { color: #d5edcd; font-size: 12px; text-decoration: none; }
+.highlight-back { display: block; margin-bottom: 38px; }
+.highlight-kicker { font-size: 10px; letter-spacing: 2px; color: #b7cbb9; margin: 0 0 16px; }
+.highlight-sidebar h1 { font-size: 31px; line-height: 1.15; font-weight: 500; letter-spacing: -1px; margin: 0 0 18px; }
+.highlight-intro, .highlight-footnote { color: #b4cecd; font-size: 12px; line-height: 1.65; }
+.highlight-intro { margin: 0 0 23px; }
+.highlight-sidebar nav { display: grid; gap: 6px; }
+.highlight-sidebar nav button { display: flex; align-items: center; gap: 12px; padding: 13px 10px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: #d9e6e3; text-align: left; }
+.highlight-sidebar nav button[aria-current] { background: #d9edce; color: #173e3f; border-color: #e6f5dd; }
+.highlight-sidebar nav button:hover:not([aria-current]) { background: #ffffff0b; }
+.milestone-number { font-size: 11px; font-variant-numeric: tabular-nums; opacity: .7; }
+.highlight-sidebar nav button strong { font-size: 12px; font-weight: 500; display: block; }
+.highlight-sidebar nav button small { display: block; font-size: 10px; opacity: .7; margin-top: 6px; }
+.highlight-sidebar nav button > span:last-child { margin-left: auto; font-size: 15px; }
+.highlight-footnote { font-size: 10px; margin-top: 23px; }
+.highlight-stage { position: relative; overflow: hidden; min-width: 0; background: #87c6ff; }
+.highlight-world { position: absolute; inset: 0; }
+.highlight-title { position: absolute; top: 29px; left: 30px; right: 120px; color: #fff; text-shadow: 1px 2px #25495888; pointer-events: none; }
+.highlight-title > span { font-size: 10px; letter-spacing: 2px; }
+.highlight-title h2 { font-size: 27px; font-weight: 500; letter-spacing: -.5px; margin: 9px 0; }
+.highlight-title p { font-size: 11px; margin: 0; }
+.highlight-score { position: absolute; top: 28px; right: 25px; text-align: right; pointer-events: none; }
+.highlight-score strong { display: block; color: white; font: 44px retro,monospace; text-shadow: 3px 3px #233738; }
+.highlight-score span { font-size: 8px; letter-spacing: 1px; color: white; text-shadow: 1px 1px #233738; }
+.highlight-measurement { position: absolute; right: 25px; top: 120px; padding: 13px 17px; border-radius: 4px; background: #18484cdd; display: grid; gap: 6px; text-align: right; pointer-events: none; }
+.highlight-measurement > span { font-size: 10px; color: #c5d9ce; }
+.highlight-measurement strong { font-size: 23px; font-weight: 500; color: #e6f4d6; }
+.highlight-measurement small { font-size: 10px; color: #b5cfcb; }
+.highlight-transport { position: absolute; bottom: 20px; left: 24px; right: 24px; background: #153b3ef2; border: 1px solid #ffffff25; border-radius: 6px; padding: 16px 19px; box-shadow: 0 8px 25px #122e3322; }
+.highlight-clock { display: flex; align-items: center; gap: 14px; margin-bottom: 13px; }
+.highlight-clock strong { font-size: 19px; font-weight: 500; min-width: 55px; font-variant-numeric: tabular-nums; }
+.highlight-clock span { font-size: 10px; color: #c5d9ce; }
+.highlight-controls { display: flex; gap: 7px; }
+.highlight-controls button, .highlight-controls select { padding: 7px 11px; min-height: 31px; background: #27565a; color: white; border: 1px solid #81a3a1; border-radius: 3px; font-size: 11px; }
+.highlight-controls button:nth-child(2) { background: #d9edce; color: #173e3f; border-color: #e6f5dd; min-width: 64px; }
+.highlight-controls select { margin-left: auto; padding-right: 26px; }
+.highlight-transport input { width: 100%; height: 3px; margin: 20px 0 12px; accent-color: #d9edce; cursor: pointer; }
+.highlight-transport > small { display: block; font-size: 9px; color: #b5cfcb; }
+.highlight-loading { position: absolute; left: 20px; right: 20px; top: 45%; text-align: center; background: #153b3eee; padding: 20px; font-size: 14px; }
+@media (max-height: 760px) and (min-width: 761px) { .highlight-sidebar { padding-top: 20px; } .highlight-back { margin-bottom: 24px; } .highlight-sidebar h1 { font-size: 27px; } .highlight-sidebar nav button { padding: 10px 8px; } .highlight-footnote { margin-top: 17px; } }
+@media (max-width: 760px) { .highlight-page { grid-template-columns: 1fr; grid-template-rows: auto minmax(0,1fr); } .highlight-sidebar { padding: 13px 16px; overflow: visible; } .highlight-back { margin: 0 0 12px; } .highlight-sidebar h1 { font-size: 19px; margin: 0 0 12px; } .highlight-sidebar h1 br { display: none; } .highlight-kicker, .highlight-intro, .highlight-footnote, .highlight-sidebar > a:last-child { display: none; } .highlight-sidebar nav { display: flex; gap: 5px; overflow-x: auto; } .highlight-sidebar nav button { flex: none; padding: 8px; } .highlight-sidebar nav button small, .highlight-sidebar nav button > span:last-child { display: none; } .highlight-title { top: 20px; left: 17px; right: 100px; } .highlight-title h2 { font-size: 20px; } .highlight-score { top: 20px; right: 17px; } .highlight-score strong { font-size: 33px; } .highlight-measurement { display: none; } .highlight-transport { left: 10px; right: 10px; bottom: 10px; padding: 13px; } .highlight-controls button { padding: 6px; } }

@@ -1,5 +1,11 @@
 # Training data release
 
+[Download the final Variant 1 supplement](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21): the frozen generation150/genome14920 native checkpoint, all150 complete populations of100, final evaluation and replay verification, lineage, and per-map CSV outcomes. Its independent512-map closing test averages1,361.21 rows, with1,697 median and76.6% scoring at least1000. These are the historical roads-only rules without an eagle; the new inactivity rule is a separate configuration.
+
+The supplement contains a standalone final snapshot (~146MB) and a post-snapshot delta (~327MB). The delta preserves every eligible new or changed training-data file relative to the original release's per-file manifests, including all150 isolated viewer populations. Unchanged historical data remains in the original release below. Both releases exclude reference artwork and local media.
+
+For the final native model alone, download `variant-1-final.tar.gz`, its manifest and `SHA256SUMS`. For the entire historical capture, restore the original release first, then extract both supplement archives into that fresh clone. Verify checksums before extraction; avoid overwriting a directory with newer training. The included `RELEASE_NOTES.md` gives exact paths and restore commands. [Final per-map outcomes](../results/published-variant-1-final-2026-11-21/final-map-outcomes.csv), [development outcomes](../results/published-variant-1-final-2026-11-21/development-map-outcomes.csv), and [lineage metadata](../results/published-variant-1-final-2026-11-21/lineage.json) are also in Git.
+
 [Download the dated snapshot](https://github.com/sandsowkd/crossy-evolution/releases/tag/training-snapshot-2026-11-21). It contains6.31GB in seven archive files, plus file manifests, inventory, restoration instructions and SHA256 checksums. Code, measured SVG charts and CSV summaries are in Git.
 
 | Group | Contents | Download format |

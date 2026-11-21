@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { performance } from "node:perf_hooks";
 import { Trainer } from "../src/evolution/trainer";
+import { CURRENT_CONFIG } from "../src/core/types";
 import { stringifyEvolution } from "../src/evolution/serialization";
 const generations = Number(process.argv[2] ?? 30),
   seed = Number(process.argv[3] ?? 42),
@@ -18,7 +19,7 @@ if (
 const trainer = new Trainer({
   seed,
   population,
-  simulation: { curriculum, maxTicks: 1800, difficulty: 1 },
+  simulation: { ...structuredClone(CURRENT_CONFIG), curriculum },
 });
 const start = performance.now();
 fs.mkdirSync(output, { recursive: true });
@@ -40,6 +41,7 @@ fs.writeFileSync(
       generations,
       curriculum,
       population,
+      simulation: trainer.config.simulation,
       trainingEpisodes: population * generations * trainer.config.trainingSeeds,
       heldOutEpisodes: generations * 16,
       seconds: (performance.now() - start) / 1000,

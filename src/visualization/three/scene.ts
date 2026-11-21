@@ -24,6 +24,7 @@ export type SceneAgent = {
   alive: boolean;
   hop?: number;
   color?: string;
+  eagle?: { remainingTicks: number; warning: boolean; captured: boolean; captureTicks: number };
 };
 export type SceneSnapshot = {
   rows: SceneRow[];
@@ -50,6 +51,12 @@ export class WorldView {
   private hazards = new Map<string, THREE.Group>();
   private agents = new Map<number, THREE.Group>();
   private signals = new Map<number, THREE.Group[]>();
+  private eagle = new THREE.Group();
+  private eagleWings: THREE.Group[] = [];
+  private eagleGeometry = new THREE.BoxGeometry(1, 1, 1);
+  private eagleMaterials = [0x51352a, 0x76503a, 0xf4f0dc, 0xffb524].map(
+    color => new THREE.MeshLambertMaterial({ color }),
+  );
   private resize: ResizeObserver;
   private frame = 0;
   private target = 0;
@@ -73,6 +80,29 @@ export class WorldView {
     this.camera.position.z = 1;
     this.worldWithCamera.position.z = -STARTING_ROW;
     this.worldWithCamera.add(this.world);
+    // The upstream asset set has no eagle. This small voxel model is original.
+    const block = (parent: THREE.Group, size: number[], pos: number[], material: number) => {
+      const mesh = new THREE.Mesh(this.eagleGeometry, this.eagleMaterials[material]);
+      mesh.scale.set(size[0], size[1], size[2]);
+      mesh.position.set(pos[0], pos[1], pos[2]);
+      mesh.castShadow = true;
+      parent.add(mesh);
+    };
+    block(this.eagle, [.45, .45, .85], [0, 0, 0], 0);
+    block(this.eagle, [.4, .4, .4], [0, .18, .48], 2);
+    block(this.eagle, [.2, .16, .3], [0, .08, .76], 3);
+    block(this.eagle, [.42, .12, .5], [0, -.06, -.58], 1);
+    for (const side of [-1, 1]) {
+      const wing = new THREE.Group();
+      wing.position.x = side * .2;
+      block(wing, [1.15, .14, .65], [side * .55, 0, -.08], 1);
+      block(wing, [.48, .12, .85], [side * 1.12, -.02, -.18], 0);
+      this.eagle.add(wing);
+      this.eagleWings.push(wing);
+      block(this.eagle, [.08, .08, .08], [side * .2, .24, .64], 0);
+    }
+    this.eagle.visible = false;
+    this.world.add(this.eagle);
     this.scene.add(this.worldWithCamera);
     this.world.add(new THREE.AmbientLight(0xffffff, 1.8));
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -146,7 +176,7 @@ export class WorldView {
     this.camera.updateMatrixWorld();
     const feet = new THREE.Vector3(0, GROUND, 0).project(this.camera);
     if (feet.y < -0.7) {
-      const offset = (feet.y + 0.5) * height * scale;
+      const offset = (feet.y + 0.5) * height * scale / this.camera.zoom;
       this.camera.top += offset;
       this.camera.bottom += offset;
       this.camera.updateProjectionMatrix();
@@ -302,8 +332,28 @@ export class WorldView {
         a.row + STARTING_ROW,
       );
       // CrossyPlayer's squash on death; no renderer callback alters the core state.
-      g.scale.set(1, a.alive ? 1 : 0.2, 1);
+      const captured = a.eagle?.captured;
+      const capture = Math.min(1, (a.eagle?.captureTicks ?? 0) / 60);
+      g.visible = !captured || capture < .95;
+      g.scale.set(1, a.alive || captured ? 1 : 0.2, 1);
+      if (captured && capture > .35) g.position.y += (capture - .35) * 13;
       g.userData.previous = { x: -a.x, row: a.row };
+    }
+    const target = selected ?? snapshot.agents[0];
+    const eagle = target?.eagle;
+    this.eagle.visible = Boolean(eagle && (eagle.captured || (target.alive && eagle.warning)));
+    if (target && eagle && this.eagle.visible) {
+      const t = (snapshot.tick ?? 0) / 60;
+      const capture = Math.min(1, eagle.captureTicks / 60);
+      this.eagle.position.set(
+        -target.x + (eagle.captured ? (1 - Math.min(1, capture / .35)) * 7 : Math.cos(t * 3) * 2.5),
+        eagle.captured ? .9 + Math.abs(capture - .35) * 13 : 4.5,
+        target.row + STARTING_ROW + (eagle.captured ? 0 : Math.sin(t * 3)),
+      );
+      this.eagle.rotation.y = eagle.captured ? -Math.PI / 2 : t * 3;
+      this.eagleWings.forEach((wing, i) => {
+        wing.rotation.z = (i === 0 ? -1 : 1) * Math.sin(t * 12 + capture * 15) * .35;
+      });
     }
   }
   select(id: number) {
@@ -316,12 +366,15 @@ export class WorldView {
       map.clear();
     }
     this.signals.clear();
+    this.eagle.visible = false;
   }
   dispose() {
     this.disposed = true;
     cancelAnimationFrame(this.frame);
     this.resize.disconnect();
     this.assets.dispose();
+    this.eagleGeometry.dispose();
+    this.eagleMaterials.forEach(material => material.dispose());
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

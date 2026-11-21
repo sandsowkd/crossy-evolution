@@ -42,7 +42,7 @@ if(reservedSuite){
   const checkpointSha256=createHash("sha256").update(fs.readFileSync(path.join(output,"checkpoint.json"))).digest("hex");
   const policySha256=createHash("sha256").update(JSON.stringify({version:selected.genome.observationVersion??1,nodes:selected.genome.nodes,connections:selected.genome.connections})).digest("hex");
   if(!Number.isFinite(frozen.developmentMean)||frozen.developmentMean<minimumMean||
-      config.curriculum!=="roads"||config.maxTicks!==36000||config.difficulty!==1||
+      config.curriculum!=="roads"||config.maxTicks!==36000||config.difficulty!==1||config.eagle!==undefined||
       frozen.checkpointSha256!==checkpointSha256||frozen.policySha256!==policySha256)
     throw new Error(`Reserved ${suite} test requires unchanged frozen roads physics and the declared ${minimumMean} development threshold`);
   reservedRecord={suite,openedAt:new Date().toISOString(),output:path.resolve(output),checkpointSha256,policySha256,

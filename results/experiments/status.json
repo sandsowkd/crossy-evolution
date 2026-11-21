@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-21T19:40:29.671Z",
+  "asOf": "2026-11-21T20:13:44.776Z",
   "horizonSeconds": 600,
   "runs": [
     {
@@ -256,12 +256,12 @@
     },
     {
       "name": "wide-score-batch-100-r9",
-      "generations": 25,
+      "generations": 50,
       "target": 50,
       "population": 100,
       "maps": 32,
       "objective": "rows",
-      "trainingEpisodes": 80000,
+      "trainingEpisodes": 160000,
       "selectedMean": 1357.51171875,
       "selectedGeneration": 0,
       "developmentMaps": 768
@@ -388,60 +388,60 @@
     },
     {
       "name": "wide-score-gentle-100",
-      "generations": 25,
+      "generations": 45,
       "target": 50,
       "population": 100,
       "maps": 64,
       "objective": "rows",
-      "trainingEpisodes": 160000,
+      "trainingEpisodes": 288000,
       "selectedMean": 1349.0234375,
       "selectedGeneration": 0,
       "developmentMaps": 768
     },
     {
       "name": "wide-score-gentle-100-r8",
-      "generations": 30,
+      "generations": 45,
       "target": 50,
       "population": 100,
       "maps": 64,
       "objective": "rows",
-      "trainingEpisodes": 192000,
+      "trainingEpisodes": 288000,
       "selectedMean": 1350.5924479166667,
       "selectedGeneration": 1,
       "developmentMaps": 768
     },
     {
       "name": "wide-score-gentle-200",
-      "generations": 25,
+      "generations": 45,
       "target": 50,
       "population": 200,
       "maps": 32,
       "objective": "rows",
-      "trainingEpisodes": 160000,
+      "trainingEpisodes": 288000,
       "selectedMean": 1349.0234375,
       "selectedGeneration": 0,
       "developmentMaps": 768
     },
     {
       "name": "wide-score-memory-100",
-      "generations": 100,
+      "generations": 125,
       "target": 150,
       "population": 100,
       "maps": 32,
       "objective": "rows",
-      "trainingEpisodes": 320000,
+      "trainingEpisodes": 400000,
       "selectedMean": 1363.3411458333333,
       "selectedGeneration": 100,
       "developmentMaps": 768
     },
     {
       "name": "wide-score-memory-100-r9",
-      "generations": 25,
+      "generations": 50,
       "target": 50,
       "population": 100,
       "maps": 32,
       "objective": "rows",
-      "trainingEpisodes": 80000,
+      "trainingEpisodes": 160000,
       "selectedMean": 1357.51171875,
       "selectedGeneration": 0,
       "developmentMaps": 768
@@ -496,22 +496,21 @@
     },
     {
       "name": "wide-restarts",
-      "completedRounds": 50,
-      "trainingEpisodes": 947200,
-      "latestRound": "round-051",
-      "bestSource": "results/experiments/wide-restarts/round-043",
-      "bestMean": 1357.51171875
+      "completedRounds": 53,
+      "trainingEpisodes": 1004800,
+      "latestRound": "round-054",
+      "latestCompletedGeneration": 2,
+      "latestSelectedMean": 1386.5559895833333,
+      "bestSource": "results/experiments/wide-restarts/round-052",
+      "bestMean": 1386.5559895833333
     }
   ],
   "processes": [
-    "48811    01:00:41  86.3 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-100 50 --source=results/experiments/frozen-development/restart-040-g1",
-    "48838    01:00:40  76.1 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-200 50 --source=results/experiments/frozen-development/restart-040-g1",
-    "48948       59:22  94.7 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-100 50 --replicate=8 --source=results/experiments/frozen-development/lookahead-memory-g30",
-    "49712       33:21  76.8 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-batch-100 50 --replicate=9 --source=results/experiments/frozen-development/restart-043-g1",
-    "49739       33:20  76.0 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-memory-100 50 --replicate=9 --source=results/experiments/frozen-development/restart-043-g1",
-    "51014       02:36  74.0 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-memory-100 150 --resume --source=results/experiments/frozen-development/restart-030",
-    "51163       00:25  77.9 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-restarts.ts 70 --wide --rows",
-    "51216       00:23  73.3 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/audit-contenders.ts results/experiments/frozen-development/lookahead-memory-g100 75,90,100 25 --from-rank=11"
+    "48811    01:33:56  97.0 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-100 50 --source=results/experiments/frozen-development/restart-040-g1",
+    "48838    01:33:55  97.4 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-200 50 --source=results/experiments/frozen-development/restart-040-g1",
+    "48948    01:32:37  96.4 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-gentle-100 50 --replicate=8 --source=results/experiments/frozen-development/lookahead-memory-g30",
+    "51014       35:51  95.5 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-average.ts wide-score-memory-100 150 --resume --source=results/experiments/frozen-development/restart-030",
+    "51163       33:40  94.8 /opt/homebrew/Cellar/node/23.6.0/bin/node --require /Users/jeremyhuang/Documents/ChatGPT/crossy road/node_modules/tsx/dist/preflight.cjs --import file:///Users/jeremyhuang/Documents/ChatGPT/crossy%20road/node_modules/tsx/dist/loader.mjs scripts/train-restarts.ts 70 --wide --rows"
   ],
   "instructions": "Compare like development panels. Preserve checkpoint/archives and warm ancestry. Keep the reserved final suite separate until a model is frozen. User requests further improvement after reaching1000."
 }

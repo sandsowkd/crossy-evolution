@@ -1,5 +1,5 @@
 import { hash } from "../core/rng";
-import { DEFAULT_CONFIG, type Config } from "../core/types";
+import { CURRENT_CONFIG, type Config } from "../core/types";
 import { NEAT, type NeatState } from "./neat";
 import { cloneGenome, type Genome, type EvolutionParameters } from "./genome";
 import {
@@ -26,7 +26,7 @@ export type TrainingConfig = {
 export const DEFAULT_TRAINING: TrainingConfig = {
   population: 100,
   seed: 42,
-  simulation: { ...DEFAULT_CONFIG },
+  simulation: structuredClone(CURRENT_CONFIG),
   trainingSeeds: 3,
   autoCurriculum: false,
 };

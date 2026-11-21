@@ -56,7 +56,7 @@ export class Replay {
   get finished() {
     return this.agents.every((a) => !a.sim.agent.alive);
   }
-  snapshot(alpha = 1) {
+  snapshot(alpha = 1, terminalSeconds = 0) {
     const tick = Math.max(0, this.decisions - 1 + alpha) * HOP_TICKS,
       focus = this.current.sim.agent.row,
       rows = [];
@@ -85,6 +85,10 @@ export class Replay {
             row: from.row + (to.row - from.row) * progress,
             alive: to.alive || (from.alive && alpha < duration),
             hop: moved ? progress : 0,
+            ...(a.sim.eagleState ? { eagle: {
+              ...a.sim.eagleState,
+              captureTicks: a.sim.eagleState.captured ? Math.max(0, tick - a.sim.tick) + terminalSeconds * 60 : 0,
+            }} : {}),
             color:
               id === 0
                 ? "#fffbea"

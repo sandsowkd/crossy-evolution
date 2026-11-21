@@ -1,11 +1,13 @@
 export const ACTIONS = ["UP", "DOWN", "LEFT", "RIGHT", "WAIT"] as const;
 export type Action = (typeof ACTIONS)[number];
-export type DeathReason = "car" | "train" | "tree" | "bounds" | "timeout";
+export type DeathReason = "car" | "train" | "tree" | "bounds" | "timeout" | "eagle";
 export type Curriculum = "roads" | "trains";
 export type Config = {
   curriculum: Curriculum;
   maxTicks: number;
   difficulty: number;
+  /** Missing means historical rules. New games explicitly opt in. */
+  eagle?: { afterTicks: number; warningTicks: number };
 };
 export type Vehicle = {
   offset: number;
@@ -40,6 +42,7 @@ export type AgentState = {
   lastAction: Action;
   blocked: boolean;
   deathReason?: DeathReason;
+  lastProgressTick?: number;
 };
 export type GameState = {
   version: 1;
@@ -64,6 +67,11 @@ export const DEFAULT_CONFIG: Config = {
   curriculum: "roads",
   maxTicks: 1800,
   difficulty: 1,
+};
+/** New runs use this preset; archived configs without eagle remain unchanged. */
+export const CURRENT_CONFIG: Config = {
+  ...DEFAULT_CONFIG,
+  eagle: { afterTicks: 600, warningTicks: 180 },
 };
 export const TRAIN_START = 80;
 export const DT = 1 / 60,

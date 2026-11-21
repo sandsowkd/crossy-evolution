@@ -95,6 +95,9 @@ export function parseCheckpoint(text: string): Checkpoint {
     !Number.isFinite(s.difficulty) ||
     s.difficulty < 0.1 ||
     s.difficulty > 3 ||
+    (s.eagle !== undefined && (!s.eagle || !Number.isInteger(s.eagle.afterTicks) ||
+      s.eagle.afterTicks<12 || s.eagle.afterTicks>36000 || !Number.isInteger(s.eagle.warningTicks) ||
+      s.eagle.warningTicks<0 || s.eagle.warningTicks>=s.eagle.afterTicks)) ||
     !Number.isInteger(c.config.trainingSeeds) ||
     c.config.trainingSeeds < 1 ||
     c.config.trainingSeeds > 64 ||

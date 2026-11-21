@@ -1,0 +1,267 @@
+{
+  "chain": [
+    {
+      "path": "results/variants/variant-1/final",
+      "selectedGenerationAtCapture": 150,
+      "selectedGenomeAtCapture": 14920,
+      "ancestry": {
+        "source": "results/experiments/frozen-development/restart-030",
+        "selectedGeneration": 3,
+        "selectedGenome": 238
+      },
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/variants/variant-1/final/selected.json",
+          "bytes": 114382,
+          "sha256": "749773328d714b727835a1ac3d9cc6c1f5aa73d3602bfba4f961793f726c5aa5"
+        },
+        {
+          "path": "results/variants/variant-1/final/training-summary.json",
+          "bytes": 1365997,
+          "sha256": "305f4d0289d2d3436fbefcd56fa835c67a5955117ad7b88ebb1d6ca82f5dc7b1"
+        },
+        {
+          "path": "results/variants/variant-1/final/freeze.json",
+          "bytes": 771,
+          "sha256": "c4a9c925ec1d872e61944f555798e5b3639cbf3be0bd0e3854089e2b85433e5a"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/frozen-development/restart-030",
+      "selectedGenerationAtCapture": 3,
+      "selectedGenomeAtCapture": 238,
+      "ancestry": {
+        "source": "results/experiments/wide-restarts/round-029",
+        "genome": 47,
+        "meanRow": 1302.57421875
+      },
+      "provenance": {
+        "label": "Development-selected restart30 chicken",
+        "initialization": "warm-start-neat",
+        "ancestry": [
+          "Earlier binary500-generation search and motion adaptation remain preserved; these are inherited weights.",
+          "Lookahead generation490 ancestor; protected checkpoint515 records824000 lookahead training episode positions.",
+          "Row-objective replica3 supplied generation30 genome2923 (1290.2578125 development mean) to restart29; actual generation30 population remains archived. The full50-generation branch consumed80000 training episodes.",
+          "Restart29 used19200 training episodes, selected generation1 genome47 at1302.57421875; restart30 used19200 and selected generation3 genome238 at1304.7057291666667."
+        ],
+        "trainingEpisodes": 19200,
+        "parentDirectory": "results/experiments/wide-restarts/round-029",
+        "parentCheckpointSha256": "851bf4c28f9c858e954d40abdd95b45094e33f4e11aede0e256f6f92fbb0e3ec",
+        "inheritedRowBranchParent": {
+          "source": "results/experiments/average/wide-score-explore-100-r3",
+          "selectedGeneration": 30,
+          "selectedGenome": 2923,
+          "selectedMean768": 1290.2578125,
+          "fullPopulationArchive": "results/experiments/average/wide-score-explore-100-r3/generations/00030.json.gz"
+        },
+        "trainingAccounting": "Per-phase saved generation positions; shared and earlier interrupted search is not erased or claimed fully counted.",
+        "developmentMean": 1304.7057291666667,
+        "policySha256": "325d0314c3b1e731e440eae4e8253a41d84a42243e0b8cb2e9887acf50abe4b2",
+        "checkpointSha256": "71336d6f8838632da95173b3cf11c5a758e318895691ee6d218d20e7a12f5e33",
+        "finalEvaluation": "None; below1325 threshold, F9 remains unopened."
+      },
+      "metadataFiles": [
+        {
+          "path": "results/experiments/frozen-development/restart-030/selected.json",
+          "bytes": 111813,
+          "sha256": "91fff66c1f16141af991d423debbdf0873b779c69618aa6956b8e4d1d51143bc"
+        },
+        {
+          "path": "results/experiments/frozen-development/restart-030/training-summary.json",
+          "bytes": 2738,
+          "sha256": "361a1c0d0fb20f3c7f89add36894e491e21cc6a0bdbb5852a07c519f719ca968"
+        },
+        {
+          "path": "results/experiments/frozen-development/restart-030/freeze.json",
+          "bytes": 751,
+          "sha256": "697815e6bbd941a9405e63ec11fdd8559699bee3362a0a7418aa69d73a661a58"
+        },
+        {
+          "path": "results/experiments/frozen-development/restart-030/provenance.json",
+          "bytes": 1673,
+          "sha256": "6fb92ff4c829ac6dd6509b397f922fafb1f849675ac355dec15ae22430d0a1b1"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/wide-restarts/round-029",
+      "selectedGenerationAtCapture": 1,
+      "selectedGenomeAtCapture": 47,
+      "ancestry": {
+        "source": "results/experiments/average/wide-score-explore-100-r3",
+        "genome": 2923,
+        "meanRow": 1290.2578125
+      },
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/experiments/wide-restarts/round-029/selected.json",
+          "bytes": 111808,
+          "sha256": "e3c295372225d1f37aee09ec9941a5c19d692dc926891fd891448cf93054a2d2"
+        },
+        {
+          "path": "results/experiments/wide-restarts/round-029/training-summary.json",
+          "bytes": 2732,
+          "sha256": "d724c9dfb0a6a061bb8ac5ef1f9257fc05ce37a0f48f4dbc384fca0037c8f4d0"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/average/wide-score-explore-100-r3",
+      "selectedGenerationAtCapture": 50,
+      "selectedGenomeAtCapture": 4914,
+      "ancestry": {
+        "source": "results/experiments/evolution/lookahead-490-ancestor",
+        "selectedGeneration": 490,
+        "selectedGenome": 48986
+      },
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/experiments/average/wide-score-explore-100-r3/selected.json",
+          "bytes": 112157,
+          "sha256": "de6f6287fba0bf813ece98ce5666e4efbde63c37b9183942abb90fb48016de8a"
+        },
+        {
+          "path": "results/experiments/average/wide-score-explore-100-r3/training-summary.json",
+          "bytes": 619033,
+          "sha256": "bf3db9a67b53ed3291c7fc201eb8432c94116203f2c22364d9b9b87e2a9ce4a1"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/evolution/lookahead-490-ancestor",
+      "selectedGenerationAtCapture": 490,
+      "selectedGenomeAtCapture": 48986,
+      "ancestry": {
+        "source": "results/experiments/average/lookahead-100",
+        "edge": "frozen archive provenance alias",
+        "selectedGeneration": 490,
+        "selectedGenome": 48986
+      },
+      "provenance": {
+        "label": "Development-selected lookahead generation 490",
+        "initialization": "warm-start-neat",
+        "ancestry": [
+          "Earlier binary 500-generation search: 800,000 training episodes; warm selected generation 470.",
+          "Motion adaptation selected generation 30 after 24,000 training episodes; full earlier search retained.",
+          "Lookahead phase selected generation 490. Additional interrupted compute may not be completely counted."
+        ],
+        "trainingEpisodes": 824000,
+        "archiveDirectory": "results/experiments/average/lookahead-100/generations",
+        "selectedPopulationCopy": "results/experiments/evolution/lookahead-490-ancestor/generations/00490.json.gz",
+        "auditFile": "results/experiments/wide-comparison/lookahead-100-g490-dba36faa.json",
+        "developmentMean": 1265.546875,
+        "checkpointSha256": "bee5833b96e7038668d36a2af6f96a01a7f42ace90f6e410577911e4fb7a0678",
+        "unopenedNextFinalSuite": "F9-prefix512; freeze only after development mean>=1325 before assessing it."
+      },
+      "metadataFiles": [
+        {
+          "path": "results/experiments/evolution/lookahead-490-ancestor/selected.json",
+          "bytes": 181902,
+          "sha256": "d2796e2e81c52f72a9f1c55c8eb2b49752f19197d893d76a7da212632f409afa"
+        },
+        {
+          "path": "results/experiments/evolution/lookahead-490-ancestor/provenance.json",
+          "bytes": 981,
+          "sha256": "53a96ee513b900aee9af333821494a0aef6c94cda0480cce95d1c66048c23417"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/average/lookahead-100",
+      "selectedGenerationAtCapture": 520,
+      "selectedGenomeAtCapture": 51976,
+      "ancestry": {
+        "source": "results/experiments/evolution/v3-ancestor",
+        "selectedGeneration": 30,
+        "selectedGenome": 2978
+      },
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/experiments/average/lookahead-100/selected.json",
+          "bytes": 55481,
+          "sha256": "c0b00bcdb5ca0a4607634c0b74049eaaa85de99ffb85aa2e0e03c30bd07befa4"
+        },
+        {
+          "path": "results/experiments/average/lookahead-100/training-summary.json",
+          "bytes": 3624357,
+          "sha256": "25f5c008c26ddf518636369fae80b898959d7ca2badf13be39f607c315059488"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/evolution/v3-ancestor",
+      "selectedGenerationAtCapture": 30,
+      "selectedGenomeAtCapture": 2978,
+      "ancestry": {
+        "source": "results/experiments/trajectory/warm-v3-100",
+        "edge": "frozen-copy provenance alias"
+      },
+      "provenance": {
+        "source": "results/experiments/trajectory/warm-v3-100",
+        "reason": "Immutable ancestor snapshot for population/mutation comparisons",
+        "date": "2026-11-21T10:11:47.969Z"
+      },
+      "metadataFiles": [
+        {
+          "path": "results/experiments/evolution/v3-ancestor/selected.json",
+          "bytes": 35129,
+          "sha256": "bd7a8223b959d41870c55e75e36684892776663c910e3fccb5d60e7809f408c6"
+        },
+        {
+          "path": "results/experiments/evolution/v3-ancestor/provenance.json",
+          "bytes": 177,
+          "sha256": "560511495b422c026badacbde996fbe03b7a90d9afd189958f7ae05a93e5f8f7"
+        }
+      ]
+    },
+    {
+      "path": "results/experiments/trajectory/warm-v3-100",
+      "selectedGenerationAtCapture": 30,
+      "selectedGenomeAtCapture": 2978,
+      "ancestry": {
+        "source": "results/continued",
+        "inheritedGeneration": 470,
+        "inheritedGenome": 93863,
+        "priorTrainingEpisodes": 800000
+      },
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/experiments/trajectory/warm-v3-100/selected.json",
+          "bytes": 35129,
+          "sha256": "bd7a8223b959d41870c55e75e36684892776663c910e3fccb5d60e7809f408c6"
+        },
+        {
+          "path": "results/experiments/trajectory/warm-v3-100/training-summary.json",
+          "bytes": 457625,
+          "sha256": "c09be1515a20fcb291d53cf5e6983fbb91273e29a86b7f8c15d51f4b7517053b"
+        }
+      ]
+    },
+    {
+      "path": "results/continued",
+      "selectedGenerationAtCapture": 470,
+      "selectedGenomeAtCapture": 93863,
+      "ancestry": null,
+      "provenance": {},
+      "metadataFiles": [
+        {
+          "path": "results/continued/selected.json",
+          "bytes": 33569,
+          "sha256": "27753ccf9082a11f842666b1ad2c4dd3ae7419ea2052f842e8f3051f1cad780b"
+        },
+        {
+          "path": "results/continued/training-summary.json",
+          "bytes": 2259087,
+          "sha256": "71ec977ccc54fc21126e13b258ddb53730a846d553fbb1fb392d633de0b6323b"
+        }
+      ]
+    }
+  ],
+  "accounting": "Ancestry edges preserve their recorded requested identities. Mutable source selections at capture can differ. Frozen copies and cumulative warm starts are not additional independent training; no grand total is inferred."
+}

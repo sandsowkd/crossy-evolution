@@ -1,0 +1,258 @@
+2026-11-21T20:18:59.740107+00:00 4 authorized native jobs still finishing
+2026-11-21T20:24:00.335013+00:00 1 authorized native jobs still finishing
+2026-11-21T20:29:00.884228+00:00 1 authorized native jobs still finishing
+2026-11-21T20:30:46.112092+00:00 All native training/audits exited; starting guarded closure.
+{
+  frozenAt: '2026-11-21T20:30:54.493Z',
+  source: 'results/experiments/average/wide-score-memory-100',
+  archiveSource: 'results/experiments/average/wide-score-memory-100/generations',
+  selectedGeneration: 150,
+  selectedGenome: 14920,
+  checkpointGeneration: 150,
+  population: 100,
+  observationVersion: 8,
+  policySha256: '213091a5fa505d5d10f7f7a7e2a7646431f8539869971926862610732c7faa25',
+  checkpointSha256: 'a93539e954369acf138a4a00e438ebf5e0d03ea5ba94df7de2548da7fbdbaa3b',
+  verifiedDevelopmentEpisodes: 768,
+  developmentMean: 1393.3098958333333,
+  horizonSeconds: 600,
+  fullPopulationsCopied: 150,
+  reservedFinalSuite: 'No final maps evaluated; use the unopened suite declared for this phase in docs/TRAINING_EXPERIMENTS.md'
+}
+{
+  "status": "final",
+  "selectedSource": "results/experiments/average/wide-score-memory-100",
+  "selectedModelLineageGenerations": 1174,
+  "phases": [
+    {
+      "phase": "binary original and continuation",
+      "source": "results/continued",
+      "selectedGeneration": 470,
+      "note": "Cumulative native position; do not add initial300 again."
+    },
+    {
+      "source": "results/experiments/trajectory/warm-v3-100",
+      "selectedGeneration": 30,
+      "selectedGenome": 2978
+    },
+    {
+      "source": "results/experiments/average/lookahead-100",
+      "selectedGeneration": 490,
+      "selectedGenome": 48986
+    },
+    {
+      "source": "results/experiments/average/wide-score-explore-100-r3",
+      "selectedGeneration": 30,
+      "selectedGenome": 2923
+    },
+    {
+      "source": "results/experiments/wide-restarts/round-029",
+      "selectedGeneration": 1,
+      "selectedGenome": 47
+    },
+    {
+      "source": "results/experiments/wide-restarts/round-030",
+      "selectedGeneration": 3,
+      "selectedGenome": 238
+    },
+    {
+      "source": "results/experiments/average/wide-score-memory-100",
+      "selectedGeneration": 150,
+      "selectedGenome": 14920
+    }
+  ],
+  "interpretation": "Selected phase positions along successive warm starts; NEAT crossover has a population ancestry graph. This is not the total parameter search, a single-parent mutation count, or the sum of duplicated/cumulative histories."
+}
+{
+  "verifiedAt": "2026-11-21T20:30:55.068Z",
+  "source": "results/variants/variant-1/final",
+  "selectedGeneration": 150,
+  "selectedGenome": 14920,
+  "policySha256": "213091a5fa505d5d10f7f7a7e2a7646431f8539869971926862610732c7faa25",
+  "checkpointSha256": "a93539e954369acf138a4a00e438ebf5e0d03ea5ba94df7de2548da7fbdbaa3b",
+  "purpose": "Opened development cases only: exact dense-gallery versus sparse-native outputs, actions, states and ticks at every decision. No final maps or model selection.",
+  "unavailableCases": [],
+  "decisions": 6603,
+  "results": [
+    {
+      "name": "car",
+      "seed": 2986344448,
+      "score": 54,
+      "ticks": 1720,
+      "deathReason": "car",
+      "decisions": 144
+    },
+    {
+      "name": "bounds",
+      "seed": 2987655188,
+      "score": 242,
+      "ticks": 5496,
+      "deathReason": "bounds",
+      "decisions": 459
+    },
+    {
+      "name": "high-timeout",
+      "seed": 2986409985,
+      "score": 1739,
+      "ticks": 36000,
+      "deathReason": "timeout",
+      "decisions": 3000
+    },
+    {
+      "name": "low-timeout",
+      "seed": 2986934281,
+      "score": 484,
+      "ticks": 36000,
+      "deathReason": "timeout",
+      "decisions": 3000
+    }
+  ]
+}
+{
+  "summary": {
+    "random": {
+      "meanRow": 0.970703125,
+      "medianRow": 0,
+      "p25": 0,
+      "p90": 2,
+      "maxRow": 9,
+      "atLeast25": 0,
+      "atLeast50": 0,
+      "atLeast1000": 0,
+      "timeoutRate": 0,
+      "meanFitness": 8.391503906250014
+    },
+    "alwaysUp": {
+      "meanRow": 4.14453125,
+      "medianRow": 3,
+      "p25": 2,
+      "p90": 8,
+      "maxRow": 27,
+      "atLeast25": 0.001953125,
+      "atLeast50": 0,
+      "atLeast1000": 0,
+      "timeoutRate": 0.099609375,
+      "meanFitness": 3.1794140624999896
+    },
+    "heuristic": {
+      "meanRow": 13.076171875,
+      "medianRow": 9,
+      "p25": 4,
+      "p90": 28,
+      "maxRow": 76,
+      "atLeast25": 0.138671875,
+      "atLeast50": 0.015625,
+      "atLeast1000": 0,
+      "timeoutRate": 0.021484375,
+      "meanFitness": 118.68251953124998
+    },
+    "distanceHeuristic": {
+      "meanRow": 111.966796875,
+      "medianRow": 80,
+      "p25": 38,
+      "p90": 263,
+      "maxRow": 642,
+      "atLeast25": 0.849609375,
+      "atLeast50": 0.685546875,
+      "atLeast1000": 0,
+      "timeoutRate": 0.359375,
+      "meanFitness": 969.5919140624994
+    },
+    "initial": {
+      "meanRow": 1264.794921875,
+      "medianRow": 1617.5,
+      "p25": 741,
+      "p90": 1730,
+      "maxRow": 1812,
+      "atLeast25": 0.994140625,
+      "atLeast50": 0.984375,
+      "atLeast1000": 0.693359375,
+      "timeoutRate": 0.712890625,
+      "meanFitness": 12342.995722656246
+    },
+    "previousFiveGenerations": {
+      "meanRow": 8.91015625,
+      "medianRow": 7,
+      "p25": 3,
+      "p90": 18,
+      "maxRow": 36,
+      "atLeast25": 0.037109375,
+      "atLeast50": 0,
+      "atLeast1000": 0,
+      "timeoutRate": 0.0234375,
+      "meanFitness": 75.43224609374998
+    },
+    "trajectoryHeuristic": {
+      "meanRow": 98.201171875,
+      "medianRow": 74,
+      "p25": 35,
+      "p90": 218,
+      "maxRow": 589,
+      "atLeast25": 0.841796875,
+      "atLeast50": 0.634765625,
+      "atLeast1000": 0,
+      "timeoutRate": 0.275390625,
+      "meanFitness": 865.01033203125
+    },
+    "previousPublished": {
+      "meanRow": 1297.03125,
+      "medianRow": 1641.5,
+      "p25": 853,
+      "p90": 1724,
+      "maxRow": 1825,
+      "atLeast25": 0.994140625,
+      "atLeast50": 0.986328125,
+      "atLeast1000": 0.716796875,
+      "timeoutRate": 0.734375,
+      "meanFitness": 12663.318359375
+    },
+    "neat": {
+      "meanRow": 1361.208984375,
+      "medianRow": 1697,
+      "p25": 1057,
+      "p90": 1781,
+      "maxRow": 1867,
+      "atLeast25": 0.9921875,
+      "atLeast50": 0.986328125,
+      "atLeast1000": 0.765625,
+      "timeoutRate": 0.703125,
+      "meanFitness": 13304.968125
+    }
+  },
+  "paired": {
+    "baseline": "distanceHeuristic",
+    "meanDifference": 1249.2421875,
+    "bootstrap95": [
+      1199.65234375,
+      1299.54296875
+    ],
+    "winRate": 0.958984375,
+    "ties": 0.005859375
+  },
+  "pairedPrevious": {
+    "baseline": "previousPublished",
+    "meanDifference": 64.177734375,
+    "bootstrap95": [
+      0.306640625,
+      129.595703125
+    ],
+    "winRate": 0.615234375,
+    "ties": 0.041015625
+  }
+}
+{
+  kind: 'post-selection verification',
+  frozenAt: '2026-11-21T20:30:54.493Z',
+  verifiedAt: '2026-11-21T20:31:15.865Z',
+  policySha256: '213091a5fa505d5d10f7f7a7e2a7646431f8539869971926862610732c7faa25',
+  checkpointUnchanged: true,
+  testEpisodes: 512,
+  meanRow: 1361.208984375,
+  meanBootstrap95: [ 1313.322265625, 1409.09375 ],
+  goalReached: true,
+  trafficPositionBlindMean: 5.35546875,
+  trafficPositionBlindEpisodes: undefined,
+  note: 'The same frozen model is tested with traffic locations/proximities removed. Static bounds, trees, lane type/direction remain. No action override or physics change. Interval describes map variation for one frozen policy, not independent training-seed variation.'
+}
+Variant1 final model frozen and independently assessed. Finish concise report/data supplement; no more training.
+ASSESSMENT COMPLETE. Concise final report, data supplement and automation shutdown pending.

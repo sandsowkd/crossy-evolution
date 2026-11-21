@@ -1,0 +1,139 @@
+{
+  "config": {
+    "population": 100,
+    "seed": 402452,
+    "simulation": {
+      "curriculum": "roads",
+      "maxTicks": 36000,
+      "difficulty": 1
+    },
+    "trainingSeeds": 64,
+    "autoCurriculum": false,
+    "profile": "robust-v2",
+    "observationVersion": 8,
+    "trainingSeedStride": 67,
+    "fitnessObjective": "rows",
+    "evolutionParameters": {
+      "weightMutationRate": 0.12,
+      "weightMutationSigma": 0.02,
+      "weightResetRate": 0,
+      "addNodeRate": 0.01,
+      "addConnectionRate": 0.06,
+      "toggleConnectionRate": 0.003,
+      "crossoverRate": 0.2,
+      "parentFraction": 0.2
+    },
+    "fitnessRiskWeight": 0
+  },
+  "generations": 3,
+  "trainingEpisodes": 19200,
+  "validationEpisodes": 15360,
+  "validation": [
+    {
+      "generation": 1,
+      "genome": 19,
+      "meanRow": 1356.0572916666667
+    },
+    {
+      "generation": 1,
+      "genome": 96,
+      "meanRow": 1360.5455729166667
+    },
+    {
+      "generation": 1,
+      "genome": 6,
+      "meanRow": 1350.3203125
+    },
+    {
+      "generation": 1,
+      "genome": 49,
+      "meanRow": 1355.1861979166667
+    },
+    {
+      "generation": 1,
+      "genome": 17,
+      "meanRow": 1378.359375
+    },
+    {
+      "generation": 1,
+      "genome": 39,
+      "meanRow": 1375.76953125
+    },
+    {
+      "generation": 1,
+      "genome": 85,
+      "meanRow": 1382.0403645833333
+    },
+    {
+      "generation": 1,
+      "genome": 30,
+      "meanRow": 1358.5091145833333
+    },
+    {
+      "generation": 1,
+      "genome": 52,
+      "meanRow": 1355.08203125
+    },
+    {
+      "generation": 1,
+      "genome": 98,
+      "meanRow": 1370.7135416666667
+    },
+    {
+      "generation": 3,
+      "genome": 239,
+      "meanRow": 1363.125
+    },
+    {
+      "generation": 3,
+      "genome": 254,
+      "meanRow": 1386.5559895833333
+    },
+    {
+      "generation": 3,
+      "genome": 236,
+      "meanRow": 1339.0572916666667
+    },
+    {
+      "generation": 3,
+      "genome": 298,
+      "meanRow": 1348.5872395833333
+    },
+    {
+      "generation": 3,
+      "genome": 265,
+      "meanRow": 1356.40234375
+    },
+    {
+      "generation": 3,
+      "genome": 299,
+      "meanRow": 1367.5885416666667
+    },
+    {
+      "generation": 3,
+      "genome": 251,
+      "meanRow": 1346.0533854166667
+    },
+    {
+      "generation": 3,
+      "genome": 217,
+      "meanRow": 1362.6276041666667
+    },
+    {
+      "generation": 3,
+      "genome": 255,
+      "meanRow": 1352.2161458333333
+    },
+    {
+      "generation": 3,
+      "genome": 238,
+      "meanRow": 1342.6197916666667
+    }
+  ],
+  "seconds": 569.1524744579999,
+  "ancestry": {
+    "source": "results/experiments/wide-candidates/lookahead-memory-g100",
+    "genome": 9922,
+    "meanRow": 1370.984375
+  }
+}

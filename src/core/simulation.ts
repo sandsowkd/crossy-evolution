@@ -30,6 +30,11 @@ export class GameSimulation {
       this.config.difficulty <= 0
     )
       throw new Error("Invalid simulation configuration");
+    const eagle=this.config.eagle;
+    if(eagle !== undefined && (!eagle || !Number.isInteger(eagle.afterTicks)||eagle.afterTicks<12||eagle.afterTicks>36000||
+      !Number.isInteger(eagle.warningTicks)||eagle.warningTicks<0||eagle.warningTicks>=eagle.afterTicks))
+      throw new Error("Invalid eagle configuration");
+    if (eagle) this.config.eagle = { ...eagle };
     this.world = new World(seed >>> 0, this.config);
     this.agent = this.initial();
   }
@@ -41,6 +46,7 @@ export class GameSimulation {
       alive: true,
       lastAction: "WAIT",
       blocked: false,
+      ...(this.config.eagle ? {lastProgressTick:0} : {}),
     };
   }
   reset(seed: number) {
@@ -74,18 +80,21 @@ export class GameSimulation {
       ty = oy;
       a.blocked = true;
     }
-    const clearTicks = Math.min(HOP_TICKS, this.config.maxTicks - this.tick);
+    const eagleDeadline=this.config.eagle ? (a.lastProgressTick??0)+this.config.eagle.afterTicks : Infinity;
+    const clearTicks = Math.min(HOP_TICKS, this.config.maxTicks - this.tick, eagleDeadline-this.tick);
     if (clearTicks > 0 && this.roadHopIsClear(ox, oy, tx, ty, clearTicks)) {
       a.x = ox + ((tx - ox) * clearTicks) / HOP_TICKS;
       a.row = oy + ((ty - oy) * clearTicks) / HOP_TICKS;
       this.tick += clearTicks;
-      if (this.tick >= this.config.maxTicks) {
+      if (this.tick >= eagleDeadline) {
+        a.alive=false; a.deathReason="eagle";
+      } else if (this.tick >= this.config.maxTicks) {
         a.alive = false;
         a.deathReason = "timeout";
       }
-      if (a.alive) a.maxRow = Math.max(a.maxRow, Math.round(a.row));
+      if (a.alive) this.recordProgress();
       return this.result(10 * (a.maxRow - old) - 0.01 * clearTicks -
-        (a.deathReason === "car" || a.deathReason === "train" ? 2 : 0), encode);
+        (a.deathReason === "car" || a.deathReason === "train" || a.deathReason === "eagle" ? 2 : 0), encode);
     }
     let elapsed = 0;
     for (let s = 1; s <= HOP_TICKS; s++) {
@@ -150,6 +159,10 @@ export class GameSimulation {
         a.deathReason = hit;
         break;
       }
+      if (this.tick >= eagleDeadline) {
+        a.alive=false; a.deathReason="eagle";
+        break;
+      }
       if (this.tick >= this.config.maxTicks) {
         a.alive = false;
         a.deathReason = "timeout";
@@ -157,13 +170,24 @@ export class GameSimulation {
       }
     }
     // Only fully completed, surviving hops earn forward progress.
-    if (a.alive) a.maxRow = Math.max(a.maxRow, Math.round(a.row));
+    if (a.alive) this.recordProgress();
     return this.result(
       10 * (a.maxRow - old) -
         0.01 * elapsed -
-        (a.deathReason === "car" || a.deathReason === "train" ? 2 : 0),
+        (a.deathReason === "car" || a.deathReason === "train" || a.deathReason === "eagle" ? 2 : 0),
       encode,
     );
+  }
+  private recordProgress() {
+    const a=this.agent, score=Math.max(a.maxRow,Math.round(a.row));
+    if(this.config.eagle && score>a.maxRow)a.lastProgressTick=this.tick;
+    a.maxRow=score;
+  }
+  get eagleState() {
+    const rule=this.config.eagle;
+    if(!rule)return undefined;
+    const idleTicks=this.tick-(this.agent.lastProgressTick??0),remainingTicks=Math.max(0,rule.afterTicks-idleTicks);
+    return {idleTicks,remainingTicks,warning:remainingTicks<=rule.warningTicks,captured:this.agent.deathReason==="eagle"};
   }
   /** Conservative broad phase only. Any possible contact uses the original tick loop.
    * Road traffic and hops are linear over this interval. Padding covers roundoff;
@@ -208,7 +232,7 @@ export class GameSimulation {
       version: 1,
       seed: this.world.seed,
       tick: this.tick,
-      config: { ...this.config },
+      config: { ...this.config, ...(this.config.eagle ? { eagle: { ...this.config.eagle } } : {}) },
       agent: { ...this.agent },
       rows: structuredClone(rows),
       hazards: rows.flatMap((r) => hazardsAt(r, this.tick)),

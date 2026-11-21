@@ -14,7 +14,7 @@ if(!source||!output)throw new Error("Usage: source new-output [archive-directory
 if(fs.existsSync(output))throw new Error("Refusing to overwrite a frozen model");
 const selectedText=fs.readFileSync(`${source}/selected.json`,"utf8"),checkpointText=fs.readFileSync(`${source}/checkpoint.json`,"utf8");
 const checkpoint=parseCheckpoint(checkpointText),selected=parseEvolution<{genome:Genome;generation:number;meanRow:number;validationSeeds:number[];episodes:Episode[]}>(selectedText);
-assert.equal(checkpoint.config.simulation.curriculum,"roads");assert.equal(checkpoint.config.simulation.maxTicks,36000);assert.equal(checkpoint.config.simulation.difficulty,1);
+assert.equal(checkpoint.config.simulation.curriculum,"roads");assert.equal(checkpoint.config.simulation.maxTicks,36000);assert.equal(checkpoint.config.simulation.difficulty,1);assert.equal(checkpoint.config.simulation.eagle,undefined,"Historical Variant1 must remain eagle-free");
 assert.ok(selected.generation>0&&selected.generation<=checkpoint.generation);
 assert.ok(selected.validationSeeds.length>=768);
 assert.equal(new Set(selected.validationSeeds).size,selected.validationSeeds.length);

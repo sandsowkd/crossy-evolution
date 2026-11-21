@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { gzipSync } from "node:zlib";
 import { Trainer } from "../src/evolution/trainer";
+import { CURRENT_CONFIG } from "../src/core/types";
 import { parseCheckpoint } from "../src/evolution/checkpoint";
 import {
   parseEvolution,
@@ -33,7 +34,7 @@ const trainer = resume
       seed,
       trainingSeeds: 8,
       profile: "robust-v2",
-      simulation: { curriculum: "roads", maxTicks: 3600, difficulty: 1 },
+      simulation: { ...structuredClone(CURRENT_CONFIG), maxTicks: 3600 },
     });
 if (resume && trainer.config.seed !== seed)
   throw new Error("Resume seed must match the saved run");

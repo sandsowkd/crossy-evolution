@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { type Action } from "../core/types";
+import { CURRENT_CONFIG, type Action } from "../core/types";
 import { INPUT_COUNT } from "../core/observation";
 import { hash } from "../core/rng";
 import { NEAT } from "../evolution/neat";
 import { Replay } from "../evolution/replay";
 import { parseCheckpoint } from "../evolution/checkpoint";
+import { eagleTransfer } from "../evolution/rules";
 import { parseEvolution, stringifyEvolution } from "../evolution/serialization";
 import {
   DEFAULT_TRAINING,
@@ -26,6 +27,7 @@ type Inspector = {
   death?: string;
   tick: number;
   decision: number;
+  eagle?: { remainingTicks: number; warning: boolean; captured: boolean };
 };
 const initial = new NEAT(1, hash(42, 0, 99)).population[0];
 const initialInfo: Inspector = {
@@ -37,6 +39,7 @@ const initialInfo: Inspector = {
   decision: 0,
 };
 type Demo = {
+  curatedHistory?: boolean;
   config: TrainingConfig;
   history: Generation[];
   evaluation: {
@@ -135,6 +138,7 @@ export function App() {
         death: a.sim.agent.deathReason,
         tick: a.sim.tick,
         decision: replay.current.decisions,
+        eagle: a.sim.eagleState,
       });
   };
   const selectAgent = (index: number) => {
@@ -283,6 +287,7 @@ export function App() {
           death: a.sim.agent.deathReason,
           tick: a.sim.tick,
           decision: replay.current.decisions,
+          eagle: a.sim.eagleState,
         });
       });
     } catch (e) {
@@ -395,6 +400,7 @@ export function App() {
             death: a.sim.agent.deathReason,
             tick: a.sim.tick,
             decision: replay.current.decisions,
+            eagle: a.sim.eagleState,
           });
         }
       }
@@ -402,6 +408,7 @@ export function App() {
         view.current?.update(
           replay.current.snapshot(
             playingRef.current ? Math.min(1, elapsed / 0.2) : 1,
+            !playingRef.current && replay.current.current.sim.agent.deathReason === "eagle" ? .35 : finishedFor,
           ),
         );
         lastDraw = now;
@@ -467,6 +474,8 @@ export function App() {
     debugRef.current = debug;
   }, [debug]);
   const start = (generations?: number) => {
+    setDebug(false);
+    debugRef.current = false;
     homeRef.current = false;
     setHome(false);
     setPlaying(true);
@@ -475,14 +484,19 @@ export function App() {
     if (source === "Untrained") setSource("Live run");
     setPopulation(true);
     populationRef.current = true;
-    if (source === "Recorded run" || pendingConfig) {
+    if (source === "Recorded run" || pendingConfig || !config.simulation.eagle) {
+      const current = { ...config, simulation: {
+        ...config.simulation, eagle: structuredClone(CURRENT_CONFIG.eagle),
+      }};
+      setConfig(current);
+      configRef.current = current;
       setProvenance(undefined);
       historyRef.current = [];
       setHistory([]);
       setSelected(-1);
       selectedRef.current = -1;
       setSource("Live run");
-      initialize(config);
+      initialize(current);
       featuredRef.current = undefined;
       loadRecord(undefined);
     }
@@ -496,21 +510,31 @@ export function App() {
     worker.current?.postMessage({ type: "run", generations });
   };
   const continueRecorded = async () => {
+    setDebug(false);
+    debugRef.current = false;
     setSwitching(true);
     interacted.current = true;
     try {
       const response = await fetch("/trained-checkpoint.json");
       if (!response.ok) throw new Error("Trained checkpoint unavailable");
-      const saved = parseCheckpoint(await response.text());
+      const saved = eagleTransfer(parseCheckpoint(await response.text()));
+      // Start a new, explicitly labelled rules branch from the archived population.
+      // Historical generations retain their original physics in the recorded viewer.
       setConfig(saved.config);
       configRef.current = saved.config;
       historyRef.current = saved.history;
       setHistory(saved.history);
-      setSource("Resumed run");
-      setProvenance(demo?.provenance);
+      setSource("Eagle transfer branch");
+      setProvenance({ label: "Eagle rules · inherited trained population", initialization: "Warm start" });
+      featuredRef.current = undefined;
+      setSelected(-1);
+      selectedRef.current = -1;
       setPendingConfig(false);
       setCheckpoint(saved);
       initialize(saved.config, saved);
+      replay.current = new Replay(saved.neat.population, saved.config.seed, saved.config.simulation);
+      view.current?.clear();
+      publish();
       setRunning(true);
       runningRef.current = true;
       setPlaying(true);
@@ -541,7 +565,10 @@ export function App() {
     setCurriculumMessage("");
     setLive(true);
     liveRef.current = true;
-    initialize(config);
+    const current = { ...config, simulation: { ...config.simulation, eagle: structuredClone(CURRENT_CONFIG.eagle) } };
+    configRef.current = current;
+    setConfig(current);
+    initialize(current);
     featuredRef.current = undefined;
     loadRecord(undefined);
   };
@@ -696,6 +723,36 @@ export function App() {
     setHome(false);
     setControlsOpen(false);
   };
+  const playWithEagle = () => {
+    interacted.current = true;
+    worker.current?.postMessage({ type: "pause" });
+    const current = { ...config, simulation: { ...config.simulation, eagle: structuredClone(CURRENT_CONFIG.eagle) } };
+    configRef.current = current;
+    setConfig(current);
+    historyRef.current = [];
+    setHistory([]);
+    selectedRef.current = -1;
+    setSelected(-1);
+    setProvenance(undefined);
+    featuredRef.current = undefined;
+    setSource("Manual · eagle rules");
+    setDebug(true);
+    debugRef.current = true;
+    setPopulation(false);
+    populationRef.current = false;
+    setPendingConfig(true);
+    replay.current = new Replay([info.genome], 42, current.simulation);
+    view.current?.clear();
+    view.current?.select(0);
+    setAgentIndex(0);
+    setMapSeed(42);
+    setControlsOpen(false);
+    setHome(false);
+    homeRef.current = false;
+    setReplaySpeed("1");
+    setPlaying(true);
+    publish();
+  };
   return (
     <main className="crossy-game">
       <div
@@ -709,10 +766,15 @@ export function App() {
           <small>TOP {Math.max(...history.map((r) => r.maxRow))}</small>
         )}
       </div>
+      {!home && info.eagle && (info.eagle.captured || (info.eagle.warning && !info.death)) && (
+        <div className="eagle-warning" role="status">
+          {info.eagle.captured ? "CAUGHT BY THE EAGLE" : `MOVE FORWARD · EAGLE IN ${(info.eagle.remainingTicks / 60).toFixed(1)}s`}
+        </div>
+      )}
       {!home && (
         <div className="generation-hud" aria-label="Population status">
           <strong>
-            GEN {record?.generation ?? 0} / {history.length || "—"}
+            GEN {record?.generation ?? 0}{demo?.curatedHistory && source === "Recorded run" ? ` · ${history.length} HIGHLIGHTS` : ` / ${history.length || "—"}`}
           </strong>
           <span>
             {cohort.alive} / {cohort.total} ALIVE
@@ -775,6 +837,10 @@ export function App() {
           >
             {replaySpeed}×
           </button>
+          {debug && !playing && <button disabled={cohort.alive === 0} onClick={() => {
+            for (let i = 0; i < 5 && !replay.current.finished; i++) replay.current.advance("WAIT");
+            publish();
+          }}>Step 1 second</button>}
           <button
             disabled={selected >= history.length - 1}
             onClick={() => chooseGeneration(selected + 1)}
@@ -782,9 +848,12 @@ export function App() {
           >
             GEN →
           </button>
-          {!playing && cohort.alive === 0 && (
+          {!playing && cohort.alive === 0 && history.length > 0 && (
             <button onClick={watchGenerations}>REPLAY ALL</button>
           )}
+          {debug && !playing && cohort.alive === 0 && <button onClick={() => {
+            replay.current.seek(0); publish();
+          }}>Restart game</button>}
         </div>
       )}
       {error && !controlsOpen && (
@@ -862,7 +931,7 @@ export function App() {
                 disabled={switching || running || pendingConfig}
                 onClick={() => void continueRecorded()}
               >
-                Continue trained population +5
+                Train eagle transfer +5
               </button>
             )}
           </div>
@@ -935,7 +1004,14 @@ export function App() {
           >
             Reset run
           </button>
+          <button disabled={locked} onClick={playWithEagle}>Play with eagle</button>
+          <a className="highlight-link" href="/?highlights">Six training highlights →</a>
         </div>
+        <p className="rules-note">
+          {config.simulation.eagle
+            ? "Eagle rules: reach a new highest row within 10s. Warning at 7s. Arrow keys in manual play."
+            : "Historical replay: no eagle. New training and manual play use the eagle rule."}
+        </p>
         {provenance && (
           <div className="notice" aria-label="Training provenance">
             <span>

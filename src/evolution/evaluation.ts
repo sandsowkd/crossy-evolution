@@ -27,7 +27,7 @@ export type Trace = {
 };
 export function fitness(score: number, ticks: number, death?: DeathReason) {
   return (
-    10 * score - 0.01 * ticks - (death === "car" || death === "train" ? 2 : 0)
+    10 * score - 0.01 * ticks - (death === "car" || death === "train" || death === "eagle" ? 2 : 0)
   );
 }
 export function episode(

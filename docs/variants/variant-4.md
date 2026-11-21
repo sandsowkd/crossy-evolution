@@ -2,6 +2,6 @@
 
 **Planned; not an exact full-game implementation.**
 
-Combine roads, trains and water with road stretches longer than three lanes, more varied terrain/traffic, and eagle pressure for failing to make forward progress. Sideways movement or hopping backward must not reset progress indefinitely.
+Combine roads, trains and water with road stretches longer than three lanes and more varied terrain/traffic. Retain the eagle rule already enabled for new runs: sideways movement or hopping backward cannot reset forward-progress pressure.
 
-Choose and document the eagle warning/death timing before implementation; do not claim an exact commercial-game timing without a verified reference. Add deterministic timer/death state and observations, test pause/replay/checkpoint behavior, then train under the new rules. Freeze independent variant benchmarks so easier early scores are not presented as scores under these harder rules.
+The deterministic eagle timer/death and warning animation are implemented; see [timing and compatibility](../EAGLE_RULES.md). Freeze independent variant benchmarks so easier early scores are not presented as scores under these harder rules. Longer-road and water mechanics remain future work.
