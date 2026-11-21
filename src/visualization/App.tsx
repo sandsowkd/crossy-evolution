@@ -723,9 +723,11 @@ export function App() {
     setHome(false);
     setControlsOpen(false);
   };
-  const playWithEagle = () => {
+  const playWithEagle = (manualMode: boolean) => {
     interacted.current = true;
     worker.current?.postMessage({ type: "pause" });
+    const genomes = manualMode ? [info.genome] : replay.current.agents.map(agent => agent.genome);
+    const index = manualMode ? 0 : replay.current.selected;
     const current = { ...config, simulation: { ...config.simulation, eagle: structuredClone(CURRENT_CONFIG.eagle) } };
     configRef.current = current;
     setConfig(current);
@@ -735,16 +737,19 @@ export function App() {
     setSelected(-1);
     setProvenance(undefined);
     featuredRef.current = undefined;
-    setSource("Manual · eagle rules");
-    setDebug(true);
-    debugRef.current = true;
-    setPopulation(false);
-    populationRef.current = false;
+    setSource(manualMode ? "Manual · eagle rules" : "Eagle rules demo · unassessed");
+    setDebug(manualMode);
+    debugRef.current = manualMode;
+    setPopulation(genomes.length > 1);
+    populationRef.current = genomes.length > 1;
+    setAutoAdvance(false);
+    autoAdvanceRef.current = false;
     setPendingConfig(true);
-    replay.current = new Replay([info.genome], 42, current.simulation);
+    replay.current = new Replay(genomes, 42, current.simulation);
+    replay.current.selected = index;
     view.current?.clear();
-    view.current?.select(0);
-    setAgentIndex(0);
+    view.current?.select(index);
+    setAgentIndex(index);
     setMapSeed(42);
     setControlsOpen(false);
     setHome(false);
@@ -1004,7 +1009,8 @@ export function App() {
           >
             Reset run
           </button>
-          <button disabled={locked} onClick={playWithEagle}>Play with eagle</button>
+          <button disabled={locked} onClick={() => playWithEagle(false)}>Watch with eagle</button>
+          <button disabled={locked} onClick={() => playWithEagle(true)}>Play with eagle</button>
           <a className="highlight-link" href="/?highlights">Six training highlights →</a>
         </div>
         <p className="rules-note">
@@ -1012,6 +1018,9 @@ export function App() {
             ? "Eagle rules: reach a new highest row within 10s. Warning at 7s. Arrow keys in manual play."
             : "Historical replay: no eagle. New training and manual play use the eagle rule."}
         </p>
+        {config.simulation.eagle && demo && !demo.config.simulation.eagle && <p className="rules-note">
+          The saved charts and final-test comparison below use historical Variant1 rules without an eagle. Current-rules playback is a demonstration, not a new test result.
+        </p>}
         {provenance && (
           <div className="notice" aria-label="Training provenance">
             <span>
