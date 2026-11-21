@@ -42,6 +42,7 @@ if(!fs.existsSync(`${frozen}/freeze.json`)){
  fs.writeFileSync(planFile,JSON.stringify(plan,null,2)+"\n");
 }
 assert.equal(plan.status,"model-frozen");
+execFileSync("python3",["scripts/variant-one-lineage.py",plan.selectedSource],{stdio:"inherit"});
 if(!fs.existsSync(`${frozen}/replay-verification.json`))run("verify-policy-replay",frozen);
 if(!fs.existsSync(`${frozen}/evaluation.json`))run("evaluate-long",frozen,"variant-1-close","results/frozen/further-1335-restart038");
 if(!fs.existsSync(`${frozen}/verification.json`))run("verify-frozen-evaluation",frozen);
