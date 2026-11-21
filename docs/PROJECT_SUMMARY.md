@@ -43,6 +43,8 @@ The 100-generation memory winner is genome9922, observation version8. Its checkp
 
 The 100/200 population experiments vary maps per chicken as well as population and sometimes seeds, so they are budget/strategy comparisons, not isolated causal population-size tests. Reward/rows objective pairs had inconsistent winners. Memory-only tuning failed in its bounded comparison; ordinary memory evolution improved. Wider archived-contender audits check policies outside training shortlists. All negative outcomes and inherited baselines are retained.
 
+The left curve shows the original top10 shortlist selection before the wider audit found1370.98 in the same generation100 population.
+
 ![Measured development curves](training-progress.svg)
 
 ## Included evidence and data

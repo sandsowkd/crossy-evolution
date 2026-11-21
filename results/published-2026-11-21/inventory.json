@@ -5,12 +5,15 @@
   "generationRows": 3948,
   "verifiedFinalMean": 1261.072265625,
   "strongestProtectedDevelopment": {
-    "path": "results/experiments/frozen-development/lookahead-memory-g100",
-    "meanRows": 1363.3411458333333,
+    "path": "results/experiments/frozen-development/lookahead-memory-g100-audit1370",
+    "meanRows": 1370.984375,
     "generation": 100,
+    "genome": 9922,
     "population": 100,
     "trainingMaps": 32,
-    "newBranchTrainingEpisodes": 320000
+    "newBranchTrainingEpisodes": 320000,
+    "auditDevelopmentEpisodes": 34560,
+    "note": "Peer of genome9946 in same generation100 population, selected by wider development audit. The winning policy/outcomes were in the original raw capture; this protected verification copy was frozen afterward. No fresh final test."
   },
   "accounting": "No grand total: inherited search, cumulative continuations, frozen copies and interrupted work have separate accounting. Each average run has a coherent checkpoint/selection/summary. The overall snapshot has a capture interval. Extra uncheckpointed populations remain raw evidence.",
   "referenceArtworkIncluded": false,
@@ -67,6 +70,17 @@
           "file": "population-galleries.tar.gz",
           "bytes": 826760092,
           "sha256": "d99b684b4230e6e6de282ff581e05d34570714176bd706e1213fc83094a27378"
+        }
+      ]
+    },
+    {
+      "group": "latest-protected-development",
+      "files": 106,
+      "assets": [
+        {
+          "file": "latest-protected-development.tar.gz",
+          "bytes": 97528246,
+          "sha256": "4b4f1adba09c1cad5b373fc8b794dd573028463376739f2feb7372076c7e1917"
         }
       ]
     }
