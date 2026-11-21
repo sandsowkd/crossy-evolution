@@ -2,6 +2,8 @@
 
 Open `http://127.0.0.1:5173/?variant=2` for mechanics demos, maps and actual 100-chicken replays. Original Evan Bacon models, train assembly and the source support/collision behavior remain in use. [Source audit](variant-2-upstream-audit.md).
 
+**Map review pending:** further training must wait for the user's confirmation. The example map opens paused at row0; use Opening, First river, First tracks or the row slider to inspect it. Play animates traffic and logs. [Review status](../../results/variants/variant-2/map-review-status.json).
+
 The current **`clustered-traffic-v2`** rules are explicit project changes:
 
 | Rule | Behavior |
