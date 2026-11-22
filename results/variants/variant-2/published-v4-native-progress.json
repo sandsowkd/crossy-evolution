@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-22T13:37:09.872410+00:00",
+  "createdAt": "2026-11-22T15:11:03.950Z",
   "simulationContract": "clustered-traffic-v4",
   "studentObservation": "native-v9",
   "inferenceUsesTeacher": false,
@@ -13,33 +13,42 @@
   "records": [
     {
       "kind": "development",
-      "run": "v4-focused64-continue-001/focused",
-      "generation": 316,
-      "genome": 238794,
-      "meanRow": 360.0390625,
-      "maximumRow": 1845,
+      "run": "v4-focused64-continue-002/focused",
+      "generation": 360,
+      "genome": 247400,
+      "meanRow": 425.15625,
+      "maximumRow": 1858,
       "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
       "previewFile": "public/variant-2/transfer.json",
-      "actualSavedCohort": 200
+      "actualSavedCohort": 200,
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceCohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 512000
     },
     {
       "kind": "peak-development",
-      "run": "transfer-v4-risk64-001",
-      "generation": 792,
-      "genome": 197873,
-      "meanRow": 190.50390625,
-      "maximumRow": 2112,
+      "run": "v4-pareto-strong-source-002/pareto",
+      "generation": 64,
+      "genome": 252323,
+      "meanRow": 336.39453125,
+      "maximumRow": 2123,
       "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json",
       "previewFile": "public/variant-2/peak.json",
-      "actualSavedCohort": 200
+      "actualSavedCohort": 200,
+      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
+      "sourceCohortSha256": "d7a9e5f7630209e5b0bce2c794f3d48006913dba4b5a0cff60c46baf385b0b9e",
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600
     }
   ],
-  "method": "Native NEAT evolves inherited weights/topology through gameplay. Mean leader descends from critical-guidance training, where394 fixed ordinary-input examples affect training fitness at weight10. Native deployment and evaluation use no labels, forecasts, searches, vetoes or teacher queries. Peak leader is from the original risk-weight native continuation. Different policies retain separate metrics.",
+  "method": "Native NEAT evolves inherited weights and topology through ordinary gameplay. The mean leader continues an exact native320 state with394 fixed ordinary-input critical examples at training-fitness weight10. The peak leader evolved64 generations under coequal native training mean/maximum Pareto fitness without label fitness or teacher queries, retaining its critical-guidance ancestry. Its selected-cohort reset and RNG reseeding are explicit. Both use ordinary V9/Network/Replay and choose every inference action; separate policies retain their own metrics.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
     "maximumRow": 1724,
     "scope": "Same unchanged V3 policy re-evaluated under V4; new-physics baseline, not learning"
   },
-  "publicationScope": "Current native gameplay rules, ordinary inference, real200-member champion cohorts and exact replay evidence. Private observation-assisted reference policies/studies and unrelated viewer work are excluded. Large native trainer snapshots remain local."
+  "publicationScope": "Verified native snapshot and actual200-member champion cohorts; unchanged V4 physics and ordinary inference. Private observation reference studies, unrelated concurrent work, giant live trainer snapshots and logs are excluded.",
+  "lineageProofFile": "results/variants/variant-2/published-v4-native-lineage-proof.json",
+  "goalAverage": 1000,
+  "goalMet": false
 }

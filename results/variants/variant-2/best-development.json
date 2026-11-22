@@ -1,11 +1,11 @@
 {
-  "run": "v4-focused64-continue-001/focused",
+  "run": "v4-focused64-continue-002/focused",
   "trainerKind": "critical-native-neat",
-  "meanRow": 360.0390625,
-  "selectedDirectory": "results/variants/variant-2/v4-focused64-continue-001/focused",
-  "generation": 316,
-  "genome": 238794,
-  "maximumRow": 1845,
+  "meanRow": 425.15625,
+  "selectedDirectory": "results/variants/variant-2/v4-focused64-continue-002/focused",
+  "generation": 360,
+  "genome": 247400,
+  "maximumRow": 1858,
   "developmentMaps": [
     2550136832,
     2550202369,
@@ -267,5 +267,35 @@
   "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
   "teacherRequiredAtInference": false,
   "studentObservation": "native-v9",
-  "finalMapsOpened": false
+  "finalMapsOpened": false,
+  "metrics": {
+    "meanRow": 425.15625,
+    "medianRow": 295.5,
+    "maximumRow": 1858,
+    "reach100": 0.8125,
+    "reach300": 0.49609375,
+    "reach1000": 0.0859375,
+    "timeoutRate": 0.0234375,
+    "deaths": {
+      "eagle": 82,
+      "water": 57,
+      "car": 80,
+      "train": 19,
+      "timeout": 6,
+      "bounds": 12
+    }
+  },
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
+  "sourceVerificationFile": "results/variants/variant-2/v4-focused64-continue-002/focused/record-247400-9636d0d655c6-verification.json",
+  "publishedPreviewFile": "public/variant-2/transfer.json"
 }

@@ -1,0 +1,131 @@
+{
+  "createdAt": "2026-11-22T15:11:03.950Z",
+  "records": [
+    {
+      "kind": "development",
+      "run": "v4-focused64-continue-002/focused",
+      "generation": 360,
+      "genome": 247400,
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceProtocolSha256": "769ebc08e11e18c574c52056de0ed8e44b9783fc233addf2569c2bc581a879ee",
+      "sourceCohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
+      "sourceVerificationSha256": "9636d0d655c69cdc46341b24b954dda65fc1ecb8aead8cd5781f753cfad6465a",
+      "genotypeProof": {
+        "createdAt": "2026-11-22T15:01:39.516Z",
+        "genome": 247400,
+        "generation": 360,
+        "initializationGeneration": 320,
+        "initialSnapshotSha256": "c2f9a165dd8441e1e51de18cbc549a3167fdeab9c9c6f9e03e4dcedfa133c3e3",
+        "comparedAll200InitialPolicies": true,
+        "unchangedMatches": 0,
+        "actual200ViewerGenomesExact": true,
+        "cohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
+        "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+        "additionalGameplayEpisodes": 0,
+        "finalMapsOpened": false
+      },
+      "actualPeakReplay": {
+        "createdAt": "2026-11-22T15:01:39.731Z",
+        "genome": 247400,
+        "generation": 360,
+        "mean256": 425.15625,
+        "peak": {
+          "seed": 2557411439,
+          "score": 1858,
+          "fitness": 18220,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
+        "actualPeakRendererExact": true,
+        "all200ViewerGenomesExact": true,
+        "repeatedHeadlessEpisodes": 0,
+        "rendererEpisodes": 1,
+        "newTrainingEpisodes": 0,
+        "finalMapsOpened": false
+      },
+      "initialization": {
+        "type": "Exact complete native320 state continuation",
+        "parent": "results/variants/variant-2/v4-focused64-continue-001/focused",
+        "parentGeneration": 320,
+        "parentSnapshotSha256": "3aa8ff8ace68b24144ff674e967159b4931103106faaaf9309e7abb132e05878",
+        "unchangedNativeGenesRngInnovationsSpeciesHistoryAndParameters": true
+      },
+      "fitness": {
+        "ordinaryGameplay": true,
+        "criticalExamples": 394,
+        "criticalDataSha256": "7d4d6909d54e99a887a5167c84643ff522f727aa4039893b64220068932620bd",
+        "terminalGuidanceWeight": 10,
+        "teacherQueries": 0
+      },
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 512000,
+      "discovery": "Already evolved within-run policy selected and exactly verified on opened development maps",
+      "inferenceUsesTeacher": false,
+      "studentObservation": "native-v9",
+      "finalMapsOpened": false
+    },
+    {
+      "kind": "peak-development",
+      "run": "v4-pareto-strong-source-002/pareto",
+      "generation": 64,
+      "genome": 252323,
+      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
+      "sourceProtocolSha256": "9bdbb5337662185cce1ec4d5c86196d557f2b6770c9ce4c4d99236ee96071afb",
+      "sourceCohortSha256": "d7a9e5f7630209e5b0bce2c794f3d48006913dba4b5a0cff60c46baf385b0b9e",
+      "sourceVerificationSha256": "0dd6c92b8edf80b3421ecbac0949c133a86ce6dc2731bf9ef58cbffaa38047dd",
+      "genotypeProof": {
+        "createdAt": "2026-11-22T14:45:28.912Z",
+        "genome": 252323,
+        "generation": 64,
+        "mean256": 336.39453125,
+        "maximum256": 2123,
+        "initializationGeneration": 0,
+        "comparedAll200InitialPolicies": true,
+        "unchangedMatches": 0,
+        "all200ViewerGenomesExact": true,
+        "sourceCohortSha256": "d7a9e5f7630209e5b0bce2c794f3d48006913dba4b5a0cff60c46baf385b0b9e",
+        "verificationFile": "results/variants/variant-2/native-objective-audit-v4-013-252323-0a97416b93cb-verification.json",
+        "actualPeakRendererVerifiedInObjectiveAudit": true,
+        "additionalGameplayEpisodes": 0,
+        "additionalDevelopmentEpisodes": 0,
+        "additionalRenderers": 0,
+        "attribution": "Already evolved native policy discovered by an uncached endpoint nominee audit. Audit selection and repeated verification are not new training.",
+        "finalMapsOpened": false
+      },
+      "actualPeakReplay": {
+        "exactRendererReplay": true,
+        "rendererSeed": 2555707477,
+        "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json"
+      },
+      "initialization": {
+        "type": "Selected native360.0390625/max1845 cohort316 restart, pinned tracker snapshot320; generation/species/progress reset and RNG reseeding declared, not chronological continuation",
+        "source": {
+          "directory": "results/variants/variant-2/v4-focused64-continue-001/focused",
+          "generation": 316,
+          "genome": 238794,
+          "cohortFile": "results/variants/variant-2/v4-focused64-continue-001/focused/generations/00316.json.gz",
+          "cohortSha256": "a21aa05a00b9d0fe813fbc8f320d5eab4d453ff4c66db4fb38dd546932bdd3a9",
+          "snapshotFile": "results/variants/variant-2/v4-focused64-continue-001/focused/snapshots/00320.json.gz",
+          "snapshotSha256": "3aa8ff8ace68b24144ff674e967159b4931103106faaaf9309e7abb132e05878"
+        },
+        "seed": 20261122,
+        "stream": 8129
+      },
+      "fitness": {
+        "coequalNativeTrainingMeanAndMaximum": true,
+        "teacherQueries": 0,
+        "safetyOrCriticalLabelFitness": 0,
+        "criticalGuidanceAncestryRetained": true
+      },
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600,
+      "discovery": "Native endpoint nominee audit013 found an already evolved policy; selection and repeat validation add no training",
+      "inferenceUsesTeacher": false,
+      "studentObservation": "native-v9",
+      "finalMapsOpened": false
+    }
+  ],
+  "trainingSnapshotsRetainedLocally": true,
+  "allPublishedCohortsContainActual200NativePolicies": true,
+  "sourceInputAndPhysics": "ordinary native-v9 / clustered-traffic-v4",
+  "additionalTrainingEpisodesFromPublicationPreparation": 0,
+  "finalMapsOpened": false
+}
