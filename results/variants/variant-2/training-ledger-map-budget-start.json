@@ -1,0 +1,151 @@
+{
+  "rules": "clustered-traffic-v3",
+  "capturedAt": "2026-11-22T02:32:46.341210+00:00",
+  "pointInTime": true,
+  "allNewCompletedSearchGenerations": 1595,
+  "allNewCompletedSearchTrainingEpisodes": 7472000,
+  "countsIncludeSiblingSearches": true,
+  "countsAreEpisodeEvaluationsNotUniquePolicySeedPairs": true,
+  "inheritedVariantOneGenerationPositionsExcluded": 1174,
+  "validationRepeatsExcluded": {
+    "mutationDefaultCompatibilityEpisodes": 12800,
+    "observationOptimizationEpisodes": 3200,
+    "cpuProfilingEpisodes": 6400
+  },
+  "developmentAuditsExcludedFromTrainingCounts": true,
+  "finalMapsOpened": false,
+  "runs": [
+    {
+      "run": "transfer-normal-001",
+      "newCommittedGenerations": 128,
+      "initialGeneration": 64,
+      "committedGeneration": 192,
+      "trainingEpisodes": 204800,
+      "inheritedRowsExcluded": 64,
+      "complete": true
+    },
+    {
+      "run": "transfer-river-001",
+      "newCommittedGenerations": 91,
+      "initialGeneration": 0,
+      "committedGeneration": 91,
+      "trainingEpisodes": 291200,
+      "inheritedRowsExcluded": 0,
+      "complete": false
+    },
+    {
+      "run": "transfer-river-002",
+      "newCommittedGenerations": 256,
+      "initialGeneration": 91,
+      "committedGeneration": 347,
+      "trainingEpisodes": 819200,
+      "inheritedRowsExcluded": 91,
+      "complete": true
+    },
+    {
+      "run": "transfer-restart-001",
+      "newCommittedGenerations": 128,
+      "initialGeneration": 0,
+      "committedGeneration": 128,
+      "trainingEpisodes": 409600,
+      "inheritedRowsExcluded": 0,
+      "complete": true
+    },
+    {
+      "run": "transfer-restart-002",
+      "newCommittedGenerations": 128,
+      "initialGeneration": 128,
+      "committedGeneration": 256,
+      "trainingEpisodes": 819200,
+      "inheritedRowsExcluded": 128,
+      "complete": true
+    },
+    {
+      "run": "transfer-control-003",
+      "newCommittedGenerations": 216,
+      "initialGeneration": 256,
+      "committedGeneration": 472,
+      "snapshotSha256": "a243ce99b46ec985fa29ca1a8bd657d055c5612d913963c042b36bd42523fb8b",
+      "trainingMaps": 32,
+      "population": 200,
+      "trainingEpisodes": 1382400,
+      "inheritedRowsExcluded": 256,
+      "complete": false
+    },
+    {
+      "run": "transfer-fine-001",
+      "newCommittedGenerations": 182,
+      "initialGeneration": 256,
+      "committedGeneration": 438,
+      "snapshotSha256": "87e291ffac5ccaeacbdc6f178123b17506b2996d1a4d4b977a728d12493fe3cc",
+      "trainingMaps": 32,
+      "population": 200,
+      "trainingEpisodes": 1164800,
+      "inheritedRowsExcluded": 256,
+      "complete": false,
+      "continuedAs": "transfer-fine64-001"
+    },
+    {
+      "run": "transfer-consistent-001",
+      "newCommittedGenerations": 200,
+      "initialGeneration": 256,
+      "committedGeneration": 456,
+      "snapshotSha256": "79bc8f5c1c4aafed9259fd370c65df83e246df1e94d2b635b05fdef954de7b90",
+      "trainingMaps": 32,
+      "population": 200,
+      "trainingEpisodes": 1280000,
+      "inheritedRowsExcluded": 256,
+      "complete": false
+    },
+    {
+      "run": "paired-004/scratch",
+      "newCommittedGenerations": 64,
+      "initialGeneration": 0,
+      "committedGeneration": 64,
+      "trainingEpisodes": 102400,
+      "inheritedRowsExcluded": 0,
+      "complete": true
+    },
+    {
+      "run": "paired-004/transfer",
+      "newCommittedGenerations": 64,
+      "initialGeneration": 0,
+      "committedGeneration": 64,
+      "trainingEpisodes": 102400,
+      "inheritedRowsExcluded": 0,
+      "complete": true
+    },
+    {
+      "run": "transfer-plasticity-001",
+      "newCommittedGenerations": 136,
+      "initialGeneration": 0,
+      "committedGeneration": 136,
+      "snapshotSha256": "a93643259d439ec24128e1afde6cd0b0ba0257ec6610dcc8a977e129fccf0cdb",
+      "trainingMaps": 32,
+      "population": 200,
+      "trainingEpisodes": 870400,
+      "inheritedRowsExcluded": 0,
+      "complete": false
+    },
+    {
+      "run": "transfer-fine64-001",
+      "newCommittedGenerations": 2,
+      "initialGeneration": 438,
+      "committedGeneration": 440,
+      "snapshotSha256": "decfae64a8d7e7b1bb5ea1c0375c03483484e56fc93863578fb05b926224256d",
+      "trainingMaps": 64,
+      "population": 200,
+      "trainingEpisodes": 25600,
+      "inheritedRowsExcluded": 438,
+      "complete": false
+    }
+  ],
+  "selectionComparisonsThisUpdate": {
+    "wholeCohortDevelopmentEpisodes": 51200,
+    "populationComparison": "results/variants/variant-2/population-comparison-003.json",
+    "fullConsistency416Audit": "results/variants/variant-2/transfer-consistent-001/full-cohort-audit-00416.json",
+    "early64MapAudit": "results/variants/variant-2/transfer-fine64-001/candidate-audit-00440.json"
+  },
+  "selectedPolicyVariantTwoLineagePositions": 484,
+  "note": "Committed-boundary point-in-time counts across sibling searches. Shared starting populations and repeated map evaluations remain episode evaluations, not unique learned generations in one lineage. Fine64 continues, rather than duplicates, the fine32 native state."
+}

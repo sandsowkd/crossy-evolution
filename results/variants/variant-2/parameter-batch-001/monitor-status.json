@@ -1,38 +1,48 @@
 {
-  "updatedAt": "2026-11-22T01:53:03.796071+00:00",
+  "updatedAt": "2026-11-22T02:33:36.262287+00:00",
   "status": "watching-native-trainers",
   "runs": [
     {
       "run": "transfer-control-003",
       "pidAtLaunch": 88803,
       "processAlive": true,
-      "committedGeneration": 360,
+      "committedGeneration": 472,
       "generationCap": 768,
-      "lastAuditedGeneration": 352
+      "lastAuditedGeneration": 448
     },
     {
       "run": "transfer-fine-001",
       "pidAtLaunch": 88804,
-      "processAlive": true,
-      "committedGeneration": 352,
+      "processAlive": false,
+      "committedGeneration": 438,
       "generationCap": 768,
-      "lastAuditedGeneration": 352
+      "lastAuditedGeneration": 438,
+      "nativeStatus": "paused-at-generation-boundary",
+      "continuedAs": "transfer-fine64-001"
     },
     {
       "run": "transfer-consistent-001",
       "pidAtLaunch": 88805,
       "processAlive": true,
-      "committedGeneration": 360,
+      "committedGeneration": 464,
       "generationCap": 768,
-      "lastAuditedGeneration": 352
+      "lastAuditedGeneration": 448
+    },
+    {
+      "run": "transfer-fine64-001",
+      "pidAtLaunch": 6069,
+      "processAlive": true,
+      "committedGeneration": 440,
+      "generationCap": 768,
+      "lastAuditedGeneration": 440
     }
   ],
   "bestDevelopment": {
-    "run": "transfer-restart-002",
-    "meanRow": 164.47265625,
-    "selectedDirectory": "results/variants/variant-2/transfer-restart-002",
-    "generation": 252,
-    "genome": 89891,
+    "run": "transfer-consistent-001",
+    "meanRow": 181.0078125,
+    "selectedDirectory": "results/variants/variant-2/transfer-consistent-001",
+    "generation": 392,
+    "genome": 117852,
     "developmentMaps": [
       2550136832,
       2550202369,
@@ -291,8 +301,8 @@
       2566783230,
       2566848767
     ],
-    "verificationFile": "results/variants/variant-2/transfer-restart-002/candidate-audit-00256.json",
-    "selectedFile": "results/variants/variant-2/transfer-restart-002/candidate-audit-00256-selected.json"
+    "verificationFile": "results/variants/variant-2/transfer-consistent-001/candidate-audit-00416.json",
+    "selectedFile": "results/variants/variant-2/transfer-consistent-001/candidate-audit-00416-selected.json"
   },
   "finalMapsOpened": false
 }

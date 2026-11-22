@@ -1,0 +1,122 @@
+{
+  "createdAt": "2026-11-22T02:24:39.698795+00:00",
+  "pairedMapStreamsVerified": true,
+  "population": 200,
+  "mapsPerTrainingGeneration": 32,
+  "sharedInitialGeneration257ExcludedFromOffspringMean": true,
+  "totalNewTrainingEpisodeEvaluations": 3072000,
+  "sharedInitialPopulationEvaluations": 19200,
+  "mapRole": "development",
+  "finalMapsOpened": false,
+  "reports": [
+    {
+      "run": "transfer-control-003",
+      "sourceHead": {
+        "generation": 448,
+        "snapshotSha256": "4a4bcf59d2c80b5a916d3ab8ba5a52400ae9f77791a47db063b953e5daacb4ad"
+      },
+      "sourceSnapshotFile": "results/variants/variant-2/transfer-control-003/snapshots/00448.json",
+      "startingNativeGeneration": 256,
+      "comparisonNativeGeneration": 416,
+      "newTrainingGenerations": 160,
+      "newTrainingEpisodes": 1024000,
+      "offspringComparisonGenerations": 159,
+      "offspringMeanTrainingRow": 128.46299135220124,
+      "last32MeanTrainingRow": 133.64728515625,
+      "bestDevelopment256": {
+        "generation": 408,
+        "genome": 121013,
+        "fingerprint": "b326530fea6b5f5444486866991ffd6aec45c96c707f1f66f8c8ac86d290e817",
+        "rapidDevelopmentMean": 141.390625,
+        "meanRow": 169.53125,
+        "medianRow": 126,
+        "maximumRow": 852,
+        "reach100": 0.59765625,
+        "reach300": 0.1640625,
+        "reach1000": 0,
+        "timeoutRate": 0,
+        "deaths": {
+          "bounds": 20,
+          "water": 85,
+          "car": 76,
+          "eagle": 61,
+          "train": 14
+        }
+      },
+      "auditFile": "results/variants/variant-2/transfer-control-003/candidate-audit-00416.json"
+    },
+    {
+      "run": "transfer-fine-001",
+      "sourceHead": {
+        "generation": 432,
+        "snapshotSha256": "b685c85529efd2b23abec234446d79ed6783e593ab039f36c897a0c13600a135"
+      },
+      "sourceSnapshotFile": "results/variants/variant-2/transfer-fine-001/snapshots/00432.json",
+      "startingNativeGeneration": 256,
+      "comparisonNativeGeneration": 416,
+      "newTrainingGenerations": 160,
+      "newTrainingEpisodes": 1024000,
+      "offspringComparisonGenerations": 159,
+      "offspringMeanTrainingRow": 138.67775746855347,
+      "last32MeanTrainingRow": 144.654443359375,
+      "bestDevelopment256": {
+        "generation": 416,
+        "genome": 122689,
+        "fingerprint": "753043897359ad16cb671b25eae54b7ffb96bba3833e7371c5a6c5d6d7987916",
+        "rapidDevelopmentMean": 161.75,
+        "meanRow": 158.74609375,
+        "medianRow": 112.5,
+        "maximumRow": 708,
+        "reach100": 0.55859375,
+        "reach300": 0.15234375,
+        "reach1000": 0,
+        "timeoutRate": 0,
+        "deaths": {
+          "car": 79,
+          "water": 45,
+          "eagle": 78,
+          "bounds": 37,
+          "train": 17
+        }
+      },
+      "auditFile": "results/variants/variant-2/transfer-fine-001/candidate-audit-00416.json"
+    },
+    {
+      "run": "transfer-consistent-001",
+      "sourceHead": {
+        "generation": 440,
+        "snapshotSha256": "3448bc2352b70a61e12ad8fa52511e3c82d1cb2ac6405bfa91f933d79d6ee24d"
+      },
+      "sourceSnapshotFile": "results/variants/variant-2/transfer-consistent-001/snapshots/00440.json",
+      "startingNativeGeneration": 256,
+      "comparisonNativeGeneration": 416,
+      "newTrainingGenerations": 160,
+      "newTrainingEpisodes": 1024000,
+      "offspringComparisonGenerations": 159,
+      "offspringMeanTrainingRow": 136.87716784591194,
+      "last32MeanTrainingRow": 149.392509765625,
+      "bestDevelopment256": {
+        "generation": 392,
+        "genome": 117852,
+        "fingerprint": "b7d7f272f50de6b77cebdc4df91ef817b0eedc98f960c6eb8f0f2f8d4b5fd552",
+        "rapidDevelopmentMean": 164.078125,
+        "meanRow": 181.0078125,
+        "medianRow": 119.5,
+        "maximumRow": 1002,
+        "reach100": 0.58984375,
+        "reach300": 0.171875,
+        "reach1000": 0.00390625,
+        "timeoutRate": 0,
+        "deaths": {
+          "train": 14,
+          "water": 97,
+          "car": 79,
+          "eagle": 48,
+          "bounds": 18
+        }
+      },
+      "auditFile": "results/variants/variant-2/transfer-consistent-001/candidate-audit-00416.json"
+    }
+  ],
+  "conclusion": "Consistency produced the strongest audited policy. Fine steps improved training means but did not produce the strongest broad-development policy; next compare a native-state continuation with64 training maps. This follow-up is sequential, not a paired causal test."
+}

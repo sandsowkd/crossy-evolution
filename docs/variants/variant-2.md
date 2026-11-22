@@ -19,7 +19,7 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 
 ## Results
 
-**Best transfer policy: 164.47 average on 256 development maps**, median 115, longest run 1,433. It reaches 100 on 142/256 maps and 1,000 on 1/256. The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
+**Best transfer policy: 181.01 average on 256 development maps**, median 119.5, longest run 1,002. It reaches 100 on 151/256 maps and 1,000 on 1/256. This is a 10.1% average improvement over the previous champion (164.47; longest run 1,433). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
 
 | Training stage | Best audited 256-map average |
 | --- | ---: |
@@ -27,17 +27,18 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 | Normal NEAT: 128 more generations, 100 chickens | 51.83 |
 | Initial river-focused phase, 200 chickens | 87.73 |
 | Restart from audited river cohort, 16 training maps | 144.96 |
-| Continued native population, 32 training maps | **164.47** |
+| Continued native population, 32 training maps | 164.47 |
+| Smaller mutations plus consistency fitness | **181.01** |
 
-Winner: generation 252, genome 89891 in `transfer-restart-002`. Its ancestry contains **344 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [generation data](../../results/variants/variant-2/transfer-restart-002/generation-metrics-00256.csv), [search ledger](../../results/variants/variant-2/training-ledger-parameter-batch-start.json).
+Winner: generation 392, genome 117852 in `transfer-consistent-001`. Its ancestry contains **484 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
 
-The whole population improved on the same 64 development maps: the initial 100-chicken cohort averages **52.74**, and generation 240’s 200 chickens average **118.09**. Its median chicken averages 116.97; 186/200 chickens average at least 100, versus 0/100 initially. Its weakest chicken averages 80.92, above the initial cohort’s best 58.63. [All policies and distributions](../../results/variants/variant-2/population-comparison-001.json).
+On the same 64 development maps, generation 416 populations average **149.43 control / 158.39 fine / 159.62 consistency**, compared with **52.74** for the initial 100-chicken transfer cohort. Every chicken in each current 200-chicken cohort averages at least 100. Consistency’s weakest chicken averages **129.09**. The separate plasticity generation 96 cohort averages 133.55; its training history differs. These population checks total 51,200 development episodes, counted separately from training. [All policies and distributions](../../results/variants/variant-2/population-comparison-003.json).
 
 Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps. Trainers never use those policies. [Baselines](../../results/variants/variant-2/baselines.json).
 
 ## Active comparison
 
-Three lines continue the exact native generation 256 state, with **200 chickens and 32 changing training maps each**:
+Three lines began from the exact native generation 256 state, with **200 chickens and 32 changing training maps each**:
 
 | Line | Mutation rate / step | Fitness |
 | --- | --- | --- |
@@ -45,11 +46,13 @@ Three lines continue the exact native generation 256 state, with **200 chickens 
 | Fine steps | 0.15 / 0.12 | Mean rows |
 | Consistency | 0.15 / 0.12 | 75% mean + 25% worst-half mean |
 
-Each has a bounded budget of **512 additional generations / 3,276,800 training episodes**. Budgets are planned, not completed counts. All three share their initial population, RNG, innovation state and training-map stream. The first 31 comparable offspring generations average 119.69 rows for control, 131.00 for fine steps and 130.22 for consistency. These are training means. On the same 64 development maps, generation 288 populations average **130.43 control / 142.47 fine / 137.74 consistency**. Both smaller-step lines have **200/200 chickens averaging over 100**. None has beaten the saved champion on the broader 256-map audit. [Population comparison](../../results/variants/variant-2/population-comparison-002.json). [Matched comparison](../../results/variants/variant-2/parameter-batch-001/training-comparison-00288.json).
+Each started with a bounded budget of **512 additional generations / 3,276,800 training episodes**. All three share their initial population, RNG, innovation state and training-map stream. Through generation 416, each completed 160 new generations / 1,024,000 training episodes. Their best audited 256-map policies average **169.53 control / 158.75 fine / 181.01 consistency**. Fine steps improve training means but do not produce the strongest broadly evaluated policy. [Matched comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json).
+
+The fine-step line stopped safely at generation **438** after 182 new generations / 1,164,800 training episodes and continues as **`transfer-fine64-001`**. Its native population, RNG, innovations, species and history match exactly; only training-map count **32→64** and stride **37→69** change. The remaining 330 generations have a new planned budget of **4,224,000 episodes**. Its first two generations yield an audited **180.21** candidate, close to the saved champion. This tests more reliable selection at twice the episode cost per generation; a learning-speed benefit is not yet established. [Handoff](../../results/variants/variant-2/transfer-fine-001/continuation-handoff.json), [state verification](../../results/variants/variant-2/transfer-fine64-001/initialization-verification.json), [early audit](../../results/variants/variant-2/transfer-fine64-001/candidate-audit-00440.json).
 
 The native monitor audits every 32 committed generations and publishes stronger actual cohorts. Follow-ups in this chat check every 30 minutes and can extend completed batches. [Current runs](../../results/variants/variant-2/optimization-status.json), [monitor](../../results/variants/variant-2/parameter-batch-001/monitor-status.json).
 
-The three matched lines evolve new sensor weights and NEAT topology while freezing inherited weights. A fourth line, `transfer-plasticity-001`, restarts the best generation 252 cohort and allows small inherited-weight mutations (rate 0.02, step 0.03), with gentler topology changes and 10% crossover. Its separate budget is 256 generations; this combined strategy is not a single-parameter comparison. Removing learned river inputs from the earlier 87.73 model drops it to 48.10. Earlier batch-size and mutation changes were combined, so their results do not isolate a batch-size effect.
+The three matched lines evolve new sensor weights and NEAT topology while freezing inherited weights. A fourth line, `transfer-plasticity-001`, restarts the previous champion’s generation 252 cohort and allows small inherited-weight mutations (rate 0.02, step 0.03), with gentler topology changes and 10% crossover. Its separate budget is 256 generations; this combined strategy is not a single-parameter comparison. Removing learned river inputs from the earlier 87.73 model drops it to 48.10. Earlier batch-size and mutation changes were combined, so their results do not isolate a batch-size effect.
 
 All episodes retain approved physics, a 600-second horizon and the eagle rule. Selection uses 64 rapid maps and 256-map candidate audits. Checkpoints, actual populations and replays are verified. An earlier equivalent encoder measured 1.69× faster evaluation; all 88 tests, typecheck, lint and build pass. [Encoder proof](../../results/variants/variant-2/encoding-equivalence/verification.json), [mutation compatibility](../../results/variants/variant-2/residual-parameter-verification.json).
 

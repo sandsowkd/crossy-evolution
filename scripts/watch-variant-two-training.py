@@ -91,7 +91,15 @@ def main():
                 if not live:
                     native_status = json.loads((directory / "status.json").read_text()) if (directory / "status.json").exists() else {}
                     state["nativeStatus"] = native_status.get("status", "missing")
-                    if generation < protocol["generationCap"] and not migration_file.exists():
+                    handoff_path = directory / "continuation-handoff.json"
+                    handoff = json.loads(handoff_path.read_text()) if handoff_path.exists() else None
+                    valid_handoff = bool(handoff and head and
+                                         handoff.get("sourceCommittedGeneration") == generation and
+                                         handoff.get("sourceSnapshotSha256") == head["snapshotSha256"] and
+                                         handoff.get("nextRun", "").startswith("transfer-"))
+                    if valid_handoff:
+                        state["continuedAs"] = handoff["nextRun"]
+                    if generation < protocol["generationCap"] and not migration_file.exists() and not valid_handoff:
                         state["error"] = "Trainer stopped before its budget; inspect before resuming"
                     elif not (directory / "verification.json").exists():
                         with (directory / "verify-monitor.log").open("a") as stream:
