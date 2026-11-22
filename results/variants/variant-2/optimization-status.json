@@ -1,24 +1,50 @@
 {
   "objective": "Continue the Variant 1 transfer lineage toward 1000+ average on approved Variant 2 physics and keep improving afterward until credits are exhausted.",
   "status": "active",
-  "updatedAt": "2026-11-22T00:37:27.025653+00:00",
+  "updatedAt": "2026-11-22T01:18:43.445679+00:00",
   "rules": "clustered-traffic-v3",
   "activeRuns": [
     {
-      "run": "transfer-river-002",
-      "pidAtLaunch": 77691,
-      "initialGeneration": 91,
-      "generationCap": 347,
+      "run": "transfer-control-003",
+      "pidAtLaunch": 88803,
+      "initialGeneration": 256,
+      "generationCap": 768,
       "population": 200,
-      "protocolFile": "results/variants/variant-2/transfer-river-002/protocol.json"
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.3,
+        "sigma": 0.35
+      },
+      "fitnessRiskWeight": 0,
+      "protocolFile": "results/variants/variant-2/transfer-control-003/protocol.json"
     },
     {
-      "run": "transfer-restart-001",
-      "pidAtLaunch": 77692,
-      "initialGeneration": 0,
-      "generationCap": 128,
+      "run": "transfer-fine-001",
+      "pidAtLaunch": 88804,
+      "initialGeneration": 256,
+      "generationCap": 768,
       "population": 200,
-      "protocolFile": "results/variants/variant-2/transfer-restart-001/protocol.json"
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "protocolFile": "results/variants/variant-2/transfer-fine-001/protocol.json"
+    },
+    {
+      "run": "transfer-consistent-001",
+      "pidAtLaunch": 88805,
+      "initialGeneration": 256,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0.25,
+      "protocolFile": "results/variants/variant-2/transfer-consistent-001/protocol.json"
     }
   ],
   "bestDevelopmentFile": "results/variants/variant-2/best-development.json",
@@ -49,12 +75,26 @@
       "model": "restart-generation64",
       "development256Mean": 128.87890625,
       "variant2SelectedLineageGenerations": 156
+    },
+    {
+      "model": "restart-generation100",
+      "development256Mean": 144.9609375,
+      "variant2SelectedLineageGenerations": 192
+    },
+    {
+      "model": "32-map-generation252",
+      "development256Mean": 164.47265625,
+      "variant2SelectedLineageGenerations": 344
     }
   ],
   "nextStrategies": [
-    "Continue both current native runs; audit the broader pool instead of trusting only the noisy 64-map winner.",
-    "After the next bounded phase, explore smaller residual mutation steps (currently rate0.3 / sigma0.35) and more training maps; keep native state and declare any parameter intervention.",
-    "Input ablations confirm learned V9 weights matter: removing them reduced87.73 to48.10. Removing distant cues or new hidden connections hurt. A0.8 residual scale scored92.26 as a diagnostic, not a trained/promoted policy.",
-    "After active protocols finish, add selectedGenome to the continuation runner preview publication; the audit publisher and viewer already support focusing the verified winner."
-  ]
+    "Continue the three matched 200-chicken,32-map lines; do not duplicate an active trainer. Native population,RNG,innovation state and map stream match at generation256.",
+    "Control uses residual mutation rate0.3/sigma0.35; fine uses0.15/0.12; consistent uses0.15/0.12 plus riskWeight0.25. No physics changes.",
+    "The native monitor audits every32 committed generations on256 development maps and publishes improvements serially; all512 final maps remain unopened.",
+    "After this bounded batch, compare the best policy and full population distributions on the same development suites before choosing the next run.",
+    "Code hashes freeze src/core,src/evolution and scripts/continue-variant-two.ts for these active runs. Source bundles are preserved automatically."
+  ],
+  "monitorManifest": "results/variants/variant-2/parameter-batch-001/launch-manifest.json",
+  "monitorStatus": "results/variants/variant-2/parameter-batch-001/monitor-status.json",
+  "populationComparisonFile": "results/variants/variant-2/population-comparison-001.json"
 }

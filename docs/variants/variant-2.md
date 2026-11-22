@@ -1,6 +1,6 @@
 # Variant 2 — trains and rivers
 
-Open `http://127.0.0.1:5173/?variant=2` for mechanics demos, maps and actual 100-chicken replays. Original Evan Bacon models, train assembly and the source support/collision behavior remain in use. [Source audit](variant-2-upstream-audit.md).
+Open `http://127.0.0.1:5173/?variant=2` for mechanics demos, maps and actual saved population replays. Original Evan Bacon models, train assembly and the source support/collision behavior remain in use. [Source audit](variant-2-upstream-audit.md).
 
 **Map approved for training:** the user confirmed the current map and requested both fresh and Variant 1 transfer training. The example map opens paused at row 0; use Opening, First river, First tracks or the row slider to inspect it. Play animates traffic and logs. [Review status](../../results/variants/variant-2/map-review-status.json).
 
@@ -36,20 +36,33 @@ A reproducible audit of **400,000 rows after the opening**, on 200 seeds, measur
 
 ## Training and provenance
 
-**Transfer optimization is active: best average 128.88 on 256 development maps**, with median 94.5, maximum 628 and 121/256 runs reaching 100. Every action comes from the evolved network. This is a development result, not an independent final-test claim.
+**Best transfer policy: 164.47 average on 256 development maps**, median 115, longest run 1,433. It reaches 100 on 142/256 maps and 1,000 on 1/256. The 1,000-average goal remains unmet. This is development selection, not an independent final-test result.
 
 | Method | Best audited 256-map average |
 | --- | ---: |
 | Starting Variant 1 transfer | 48.28 |
 | Normal NEAT: 128 more generations, 100 chickens | 51.83 |
-| River-focused mutations: 200 chickens | 87.73 |
-| Restart from the audited river cohort: 200 chickens | **128.88** |
+| Initial river-focused phase, 200 chickens | 87.73 |
+| Restart from audited river cohort, 16 training maps | 144.96 |
+| Continued native population, 32 training maps | **164.47** |
 
-The river phase adds zero-weight sensor connections and concentrates weight mutations on V9 inputs. Removing those learned inputs from its 87.73 model drops the average to 48.10. Population size, mutation strategy and training seed streams differ, so this does not isolate the effect of larger batches. The current winning lineage contains 156 Variant 2 generation positions plus 1,174 inherited Variant 1 positions; the larger search budget is recorded separately.
+The winning policy is generation 252, genome 89891 in `transfer-restart-002`. Its ancestry contains **344 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and validation repeats are recorded separately; these counts are not one uninterrupted training run.
 
-Two 200-chicken runs continue: `transfer-river-002` carries the exact native state from river generation 91 toward 347; `transfer-restart-001` starts from the audited generation 80 cohort and runs 128 new generations. The first river phase was checkpointed at 91 to migrate to faster, equivalent sensor encoding. The prototype measured a 1.69× speedup; the production encoder reproduced an entire 100-chicken generation and its offspring exactly. All 88 tests, typecheck, lint and build pass.
+The whole population improved too: on the same 64 development maps, the initial 100-chicken cohort averages 52.74; the later generation 240 cohort averages 118.09. Its median chicken averages 116.97, and 186/200 chickens average at least 100, versus 0/100 initially. Even its weakest chicken averages 80.92, above the old cohort’s best 58.63. [Complete cohort comparison](../../results/variants/variant-2/population-comparison-001.json).
 
-All runs retain approved physics and 600-second episodes. Selection uses 64 rapid development maps, followed by broader candidate audits on the 256-map development suite. All 512 final maps remain unopened. Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps; trainers never use these policies. [Current winner](../../results/variants/variant-2/best-development.json), [active runs and next steps](../../results/variants/variant-2/optimization-status.json), [baselines](../../results/variants/variant-2/baselines.json), [encoder verification](../../results/variants/variant-2/encoding-equivalence/verification.json).
+Three matched lines now continue the exact native generation 256 state, each with 200 chickens and 32 changing training maps:
+
+| Line | Mutation rate / step | Fitness |
+| --- | --- | --- |
+| Control | 0.30 / 0.35 | Mean rows |
+| Fine steps | 0.15 / 0.12 | Mean rows |
+| Consistency | 0.15 / 0.12 | 75% mean + 25% worst-half mean |
+
+Each has a bounded budget of 512 additional generations (3,276,800 training episodes per line). These are planned budgets, not completed counts. The monitor audits candidates every 32 committed generations and publishes stronger actual cohorts. All lines share the same initial population, RNG, innovation state and training-map stream. A follow-up in this chat checks progress every 30 minutes and can extend completed batches. Earlier differences in batch size and mutation strategy do not isolate a population-size effect.
+
+The river phase adds zero-weight sensor connections, then evolves those weights and NEAT topology. No hand-written policy controls these chickens. Removing learned river inputs from the earlier 87.73 model drops its average to 48.10. An equivalent sensor optimization measured 1.69× faster evaluation; production reproduced a full 100-chicken generation and offspring exactly. Default mutation-parameter compatibility was also checked on a complete 200-chicken generation. All 88 tests, typecheck, lint and build pass.
+
+All comparisons retain approved physics and 600-second episodes. Selection uses 64 rapid maps and broader candidate audits on 256 development maps; **512 final maps remain unopened**. Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps. [Current winner](../../results/variants/variant-2/best-development.json), [live experiment status](../../results/variants/variant-2/optimization-status.json), [native monitor](../../results/variants/variant-2/parameter-batch-001/monitor-status.json), [baselines](../../results/variants/variant-2/baselines.json).
 
 **`paired-004`: first approved-map comparison complete.** Two concurrent NEAT lines each trained 100 chickens for 64 generations: **102,400 training episodes per line**, 204,800 total. Both use the same 16 changing training maps per generation, 600-second episodes and 64 development maps for selection. All 512 final maps remain unopened.
 

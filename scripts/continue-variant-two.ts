@@ -33,6 +33,7 @@ type Protocol = {format: "crossy-v2-continuation"; version: 1; run: string; mode
   initialGeneration: number; generationCap: number; lineageOffset: number; inheritedVariantOnePhasePositions: number;
   inheritedSearchTrainingEpisodes: number; config: TrainingConfig; developmentSeeds: number[];
   reusedInheritedTrainingMapPositions?: number; duplicateNewTrainingMapPositions?: number;
+  residualMutation?: {rate: number; sigma: number};
   confirmationDevelopmentSeeds: number[]; finalMapsReserved: number[]; checkpointEvery: number; codeSha256: string};
 const codeFiles = [...fs.readdirSync("src/core").filter(f => f.endsWith(".ts")).map(f => `src/core/${f}`),
   ...fs.readdirSync("src/evolution").filter(f => f.endsWith(".ts")).map(f => `src/evolution/${f}`),
@@ -95,6 +96,17 @@ if (command === "prepare") {
       speciesThresholdFloor: .05, speciesThresholdStep: .004};
   }
   if (mode === "river-inputs" && initialization === "resume") assert.equal(previousProtocol.mode, "river-inputs");
+  const maps = Number(option("maps", String(config.trainingSeeds)));
+  assert.ok(Number.isInteger(maps) && maps >= 1 && maps <= 64);
+  if (maps !== config.trainingSeeds) {config.trainingSeeds = maps; config.trainingSeedStride = maps + 5;}
+  config.fitnessRiskWeight = Number(option("risk", String(config.fitnessRiskWeight ?? 0)));
+  assert.ok(Number.isFinite(config.fitnessRiskWeight) && config.fitnessRiskWeight >= 0 && config.fitnessRiskWeight <= 1);
+  const residualMutation = {
+    rate: Number(option("mutation-rate", String(previousProtocol.residualMutation?.rate ?? .3))),
+    sigma: Number(option("mutation-sigma", String(previousProtocol.residualMutation?.sigma ?? .35))),
+  };
+  assert.ok(Number.isFinite(residualMutation.rate) && residualMutation.rate >= 0 && residualMutation.rate <= 1);
+  assert.ok(Number.isFinite(residualMutation.sigma) && residualMutation.sigma > 0 && residualMutation.sigma <= 2);
   const initial = initialization === "resume" ? checkpoint.generation : 0;
   const confirmation = Array.from({length: 256}, (_, i) => (0x98000000 + i * 65537) >>> 0);
   assert.ok(confirmation.every(seed => !VARIANT_TWO_RESERVED_FINAL_SEEDS.includes(seed) && !VARIANT_TWO_DEVELOPMENT_SEEDS.includes(seed)));
@@ -116,9 +128,11 @@ if (command === "prepare") {
     inheritedSearchTrainingEpisodes: (previousProtocol.inheritedSearchTrainingEpisodes ?? 0) +
       (checkpoint.generation - (previousProtocol.initialGeneration ?? 0)) * checkpoint.config.population * checkpoint.config.trainingSeeds,
     reusedInheritedTrainingMapPositions, duplicateNewTrainingMapPositions,
-    config, developmentSeeds: VARIANT_TWO_DEVELOPMENT_SEEDS, confirmationDevelopmentSeeds: confirmation,
+    config, residualMutation, developmentSeeds: VARIANT_TWO_DEVELOPMENT_SEEDS, confirmationDevelopmentSeeds: confirmation,
     finalMapsReserved: VARIANT_TWO_RESERVED_FINAL_SEEDS, checkpointEvery: 8, codeSha256: codeHash()};
   immutable(protocolFile, JSON.stringify(p, null, 2));
+  immutable(`${directory}/source-code.json.gz`, gzipSync(JSON.stringify({codeSha256: p.codeSha256,
+    files: Object.fromEntries(codeFiles.map(file => [file, fs.readFileSync(file, "utf8")]))})));
   console.log(JSON.stringify({run, mode, startingGeneration: initial, stoppingGeneration: p.generationCap,
     lineageOffset: p.lineageOffset, population: config.population}));
   process.exit(0);
@@ -135,6 +149,7 @@ function commit(snapshot: Snapshot) {
     initialGeneration: protocol.initialGeneration, generationCap: protocol.generationCap,
     newGenerations: generation - protocol.initialGeneration, population: protocol.config.population,
     newTrainingEpisodes: (generation - protocol.initialGeneration) * protocol.config.population * protocol.config.trainingSeeds,
+    residualMutation: protocol.residualMutation ?? {rate: .3, sigma: .35}, fitnessRiskWeight: protocol.config.fitnessRiskWeight,
     inheritedSearchTrainingEpisodes: protocol.inheritedSearchTrainingEpisodes,
     inheritedVariantOnePhasePositions: protocol.inheritedVariantOnePhasePositions,
     lineageVariantTwoGenerations: protocol.lineageOffset + generation,
@@ -174,7 +189,7 @@ if (command === "verify") {
         selectedDirectory: selected.directory, generation: selected.generation, genome: selected.genome.id,
         developmentMaps: protocol.confirmationDevelopmentSeeds, verificationFile: `${directory}/verification.json`}, null, 2));
       atomic("public/variant-2/transfer.json", stringifyEvolution({branch: `transfer · ${run}`, generation: selected.generation,
-        genomes, seed: 42, simulation: protocol.config.simulation, meanRow: report.confirmationDevelopment256.meanRow}));
+        genomes, selectedGenome: selected.genome.id, seed: 42, simulation: protocol.config.simulation, meanRow: report.confirmationDevelopment256.meanRow}));
       console.log("Published stronger development-selected population.");
     } else console.log("Preserved stronger published population.");
   }
@@ -222,7 +237,7 @@ try {
       for (const genome of trainer.neat.population) connectRiverInputs(genome, trainer.neat.tracker);
       for (let i = trainer.neat.population.length; i < protocol.config.population; i++) {
         const child = structuredClone(trainer.neat.population[i % original.length]); child.id = trainer.neat.nextId++;
-        mutateRiverInputs(child, trainer.neat.rng); trainer.neat.population.push(child);
+        mutateRiverInputs(child, trainer.neat.rng, protocol.residualMutation?.rate, protocol.residualMutation?.sigma); trainer.neat.population.push(child);
       }
       trainer.neat.size = protocol.config.population; trainer.neat.species = []; trainer.neat.progress.clear();
       trainer.neat.threshold = .12;
@@ -254,7 +269,8 @@ try {
     }
     record.contenders = [structuredClone(record.champion)];
     if (protocol.mode === "river-inputs")
-      for (const genome of trainer.neat.population.slice(trainer.neat.species.length)) mutateRiverInputs(genome, trainer.neat.rng);
+      for (const genome of trainer.neat.population.slice(trainer.neat.species.length))
+        mutateRiverInputs(genome, trainer.neat.rng, protocol.residualMutation?.rate, protocol.residualMutation?.sigma);
     const seconds = priorSeconds + (performance.now() - started) / 1000;
     atomic(`${directory}/progress.json`, JSON.stringify({generation: record.generation, stoppingAt: protocol.generationCap,
       trainMean: record.meanRow, bestDevelopment64: snapshot.selected.meanRow, seconds, updatedAt: new Date().toISOString()}));

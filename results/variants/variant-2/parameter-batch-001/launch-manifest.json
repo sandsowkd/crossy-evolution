@@ -1,0 +1,54 @@
+{
+  "workspace": "/Users/jeremyhuang/Documents/ChatGPT/crossy road",
+  "node": "/opt/homebrew/bin/node",
+  "runs": [
+    {
+      "run": "transfer-control-003",
+      "pid": 88803,
+      "startedAt": "2026-11-22T01:17:00.148071+00:00",
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--import",
+        "tsx",
+        "scripts/continue-variant-two.ts",
+        "run",
+        "--run=transfer-control-003"
+      ]
+    },
+    {
+      "run": "transfer-fine-001",
+      "pid": 88804,
+      "startedAt": "2026-11-22T01:17:00.149642+00:00",
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--import",
+        "tsx",
+        "scripts/continue-variant-two.ts",
+        "run",
+        "--run=transfer-fine-001"
+      ]
+    },
+    {
+      "run": "transfer-consistent-001",
+      "pid": 88805,
+      "startedAt": "2026-11-22T01:17:00.150797+00:00",
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--import",
+        "tsx",
+        "scripts/continue-variant-two.ts",
+        "run",
+        "--run=transfer-consistent-001"
+      ]
+    }
+  ],
+  "initialGeneration": 256,
+  "generationCap": 768,
+  "populationPerLine": 200,
+  "mapsPerGeneration": 32,
+  "plannedNewTrainingEpisodes": 9830400,
+  "sourceCheckpoint": "results/variants/variant-2/transfer-restart-002/snapshots/00256.json",
+  "sameStartingPopulationAndRng": true,
+  "pairedTrainingMapStream": true,
+  "finalMapsOpened": false
+}
