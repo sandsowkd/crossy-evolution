@@ -1,64 +1,81 @@
 {
-  "createdAt": "2026-11-22T15:11:03.950Z",
+  "createdAt": "2026-11-22T19:45:13.810Z",
   "records": [
     {
       "kind": "development",
-      "run": "v4-focused64-continue-002/focused",
-      "generation": 360,
-      "genome": 247400,
-      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
-      "sourceProtocolSha256": "769ebc08e11e18c574c52056de0ed8e44b9783fc233addf2569c2bc581a879ee",
-      "sourceCohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
-      "sourceVerificationSha256": "9636d0d655c69cdc46341b24b954dda65fc1ecb8aead8cd5781f753cfad6465a",
+      "run": "v4-pareto-strong-source-003/pareto",
+      "generation": 16,
+      "genome": 253827,
+      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
+      "sourceProtocolSha256": "832e23be6602b59544a4334b33898584bbf619bdbd68fc8372f58c346ecd22ba",
+      "sourceCohortSha256": "07be46ddf9945dd0538f312019d267007b90a25855ff9aa0da76a9b46bddfece",
+      "sourceVerificationSha256": "bc3fe7fa76a3abe6694ae366c9fb16445264b9ce2f12a784fb2f1a14d6fe9651",
       "genotypeProof": {
-        "createdAt": "2026-11-22T15:01:39.516Z",
-        "genome": 247400,
-        "generation": 360,
-        "initializationGeneration": 320,
-        "initialSnapshotSha256": "c2f9a165dd8441e1e51de18cbc549a3167fdeab9c9c6f9e03e4dcedfa133c3e3",
-        "comparedAll200InitialPolicies": true,
+        "createdAt": "2026-11-22T19:20:18.113Z",
+        "run": "v4-pareto-strong-source-003/pareto",
+        "generation": 16,
+        "genome": 253827,
+        "mean256": 456.0703125,
+        "maximum256": 1991,
+        "initializationGeneration": 0,
+        "comparedAll200ExactInitialPolicies": true,
         "unchangedMatches": 0,
-        "actual200ViewerGenomesExact": true,
-        "cohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
-        "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+        "all200ViewerGenomesExact": true,
+        "sourceCohortSha256": "07be46ddf9945dd0538f312019d267007b90a25855ff9aa0da76a9b46bddfece",
+        "initialPopulationSha256": "5c698125bc07cad95d526cb4ecb8c4361e794bd5168bb25ac400cbc09c11ab1f",
+        "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
+        "verificationFile": "results/variants/variant-2/v4-pareto-strong-source-003/pareto/record-253827-bc3fe7fa76a3-verification.json",
+        "exact256NativeTraces": true,
+        "actualPeakRendererVerified": true,
+        "actualPeakRendererSeed": 2551840794,
         "additionalGameplayEpisodes": 0,
-        "finalMapsOpened": false
+        "additionalDevelopmentEpisodes": 0,
+        "additionalRenderers": 0,
+        "newGameplayTrainingEpisodesFromChildStart": 102400,
+        "inferenceUsesTeacher": false,
+        "futureTrainingHasNoLabelFitnessOrTeacherQueries": true,
+        "criticalGuidanceAncestryRetained": true,
+        "attribution": "New mutated native genotype evolved in bounded Pareto child after declared selected-cohort restart; all200 initial genotypes excluded. Development selection and repeat validation are separate from training.",
+        "finalMapsOpened": false,
+        "committedNativeSnapshotSha256": "fd92663b34674abc7aefd5e2d884601e99bfc43045b64d7c63de4db7112614e6",
+        "snapshotHistoryCohortHashExact": true,
+        "committedTrainingEpisodes": 102400
       },
       "actualPeakReplay": {
-        "createdAt": "2026-11-22T15:01:39.731Z",
-        "genome": 247400,
-        "generation": 360,
-        "mean256": 425.15625,
+        "exactRendererReplay": true,
+        "rendererSeed": 2551840794,
         "peak": {
-          "seed": 2557411439,
-          "score": 1858,
-          "fitness": 18220,
+          "seed": 2551840794,
+          "score": 1991,
+          "fitness": 19550,
           "ticks": 36000,
           "deathReason": "timeout"
         },
-        "actualPeakRendererExact": true,
-        "all200ViewerGenomesExact": true,
-        "repeatedHeadlessEpisodes": 0,
-        "rendererEpisodes": 1,
-        "newTrainingEpisodes": 0,
-        "finalMapsOpened": false
+        "verificationFile": "results/variants/variant-2/published-v4-development-verification.json"
       },
       "initialization": {
-        "type": "Exact complete native320 state continuation",
-        "parent": "results/variants/variant-2/v4-focused64-continue-001/focused",
-        "parentGeneration": 320,
-        "parentSnapshotSha256": "3aa8ff8ace68b24144ff674e967159b4931103106faaaf9309e7abb132e05878",
-        "unchangedNativeGenesRngInnovationsSpeciesHistoryAndParameters": true
+        "type": "Selected native425.15625/max1858 cohort360 restart with pinned tracker snapshot376; generation/species/progress reset and RNG reseeding declared, not chronological continuation",
+        "source": {
+          "directory": "results/variants/variant-2/v4-focused64-continue-002/focused",
+          "generation": 360,
+          "genome": 247400,
+          "cohortFile": "results/variants/variant-2/v4-focused64-continue-002/focused/generations/00360.json.gz",
+          "cohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
+          "snapshotFile": "results/variants/variant-2/v4-focused64-continue-002/focused/snapshots/00376.json.gz",
+          "snapshotSha256": "1e6cf7628d30922c04d2d67332511b6523a0b8371d2535a150f04f36f3993d4c"
+        },
+        "seed": 20261122,
+        "stream": 8129,
+        "independentSeedReplication": false
       },
       "fitness": {
-        "ordinaryGameplay": true,
-        "criticalExamples": 394,
-        "criticalDataSha256": "7d4d6909d54e99a887a5167c84643ff522f727aa4039893b64220068932620bd",
-        "terminalGuidanceWeight": 10,
-        "teacherQueries": 0
+        "coequalNativeTrainingMeanAndMaximum": true,
+        "teacherQueries": 0,
+        "safetyOrCriticalLabelFitness": 0,
+        "criticalGuidanceAncestryRetained": true
       },
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 512000,
-      "discovery": "Already evolved within-run policy selected and exactly verified on opened development maps",
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 102400,
+      "discovery": "New mutated native policy evolved in bounded child; excludes all200 unchanged initial genotypes. Opened development selection/repeat verification are separate from training",
       "inferenceUsesTeacher": false,
       "studentObservation": "native-v9",
       "finalMapsOpened": false
@@ -94,10 +111,17 @@
       "actualPeakReplay": {
         "exactRendererReplay": true,
         "rendererSeed": 2555707477,
+        "peak": {
+          "seed": 2555707477,
+          "score": 2123,
+          "fitness": 20870,
+          "ticks": 36000,
+          "deathReason": "timeout"
+        },
         "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json"
       },
       "initialization": {
-        "type": "Selected native360.0390625/max1845 cohort316 restart, pinned tracker snapshot320; generation/species/progress reset and RNG reseeding declared, not chronological continuation",
+        "type": "Selected native360.0390625/max1845 cohort316 restart with pinned tracker snapshot320; generation/species/progress reset and RNG reseeding declared, not chronological continuation",
         "source": {
           "directory": "results/variants/variant-2/v4-focused64-continue-001/focused",
           "generation": 316,
@@ -108,7 +132,8 @@
           "snapshotSha256": "3aa8ff8ace68b24144ff674e967159b4931103106faaaf9309e7abb132e05878"
         },
         "seed": 20261122,
-        "stream": 8129
+        "stream": 8129,
+        "independentSeedReplication": false
       },
       "fitness": {
         "coequalNativeTrainingMeanAndMaximum": true,
@@ -117,7 +142,7 @@
         "criticalGuidanceAncestryRetained": true
       },
       "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600,
-      "discovery": "Native endpoint nominee audit013 found an already evolved policy; selection and repeat validation add no training",
+      "discovery": "Native endpoint nominee audit013 discovered an already evolved policy; audit selection/repeat verification add no training",
       "inferenceUsesTeacher": false,
       "studentObservation": "native-v9",
       "finalMapsOpened": false

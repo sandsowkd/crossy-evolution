@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-22T15:11:03.950Z",
+  "createdAt": "2026-11-22T19:45:13.810Z",
   "simulationContract": "clustered-traffic-v4",
   "studentObservation": "native-v9",
   "inferenceUsesTeacher": false,
@@ -13,17 +13,17 @@
   "records": [
     {
       "kind": "development",
-      "run": "v4-focused64-continue-002/focused",
-      "generation": 360,
-      "genome": 247400,
-      "meanRow": 425.15625,
-      "maximumRow": 1858,
+      "run": "v4-pareto-strong-source-003/pareto",
+      "generation": 16,
+      "genome": 253827,
+      "meanRow": 456.0703125,
+      "maximumRow": 1991,
       "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
       "previewFile": "public/variant-2/transfer.json",
       "actualSavedCohort": 200,
-      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
-      "sourceCohortSha256": "20f1bd53b362583c7c83c07df95231106fc00e8f96e9ac984a99c3086fd68558",
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 512000
+      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
+      "sourceCohortSha256": "07be46ddf9945dd0538f312019d267007b90a25855ff9aa0da76a9b46bddfece",
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 102400
     },
     {
       "kind": "peak-development",
@@ -40,14 +40,14 @@
       "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600
     }
   ],
-  "method": "Native NEAT evolves inherited weights and topology through ordinary gameplay. The mean leader continues an exact native320 state with394 fixed ordinary-input critical examples at training-fitness weight10. The peak leader evolved64 generations under coequal native training mean/maximum Pareto fitness without label fitness or teacher queries, retaining its critical-guidance ancestry. Its selected-cohort reset and RNG reseeding are explicit. Both use ordinary V9/Network/Replay and choose every inference action; separate policies retain their own metrics.",
+  "method": "Native NEAT evolves inherited ordinary-input policies through gameplay under coequal training mean/maximum Pareto fitness. Both published child runs use zero critical/safety label fitness and make no teacher queries, while retaining critical-guidance ancestry. Selected-cohort resets and RNG reseeding are explicit; the mean record used102400 new gameplay episodes after its declared restart, not training from scratch. Both choose every ordinary V9/Network/Replay action. Each policy retains its own metrics.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
     "maximumRow": 1724,
     "scope": "Same unchanged V3 policy re-evaluated under V4; new-physics baseline, not learning"
   },
-  "publicationScope": "Verified native snapshot and actual200-member champion cohorts; unchanged V4 physics and ordinary inference. Private observation reference studies, unrelated concurrent work, giant live trainer snapshots and logs are excluded.",
+  "publicationScope": "Verified native snapshot and actual200-member champion cohorts; unchanged V4 physics and ordinary inference. Private observation reference studies, unrelated concurrent work, giant live snapshots and logs excluded.",
   "lineageProofFile": "results/variants/variant-2/published-v4-native-lineage-proof.json",
   "goalAverage": 1000,
   "goalMet": false

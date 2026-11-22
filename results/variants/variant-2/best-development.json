@@ -1,11 +1,39 @@
 {
-  "run": "v4-focused64-continue-002/focused",
-  "trainerKind": "critical-native-neat",
-  "meanRow": 425.15625,
-  "selectedDirectory": "results/variants/variant-2/v4-focused64-continue-002/focused",
-  "generation": 360,
-  "genome": 247400,
-  "maximumRow": 1858,
+  "run": "v4-pareto-strong-source-003/pareto",
+  "trainerKind": "pareto-native-neat-study",
+  "selectedDirectory": "results/variants/variant-2/v4-pareto-strong-source-003/pareto",
+  "generation": 16,
+  "genome": 253827,
+  "meanRow": 456.0703125,
+  "maximumRow": 1991,
+  "metrics": {
+    "meanRow": 456.0703125,
+    "medianRow": 344,
+    "maximumRow": 1991,
+    "reach100": 0.86328125,
+    "reach300": 0.53125,
+    "reach1000": 0.06640625,
+    "timeoutRate": 0.015625,
+    "deaths": {
+      "water": 66,
+      "car": 98,
+      "eagle": 62,
+      "bounds": 8,
+      "timeout": 4,
+      "train": 18
+    }
+  },
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
   "developmentMaps": [
     2550136832,
     2550202369,
@@ -265,37 +293,10 @@
     2566848767
   ],
   "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
+  "attribution": "Newly evaluated evolved native offspring in a selected-cohort Pareto restart",
   "teacherRequiredAtInference": false,
   "studentObservation": "native-v9",
   "finalMapsOpened": false,
-  "metrics": {
-    "meanRow": 425.15625,
-    "medianRow": 295.5,
-    "maximumRow": 1858,
-    "reach100": 0.8125,
-    "reach300": 0.49609375,
-    "reach1000": 0.0859375,
-    "timeoutRate": 0.0234375,
-    "deaths": {
-      "eagle": 82,
-      "water": 57,
-      "car": 80,
-      "train": 19,
-      "timeout": 6,
-      "bounds": 12
-    }
-  },
-  "simulation": {
-    "curriculum": "mixed",
-    "mechanics": "upstream-v2",
-    "maxTicks": 36000,
-    "difficulty": 1,
-    "eagle": {
-      "afterTicks": 600,
-      "warningTicks": 180
-    },
-    "variantTwoRules": "clustered-traffic-v4"
-  },
-  "sourceVerificationFile": "results/variants/variant-2/v4-focused64-continue-002/focused/record-247400-9636d0d655c6-verification.json",
+  "sourceVerificationFile": "results/variants/variant-2/v4-pareto-strong-source-003/pareto/record-253827-bc3fe7fa76a3-verification.json",
   "publishedPreviewFile": "public/variant-2/transfer.json"
 }
