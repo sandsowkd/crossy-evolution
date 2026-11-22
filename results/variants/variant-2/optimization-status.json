@@ -1,0 +1,60 @@
+{
+  "objective": "Continue the Variant 1 transfer lineage toward 1000+ average on approved Variant 2 physics and keep improving afterward until credits are exhausted.",
+  "status": "active",
+  "updatedAt": "2026-11-22T00:37:27.025653+00:00",
+  "rules": "clustered-traffic-v3",
+  "activeRuns": [
+    {
+      "run": "transfer-river-002",
+      "pidAtLaunch": 77691,
+      "initialGeneration": 91,
+      "generationCap": 347,
+      "population": 200,
+      "protocolFile": "results/variants/variant-2/transfer-river-002/protocol.json"
+    },
+    {
+      "run": "transfer-restart-001",
+      "pidAtLaunch": 77692,
+      "initialGeneration": 0,
+      "generationCap": 128,
+      "population": 200,
+      "protocolFile": "results/variants/variant-2/transfer-restart-001/protocol.json"
+    }
+  ],
+  "bestDevelopmentFile": "results/variants/variant-2/best-development.json",
+  "developmentSelectionMaps": 64,
+  "developmentConfirmationMaps": 256,
+  "finalMapsOpened": false,
+  "instructions": [
+    "Inspect actual processes and progress/HEAD/status before launching anything; never duplicate a live trainer.",
+    "Keep src/core, src/evolution and scripts/continue-variant-two.ts unchanged while these protocols run; their complete source bundles are preserved.",
+    "Use development maps only; keep all 512 final maps unopened.",
+    "Use verify --publish and candidate audits to promote only a stronger 256-map development policy.",
+    "Audit files cache previously evaluated candidate fingerprints to avoid redoing the same development work.",
+    "Continue bounded native checkpoints after each budget; a completed batch does not end the user request.",
+    "Do not revive the closed Variant 1 heartbeat."
+  ],
+  "milestones": [
+    {
+      "model": "starting-transfer",
+      "development256Mean": 48.27734375,
+      "variant2SelectedLineageGenerations": 12
+    },
+    {
+      "model": "river-inputs-phase1",
+      "development256Mean": 87.73046875,
+      "variant2SelectedLineageGenerations": 92
+    },
+    {
+      "model": "restart-generation64",
+      "development256Mean": 128.87890625,
+      "variant2SelectedLineageGenerations": 156
+    }
+  ],
+  "nextStrategies": [
+    "Continue both current native runs; audit the broader pool instead of trusting only the noisy 64-map winner.",
+    "After the next bounded phase, explore smaller residual mutation steps (currently rate0.3 / sigma0.35) and more training maps; keep native state and declare any parameter intervention.",
+    "Input ablations confirm learned V9 weights matter: removing them reduced87.73 to48.10. Removing distant cues or new hidden connections hurt. A0.8 residual scale scored92.26 as a diagnostic, not a trained/promoted policy.",
+    "After active protocols finish, add selectedGenome to the continuation runner preview publication; the audit publisher and viewer already support focusing the verified winner."
+  ]
+}

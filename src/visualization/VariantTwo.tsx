@@ -10,7 +10,7 @@ import { WorldView } from "./three/scene";
 import { variantTwoRowPlan } from "../core/variant-two-rules";
 
 type Mode = "map" | "logs" | "lilies" | "trains" | "scratch" | "transfer";
-type Preview = { branch: string; generation: number; genomes: Genome[]; seed: number; simulation: Config; meanRow?: number };
+type Preview = { branch: string; generation: number; genomes: Genome[]; seed: number; simulation: Config; meanRow?: number; selectedGenome?: number };
 export function VariantTwo() {
   const host = useRef<HTMLDivElement>(null), world = useRef<WorldView | undefined>(undefined);
   const querySeed=Number(new URLSearchParams(window.location.search).get("seed")??0);
@@ -50,7 +50,13 @@ export function VariantTwo() {
         if (saved.simulation.variantTwoRules !== VARIANT_TWO_CONFIG.variantTwoRules)
           throw new Error("This saved training run uses earlier rules. Use the mechanics demos to see the current map and log spacing.");
         if (modeRef.current !== choice) return;
-        replay.current = new Replay(saved.genomes, saved.seed, saved.simulation); setRecord(saved);
+        replay.current = new Replay(saved.genomes, saved.seed, saved.simulation);
+        if (saved.selectedGenome !== undefined) {
+          const selected = saved.genomes.findIndex(genome => genome.id === saved.selectedGenome);
+          if (selected < 0) throw new Error("Selected chicken is missing from its saved population.");
+          replay.current.selected = selected;
+        }
+        setRecord(saved);
       } catch (e) { setMessage(String(e)); }
     } else {
       const s = new GameSimulation(VARIANT_TWO_CONFIG,previewSeed.current);

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { GameSimulation } from "../core/simulation";
 import { VARIANT_TWO_CONFIG as UPSTREAM_VARIANT_TWO_CONFIG } from "../core/upstream";
 import { sensorCount } from "../core/sensor-version";
+import { ACTIONS } from "../core/types";
 import { Trainer } from "../evolution/trainer";
 import { parseCheckpoint } from "../evolution/checkpoint";
 import { stringifyEvolution } from "../evolution/serialization";
@@ -48,4 +49,26 @@ test("paired runs share training maps and use separately reserved unobserved fin
   const trainer=new Trainer({population:50,seed:20261121,trainingSeeds:16,trainingSeedPrefix:0x40000000,trainingSeedStream:2307,trainingSeedStride:19,
     observationVersion:9,simulation:{...UPSTREAM_VARIANT_TWO_CONFIG,maxTicks:12}});
   assert.deepEqual(trainer.runGeneration().seeds,variantTwoTrainingSeeds(0));
+});
+
+test("sparse V9 matches unchanged dense channels across river, rail, carry and boundary states",()=>{
+  const rng = new RNG(215097), size = sensorCount(9);
+  const masks = [new Uint8Array(size), new Uint8Array(size).fill(1),
+    Uint8Array.from({length:size},()=>+(rng.next()<.16))];
+  const buffer = new Float32Array(size);
+  for(let i=0;i<250;i++){
+    const sim = new GameSimulation(UPSTREAM_VARIANT_TWO_CONFIG,rng.int(0xffffffff));
+    sim.tick=rng.int(36000);sim.agent.x=i%4===0?-.5:i%4===1?5:rng.range(-5.1,5.1);
+    sim.agent.row=i%5===0?0:rng.range(26,400);sim.agent.lastAction=ACTIONS[i%5];
+    sim.agent.ridingSpeed=rng.range(-5,5);sim.agent.lastProgressTick=Math.max(0,sim.tick-rng.int(700));
+    const dense=sim.getObservation(9);
+    for(const mask of masks){
+      buffer.fill(NaN);assert.equal(sim.getObservation(9,mask,buffer),buffer);
+      for(let channel=0;channel<size;channel++)assert.equal(buffer[channel],mask[channel]?dense[channel]:0,
+        `state=${i}, channel=${channel}`);
+    }
+  }
+  const sim=new GameSimulation(UPSTREAM_VARIANT_TWO_CONFIG,42);
+  assert.throws(()=>sim.getObservation(9,new Uint8Array(3)),/mask/);
+  assert.throws(()=>sim.getObservation(9,masks[0],new Float32Array(3)),/buffer/);
 });

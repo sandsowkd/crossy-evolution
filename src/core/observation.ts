@@ -82,6 +82,8 @@ export function observation(
   requiredInputs?: Uint8Array,
   target?: Float32Array,
 ): Float32Array {
+  if (version === 9 && requiredInputs)
+    return sparseVariantTwoObservation(world, agent, tick, requiredInputs, target);
   if (version === 9) {
     const size = sensorCount(9);
     if (target && target.length !== size) throw new Error(`Observation buffer must contain ${size} channels`);
@@ -221,6 +223,48 @@ export function observation(
   o[i++] = +world.row(cy + 1).blocked.includes(cx);
   o[i] = version === 7 || version === 8 ? DELTA[agent.lastAction][0] : +signalAt(world.row(cy), tick);
   return o;
+}
+
+const variantTwoPrefixMasks = new WeakMap<Uint8Array, Uint8Array>();
+/** Same V9 channels and arithmetic; skip unused inputs and share platform positions. */
+function sparseVariantTwoObservation(world: World, agent: AgentState, tick: number,
+  mask: Uint8Array, target?: Float32Array): Float32Array {
+  const size = sensorCount(9);
+  if (mask.length !== size) throw new Error(`Observation mask must contain ${size} channels`);
+  if (target && target.length !== size) throw new Error(`Observation buffer must contain ${size} channels`);
+  let prefix = variantTwoPrefixMasks.get(mask);
+  if (!prefix) {prefix = mask.slice(0, INPUT_COUNT); variantTwoPrefixMasks.set(mask, prefix);}
+  const out = target ?? new Float32Array(size);
+  out.fill(0); out.set(observation(world, agent, tick, 8, prefix));
+  const now = new Map<Row, ReturnType<typeof platformsAt>>(), later = new Map<Row, ReturnType<typeof platformsAt>>();
+  const supported = (row: Row, future: boolean, x: number) => {
+    const cache = future ? later : now;
+    let platforms = cache.get(row);
+    if (!platforms) {platforms = platformsAt(row, tick + (future ? HOP_TICKS : 0)); cache.set(row, platforms);}
+    return +platforms.some(p => Math.abs(p.x - x) < p.length / 2 + .25);
+  };
+  const cx = Math.round(agent.x), cy = Math.round(agent.row);
+  let index = INPUT_COUNT;
+  for (const dy of ROW_OFFSETS) {
+    let row: Row | undefined;
+    for (let dx = -4; dx <= 4; dx++, index += 3) {
+      if ((!mask[index] && !mask[index+1] && !mask[index+2]) || Math.abs(cx+dx) > 5 || cy+dy < 0) continue;
+      row ??= world.row(cy+dy);
+      if (mask[index]) out[index] = +(row.type === "water");
+      if (mask[index+1]) out[index+1] = supported(row, false, cx+dx);
+      if (mask[index+2]) out[index+2] = supported(row, true, cx+dx);
+    }
+  }
+  if (mask[index]) out[index] = world.config.eagle ? Math.min(1,(tick-(agent.lastProgressTick??0))/world.config.eagle.afterTicks) : 0; index++;
+  if (mask[index]) out[index] = +signalAt(world.row(cy),tick); index++;
+  if (mask[index]) out[index] = +signalAt(world.row(cy+1),tick); index++;
+  if (mask[index]) out[index] = (agent.ridingSpeed??0)/4.2; index++;
+  if (mask[index]) out[index] = agent.x-Math.round(agent.x); index++;
+  if (mask[index]) out[index] = supported(world.row(cy+1),true,cx); index++;
+  if (mask[index]) out[index] = supported(world.row(cy-1),true,cx); index++;
+  if (mask[index]) out[index] = +(world.row(cy).type === "water");
+  for (let i = 0; i < out.length; i++) out[i] = Math.max(-1,Math.min(1,out[i]));
+  return out;
 }
 
 type ObservationPlan = {
