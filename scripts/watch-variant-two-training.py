@@ -6,6 +6,7 @@ Audits are serialized so best-development publication cannot race.
 import argparse
 import json
 import os
+import signal
 from pathlib import Path
 import subprocess
 import sys
@@ -59,12 +60,25 @@ def main():
                 live = f"scripts/continue-variant-two.ts run --run={run}" in command
                 head = json.loads((directory / "HEAD.json").read_text()) if (directory / "HEAD.json").exists() else None
                 generation = head["generation"] if head else protocol["initialGeneration"]
+                snapshot_path = directory / "snapshots" / f"{generation:05d}.json"
+                migration_file = directory / "checkpoint-migration-request.json"
+                if live and head and snapshot_path.stat().st_size >= 100_000_000 and not migration_file.exists():
+                    # Leave ample room under the native parser's128MB input limit.
+                    # A later versioned continuation can upgrade storage without losing a generation.
+                    write_json(migration_file, {"requestedAt": now(), "generation": generation,
+                                               "snapshotBytes": snapshot_path.stat().st_size,
+                                               "reason": "Migrate checkpoint storage before the128MB parser limit",
+                                               "remainingPlannedGenerations": protocol["generationCap"] - generation,
+                                               "preserveNativePopulationRngInnovationsAndSpecies": True})
+                    os.kill(job["pid"], signal.SIGTERM)
                 audit_files = list(directory.glob("candidate-audit-[0-9][0-9][0-9][0-9][0-9].json"))
                 last_audited = max((int(file.stem.rsplit("-", 1)[1]) for file in audit_files),
                                    default=protocol["initialGeneration"])
                 state = {"run": run, "pidAtLaunch": job["pid"], "processAlive": live,
                          "committedGeneration": generation, "generationCap": protocol["generationCap"],
                          "lastAuditedGeneration": last_audited}
+                if migration_file.exists():
+                    state["checkpointMigrationRequired"] = str(migration_file)
                 if head and generation > last_audited and (generation - last_audited >= args.every or not live):
                     log = directory / "audit-monitor.log"
                     with log.open("a") as stream:
@@ -77,7 +91,7 @@ def main():
                 if not live:
                     native_status = json.loads((directory / "status.json").read_text()) if (directory / "status.json").exists() else {}
                     state["nativeStatus"] = native_status.get("status", "missing")
-                    if generation < protocol["generationCap"]:
+                    if generation < protocol["generationCap"] and not migration_file.exists():
                         state["error"] = "Trainer stopped before its budget; inspect before resuming"
                     elif not (directory / "verification.json").exists():
                         with (directory / "verify-monitor.log").open("a") as stream:
@@ -88,7 +102,10 @@ def main():
                             state["error"] = "Checkpoint/population/replay verification failed"
                 states.append(state)
             finished = all(not state["processAlive"] for state in states)
-            write_json(status_path, {"updatedAt": now(), "status": "finished-bounded-batch" if finished else "watching-native-trainers",
+            status = "watching-native-trainers"
+            if finished:
+                status = "checkpoint-migration-required" if any(s.get("checkpointMigrationRequired") for s in states) else "finished-bounded-batch"
+            write_json(status_path, {"updatedAt": now(), "status": status,
                                      "runs": states, "bestDevelopment": json.loads(Path("results/variants/variant-2/best-development.json").read_text()),
                                      "finalMapsOpened": False})
             if finished:

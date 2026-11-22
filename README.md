@@ -5,7 +5,7 @@ Teach chickens to cross procedurally generated terrain using genuine NEAT. Simul
 | Variant | Mechanics | Status |
 | --- | --- | --- |
 | [1](docs/variants/variant-1.md) | Cars/roads; at most three consecutive road lanes | Complete: 1,361.21 independent-test average |
-| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Training active: 164.47 average on 256 development maps; three 200-chicken runs |
+| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Training active: 164.47 average on 256 development maps; four 200-chicken runs |
 | [3](docs/variants/variant-3.md) | Reserved; rivers were included in Variant2 | Pending scope |
 | [4](docs/variants/variant-4.md) | Longer roads and broader full-game rules | Planned |
 
@@ -32,6 +32,7 @@ Click the title to watch population replays. The menu opens neural networks, mea
 - [Eagle rule for new runs](docs/EAGLE_RULES.md). Open `/?highlights` locally for the six-policy replay gallery.
 - [Frozen closing evaluation](results/variants/variant-1/final/evaluation.json) and [verification](results/variants/variant-1/final/verification.json).
 - [Training data](docs/DATA_RELEASE.md): 116 dated phase summaries, 3,948 recorded generation rows and 4,608 final policy/map outcomes. Counts overlap across inherited/continued phases and are not a single training lineage.
+- [Variant 2 development reference](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-2-development-2026-11-21): generation 256 native state and all 256 actual 200-chicken cohorts (907 MB; training continues).
 - [Full checkpoint/population release](https://github.com/sandsowkd/crossy-evolution/releases/tag/training-snapshot-2026-11-21): 6.31 GB with SHA-256 manifests.
 - [Final checkpoint and closing data supplement](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21): all 150 final populations and later experimental data.
 - [Technical archive](docs/VARIANT_1_TECHNICAL_ARCHIVE.md) and [research log](docs/variants/variant-1-research-log.md).

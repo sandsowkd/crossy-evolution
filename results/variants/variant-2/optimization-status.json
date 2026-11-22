@@ -1,7 +1,7 @@
 {
   "objective": "Continue the Variant 1 transfer lineage toward 1000+ average on approved Variant 2 physics and keep improving afterward until credits are exhausted.",
   "status": "active",
-  "updatedAt": "2026-11-22T01:18:43.445679+00:00",
+  "updatedAt": "2026-11-22T01:53:27.601366+00:00",
   "rules": "clustered-traffic-v3",
   "activeRuns": [
     {
@@ -45,6 +45,25 @@
       },
       "fitnessRiskWeight": 0.25,
       "protocolFile": "results/variants/variant-2/transfer-consistent-001/protocol.json"
+    },
+    {
+      "run": "transfer-plasticity-001",
+      "pidAtLaunch": 94588,
+      "initialGeneration": 0,
+      "generationCap": 256,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "initialization": "selected-generation252-cohort",
+      "legacyWeightMutation": {
+        "rate": 0.02,
+        "sigma": 0.03
+      },
+      "protocolFile": "results/variants/variant-2/transfer-plasticity-001/protocol.json"
     }
   ],
   "bestDevelopmentFile": "results/variants/variant-2/best-development.json",
@@ -92,9 +111,22 @@
     "Control uses residual mutation rate0.3/sigma0.35; fine uses0.15/0.12; consistent uses0.15/0.12 plus riskWeight0.25. No physics changes.",
     "The native monitor audits every32 committed generations on256 development maps and publishes improvements serially; all512 final maps remain unopened.",
     "After this bounded batch, compare the best policy and full population distributions on the same development suites before choosing the next run.",
-    "Code hashes freeze src/core,src/evolution and scripts/continue-variant-two.ts for these active runs. Source bundles are preserved automatically."
+    "Code hashes freeze src/core,src/evolution and scripts/continue-variant-two.ts for these active runs. Source bundles are preserved automatically.",
+    "A separate buffer/platform encoding prototype reproduced17604 decision observations plus3000 random state/mask comparisons and measured1.147x faster evaluation over64 maps. It has not changed live training. Consider a verified version migration after the matched batch, preserving all native states.",
+    "Observation diagnostic: one-hop water-risk features lift the frozen Variant1 policy from48.70 to168.49, but change the current trained policy from164.47 to161.60 despite reducing water deaths68to16. This is feature engineering with zero new evolution, not a trained/promoted model. Study the resulting eagle/car tradeoff in a separately versioned future experiment; do not modify live trainer semantics.",
+    "New transfer-plasticity-001 restarts the audited best generation252 cohort with small inherited-weight mutations and gentler topology changes/crossover. It is a combined exploratory strategy, not part of the three matched parameter lines. Preserve its metadata and compare on unchanged development maps.",
+    "After at least128 new matched generations, consider replacing a weaker line with a200-chicken/64-map continuation to reduce noisy fitness rankings. The current runner supports --maps=64 and exact native resume. Compare development results before changing the allocation; do not silently treat larger evaluation batches as newly learned generations."
   ],
   "monitorManifest": "results/variants/variant-2/parameter-batch-001/launch-manifest.json",
   "monitorStatus": "results/variants/variant-2/parameter-batch-001/monitor-status.json",
-  "populationComparisonFile": "results/variants/variant-2/population-comparison-001.json"
+  "populationComparisonFile": "results/variants/variant-2/population-comparison-001.json",
+  "followupAutomation": "improve-variant-2-chickens",
+  "firstMatchedComparison": "results/variants/variant-2/parameter-batch-001/comparison-00288.json",
+  "checkpointStorageGuard": {
+    "thresholdBytes": 100000000,
+    "currentParserLimitChars": 128000000,
+    "monitorStopsAtCompletedGenerationBoundary": true,
+    "nextAction": "If a checkpoint-migration-request.json appears, preserve native state, stop remaining active trainers at safe boundaries, version the native parser/storage limit and validate the buffered encoder optimization, then prepare exact-state continuations for each remaining planned budget. Do not reset learned populations or silently change physics."
+  },
+  "additionalMonitorStatus": "results/variants/variant-2/plasticity-batch-001/monitor-status.json"
 }

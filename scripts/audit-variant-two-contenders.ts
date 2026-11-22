@@ -2,14 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { gunzipSync } from "node:zlib";
-import { setImmediate } from "node:timers/promises";
+import { setImmediate, setTimeout as delay } from "node:timers/promises";
 import { parseEvolution, stringifyEvolution } from "../src/evolution/serialization";
 import { evaluateGenome } from "../src/evolution/evaluation";
 import { Replay } from "../src/evolution/replay";
 import type { Checkpoint } from "../src/evolution/trainer";
 import type { Genome } from "../src/evolution/genome";
 import type { Config } from "../src/core/types";
-import { sha256, summarizeVariantTwo, writeVariantTwoAtomic as atomic,
+import { acquireVariantTwoLock, sha256, summarizeVariantTwo, writeVariantTwoAtomic as atomic,
   type VariantTwoNomination } from "../src/evolution/variant-two-experiment";
 
 const directory = process.argv[2]; assert.ok(directory && fs.existsSync(`${directory}/protocol.json`));
@@ -20,11 +20,21 @@ const snapshot = parseEvolution<{checkpoint: Checkpoint; nominations: VariantTwo
 const protocol = JSON.parse(fs.readFileSync(`${directory}/protocol.json`, "utf8")) as {
   config: {simulation: Config}; confirmationDevelopmentSeeds: number[]; developmentSeeds: number[]; lineageOffset: number};
 assert.equal(protocol.confirmationDevelopmentSeeds.length,256);
-const output = `${directory}/candidate-audit-${String(head.generation).padStart(5,"0")}.json`;
+const cohortOption = process.argv.find(arg => arg.startsWith("--all-cohort="));
+const fullCohortGeneration = cohortOption ? Number(cohortOption.slice("--all-cohort=".length)) : undefined;
+let nominations: {generation: number; genome: number; meanRow: number | null}[] = snapshot.nominations;
+if (fullCohortGeneration !== undefined) {
+  assert.ok(Number.isInteger(fullCohortGeneration) && fullCohortGeneration > 0 && fullCohortGeneration <= head.generation);
+  const payload = gunzipSync(fs.readFileSync(`${directory}/generations/${String(fullCohortGeneration).padStart(5,"0")}.json.gz`)).toString();
+  assert.equal(sha256(payload), snapshot.checkpoint.history[fullCohortGeneration-1].cohortHash);
+  nominations = parseEvolution<{contenders: Genome[]}>(payload).contenders.map(g =>
+    ({generation: fullCohortGeneration, genome: g.id, meanRow: null}));
+}
+const output = `${directory}/${cohortOption ? "full-cohort" : "candidate"}-audit-${String(fullCohortGeneration ?? head.generation).padStart(5,"0")}.json`;
 assert.equal(fs.existsSync(output),false,"This audit snapshot was already evaluated");
-type Metrics = ReturnType<typeof summarizeVariantTwo> & {generation:number;genome:number;fingerprint:string;rapidDevelopmentMean:number};
+type Metrics = ReturnType<typeof summarizeVariantTwo> & {generation:number;genome:number;fingerprint:string;rapidDevelopmentMean:number|null};
 const previous = new Map<string,Metrics>(), reusedAuditSources = [];
-for (const name of fs.readdirSync(directory).filter(name => /^candidate-audit-\d{5}\.json$/.test(name))) {
+for (const name of fs.readdirSync(directory).filter(name => /^(?:candidate|full-cohort)-audit-\d{5}\.json$/.test(name))) {
   const file = `${directory}/${name}`, text = fs.readFileSync(file,"utf8");
   const report = JSON.parse(text) as {results: Metrics[]};
   for (const result of report.results) previous.set(result.fingerprint,result);
@@ -33,7 +43,7 @@ for (const name of fs.readdirSync(directory).filter(name => /^candidate-audit-\d
 const seen = new Set<string>(), results: Metrics[] = [];
 let reusedCandidates = 0;
 let genomes: Genome[] = [], lastGeneration = -1;
-for (const nomination of snapshot.nominations) {
+for (const nomination of nominations) {
   if (nomination.generation !== lastGeneration) {
     const file = `${directory}/generations/${String(nomination.generation).padStart(5,"0")}.json.gz`;
     const payload = gunzipSync(fs.readFileSync(file)).toString();
@@ -57,6 +67,7 @@ const population = parseEvolution<{contenders: Genome[]}>(payload).contenders;
 const genome = population.find(g=>g.id===winner.genome)!;
 const confirmationEpisodes = evaluateGenome(genome,protocol.confirmationDevelopmentSeeds,protocol.config.simulation);
 const rapidEpisodes = evaluateGenome(genome,protocol.developmentSeeds,protocol.config.simulation);
+winner.rapidDevelopmentMean = summarizeVariantTwo(rapidEpisodes).meanRow;
 const [expected] = evaluateGenome(genome,[42],protocol.config.simulation), replay = new Replay([genome],42,protocol.config.simulation);
 while(!replay.finished)replay.advance();
 assert.equal(replay.current.sim.agent.maxRow,expected.score);assert.equal(replay.current.sim.tick,expected.ticks);
@@ -64,12 +75,23 @@ assert.equal(replay.current.sim.agent.deathReason,expected.deathReason);
 const selected = {...summarizeVariantTwo(rapidEpisodes),generation:winner.generation,genome,episodes:rapidEpisodes,
   directory,lineageVariantTwoGenerations:protocol.lineageOffset+winner.generation};
 atomic(output,JSON.stringify({sourceCheckpointSha256:head.snapshotSha256,sourceCheckpointGeneration:head.generation,
+  candidateSource: cohortOption ? "entire-actual-cohort" : "training-nominees", fullCohortGeneration,
   candidateDevelopmentEpisodes:results.length*256,newCandidateDevelopmentEpisodes:(results.length-reusedCandidates)*256,
-  reusedCandidates,reusedAuditSources,duplicateCandidatesSkipped:snapshot.nominations.length-results.length,
+  reusedCandidates,reusedAuditSources,duplicateCandidatesSkipped:nominations.length-results.length,
   results,confirmationEpisodes,finalMapsOpened:false,replayMatched:true},null,2));
 atomic(output.replace(/\.json$/,"-selected.json"),stringifyEvolution({selected,confirmationEpisodes}));
 console.log(JSON.stringify({directory,candidates:results.length,winner,output},null,2));
 if(process.argv.includes("--publish")) {
+  let release: (() => void) | undefined;
+  for (let attempt = 0; !release; attempt++) {
+    try {release = acquireVariantTwoLock("results/variants/variant-2/promotion", "transfer", "development-publication");}
+    catch (error) {
+      if (attempt >= 100 || !(error instanceof Error) ||
+        (!error.message.includes("already holds") && (error as NodeJS.ErrnoException).code !== "EEXIST")) throw error;
+      await delay(50);
+    }
+  }
+  try {
   const file="results/variants/variant-2/best-development.json";
   const old=JSON.parse(fs.readFileSync(file,"utf8")) as {meanRow:number};
   if(winner.meanRow>old.meanRow) {
@@ -80,4 +102,5 @@ if(process.argv.includes("--publish")) {
       genomes:population,selectedGenome:winner.genome,seed:42,simulation:protocol.config.simulation,meanRow:winner.meanRow}));
     console.log("Promoted audited development winner; all final maps remain unopened.");
   }
+  } finally {release();}
 }

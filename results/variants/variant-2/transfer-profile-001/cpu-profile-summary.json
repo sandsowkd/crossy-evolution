@@ -1,0 +1,113 @@
+{
+  "run": "transfer-profile-001",
+  "purpose": "CPU profiling of an exactly repeated generation; excluded from unique training progress",
+  "repeatedTrainingEpisodes": 6400,
+  "sourceGeneration": 256,
+  "resultGeneration": 257,
+  "checkpointMatchesReference": true,
+  "wholeProcessProfileIncludesInitializationAndSerialization": true,
+  "functions": [
+    {
+      "function": "activate",
+      "file": "file://src/evolution/network.ts",
+      "selfTimePercent": 11.46907303528882
+    },
+    {
+      "function": "processChunkSync",
+      "file": "node:zlib",
+      "selfTimePercent": 8.756979532108886
+    },
+    {
+      "function": "(garbage collector)",
+      "file": "",
+      "selfTimePercent": 7.611194867080652
+    },
+    {
+      "function": "sparseVariantTwoObservation",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 6.998270266213909
+    },
+    {
+      "function": "set natives",
+      "file": "",
+      "selfTimePercent": 6.916431720541058
+    },
+    {
+      "function": "structuredClone",
+      "file": "node:internal/worker/js_transferable",
+      "selfTimePercent": 6.748588259572632
+    },
+    {
+      "function": "sparseObservation",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 5.763139785753147
+    },
+    {
+      "function": "advanceUpstream",
+      "file": "file://src/core/upstream.ts",
+      "selfTimePercent": 5.6915160497532975
+    },
+    {
+      "function": "stringifyEvolution",
+      "file": "file://src/evolution/serialization.ts",
+      "selfTimePercent": 5.209829090295106
+    },
+    {
+      "function": "__name",
+      "file": "file://src/core/upstream.ts",
+      "selfTimePercent": 4.715210776128924
+    },
+    {
+      "function": "",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 4.46340055906797
+    },
+    {
+      "function": "copyFile",
+      "file": "",
+      "selfTimePercent": 2.172815788979982
+    },
+    {
+      "function": "observationBuffer",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 2.147478378327674
+    },
+    {
+      "function": "__name",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 2.115945443971259
+    },
+    {
+      "function": "",
+      "file": "file://src/evolution/serialization.ts",
+      "selfTimePercent": 2.0940810085736263
+    },
+    {
+      "function": "read",
+      "file": "",
+      "selfTimePercent": 1.6894808922574713
+    },
+    {
+      "function": "parseEvolution",
+      "file": "file://src/evolution/serialization.ts",
+      "selfTimePercent": 1.6761953360974053
+    },
+    {
+      "function": "toString",
+      "file": "node:buffer",
+      "selfTimePercent": 1.6713535823499615
+    },
+    {
+      "function": "platformsAt",
+      "file": "file://src/core/upstream.ts",
+      "selfTimePercent": 1.3478956156313904
+    },
+    {
+      "function": "observation",
+      "file": "file://src/core/observation.ts",
+      "selfTimePercent": 0.9999647299401535
+    }
+  ],
+  "profileSha256": "66e3923fecd534082734295554ecc500fe774e782c362861f3786f328e28deae",
+  "finalMapsOpened": false
+}

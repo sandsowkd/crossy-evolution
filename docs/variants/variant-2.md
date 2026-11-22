@@ -17,28 +17,11 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 | Lily pads | A center pad is guaranteed in every lily row; the center column and neighboring grass have no static obstacles. |
 | Other rules | At most 3 car lanes in a row; eagle capture after 10 seconds without a new highest row. |
 
-## Measured distribution
+## Results
 
-A reproducible audit of **400,000 rows after the opening**, on 200 seeds, measured:
+**Best transfer policy: 164.47 average on 256 development maps**, median 115, longest run 1,433. It reaches 100 on 142/256 maps and 1,000 on 1/256. The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
 
-| Metric | Result |
-| --- | ---: |
-| Moving-log row density vs previous rules | 50.14% |
-| All-water row density vs previous rules | 49.93% |
-| Track density vs previous rules | 50.54% |
-| Mean moving-log crossing length | 2.507 |
-| Mean consecutive tracks | 1.701 |
-| Logs per moving row | 6–9 (mean 6.43) |
-| Edge-to-edge gap range | Exactly 1–3 tiles |
-| Early river/rail or missing center-pad violations | 0 |
-
-[Full audit and crossing histograms](../../results/variants/variant-2/rules-audit.json). The row density comparison uses the same map seeds and post-opening row indices; the new opening reduces early hazards further.
-
-## Training and provenance
-
-**Best transfer policy: 164.47 average on 256 development maps**, median 115, longest run 1,433. It reaches 100 on 142/256 maps and 1,000 on 1/256. The 1,000-average goal remains unmet. This is development selection, not an independent final-test result.
-
-| Method | Best audited 256-map average |
+| Training stage | Best audited 256-map average |
 | --- | ---: |
 | Starting Variant 1 transfer | 48.28 |
 | Normal NEAT: 128 more generations, 100 chickens | 51.83 |
@@ -46,11 +29,15 @@ A reproducible audit of **400,000 rows after the opening**, on 200 seeds, measur
 | Restart from audited river cohort, 16 training maps | 144.96 |
 | Continued native population, 32 training maps | **164.47** |
 
-The winning policy is generation 252, genome 89891 in `transfer-restart-002`. Its ancestry contains **344 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and validation repeats are recorded separately; these counts are not one uninterrupted training run.
+Winner: generation 252, genome 89891 in `transfer-restart-002`. Its ancestry contains **344 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [generation data](../../results/variants/variant-2/transfer-restart-002/generation-metrics-00256.csv), [search ledger](../../results/variants/variant-2/training-ledger-parameter-batch-start.json).
 
-The whole population improved too: on the same 64 development maps, the initial 100-chicken cohort averages 52.74; the later generation 240 cohort averages 118.09. Its median chicken averages 116.97, and 186/200 chickens average at least 100, versus 0/100 initially. Even its weakest chicken averages 80.92, above the old cohort’s best 58.63. [Complete cohort comparison](../../results/variants/variant-2/population-comparison-001.json).
+The whole population improved on the same 64 development maps: the initial 100-chicken cohort averages **52.74**, and generation 240’s 200 chickens average **118.09**. Its median chicken averages 116.97; 186/200 chickens average at least 100, versus 0/100 initially. Its weakest chicken averages 80.92, above the initial cohort’s best 58.63. [All policies and distributions](../../results/variants/variant-2/population-comparison-001.json).
 
-Three matched lines now continue the exact native generation 256 state, each with 200 chickens and 32 changing training maps:
+Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps. Trainers never use those policies. [Baselines](../../results/variants/variant-2/baselines.json).
+
+## Active comparison
+
+Three lines continue the exact native generation 256 state, with **200 chickens and 32 changing training maps each**:
 
 | Line | Mutation rate / step | Fitness |
 | --- | --- | --- |
@@ -58,32 +45,23 @@ Three matched lines now continue the exact native generation 256 state, each wit
 | Fine steps | 0.15 / 0.12 | Mean rows |
 | Consistency | 0.15 / 0.12 | 75% mean + 25% worst-half mean |
 
-Each has a bounded budget of 512 additional generations (3,276,800 training episodes per line). These are planned budgets, not completed counts. The monitor audits candidates every 32 committed generations and publishes stronger actual cohorts. All lines share the same initial population, RNG, innovation state and training-map stream. A follow-up in this chat checks progress every 30 minutes and can extend completed batches. Earlier differences in batch size and mutation strategy do not isolate a population-size effect.
+Each has a bounded budget of **512 additional generations / 3,276,800 training episodes**. Budgets are planned, not completed counts. All three share their initial population, RNG, innovation state and training-map stream. The first 31 comparable offspring generations average 119.69 rows for control, 131.00 for fine steps and 130.22 for consistency. These are training means. On the same 64 development maps, generation 288 populations average **130.43 control / 142.47 fine / 137.74 consistency**. Both smaller-step lines have **200/200 chickens averaging over 100**. None has beaten the saved champion on the broader 256-map audit. [Population comparison](../../results/variants/variant-2/population-comparison-002.json). [Matched comparison](../../results/variants/variant-2/parameter-batch-001/training-comparison-00288.json).
 
-The river phase adds zero-weight sensor connections, then evolves those weights and NEAT topology. No hand-written policy controls these chickens. Removing learned river inputs from the earlier 87.73 model drops its average to 48.10. An equivalent sensor optimization measured 1.69× faster evaluation; production reproduced a full 100-chicken generation and offspring exactly. Default mutation-parameter compatibility was also checked on a complete 200-chicken generation. All 88 tests, typecheck, lint and build pass.
+The native monitor audits every 32 committed generations and publishes stronger actual cohorts. Follow-ups in this chat check every 30 minutes and can extend completed batches. [Current runs](../../results/variants/variant-2/optimization-status.json), [monitor](../../results/variants/variant-2/parameter-batch-001/monitor-status.json).
 
-All comparisons retain approved physics and 600-second episodes. Selection uses 64 rapid maps and broader candidate audits on 256 development maps; **512 final maps remain unopened**. Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps. [Current winner](../../results/variants/variant-2/best-development.json), [live experiment status](../../results/variants/variant-2/optimization-status.json), [native monitor](../../results/variants/variant-2/parameter-batch-001/monitor-status.json), [baselines](../../results/variants/variant-2/baselines.json).
+The three matched lines evolve new sensor weights and NEAT topology while freezing inherited weights. A fourth line, `transfer-plasticity-001`, restarts the best generation 252 cohort and allows small inherited-weight mutations (rate 0.02, step 0.03), with gentler topology changes and 10% crossover. Its separate budget is 256 generations; this combined strategy is not a single-parameter comparison. Removing learned river inputs from the earlier 87.73 model drops it to 48.10. Earlier batch-size and mutation changes were combined, so their results do not isolate a batch-size effect.
 
-**`paired-004`: first approved-map comparison complete.** Two concurrent NEAT lines each trained 100 chickens for 64 generations: **102,400 training episodes per line**, 204,800 total. Both use the same 16 changing training maps per generation, 600-second episodes and 64 development maps for selection. All 512 final maps remain unopened.
+All episodes retain approved physics, a 600-second horizon and the eagle rule. Selection uses 64 rapid maps and 256-map candidate audits. Checkpoints, actual populations and replays are verified. An earlier equivalent encoder measured 1.69× faster evaluation; all 88 tests, typecheck, lint and build pass. [Encoder proof](../../results/variants/variant-2/encoding-equivalence/verification.json), [mutation compatibility](../../results/variants/variant-2/residual-parameter-verification.json).
 
-| Line | Generation 1 development mean | Best development mean | Best generation | Best single development-map score |
-| --- | ---: | ---: | ---: | ---: |
-| Fresh | 10.72 | 38.39 | 64 | 124 |
-| Variant 1 transfer | 55.23 | 58.28 | 12 | 218 |
+## Mechanics and earlier runs
 
-Fresh starts with random weights. Transfer starts with the actual final Variant 1 generation 150 population, preserving its weights/topology and adding zero-weight new sensors. It inherits 1,174 Variant 1 phase positions; both lines inherit **zero previous Variant 2 generations**. The training map seed stream matches `paired-003`, with the approved slower logs and shorter train intervals.
+A 400,000-row audit measured water and rail densities at **49.93% / 50.54%** of previous rules. Moving-log groups average **2.507 rows**; tracks average **1.701**. Log gaps stay within 1–3 tiles, with no opening or center-pad violations. [Full mechanics audit](../../results/variants/variant-2/rules-audit.json).
 
-Transfer provides a strong head start, but this first batch has not learned reliable river crossing: 59/64 selected transfer episodes end in water. These development scores remain far below the 1,000-average goal. This is one paired experiment, not evidence that transfer always wins.
-
-[Concise comparison](../../results/variants/variant-2/paired-004/comparison.json), [fresh generation data](../../results/variants/variant-2/paired-004/scratch/generation-metrics.csv), [transfer generation data](../../results/variants/variant-2/paired-004/transfer/generation-metrics.csv), [checkpoint/population/replay verification](../../results/variants/variant-2/paired-004/verification.json). All 128 full populations, native checkpoints and selected episodes were verified; 15 targeted mechanics/evolution tests passed. The viewer buttons replay the actual generation 64 populations, while the best selected policies are saved separately.
-
-Earlier rules remain reproducible: `paired-003` used clustered-v2 timing (45.59 fresh / 54.91 transfer); `paired-002` used varied-traffic-v1 (5.22 / 8.58). Each ran 64 generations per line. Their scores are not directly comparable to the current timing. `paired-001` is the earlier synchronized-clock prototype. [Previous concise report](variant-2-varied-traffic-v1.md).
+The first approved-map comparison, `paired-004`, trained fresh and transferred 100-chicken populations for 64 generations each: **204,800 total training episodes**. Their best 64-map development averages were **38.39 fresh / 58.28 transfer**. Transfer began with the actual Variant 1 generation 150 population. [Comparison](../../results/variants/variant-2/paired-004/comparison.json), [verification](../../results/variants/variant-2/paired-004/verification.json). Earlier timing experiments remain archived; their scores use different rules.
 
 ```sh
 npx tsx scripts/audit-variant-two.ts
-npx tsx scripts/verify-variant-two.ts --run=paired-004 --skip-public
-# The current viewer has advanced beyond paired-004.
-npx tsx scripts/continue-variant-two.ts verify --run=transfer-river-002
+npx tsx scripts/continue-variant-two.ts verify --run=transfer-restart-002
 ```
 
-The initial paired runs stopped at their declared 64-generation budgets; continuation runs are separate. Protocols, ancestry, generation counts, selected policies and summaries live in `results/variants/variant-2/`. Every native snapshot and full evaluated generation is retained locally. Git includes the fresh population and strongest confirmed transfer cohort in `public/variant-2/`.
+Protocols, ancestry, selected policies and iteration summaries are in `results/variants/variant-2/`. Full native snapshots and every evaluated population are retained locally. The [development reference release](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-2-development-2026-11-21) also preserves the generation 256 native state and all 256 full cohorts in that lineage, with verified SHA-256 hashes. Git includes the fresh cohort and strongest confirmed transfer cohort in `public/variant-2/`. Replays use actual networks and original locally fetched, hash-verified assets.
