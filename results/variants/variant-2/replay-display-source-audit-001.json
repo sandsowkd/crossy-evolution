@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-11-22T03:37:22.244894+00:00",
+  "sourceRun": "transfer-consistent-fast-001",
+  "changedFiles": [
+    {
+      "file": "src/evolution/replay.ts",
+      "frozenSha256": "76db8369001ef45681d2b414527c01ab802fd4b591af39a547eb293296f74c35",
+      "currentSha256": "9fabbc2a59562226d39a73360d8c4335ead53e73f4f7e9c51ba599d1e08fe6e3",
+      "diff": "--- \n+++ \n@@ -57,7 +57,7 @@\n   get finished() {\n     return this.agents.every((a) => !a.sim.agent.alive);\n   }\n-  snapshot(alpha = 1, terminalSeconds = 0) {\n+  snapshot(alpha = 1, terminalSeconds = 0, allAgents = false) {\n     const tick = Math.max(0, this.decisions - 1 + alpha) * HOP_TICKS,\n       focus = this.current.sim.agent.row,\n       rows = [];\n@@ -98,7 +98,7 @@\n                 : [\"#b3d8ea\", \"#f1c1a1\", \"#d4c5f3\", \"#e1e9a6\"][id % 4],\n           };\n         })\n-        .filter((a) => a.row >= Math.floor(focus) - 6),\n+        .filter((a) => allAgents || a.row >= Math.floor(focus) - 6),\n     };\n   }\n }\n"
+    }
+  ],
+  "allTrainingPhysicsObservationMutationAndSerializationFilesExact": true,
+  "onlyChangeIsOptionalReplayImageAgentFiltering": true,
+  "advanceSeekAndHeadlessEvaluationUnchanged": true,
+  "existingTrainersContinueLoadedFrozenCode": true,
+  "doNotOverwriteConcurrentViewerWork": true,
+  "resumeOriginalProtocolsUsingPreservedSourceBundleIfNeeded": true,
+  "finalMapsOpened": false
+}

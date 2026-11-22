@@ -4,7 +4,7 @@
   "currentThreadId": "01a20124-b277-7841-88aa-08b343676ee6",
   "recoveredTurns": 44,
   "allTurnPagesRecovered": true,
-  "updatedAt": "2026-11-22T02:55:31.118600+00:00",
+  "updatedAt": "2026-11-22T03:40:10.630865+00:00",
   "phase": "training-active-after-verified-migration",
   "activeRuns": [
     {
@@ -59,23 +59,6 @@
       "plannedNewTrainingEpisodes": 3904000
     },
     {
-      "run": "transfer-plasticity-fast-001",
-      "pidAtLaunch": 14740,
-      "initialGeneration": 188,
-      "generationCap": 256,
-      "population": 200,
-      "mapsPerGeneration": 32,
-      "residualMutation": {
-        "rate": 0.15,
-        "sigma": 0.12
-      },
-      "fitnessRiskWeight": 0,
-      "initialization": "resume",
-      "parentRun": "transfer-plasticity-001",
-      "protocolFile": "results/variants/variant-2/transfer-plasticity-fast-001/protocol.json",
-      "plannedNewTrainingEpisodes": 435200
-    },
-    {
       "run": "transfer-adapt-best-001",
       "pidAtLaunch": 14741,
       "initialGeneration": 0,
@@ -108,11 +91,29 @@
       "parentRun": "transfer-consistent-001",
       "protocolFile": "results/variants/variant-2/transfer-risk50-001/protocol.json",
       "plannedNewTrainingEpisodes": 1638400
+    },
+    {
+      "run": "transfer-consistent64-001",
+      "pidAtLaunch": 30706,
+      "initialGeneration": 576,
+      "generationCap": 832,
+      "population": 200,
+      "mapsPerGeneration": 64,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0.25,
+      "initialization": "resume",
+      "parentRun": "transfer-consistent-fast-001",
+      "protocolFile": "results/variants/variant-2/transfer-consistent64-001/protocol.json",
+      "plannedNewTrainingEpisodes": 3276800
     }
   ],
   "monitorStatusFiles": [
     "results/variants/variant-2/recovery-batch-001/monitor-status.json",
-    "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json"
+    "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json",
+    "results/variants/variant-2/consistency64-batch-001/monitor-status.json"
   ],
   "baselineBestDevelopmentMean": 181.0078125,
   "bestAtRecovery": 208.609375,
@@ -123,5 +124,12 @@
   "followupMovedToCurrentThread": true,
   "plannedNewEpisodesAcrossSixRuns": 10892800,
   "verificationEpisodesNotNewTraining": 12800,
-  "finalMapsOpened": false
+  "finalMapsOpened": false,
+  "latestBestDevelopmentMean": 214.5859375,
+  "latestPopulationComparisonFiles": [
+    "results/variants/variant-2/plasticity-closeout-populations-001.json",
+    "results/variants/variant-2/risk50-population-comparison-001.json"
+  ],
+  "newFollowupPlannedTrainingEpisodes": 3276800,
+  "originalRecoveredBatchPlannedTrainingEpisodes": 10892800
 }

@@ -19,7 +19,7 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 
 ## Results
 
-**Best transfer policy: 208.61 average on 256 development maps**, median 137.5, longest run 1,312. It reaches 100 on 159/256 maps and 1,000 on 4/256. This is a 15.25% average improvement over the previous champion (181.01). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
+**Best transfer policy: 214.59 average on 256 development maps**, median 151.5, longest run 1,193. It reaches 100 on 165/256 maps and 1,000 on 1/256. This is a 2.86% average improvement over the previous champion (208.61). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
 
 | Training stage | Best audited 256-map average |
 | --- | ---: |
@@ -29,9 +29,10 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 | Restart from audited river cohort, 16 training maps | 144.96 |
 | Continued native population, 32 training maps | 164.47 |
 | Smaller mutations plus consistency fitness | 181.01 |
-| Continued consistency training, generation 496 | **208.61** |
+| Continued consistency training, generation 496 | 208.61 |
+| Consistency after exact native continuation, generation 540 | **214.59** |
 
-Winner: generation 496, genome 138658 in `transfer-consistent-001`. Its ancestry contains **588 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
+Winner: generation 540, genome 147485 in `transfer-consistent-fast-001`. Its ancestry contains **632 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
 
 On the same 64 development maps, generation 416 populations average **149.43 control / 158.39 fine / 159.62 consistency**, compared with **52.74** for the initial 100-chicken transfer cohort. Every chicken in each current 200-chicken cohort averages at least 100. Consistency’s weakest chicken averages **129.09**. The separate plasticity generation 96 cohort averages 133.55; its training history differs. These population checks total 51,200 development episodes, counted separately from training. [All policies and distributions](../../results/variants/variant-2/population-comparison-003.json).
 
@@ -39,7 +40,15 @@ Random, road-only heuristic and hand-written water-aware baselines average 1.25,
 
 ## Current training
 
-Work has moved from the inaccessible original chat into the recovered chat. **Six 200-chicken experiments are active**: four exact-state continuations with a verified faster encoder, plus adaptation of the strongest cohort and a stronger consistency reward. They have 10,892,800 remaining/new planned training episodes. Every old learned population and its remaining budget is preserved. See the [recovered decisions, run table and verification](variant-2-recovery.md), [live run metadata](../../results/variants/variant-2/recovery-status.json) and [encoder proof](../../results/variants/variant-2/native-migration-001/verification.json). The old run IDs below describe their archived comparison history; do not relaunch those trainers. The same 30-minute follow-up now targets the recovered chat.
+Work continues in the recovered chat. **Six 200-chicken experiments are active**: control, consistency, fine64, adaptation of the best cohort, stronger consistency fitness, and a new 64-map consistency continuation. The older plasticity run completed and passed native checkpoint, all 256 cohort hashes and exact replay verification; its best audited policy averaged 170.00, so the 214.59 champion is preserved.
+
+The new `transfer-consistent64-001` continues the exact native consistency generation 576 population for 256 more generations (3,276,800 training episodes). Only training maps **32→64** and stride **37→69** change. It is a distinct sibling experiment; the original consistency run continues. A sequential map-budget test does not yet establish faster learning.
+
+At matched generation 568, all 200 policies average at least 100 on the same 64 development maps. Their whole-population means are **186.88** with risk weight 0.25 and **189.27** with risk weight 0.50; the weakest policies average **154.77 / 146.38**. The stronger risk weight improves the mean by 1.27% in this comparison but does not improve the weakest policy. The completed plasticity cohort averages **159.36**, versus **124.69** for its starting cohort; the separate adaptation generation 72 cohort averages **168.04**. These five complete-cohort comparisons cost 64,000 development episodes, recorded separately from training. [Matched comparison](../../results/variants/variant-2/risk50-population-comparison-001.json), [plasticity and adaptation](../../results/variants/variant-2/plasticity-closeout-populations-001.json).
+
+The champion's 256-map exact failure replay finds 68 water deaths, 54 eagle captures (37 with a tree ahead) and 25 boundary deaths while on water. [Failure audit](../../results/variants/variant-2/failure-analysis-147485.json). A concurrent source change only adds optional inclusion of off-camera chickens in replay images; physics, training, observations, mutations and replay advancement are unchanged. The new run preserves its new source bundle; existing trainers retain their loaded frozen code. [Source audit](../../results/variants/variant-2/replay-display-source-audit-001.json).
+
+See [recovered decisions and verification](variant-2-recovery.md), [current run metadata](../../results/variants/variant-2/optimization-status.json), and [iteration ledger](../../results/variants/variant-2/iteration-2026-11-21-2035.json). The same 30-minute follow-up targets this chat and reads all current monitor status files.
 
 ## Comparison history
 

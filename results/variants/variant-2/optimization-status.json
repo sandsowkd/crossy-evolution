@@ -1,7 +1,7 @@
 {
   "objective": "Continue the Variant 1 transfer lineage toward 1000+ average on approved Variant 2 physics and keep improving afterward until credits are exhausted.",
   "status": "active",
-  "updatedAt": "2026-11-22T02:55:31.118600+00:00",
+  "updatedAt": "2026-11-22T03:40:10.630865+00:00",
   "rules": "clustered-traffic-v3",
   "activeRuns": [
     {
@@ -56,23 +56,6 @@
       "plannedNewTrainingEpisodes": 3904000
     },
     {
-      "run": "transfer-plasticity-fast-001",
-      "pidAtLaunch": 14740,
-      "initialGeneration": 188,
-      "generationCap": 256,
-      "population": 200,
-      "mapsPerGeneration": 32,
-      "residualMutation": {
-        "rate": 0.15,
-        "sigma": 0.12
-      },
-      "fitnessRiskWeight": 0,
-      "initialization": "resume",
-      "parentRun": "transfer-plasticity-001",
-      "protocolFile": "results/variants/variant-2/transfer-plasticity-fast-001/protocol.json",
-      "plannedNewTrainingEpisodes": 435200
-    },
-    {
       "run": "transfer-adapt-best-001",
       "pidAtLaunch": 14741,
       "initialGeneration": 0,
@@ -105,6 +88,23 @@
       "parentRun": "transfer-consistent-001",
       "protocolFile": "results/variants/variant-2/transfer-risk50-001/protocol.json",
       "plannedNewTrainingEpisodes": 1638400
+    },
+    {
+      "run": "transfer-consistent64-001",
+      "pidAtLaunch": 30706,
+      "initialGeneration": 576,
+      "generationCap": 832,
+      "population": 200,
+      "mapsPerGeneration": 64,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0.25,
+      "initialization": "resume",
+      "parentRun": "transfer-consistent-fast-001",
+      "protocolFile": "results/variants/variant-2/transfer-consistent64-001/protocol.json",
+      "plannedNewTrainingEpisodes": 3276800
     }
   ],
   "bestDevelopmentFile": "results/variants/variant-2/best-development.json",
@@ -155,9 +155,15 @@
       "model": "consistency-generation496",
       "development256Mean": 208.609375,
       "variant2SelectedLineageGenerations": 588
+    },
+    {
+      "model": "consistency-generation540",
+      "development256Mean": 214.5859375,
+      "variant2SelectedLineageGenerations": 632
     }
   ],
   "nextStrategies": [
+    "transfer-consistent64-001 is a distinct sibling from native consistency generation576 with64 training maps and stride69; it retains all learned/evolution state and fitnessRiskWeight0.25.256 new generations/3,276,800 episodes. Do not relaunch completed plasticity. This sequential experiment does not establish faster learning yet.",
     "Six distinct 200-chicken experiments run under immutable protocols. Four exact-state continuations preserve all old populations, RNG, innovations, species, histories and remaining budgets. Do not relaunch superseded run IDs.",
     "The buffer/platform allocation encoder is bit-exact against a frozen oracle, including a complete 200-chicken generation and offspring/residual mutations. 90 tests, typecheck, lint and build pass. One generation measured 1.259x faster; timing is load-dependent.",
     "transfer-adapt-best-001 restarts the actual generation496 cohort selected at208.609375 average, with small all-weight mutations and consistency fitness0.25. It is a combined exploratory strategy, not a matched single-parameter comparison.",
@@ -281,5 +287,47 @@
   "fullCohortAudit": "results/variants/variant-2/transfer-consistent-001/full-cohort-audit-00416.json",
   "additionalMonitorManifest": "results/variants/variant-2/recovery-risk-batch-001/launch-manifest.json",
   "recoveryStatusFile": "results/variants/variant-2/recovery-status.json",
-  "currentThreadId": "01a20124-b277-7841-88aa-08b343676ee6"
+  "currentThreadId": "01a20124-b277-7841-88aa-08b343676ee6",
+  "completedRuns": [
+    {
+      "run": "transfer-plasticity-fast-001",
+      "pidAtLaunch": 14740,
+      "initialGeneration": 188,
+      "generationCap": 256,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "initialization": "resume",
+      "parentRun": "transfer-plasticity-001",
+      "protocolFile": "results/variants/variant-2/transfer-plasticity-fast-001/protocol.json",
+      "plannedNewTrainingEpisodes": 435200,
+      "completedGeneration": 256,
+      "status": "completed-and-native-verified",
+      "verificationFile": "results/variants/variant-2/transfer-plasticity-fast-001/verification.json",
+      "bestAuditedDevelopmentMean256": 170.00390625,
+      "populationMeanDevelopment64": 159.355703125,
+      "completedFullPlasticityStrategyEpisodes": 1638400,
+      "cohortsPreserved": 256,
+      "nextDecision": "Archive this completed strategy and use the slot for a64-map continuation of the stronger consistency population. This is not its descendant."
+    }
+  ],
+  "monitorStatusFiles": [
+    "results/variants/variant-2/recovery-batch-001/monitor-status.json",
+    "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json",
+    "results/variants/variant-2/consistency64-batch-001/monitor-status.json"
+  ],
+  "additionalMonitorStatuses": [
+    "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json",
+    "results/variants/variant-2/consistency64-batch-001/monitor-status.json"
+  ],
+  "latestPopulationComparisonFiles": [
+    "results/variants/variant-2/plasticity-closeout-populations-001.json",
+    "results/variants/variant-2/risk50-population-comparison-001.json"
+  ],
+  "latestFailureAnalysis": "results/variants/variant-2/failure-analysis-147485.json",
+  "sourceDisplayAudit": "results/variants/variant-2/replay-display-source-audit-001.json"
 }

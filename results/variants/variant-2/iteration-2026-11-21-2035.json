@@ -1,0 +1,71 @@
+{
+  "createdAt": "2026-11-22T03:40:10.630865+00:00",
+  "bestDevelopment256": {
+    "meanRow": 214.5859375,
+    "run": "transfer-consistent-fast-001",
+    "generation": 540,
+    "genome": 147485,
+    "selectedLineageVariantTwoGenerationPositions": 632,
+    "inheritedVariantOnePhasePositions": 1174
+  },
+  "completedStrategy": {
+    "run": "transfer-plasticity-fast-001",
+    "pidAtLaunch": 14740,
+    "initialGeneration": 188,
+    "generationCap": 256,
+    "population": 200,
+    "mapsPerGeneration": 32,
+    "residualMutation": {
+      "rate": 0.15,
+      "sigma": 0.12
+    },
+    "fitnessRiskWeight": 0,
+    "initialization": "resume",
+    "parentRun": "transfer-plasticity-001",
+    "protocolFile": "results/variants/variant-2/transfer-plasticity-fast-001/protocol.json",
+    "plannedNewTrainingEpisodes": 435200,
+    "completedGeneration": 256,
+    "status": "completed-and-native-verified",
+    "verificationFile": "results/variants/variant-2/transfer-plasticity-fast-001/verification.json",
+    "bestAuditedDevelopmentMean256": 170.00390625,
+    "populationMeanDevelopment64": 159.355703125,
+    "completedFullPlasticityStrategyEpisodes": 1638400,
+    "cohortsPreserved": 256,
+    "nextDecision": "Archive this completed strategy and use the slot for a64-map continuation of the stronger consistency population. This is not its descendant."
+  },
+  "populationComparisons": [
+    "results/variants/variant-2/plasticity-closeout-populations-001.json",
+    "results/variants/variant-2/risk50-population-comparison-001.json"
+  ],
+  "populationDevelopmentEpisodes": 64000,
+  "failureDiagnosticDevelopmentEpisodes": 256,
+  "failureAnalysis": "results/variants/variant-2/failure-analysis-147485.json",
+  "repeatedValidationIsNotNewTraining": true,
+  "risk50MatchedGeneration568": {
+    "risk025PopulationMean": 186.88484375,
+    "risk050PopulationMean": 189.26734375,
+    "risk025MinimumPolicyMean": 154.765625,
+    "risk050MinimumPolicyMean": 146.375,
+    "interpretation": "Risk0.50 has1.27% higher mean but a lower weakest policy in this single matched run. No general learning-speed advantage established."
+  },
+  "newExperiment": {
+    "run": "transfer-consistent64-001",
+    "pidAtLaunch": 30706,
+    "initialGeneration": 576,
+    "generationCap": 832,
+    "population": 200,
+    "mapsPerGeneration": 64,
+    "residualMutation": {
+      "rate": 0.15,
+      "sigma": 0.12
+    },
+    "fitnessRiskWeight": 0.25,
+    "initialization": "resume",
+    "parentRun": "transfer-consistent-fast-001",
+    "protocolFile": "results/variants/variant-2/transfer-consistent64-001/protocol.json",
+    "plannedNewTrainingEpisodes": 3276800
+  },
+  "sourceDisplayAudit": "results/variants/variant-2/replay-display-source-audit-001.json",
+  "physicsChanged": false,
+  "reservedFinalMapsOpened": false
+}
