@@ -1,11 +1,39 @@
 {
   "run": "v4-focused64-continue-002/focused",
-  "trainerKind": "critical-native-neat",
-  "meanRow": 494.03515625,
+  "trainerKind": "critical-native-neat-study",
   "selectedDirectory": "results/variants/variant-2/v4-focused64-continue-002/focused",
   "generation": 424,
-  "genome": 260314,
-  "maximumRow": 1905,
+  "genome": 260349,
+  "meanRow": 525.11328125,
+  "maximumRow": 1951,
+  "metrics": {
+    "meanRow": 525.11328125,
+    "medianRow": 365,
+    "maximumRow": 1951,
+    "reach100": 0.83984375,
+    "reach300": 0.58984375,
+    "reach1000": 0.14453125,
+    "timeoutRate": 0.0390625,
+    "deaths": {
+      "bounds": 10,
+      "car": 78,
+      "water": 67,
+      "train": 29,
+      "eagle": 62,
+      "timeout": 10
+    }
+  },
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
   "developmentMaps": [
     2550136832,
     2550202369,
@@ -265,37 +293,10 @@
     2566848767
   ],
   "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
+  "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training",
   "teacherRequiredAtInference": false,
   "studentObservation": "native-v9",
   "finalMapsOpened": false,
-  "metrics": {
-    "meanRow": 494.03515625,
-    "medianRow": 348.5,
-    "maximumRow": 1905,
-    "reach100": 0.8515625,
-    "reach300": 0.578125,
-    "reach1000": 0.1328125,
-    "timeoutRate": 0.0234375,
-    "deaths": {
-      "train": 24,
-      "car": 83,
-      "water": 63,
-      "timeout": 6,
-      "eagle": 68,
-      "bounds": 12
-    }
-  },
-  "simulation": {
-    "curriculum": "mixed",
-    "mechanics": "upstream-v2",
-    "maxTicks": 36000,
-    "difficulty": 1,
-    "eagle": {
-      "afterTicks": 600,
-      "warningTicks": 180
-    },
-    "variantTwoRules": "clustered-traffic-v4"
-  },
-  "sourceVerificationFile": "results/variants/variant-2/v4-focused64-continue-002/focused/record-260314-f9916b543886-verification.json",
+  "sourceVerificationFile": "results/variants/variant-2/v4-focused64-continue-002/focused/record-260349-dc2787c82a68-verification.json",
   "publishedPreviewFile": "public/variant-2/transfer.json"
 }
