@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import type { Config } from "../core/types";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { HOP_TICKS, type Config } from "../core/types";
 import type { Genome } from "../evolution/genome";
 import { Replay } from "../evolution/replay";
 import { parseEvolution } from "../evolution/serialization";
+import { loadCohort } from "./cohorts";
+import { populationFrame } from "./population-density";
+import { highlightReplayConfig, highlightTimeline, highlightJumpSeconds, highlightJumpTarget, highlightBestScore,
+  highlightAutomaticSpeed, type HighlightAutoSpeedPlan, HIGHLIGHT_SPEEDS, HIGHLIGHT_REPLAY_OPTIONS } from "./highlight-playback";
 import { WorldView } from "./three/scene";
 import "./highlights.css";
 
@@ -10,32 +14,55 @@ type Highlight = {
   id: string; title: string; phaseGeneration: number; cumulativeGenerations?: number;
   developmentMean: number | null; developmentMaps?: number; developmentMaxTicks?: number;
   config: Config; observationVersion: number; genome: Genome; source: string; totalScore: number;
+  populationSize: number; cohortFile: string; cohortHash: string;
+  populationReplayDecisions: number;
+  automaticPlayback: HighlightAutoSpeedPlan;
   independentFinalMean?: number; independentFinalMaps?: number;
 };
 type Manifest = { mapSeed: number; entries: Highlight[] };
+const emptyStatus = { score: 0, tick: 0, decision: 0, alive: 0, total: 0, largest: 0, groups: 0, eagleDeaths: 0, finished: false };
 
-/** A small set of real archived policies, played on the same declared map. */
+/** Six complete archived generations sharing one map and a relative density scale. */
 export function Highlights() {
   const host = useRef<HTMLDivElement>(null);
   const world = useRef<WorldView | undefined>(undefined);
   const replay = useRef<Replay | undefined>(undefined);
-  const playingRef = useRef(false), speedRef = useRef(1);
+  const bestScore = useRef(0);
+  const playingRef = useRef(false), speedRef = useRef(1), seekToken = useRef(0);
+  const seekingRef = useRef(false);
+  const automaticRef = useRef(true), autoPlan = useRef<HighlightAutoSpeedPlan | undefined>(undefined);
   const [manifest, setManifest] = useState<Manifest>();
-  const [selected, setSelected] = useState(0), [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1), [ready, setReady] = useState(false), [error, setError] = useState("");
-  const [status, setStatus] = useState({ score: 0, tick: 0, death: "", decision: 0 });
-  const entry = manifest?.entries[selected];
-  const publish = () => {
+  const [selected] = useState(() => new URLSearchParams(window.location.search).get("milestone") ?? "initial-population");
+  const [playing, setPlaying] = useState(false), [speed, setSpeed] = useState(1);
+  const [automatic, setAutomatic] = useState(true);
+  const [ready, setReady] = useState(false), [cohortReady, setCohortReady] = useState(false);
+  const [error, setError] = useState(""), [seeking, setSeeking] = useState<number>();
+  const [status, setStatus] = useState(emptyStatus);
+  const entry = manifest?.entries.find(item => item.id === selected) ?? manifest?.entries[0];
+  const selectedIndex = entry ? manifest!.entries.indexOf(entry) : 0;
+  const applyAutomaticSpeed = (decision: number) => {
+    if (!automaticRef.current) return;
+    const next = highlightAutomaticSpeed(decision, autoPlan.current);
+    if (next !== speedRef.current) { speedRef.current = next; setSpeed(next); }
+  };
+  const publish = (render = true) => {
     const r = replay.current;
     if (!r) return;
-    setStatus({ score: r.current.sim.agent.maxRow, tick: r.current.sim.tick,
-      death: r.current.sim.agent.deathReason ?? "", decision: r.decisions });
-    world.current?.update(r.snapshot());
+    applyAutomaticSpeed(r.decisions);
+    const frame = populationFrame(r);
+    bestScore.current = highlightBestScore(r, bestScore.current);
+    setStatus({ score: bestScore.current,
+      tick: r.decisions * HOP_TICKS, decision: r.decisions,
+      ...frame.population, finished: r.finished });
+    if (render) world.current?.update(frame);
   };
+  const pause = () => { playingRef.current = false; setPlaying(false); };
   useEffect(() => {
-    let active = true, frame = 0, last = 0, elapsed = 0;
+    let active = true, frame = 0, last = 0, elapsed = 0, observedSpeed = 1;
     try {
-      world.current = new WorldView(host.current!);
+      world.current = new WorldView(host.current!, undefined, { focusScreenY: -.05, responsiveFollow: true });
+      world.current.select(-1);
+      world.current.renderer.domElement.setAttribute("aria-label", "Archived chicken population, opacity shows group size");
       void world.current.ready.then(() => { if (active) setReady(true); }).catch(e => setError(String(e)));
     } catch (e) { setError(String(e)); }
     void fetch("/highlights.json").then(async response => {
@@ -50,85 +77,129 @@ export function Highlights() {
       const r = replay.current;
       if (observed !== r) { observed = r; elapsed = 0; }
       if (!r) return;
-      if (playingRef.current && !r.finished) {
+      const syncSpeed = () => {
+        applyAutomaticSpeed(r.decisions);
+        // Pending simulation time belongs to the old speed. Preserve its real duration.
+        if (observedSpeed !== speedRef.current) {
+          elapsed *= speedRef.current / observedSpeed;
+          observedSpeed = speedRef.current;
+        }
+      };
+      syncSpeed();
+      if (!playingRef.current || seekingRef.current) elapsed = 0;
+      if (playingRef.current && !seekingRef.current && !r.finished) {
         elapsed += delta * speedRef.current;
         let stepped = false;
-        while (elapsed >= .2 && !r.finished) { elapsed -= .2; r.advance(); stepped = true; }
-        if (stepped) publish();
-        if (r.finished) setPlaying(false);
+        // Yield between batches so a large generation cannot monopolize the UI.
+        const workStarted = performance.now();
+        while (elapsed >= .2 && !r.finished) {
+          elapsed -= .2; r.advance(); stepped = true;
+          syncSpeed();
+          if (performance.now() - workStarted >= 8) break;
+        }
+        if (stepped) publish(false);
+        if (r.finished) pause();
       }
-      world.current?.update(r.snapshot(playingRef.current ? Math.min(1, elapsed / .2) : 1));
+      world.current?.update(populationFrame(r, playingRef.current && !seekingRef.current ? Math.min(1, elapsed / .2) : 1));
     };
     frame = requestAnimationFrame(draw);
-    return () => { active = false; cancelAnimationFrame(frame); world.current?.dispose(); };
+    return () => { active = false; seekToken.current++; cancelAnimationFrame(frame); world.current?.dispose(); };
   }, []);
   useEffect(() => { playingRef.current = playing; }, [playing]);
-  useEffect(() => { speedRef.current = speed; }, [speed]);
   useEffect(() => {
     if (!entry || !manifest) return;
-    replay.current = new Replay([entry.genome], manifest.mapSeed, entry.config);
+    let active = true;
+    seekToken.current++;
+    seekingRef.current = false;
+    pause(); setSeeking(undefined); setCohortReady(false); setError("");
+    replay.current = undefined;
+    autoPlan.current = entry.automaticPlayback;
+    applyAutomaticSpeed(0);
+    bestScore.current = 0;
     world.current?.clear();
-    setPlaying(false);
-    publish();
-  }, [entry, manifest]);
+    setStatus({ ...emptyStatus, total: entry.populationSize });
+    const url = new URL(window.location.href);
+    url.searchParams.set("milestone", entry.id);
+    window.history.replaceState(null, "", url);
+    document.title = `${selectedIndex + 1}. ${entry.title} · ${entry.populationSize} chickens`;
+    void loadCohort({ generation: entry.phaseGeneration, contenders: [entry.genome],
+      populationSize: entry.populationSize, cohortFile: entry.cohortFile, cohortHash: entry.cohortHash,
+    }).then(record => {
+      if (!active) return;
+      replay.current = new Replay(record.contenders, manifest.mapSeed,
+        highlightReplayConfig(entry.config), HIGHLIGHT_REPLAY_OPTIONS);
+      setCohortReady(true); publish();
+    }).catch(e => { if (active) setError(String(e)); });
+    return () => { active = false; };
+  }, [entry, manifest, selectedIndex]);
   const restart = () => {
-    replay.current?.seek(0);
-    world.current?.clear();
-    setPlaying(false);
-    publish();
+    seekToken.current++; setSeeking(undefined); pause();
+    seekingRef.current = false;
+    bestScore.current = 0;
+    replay.current?.seek(0); world.current?.clear(); publish();
   };
-  const step = () => {
-    setPlaying(false);
+  const seek = async (decision: number, fromStart = true, preservePlaying = false) => {
+    if (!preservePlaying) pause();
     const r = replay.current;
     if (!r) return;
-    for (let i = 0; i < 5 && !r.finished; i++) r.advance();
-    publish();
+    const token = ++seekToken.current;
+    const next = fromStart ? new Replay(r.agents.map(agent => agent.genome), r.seed, r.config, r.options) : r;
+    const startDecision = next.decisions;
+    replay.current = next;
+    seekingRef.current = true;
+    setSeeking(0);
+    while (next.decisions < decision && !next.finished) {
+      const start = performance.now();
+      do { next.advance(); } while (next.decisions < decision && !next.finished && performance.now() - start < 10);
+      if (token !== seekToken.current) return;
+      setSeeking(Math.round((next.decisions - startDecision) / Math.max(1, decision - startDecision) * 100));
+      publish();
+      await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      if (token !== seekToken.current) return;
+    }
+    world.current?.clear(); publish();
+    seekingRef.current = false; setSeeking(undefined);
+    if (next.finished) pause();
   };
-  return <main className="highlight-page">
-    <aside className="highlight-sidebar">
-      <a className="highlight-back" href="/">← Return to game</a>
-      <p className="highlight-kicker">VARIANT 1 · THE ARCHIVE</p>
-      <h1>Six moments.<br />1,174 generations.</h1>
-      <p className="highlight-intro">Real brains from the training archives. One shared replay map. Select a milestone to watch.</p>
-      <nav aria-label="Training milestones">
-        {manifest?.entries.map((item, index) => <button key={item.id}
-          aria-current={selected === index ? "true" : undefined}
-          onClick={() => setSelected(index)}>
-          <span className="milestone-number">{String(index + 1).padStart(2, "0")}</span>
-          <span><strong>{item.title}</strong><small>Branch generation {item.phaseGeneration.toLocaleString()}
-            {item.cumulativeGenerations !== undefined ? ` · lineage ${item.cumulativeGenerations.toLocaleString()}` : ""}</small></span>
-          <span aria-hidden="true">↗</span>
-        </button>)}
-      </nav>
-      <p className="highlight-footnote">1,174 counts selected phase positions along warm starts; it excludes side experiments. Earlier checkpoints use shorter episode limits. Scores from different evaluation panels are not directly comparable.</p>
-      <a href="https://github.com/sandsowkd/crossy-evolution/blob/main/docs/variants/variant-1-highlights.md">Read the short experiment writeup ↗</a>
-    </aside>
+  const enabled = ready && cohortReady && seeking === undefined;
+  const timeline = highlightTimeline(status.decision, entry?.populationReplayDecisions ?? 1);
+  return <main className="highlight-page" aria-label={entry?.title ?? "Chicken replay"}>
     <section className="highlight-stage" aria-label="Milestone replay">
-      <div ref={host} className="highlight-world" aria-busy={!ready} />
-      <div className="highlight-title"><span>ARCHIVED POLICY / {String(selected + 1).padStart(2, "0")}</span><h2>{entry?.title ?? "Loading archive…"}</h2>
-        <p>Map {manifest?.mapSeed ?? 42} · original rules · eagle off · {entry ? entry.config.maxTicks / 60 : "—"}s horizon</p>
+      <div ref={host} className="highlight-world" aria-busy={!ready || !cohortReady} />
+      <div className="highlight-status">
+        <strong aria-label="Chickens alive">{status.alive} / {status.total || entry?.populationSize || 0} chickens alive</strong>
+        <span aria-label="Elapsed time">{(status.tick / 60).toFixed(1)}s</span>
       </div>
-      <div className="highlight-score" aria-label="Replay score"><strong>{status.score}</strong><span>FORWARD SCORE</span></div>
-      {entry && <div className="highlight-measurement">
-        <span>{entry.independentFinalMean !== undefined ? "Independent final mean" : "Recorded monitoring / development mean"}</span>
-        <strong>{(entry.independentFinalMean ?? entry.developmentMean)?.toLocaleString(undefined, {maximumFractionDigits: 2}) ?? "Not evaluated"}</strong>
-        <small>{entry.independentFinalMaps ?? entry.developmentMaps ?? ""} maps · {(entry.developmentMaxTicks ?? entry.config.maxTicks) / 60}s episodes</small>
-      </div>}
-      <div className="highlight-transport">
-        <div className="highlight-clock"><strong>{(status.tick / 60).toFixed(1)}s</strong><span>{status.death ? `Episode ended · ${status.death}` : "Deterministic replay · actual neural decisions"}</span></div>
+      <div className="highlight-score" aria-label="Best score"><strong>{status.score}</strong><span>BEST SCORE</span></div>
+      <div className="highlight-transport" aria-label="Replay controls">
         <div className="highlight-controls">
-          <button disabled={!ready || !entry} onClick={restart}>Restart</button>
-          <button disabled={!ready || !entry || Boolean(status.death)} onClick={() => setPlaying(!playing)}>{playing ? "Pause" : "Play"}</button>
-          <button disabled={!ready || !entry || Boolean(status.death)} onClick={step}>Step 1 second</button>
-          <select aria-label="Highlight replay speed" value={speed} onChange={event => setSpeed(Number(event.target.value))}>
-            <option value={1}>1× speed</option><option value={10}>10× speed</option><option value={30}>30× speed</option>
+          <button disabled={!ready || !cohortReady} onClick={restart}>Restart</button>
+          <button disabled={!enabled || status.finished} onClick={() => setPlaying(!playing)}>{playing ? "Pause" : "Play"}</button>
+          <button className="highlight-jump" disabled={!enabled || status.finished}
+            onClick={() => { const r = replay.current; if (r) void seek(highlightJumpTarget(r.decisions, speed), false, true); }}>
+            {seeking !== undefined ? `Jumping… ${seeking}%` : `Jump ${highlightJumpSeconds(speed)} seconds`}
+          </button>
+          <select aria-label="Highlight replay speed" value={speed} onChange={event => {
+            automaticRef.current = false; setAutomatic(false);
+            speedRef.current = Number(event.target.value); setSpeed(speedRef.current);
+          }}>
+            {HIGHLIGHT_SPEEDS.map(multiplier => <option key={multiplier} value={multiplier}>{multiplier}× speed</option>)}
           </select>
+          <button className="highlight-mode" aria-label="Automatic replay speed" aria-pressed={automatic}
+            title="Auto: 5 viewing seconds at 1×, 15 at 10×, 15 at 100×, then 500×; slow down near the final chicken's best score"
+            onClick={() => {
+              const next = !automaticRef.current;
+              automaticRef.current = next; setAutomatic(next);
+              applyAutomaticSpeed(replay.current?.decisions ?? 0);
+            }}>{automatic ? "Auto" : "Manual"}</button>
         </div>
-        <input aria-label="Highlight replay time" type="range" min={0} max={Math.ceil((entry?.config.maxTicks ?? 1800) / 12)} value={status.decision}
-          onChange={event => { setPlaying(false); replay.current?.seek(Number(event.target.value)); world.current?.clear(); publish(); }} />
-        <small>Fixed map full-episode score: {entry?.totalScore ?? "—"} · {entry?.genome.nodes.filter(node => node.kind === "hidden").length ?? 0} hidden nodes · {entry?.genome.connections.filter(edge => edge.enabled).length ?? 0} active connections</small>
+        <div className="highlight-timeline-wrap" style={{ "--replay-progress": `${timeline.percent}%` } as CSSProperties}>
+          <div className="highlight-timeline-track" aria-hidden="true"><div /></div>
+          <input className="highlight-timeline" aria-label="Highlight replay time" type="range" min={0} max={timeline.max} value={timeline.value}
+            disabled={!ready || !cohortReady} onChange={event => { void seek(Number(event.target.value)); }} />
+        </div>
       </div>
-      {(!ready || error) && <div className="highlight-loading" role="status">{error || "Loading original models…"}</div>}
+      {(!ready || !cohortReady || error) && <div className="highlight-loading" role="status">{error || `Loading all ${entry?.populationSize ?? "archived"} chickens…`}</div>}
     </section>
   </main>;
 }

@@ -3,6 +3,7 @@
  * Physics remains exclusively in core/. */
 import * as THREE from "three";
 import { Assets } from "./assets";
+import { followCameraAxis } from "../camera-follow";
 import type { Support } from "../../core/types";
 import { scheduledTrainSignal } from "../../core/variant-two-rules";
 import type { Row } from "../../core/types";
@@ -33,6 +34,9 @@ export type SceneAgent = {
   alive: boolean;
   hop?: number;
   color?: string;
+  /** One density glyph represents populationCount agents at this position. */
+  opacity?: number;
+  populationCount?: number;
   visualY?: number;
   deathReason?: string;
   eagle?: { remainingTicks: number; warning: boolean; captured: boolean; captureTicks: number };
@@ -44,6 +48,7 @@ export type SceneSnapshot = {
   signals: number[];
   tick?: number;
   focus: number;
+  focusX?: number;
   supports?: Support[];
 };
 
@@ -82,6 +87,7 @@ export class WorldView {
   constructor(
     private host: HTMLDivElement,
     onSelect?: (id: number) => void,
+    private framing: { focusScreenY?: number; responsiveFollow?: boolean } = {},
   ) {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this.renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -161,13 +167,19 @@ export class WorldView {
       this.loaded = true;
       if (this.lastSnapshot) this.update(this.lastSnapshot);
     });
-    const draw = () => {
+    let lastFrame = performance.now();
+    const draw = (now = performance.now()) => {
       if (this.disposed) return;
       this.frame = requestAnimationFrame(draw);
-      this.world.position.z +=
-        (-this.target - this.world.position.z) * CAMERA_EASING;
-      this.world.position.x +=
-        (this.targetX - this.world.position.x) * CAMERA_EASING;
+      if (this.framing.responsiveFollow) {
+        const seconds = Math.min(.1, (now - lastFrame) / 1000);
+        this.world.position.z = followCameraAxis(this.world.position.z, -this.target, seconds);
+        this.world.position.x = followCameraAxis(this.world.position.x, this.targetX, seconds);
+      } else {
+        this.world.position.z += (-this.target - this.world.position.z) * CAMERA_EASING;
+        this.world.position.x += (this.targetX - this.world.position.x) * CAMERA_EASING;
+      }
+      lastFrame = now;
       this.renderer.render(this.scene, this.camera);
     };
     draw();
@@ -188,8 +200,8 @@ export class WorldView {
     // the projection centre when necessary, preserving its angle and zoom.
     this.camera.updateMatrixWorld();
     const feet = new THREE.Vector3(0, GROUND, 0).project(this.camera);
-    if (feet.y < -0.7) {
-      const offset = (feet.y + 0.5) * height * scale / this.camera.zoom;
+    if (this.framing.focusScreenY !== undefined || feet.y < -0.7) {
+      const offset = (feet.y - (this.framing.focusScreenY ?? -0.5)) * height * scale / this.camera.zoom;
       this.camera.top += offset;
       this.camera.bottom += offset;
       this.camera.updateProjectionMatrix();
@@ -201,10 +213,14 @@ export class WorldView {
     if (!this.loaded || this.disposed) return;
     const selected = snapshot.agents.find((a) => a.id === this.selected);
     this.target = selected?.row ?? snapshot.focus;
-    if (selected) this.targetX = Math.max(-3, Math.min(2, selected.x));
+    this.targetX = Math.max(-3, Math.min(2, selected?.x ?? snapshot.focusX ?? 0));
     if (this.snapFollow) {
       this.world.position.set(this.targetX, 0, -this.target);
       this.snapFollow = false;
+    } else if (this.framing.responsiveFollow) {
+      // Constrain before culling old rows, including when an entire frame was slow.
+      this.world.position.z = followCameraAxis(this.world.position.z, -this.target, 0);
+      this.world.position.x = followCameraAxis(this.world.position.x, this.targetX, 0);
     }
     const visibleRows = [...snapshot.rows];
     // Original map's eight starting rows are visual scenery behind logical row zero.
@@ -314,6 +330,7 @@ export class WorldView {
     for (const [id, g] of this.agents)
       if (!agentIds.has(id)) {
         this.world.remove(g);
+        this.releaseAgent(g);
         this.agents.delete(id);
       }
     for (const a of snapshot.agents) {
@@ -321,12 +338,34 @@ export class WorldView {
       if (!g) {
         g = new THREE.Group();
         const model = this.assets.chicken();
+        if (a.opacity !== undefined) {
+          const materials: THREE.Material[] = [];
+          model.traverse(child => {
+            if (!(child instanceof THREE.Mesh)) return;
+            const clone = (material: THREE.Material) => {
+              const own = material.clone();
+              own.transparent = true;
+              materials.push(own);
+              return own;
+            };
+            child.material = Array.isArray(child.material) ? child.material.map(clone) : clone(child.material);
+          });
+          g.userData.densityMaterials = materials;
+        }
         g.add(model);
         g.userData.id = a.id;
         g.rotation.y = Math.PI;
         g.userData.previous = { x: -a.x, row: a.row };
         this.agents.set(a.id, g);
         this.world.add(g);
+      }
+      if (a.opacity !== undefined) {
+        for (const material of (g.userData.densityMaterials ?? []) as THREE.Material[]) {
+          material.opacity = a.opacity;
+          material.depthWrite = a.opacity === 1;
+        }
+        // A faint singleton must not cast the same dark shadow as a dense flock.
+        g.traverse(child => { if (child instanceof THREE.Mesh) child.castShadow = a.opacity === 1; });
       }
       const prev = g.userData.previous as { x: number; row: number },
         dx = -a.x - prev.x,
@@ -384,8 +423,12 @@ export class WorldView {
   select(id: number) {
     this.selected = id;
   }
+  private releaseAgent(group: THREE.Group) {
+    for (const material of (group.userData.densityMaterials ?? []) as THREE.Material[]) material.dispose();
+  }
   clear() {
     this.snapFollow = true;
+    for (const group of this.agents.values()) this.releaseAgent(group);
     for (const map of [this.rows, this.hazards, this.agents, this.supports]) {
       for (const g of map.values()) this.world.remove(g);
       map.clear();
@@ -397,6 +440,7 @@ export class WorldView {
     this.disposed = true;
     cancelAnimationFrame(this.frame);
     this.resize.disconnect();
+    for (const group of this.agents.values()) this.releaseAgent(group);
     this.assets.dispose();
     this.eagleGeometry.dispose();
     this.eagleMaterials.forEach(material => material.dispose());

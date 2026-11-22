@@ -4,6 +4,8 @@ import { hazardsAt, signalAt } from "../core/world";
 import { platformsAt } from "../core/upstream";
 import { type Genome } from "./genome";
 import { Network } from "./network";
+import { sensorCount } from "../core/sensor-version";
+export type ReplayOptions = { sparseObservations?: boolean; terrainBehind?: number; terrainAhead?: number };
 export class Replay {
   agents: {
     genome: Genome;
@@ -11,6 +13,7 @@ export class Replay {
     sim: GameSimulation;
     previous: AgentState;
     ticks: number;
+    observationBuffer?: Float32Array;
   }[];
   decisions = 0;
   selected = 0;
@@ -18,15 +21,18 @@ export class Replay {
     genomes: Genome[],
     public seed: number,
     public config: Config,
+    public options: ReplayOptions = {},
   ) {
     this.agents = genomes.map((genome) => {
       const sim = new GameSimulation(config, seed);
+      const network = new Network(genome);
       return {
         genome,
-        network: new Network(genome),
+        network,
         sim,
         previous: { ...sim.agent },
         ticks: 0,
+        observationBuffer: options.sparseObservations ? new Float32Array(sensorCount(network.observationVersion)) : undefined,
       };
     });
   }
@@ -38,7 +44,8 @@ export class Replay {
         a.sim.step(
           manual ??
             a.network.decide(
-              a.sim.getObservation(a.network.observationVersion),
+              a.sim.getObservation(a.network.observationVersion,
+                this.options.sparseObservations ? a.network.requiredInputs : undefined, a.observationBuffer),
             ),
           false,
         );
@@ -47,7 +54,7 @@ export class Replay {
   }
   seek(decision: number) {
     const genomes = this.agents.map((a) => a.genome);
-    this.agents = new Replay(genomes, this.seed, this.config).agents;
+    this.agents = new Replay(genomes, this.seed, this.config, this.options).agents;
     this.decisions = 0;
     for (let i = 0; i < decision; i++) this.advance();
   }
@@ -57,13 +64,13 @@ export class Replay {
   get finished() {
     return this.agents.every((a) => !a.sim.agent.alive);
   }
-  snapshot(alpha = 1, terminalSeconds = 0) {
+  snapshot(alpha = 1, terminalSeconds = 0, allAgents = false) {
     const tick = Math.max(0, this.decisions - 1 + alpha) * HOP_TICKS,
       focus = this.current.sim.agent.row,
       rows = [];
     for (
-      let r = Math.max(0, Math.floor(focus) - 6);
-      r <= Math.floor(focus) + 15;
+      let r = Math.max(0, Math.floor(focus) - (this.options.terrainBehind ?? 6));
+      r <= Math.floor(focus) + (this.options.terrainAhead ?? 15);
       r++
     )
       rows.push(this.current.sim.world.row(r));
@@ -98,7 +105,7 @@ export class Replay {
                 : ["#b3d8ea", "#f1c1a1", "#d4c5f3", "#e1e9a6"][id % 4],
           };
         })
-        .filter((a) => a.row >= Math.floor(focus) - 6),
+        .filter((a) => allAgents || a.row >= Math.floor(focus) - 6),
     };
   }
 }

@@ -6,7 +6,9 @@ import { validGenome } from "../evolution/checkpoint";
 // A small cache keeps long training histories from loading hundreds of
 // populations into browser memory. All original genomes remain on disk.
 const cache = new Map<string, Promise<Genome[]>>();
-export async function loadCohort(record: Generation): Promise<Generation> {
+export async function loadCohort<T extends Pick<Generation,
+  "generation" | "contenders" | "populationSize" | "cohortFile" | "cohortHash"
+>>(record: T): Promise<T> {
   const file = record.cohortFile;
   if (!file || record.contenders.length === record.populationSize)
     return record;

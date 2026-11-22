@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import { gunzipSync } from "node:zlib";
+import { gunzipSync, gzipSync } from "node:zlib";
 import { type Config } from "../src/core/types";
 import { validGenome } from "../src/evolution/checkpoint";
 import { evaluateGenome } from "../src/evolution/evaluation";
@@ -10,6 +10,8 @@ import { type Genome } from "../src/evolution/genome";
 import { Replay } from "../src/evolution/replay";
 import { parseEvolution, stringifyEvolution } from "../src/evolution/serialization";
 import { type Checkpoint } from "../src/evolution/trainer";
+import { highlightReplayConfig, highlightAutoSpeedPlan, type HighlightAutoSpeedPlan,
+  HIGHLIGHT_REPLAY_OPTIONS } from "../src/visualization/highlight-playback";
 
 type Selection = {
   genome: Genome;
@@ -32,6 +34,11 @@ type Highlight = {
   source: string;
   sourceArchive: string;
   policySha256: string;
+  populationSize: number;
+  cohortFile: string;
+  cohortHash: string;
+  populationReplayDecisions: number;
+  automaticPlayback: HighlightAutoSpeedPlan;
   mapSeed: number;
   totalScore: number;
   replayTicks: number;
@@ -49,12 +56,20 @@ const checkpoint = (directory: string) => read<Checkpoint>(path.join(directory, 
 const entries: Highlight[] = [];
 
 function add(
-  metadata: Omit<Highlight, "policySha256" | "mapSeed" | "totalScore" | "replayTicks" | "replayDeathReason" | "observationVersion">,
+  metadata: Omit<Highlight, "policySha256" | "populationSize" | "cohortFile" | "cohortHash" | "populationReplayDecisions" | "automaticPlayback" | "mapSeed" | "totalScore" | "replayTicks" | "replayDeathReason" | "observationVersion">,
   archived: Genome[],
 ) {
   assert.ok(validGenome(metadata.genome), `Invalid saved policy: ${metadata.source}`);
   assert.deepEqual(archived.find((g) => g.id === metadata.genome.id), metadata.genome,
     `Policy does not match its actual population: ${metadata.source}`);
+  assert.ok(archived.every(validGenome), "Invalid genome in the full population");
+  assert.equal(new Set(archived.map(g => g.id)).size, archived.length);
+  const cohortText = stringifyEvolution({ contenders: archived });
+  const cohortFile = `/training-cohorts/highlight-${metadata.id}/${String(metadata.phaseGeneration).padStart(5, "0")}.json.gz`;
+  const compressed = gzipSync(cohortText);
+  assert.deepEqual(parseEvolution(gunzipSync(compressed).toString()), { contenders: archived });
+  fs.mkdirSync(path.dirname(`public${cohortFile}`), { recursive: true });
+  fs.writeFileSync(`public${cohortFile}`, compressed);
   // Variant 1's historical rules explicitly predate the eagle mechanic.
   assert.equal(metadata.config.eagle, undefined);
   const [episode] = evaluateGenome(metadata.genome, [mapSeed], metadata.config);
@@ -63,7 +78,15 @@ function add(
   assert.equal(replay.current.sim.agent.maxRow, episode.score);
   assert.equal(replay.current.sim.tick, episode.ticks);
   assert.equal(replay.current.sim.agent.deathReason, episode.deathReason);
+  // Freeze the full viewing replay's end once, so its timeline never rescales.
+  const populationReplay = new Replay(archived, mapSeed, highlightReplayConfig(metadata.config), HIGHLIGHT_REPLAY_OPTIONS);
+  while (!populationReplay.finished) populationReplay.advance();
+  console.log(`${metadata.title}: ${archived.length} chickens, fixed timeline ${populationReplay.decisions / 5}s`);
   entries.push({ ...metadata,
+    populationReplayDecisions: populationReplay.decisions,
+    automaticPlayback: highlightAutoSpeedPlan(populationReplay),
+    populationSize: archived.length, cohortFile,
+    cohortHash: createHash("sha256").update(cohortText).digest("hex"),
     observationVersion: metadata.genome.observationVersion ?? 1,
     policySha256: createHash("sha256").update(JSON.stringify(metadata.genome)).digest("hex"),
     mapSeed, totalScore: episode.score, replayTicks: episode.ticks,
@@ -156,7 +179,7 @@ add({ id: "variant-1-final", title: "Final Variant 1 policy",
   note: "Frozen memory generation 150, selected before the independent FB assessment. Its 1,174 cumulative selected phase positions include multiple warm starts and NEAT population crossover, not one uninterrupted run. Final mean and interval describe 512 held-out maps for this one policy.",
 }, strongestCohort.genomes);
 
-const manifest = { format: "crossy-evolution-highlights", version: 1, mapSeed,
+const manifest = { format: "crossy-evolution-highlights", version: 4, mapSeed,
   interpretation: "Authentic policies from different recorded phases. Historical horizons and no-eagle rules are preserved. Monitoring, validation and wider-development means use different panels; the fixed-map replay score is an illustration, not a final-test result. Cumulative generations count selected warm-start phase positions only.",
   entries };
 const encoded = stringifyEvolution(manifest);
