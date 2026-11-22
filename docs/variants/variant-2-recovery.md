@@ -43,7 +43,7 @@ All **90 tests**, typecheck, lint and production build pass. Initialization proo
 
 ## Follow-up: completed plasticity and 64-map consistency
 
-The best policy now averages **214.59 over 256 development maps**, median 151.5, maximum 1,193. Winner: consistency generation 540, genome 147485, with 632 Variant 2 lineage positions plus 1,174 inherited Variant 1 positions. The 1,000-average goal remains unmet.
+The best policy now averages **220.58 over 256 development maps**, median 163.5, maximum 981. Winner: 64-map consistency generation 592, genome 157828, with 684 Variant 2 lineage positions plus 1,174 inherited Variant 1 positions. The exact archived cohort and replay verification are recorded in [the latest iteration](../../results/variants/variant-2/iteration-2026-11-21-2135.json). The 1,000-average goal remains unmet.
 
 The older plasticity strategy completed all 256 generations and passed native checkpoint, full archive and exact replay verification. Its best 256-map nominee averaged 170.00. Its final whole population averages 159.36 on 64 maps, up from the starting cohort's 124.69. All data remain preserved; its slot now runs `transfer-consistent64-001`, which resumes the exact consistency generation 576 native state with 64 rather than 32 training maps, for 256 new generations / 3,276,800 training episodes. The original consistency sibling continues, and no faster-learning claim is established.
 
