@@ -19,7 +19,7 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 
 ## Results
 
-**Best transfer policy: 181.01 average on 256 development maps**, median 119.5, longest run 1,002. It reaches 100 on 151/256 maps and 1,000 on 1/256. This is a 10.1% average improvement over the previous champion (164.47; longest run 1,433). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
+**Best transfer policy: 208.61 average on 256 development maps**, median 137.5, longest run 1,312. It reaches 100 on 159/256 maps and 1,000 on 4/256. This is a 15.25% average improvement over the previous champion (181.01). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
 
 | Training stage | Best audited 256-map average |
 | --- | ---: |
@@ -28,15 +28,20 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 | Initial river-focused phase, 200 chickens | 87.73 |
 | Restart from audited river cohort, 16 training maps | 144.96 |
 | Continued native population, 32 training maps | 164.47 |
-| Smaller mutations plus consistency fitness | **181.01** |
+| Smaller mutations plus consistency fitness | 181.01 |
+| Continued consistency training, generation 496 | **208.61** |
 
-Winner: generation 392, genome 117852 in `transfer-consistent-001`. Its ancestry contains **484 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
+Winner: generation 496, genome 138658 in `transfer-consistent-001`. Its ancestry contains **588 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
 
 On the same 64 development maps, generation 416 populations average **149.43 control / 158.39 fine / 159.62 consistency**, compared with **52.74** for the initial 100-chicken transfer cohort. Every chicken in each current 200-chicken cohort averages at least 100. Consistency’s weakest chicken averages **129.09**. The separate plasticity generation 96 cohort averages 133.55; its training history differs. These population checks total 51,200 development episodes, counted separately from training. [All policies and distributions](../../results/variants/variant-2/population-comparison-003.json).
 
 Random, road-only heuristic and hand-written water-aware baselines average 1.25, 50.62 and 100.46 on the same 256 maps. Trainers never use those policies. [Baselines](../../results/variants/variant-2/baselines.json).
 
-## Active comparison
+## Current training
+
+Work has moved from the inaccessible original chat into the recovered chat. **Six 200-chicken experiments are active**: four exact-state continuations with a verified faster encoder, plus adaptation of the strongest cohort and a stronger consistency reward. They have 10,892,800 remaining/new planned training episodes. Every old learned population and its remaining budget is preserved. See the [recovered decisions, run table and verification](variant-2-recovery.md), [live run metadata](../../results/variants/variant-2/recovery-status.json) and [encoder proof](../../results/variants/variant-2/native-migration-001/verification.json). The old run IDs below describe their archived comparison history; do not relaunch those trainers. The same 30-minute follow-up now targets the recovered chat.
+
+## Comparison history
 
 Three lines began from the exact native generation 256 state, with **200 chickens and 32 changing training maps each**:
 

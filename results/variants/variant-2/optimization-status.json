@@ -1,13 +1,13 @@
 {
   "objective": "Continue the Variant 1 transfer lineage toward 1000+ average on approved Variant 2 physics and keep improving afterward until credits are exhausted.",
   "status": "active",
-  "updatedAt": "2026-11-22T02:32:46.341988+00:00",
+  "updatedAt": "2026-11-22T02:55:31.118600+00:00",
   "rules": "clustered-traffic-v3",
   "activeRuns": [
     {
-      "run": "transfer-control-003",
-      "pidAtLaunch": 88803,
-      "initialGeneration": 256,
+      "run": "transfer-control-fast-001",
+      "pidAtLaunch": 14737,
+      "initialGeneration": 520,
       "generationCap": 768,
       "population": 200,
       "mapsPerGeneration": 32,
@@ -16,29 +16,15 @@
         "sigma": 0.35
       },
       "fitnessRiskWeight": 0,
-      "protocolFile": "results/variants/variant-2/transfer-control-003/protocol.json"
+      "initialization": "resume",
+      "parentRun": "transfer-control-003",
+      "protocolFile": "results/variants/variant-2/transfer-control-fast-001/protocol.json",
+      "plannedNewTrainingEpisodes": 1587200
     },
     {
-      "run": "transfer-fine64-001",
-      "pidAtLaunch": 6069,
-      "initialGeneration": 438,
-      "generationCap": 768,
-      "population": 200,
-      "mapsPerGeneration": 64,
-      "residualMutation": {
-        "rate": 0.15,
-        "sigma": 0.12
-      },
-      "fitnessRiskWeight": 0,
-      "protocolFile": "results/variants/variant-2/transfer-fine64-001/protocol.json",
-      "continuationOf": "transfer-fine-001",
-      "remainingGenerations": 330,
-      "plannedNewTrainingEpisodes": 4224000
-    },
-    {
-      "run": "transfer-consistent-001",
-      "pidAtLaunch": 88805,
-      "initialGeneration": 256,
+      "run": "transfer-consistent-fast-001",
+      "pidAtLaunch": 14738,
+      "initialGeneration": 504,
       "generationCap": 768,
       "population": 200,
       "mapsPerGeneration": 32,
@@ -47,12 +33,32 @@
         "sigma": 0.12
       },
       "fitnessRiskWeight": 0.25,
-      "protocolFile": "results/variants/variant-2/transfer-consistent-001/protocol.json"
+      "initialization": "resume",
+      "parentRun": "transfer-consistent-001",
+      "protocolFile": "results/variants/variant-2/transfer-consistent-fast-001/protocol.json",
+      "plannedNewTrainingEpisodes": 1689600
     },
     {
-      "run": "transfer-plasticity-001",
-      "pidAtLaunch": 94588,
-      "initialGeneration": 0,
+      "run": "transfer-fine64-fast-001",
+      "pidAtLaunch": 14739,
+      "initialGeneration": 463,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 64,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "initialization": "resume",
+      "parentRun": "transfer-fine64-001",
+      "protocolFile": "results/variants/variant-2/transfer-fine64-fast-001/protocol.json",
+      "plannedNewTrainingEpisodes": 3904000
+    },
+    {
+      "run": "transfer-plasticity-fast-001",
+      "pidAtLaunch": 14740,
+      "initialGeneration": 188,
       "generationCap": 256,
       "population": 200,
       "mapsPerGeneration": 32,
@@ -61,12 +67,44 @@
         "sigma": 0.12
       },
       "fitnessRiskWeight": 0,
-      "initialization": "selected-generation252-cohort",
-      "legacyWeightMutation": {
-        "rate": 0.02,
-        "sigma": 0.03
+      "initialization": "resume",
+      "parentRun": "transfer-plasticity-001",
+      "protocolFile": "results/variants/variant-2/transfer-plasticity-fast-001/protocol.json",
+      "plannedNewTrainingEpisodes": 435200
+    },
+    {
+      "run": "transfer-adapt-best-001",
+      "pidAtLaunch": 14741,
+      "initialGeneration": 0,
+      "generationCap": 256,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
       },
-      "protocolFile": "results/variants/variant-2/transfer-plasticity-001/protocol.json"
+      "fitnessRiskWeight": 0.25,
+      "initialization": "selected-cohort",
+      "parentRun": "transfer-consistent-001",
+      "protocolFile": "results/variants/variant-2/transfer-adapt-best-001/protocol.json",
+      "plannedNewTrainingEpisodes": 1638400
+    },
+    {
+      "run": "transfer-risk50-001",
+      "pidAtLaunch": 15175,
+      "initialGeneration": 504,
+      "generationCap": 760,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0.5,
+      "initialization": "resume",
+      "parentRun": "transfer-consistent-001",
+      "protocolFile": "results/variants/variant-2/transfer-risk50-001/protocol.json",
+      "plannedNewTrainingEpisodes": 1638400
     }
   ],
   "bestDevelopmentFile": "results/variants/variant-2/best-development.json",
@@ -80,7 +118,7 @@
     "Use verify --publish and candidate audits to promote only a stronger 256-map development policy.",
     "Audit files cache previously evaluated candidate fingerprints to avoid redoing the same development work.",
     "Continue bounded native checkpoints after each budget; a completed batch does not end the user request.",
-    "Do not revive the closed Variant 1 heartbeat."
+    "Do not revive the closed Variant 1 heartbeat or send further work to the inaccessible previous chat."
   ],
   "milestones": [
     {
@@ -112,31 +150,34 @@
       "model": "consistency-generation392",
       "development256Mean": 181.0078125,
       "variant2SelectedLineageGenerations": 484
+    },
+    {
+      "model": "consistency-generation496",
+      "development256Mean": 208.609375,
+      "variant2SelectedLineageGenerations": 588
     }
   ],
   "nextStrategies": [
-    "Continue control, consistency and plasticity; transfer-fine64-001 now resumes the exact native generation438 fine-step state with64 training maps and stride69. Its remaining330-generation budget is4,224,000 planned training episodes. Do not relaunch the superseded fine32 run. This sequential continuation does not isolate a causal map-count effect.",
-    "Control uses residual mutation rate0.3/sigma0.35; fine uses0.15/0.12; consistent uses0.15/0.12 plus riskWeight0.25. No physics changes.",
-    "The native monitor audits every32 committed generations on256 development maps and publishes improvements serially; all512 final maps remain unopened.",
-    "After this bounded batch, compare the best policy and full population distributions on the same development suites before choosing the next run.",
-    "Code hashes freeze src/core,src/evolution and scripts/continue-variant-two.ts for these active runs. Source bundles are preserved automatically.",
-    "A separate buffer/platform encoding prototype reproduced17604 decision observations plus3000 random state/mask comparisons and measured1.147x faster evaluation over64 maps. It has not changed live training. Consider a verified version migration after the matched batch, preserving all native states.",
-    "Observation diagnostic: one-hop water-risk features lift the frozen Variant1 policy from48.70 to168.49, but change the current trained policy from164.47 to161.60 despite reducing water deaths68to16. This is feature engineering with zero new evolution, not a trained/promoted model. Study the resulting eagle/car tradeoff in a separately versioned future experiment; do not modify live trainer semantics.",
-    "New transfer-plasticity-001 restarts the audited best generation252 cohort with small inherited-weight mutations and gentler topology changes/crossover. It is a combined exploratory strategy, not part of the three matched parameter lines. Preserve its metadata and compare on unchanged development maps.",
-    "Generation416 whole cohorts on the same64 development maps average149.4302 control,158.3948 fine and159.6173 consistency; all200 policies in every line average100+. Best nominee audits on256 maps favor consistency181.0078 versus control169.5313 andfine158.7461. Complete the bounded comparison before claiming faster learning from64-map selection."
+    "Six distinct 200-chicken experiments run under immutable protocols. Four exact-state continuations preserve all old populations, RNG, innovations, species, histories and remaining budgets. Do not relaunch superseded run IDs.",
+    "The buffer/platform allocation encoder is bit-exact against a frozen oracle, including a complete 200-chicken generation and offspring/residual mutations. 90 tests, typecheck, lint and build pass. One generation measured 1.259x faster; timing is load-dependent.",
+    "transfer-adapt-best-001 restarts the actual generation496 cohort selected at208.609375 average, with small all-weight mutations and consistency fitness0.25. It is a combined exploratory strategy, not a matched single-parameter comparison.",
+    "transfer-risk50-001 resumes the exact consistency generation504 population with riskWeight0.5 instead of0.25, retaining its training-map stream and all evolution state. Compare with the unchanged consistency continuation at the same generations.",
+    "Monitors audit every32 committed generations, preserve the best verified256-map development policy and actual cohort, and never open final maps.",
+    "Compare completed batches and continue bounded native runs. If plateaus persist, diagnose observation/action failures before changing sensor versions or architecture. Do not silently replace learned policies with hand-written rules."
   ],
-  "monitorManifest": "results/variants/variant-2/parameter-batch-001/continuation-launch-manifest.json",
-  "monitorStatus": "results/variants/variant-2/parameter-batch-001/monitor-status.json",
+  "monitorManifest": "results/variants/variant-2/recovery-batch-001/launch-manifest.json",
+  "monitorStatus": "results/variants/variant-2/recovery-batch-001/monitor-status.json",
   "populationComparisonFile": "results/variants/variant-2/population-comparison-003.json",
   "followupAutomation": "improve-variant-2-chickens",
   "firstMatchedComparison": "results/variants/variant-2/parameter-batch-001/comparison-00288.json",
   "checkpointStorageGuard": {
-    "thresholdBytes": 100000000,
-    "currentParserLimitChars": 128000000,
+    "thresholdBytes": 199680000,
+    "defaultImportLimitCharacters": 128000000,
+    "nativeParserLimitCharacters": 256000000,
     "monitorStopsAtCompletedGenerationBoundary": true,
-    "nextAction": "If a checkpoint-migration-request.json appears, preserve native state, stop remaining active trainers at safe boundaries, version the native parser/storage limit and validate the buffered encoder optimization, then prepare exact-state continuations for each remaining planned budget. Do not reset learned populations or silently change physics."
+    "nextAction": "Preserve exact native state and declare another immutable migration if a checkpoint-migration-request.json appears; do not discard populations."
   },
-  "additionalMonitorStatus": "results/variants/variant-2/plasticity-batch-001/monitor-status.json",
+  "additionalMonitorStatus": "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json",
   "continuedRuns": [
     {
       "run": "transfer-fine-001",
@@ -156,10 +197,89 @@
       "completedNewTrainingEpisodes": 1164800,
       "continuedAs": "transfer-fine64-001",
       "handoffFile": "results/variants/variant-2/transfer-fine-001/continuation-handoff.json"
+    },
+    {
+      "run": "transfer-control-003",
+      "pidAtLaunch": 88803,
+      "initialGeneration": 256,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.3,
+        "sigma": 0.35
+      },
+      "fitnessRiskWeight": 0,
+      "protocolFile": "results/variants/variant-2/transfer-control-003/protocol.json",
+      "stoppedGeneration": 520,
+      "continuedAs": "transfer-control-fast-001",
+      "handoffFile": "results/variants/variant-2/transfer-control-003/continuation-handoff.json"
+    },
+    {
+      "run": "transfer-fine64-001",
+      "pidAtLaunch": 6069,
+      "initialGeneration": 438,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 64,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "protocolFile": "results/variants/variant-2/transfer-fine64-001/protocol.json",
+      "continuationOf": "transfer-fine-001",
+      "remainingGenerations": 330,
+      "plannedNewTrainingEpisodes": 4224000,
+      "stoppedGeneration": 463,
+      "continuedAs": "transfer-fine64-fast-001",
+      "handoffFile": "results/variants/variant-2/transfer-fine64-001/continuation-handoff.json"
+    },
+    {
+      "run": "transfer-consistent-001",
+      "pidAtLaunch": 88805,
+      "initialGeneration": 256,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0.25,
+      "protocolFile": "results/variants/variant-2/transfer-consistent-001/protocol.json",
+      "stoppedGeneration": 504,
+      "continuedAs": "transfer-consistent-fast-001",
+      "handoffFile": "results/variants/variant-2/transfer-consistent-001/continuation-handoff.json"
+    },
+    {
+      "run": "transfer-plasticity-001",
+      "pidAtLaunch": 94588,
+      "initialGeneration": 0,
+      "generationCap": 256,
+      "population": 200,
+      "mapsPerGeneration": 32,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.12
+      },
+      "fitnessRiskWeight": 0,
+      "initialization": "selected-generation252-cohort",
+      "legacyWeightMutation": {
+        "rate": 0.02,
+        "sigma": 0.03
+      },
+      "protocolFile": "results/variants/variant-2/transfer-plasticity-001/protocol.json",
+      "stoppedGeneration": 188,
+      "continuedAs": "transfer-plasticity-fast-001",
+      "handoffFile": "results/variants/variant-2/transfer-plasticity-001/continuation-handoff.json"
     }
   ],
   "latestMatchedComparison": "results/variants/variant-2/parameter-batch-001/comparison-00416.json",
   "latestTrainingLedger": "results/variants/variant-2/training-ledger-map-budget-start.json",
   "earlyMapBudgetAudit": "results/variants/variant-2/transfer-fine64-001/candidate-audit-00440.json",
-  "fullCohortAudit": "results/variants/variant-2/transfer-consistent-001/full-cohort-audit-00416.json"
+  "fullCohortAudit": "results/variants/variant-2/transfer-consistent-001/full-cohort-audit-00416.json",
+  "additionalMonitorManifest": "results/variants/variant-2/recovery-risk-batch-001/launch-manifest.json",
+  "recoveryStatusFile": "results/variants/variant-2/recovery-status.json",
+  "currentThreadId": "01a20124-b277-7841-88aa-08b343676ee6"
 }

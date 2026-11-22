@@ -62,12 +62,14 @@ def main():
                 generation = head["generation"] if head else protocol["initialGeneration"]
                 snapshot_path = directory / "snapshots" / f"{generation:05d}.json"
                 migration_file = directory / "checkpoint-migration-request.json"
-                if live and head and snapshot_path.stat().st_size >= 100_000_000 and not migration_file.exists():
-                    # Leave ample room under the native parser's128MB input limit.
+                checkpoint_limit = protocol.get("nativeCheckpointMaxCharacters", 128_000_000)
+                checkpoint_guard = 100_000_000 if checkpoint_limit == 128_000_000 else int(checkpoint_limit * .78)
+                if live and head and snapshot_path.stat().st_size >= checkpoint_guard and not migration_file.exists():
+                    # Stop at a completed boundary with room under this protocol's native parser limit.
                     # A later versioned continuation can upgrade storage without losing a generation.
                     write_json(migration_file, {"requestedAt": now(), "generation": generation,
                                                "snapshotBytes": snapshot_path.stat().st_size,
-                                               "reason": "Migrate checkpoint storage before the128MB parser limit",
+                                               "reason": f"Migrate checkpoint storage before the {checkpoint_limit} character parser limit",
                                                "remainingPlannedGenerations": protocol["generationCap"] - generation,
                                                "preserveNativePopulationRngInnovationsAndSpecies": True})
                     os.kill(job["pid"], signal.SIGTERM)

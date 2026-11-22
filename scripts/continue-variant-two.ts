@@ -5,7 +5,7 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { performance } from "node:perf_hooks";
 import { setImmediate } from "node:timers/promises";
 import { Trainer, type TrainingConfig, type Checkpoint } from "../src/evolution/trainer";
-import { parseCheckpoint } from "../src/evolution/checkpoint";
+import { parseCheckpoint, NATIVE_MAX_CHECKPOINT_CHARACTERS } from "../src/evolution/checkpoint";
 import { type Genome } from "../src/evolution/genome";
 import { Innovations } from "../src/evolution/genome";
 import { RNG, hash } from "../src/core/rng";
@@ -27,7 +27,8 @@ type Snapshot = {format: "crossy-v2-continuation-snapshot"; version: 1; protocol
   checkpoint: Checkpoint; selected: Selection; nominations: VariantTwoNomination[];
   seconds: number; developmentEpisodes: number; previousSnapshotSha256: string | null;
   knownRepeatedTrainingEpisodes: number};
-type Protocol = {format: "crossy-v2-continuation"; version: 1; run: string; mode: "normal" | "river-inputs";
+type Protocol = {format: "crossy-v2-continuation"; version: 1 | 2; run: string; mode: "normal" | "river-inputs";
+  nativeCheckpointMaxCharacters?: number;
   initialization?: "resume" | "selected-cohort"; selectionOverride?: {file: string; sha256: string};
   parent: {directory: string; snapshotFile: string; snapshotSha256: string; checkpointGeneration: number};
   initialGeneration: number; generationCap: number; lineageOffset: number; inheritedVariantOnePhasePositions: number;
@@ -39,6 +40,7 @@ const codeFiles = [...fs.readdirSync("src/core").filter(f => f.endsWith(".ts")).
   ...fs.readdirSync("src/evolution").filter(f => f.endsWith(".ts")).map(f => `src/evolution/${f}`),
   "scripts/continue-variant-two.ts"].sort();
 const codeHash = () => sha256(codeFiles.map(f => `${f}:${sha256(fs.readFileSync(f))}`).join("\n"));
+const parseNativeCheckpoint = (text: string) => parseCheckpoint(text, NATIVE_MAX_CHECKPOINT_CHARACTERS);
 function readHead(source: string) {
   const head = JSON.parse(fs.readFileSync(`${source}/HEAD.json`, "utf8")) as {generation: number; snapshotSha256: string};
   const file = `${source}/snapshots/${String(head.generation).padStart(5, "0")}.json`;
@@ -69,7 +71,7 @@ if (command === "prepare") {
   const mode = option("mode", "normal") as Protocol["mode"]; assert.ok(["normal", "river-inputs"].includes(mode));
   const additional = Number(option("generations", "128")); assert.ok(Number.isInteger(additional) && additional > 0 && additional <= 512);
   const {head, file, snapshot: parent} = readHead(source);
-  const checkpoint = parseCheckpoint(stringifyEvolution(parent.checkpoint)); checkArchives(source, checkpoint);
+  const checkpoint = parseNativeCheckpoint(stringifyEvolution(parent.checkpoint)); checkArchives(source, checkpoint);
   assert.deepEqual(checkpoint.config.simulation, VARIANT_TWO_CONFIG);
   const previousProtocolFile = fs.existsSync(`${source}/protocol.json`) ? `${source}/protocol.json` : `${path.dirname(source)}/protocol.json`;
   const previousProtocol = JSON.parse(fs.readFileSync(previousProtocolFile, "utf8")) as Partial<Protocol>;
@@ -119,7 +121,8 @@ if (command === "prepare") {
   const duplicateNewTrainingMapPositions = newSeeds.length - new Set(newSeeds).size;
   assert.ok(newSeeds.every(seed => !confirmation.includes(seed) && !VARIANT_TWO_DEVELOPMENT_SEEDS.includes(seed) &&
     !VARIANT_TWO_RESERVED_FINAL_SEEDS.includes(seed)), "Training and evaluation maps overlap");
-  const p: Protocol = {format: "crossy-v2-continuation", version: 1, run, mode, initialization,
+  const p: Protocol = {format: "crossy-v2-continuation", version: 2, run, mode, initialization,
+    nativeCheckpointMaxCharacters: NATIVE_MAX_CHECKPOINT_CHARACTERS,
     ...(selectionOverride ? {selectionOverride} : {}),
     parent: {directory: source, snapshotFile: file, snapshotSha256: head.snapshotSha256, checkpointGeneration: checkpoint.generation},
     initialGeneration: initial, generationCap: initial + additional,
@@ -140,7 +143,7 @@ if (command === "prepare") {
 const protocol = JSON.parse(fs.readFileSync(protocolFile, "utf8")) as Protocol;
 const protocolHash = sha256(JSON.stringify(protocol));
 function commit(snapshot: Snapshot) {
-  parseCheckpoint(stringifyEvolution(snapshot.checkpoint));
+  parseNativeCheckpoint(stringifyEvolution(snapshot.checkpoint));
   const encoded = stringifyEvolution(snapshot), hash = sha256(encoded), generation = snapshot.checkpoint.generation;
   immutable(`${directory}/snapshots/${String(generation).padStart(5, "0")}.json`, encoded);
   atomic(`${directory}/checkpoint.json`, stringifyEvolution(snapshot.checkpoint));
@@ -161,7 +164,7 @@ function commit(snapshot: Snapshot) {
 }
 if (command === "verify") {
   const {head, snapshot} = readHead(directory); assert.equal(snapshot.protocolSha256, protocolHash);
-  const checkpoint = parseCheckpoint(stringifyEvolution(snapshot.checkpoint)); checkArchives(directory, checkpoint);
+  const checkpoint = parseNativeCheckpoint(stringifyEvolution(snapshot.checkpoint)); checkArchives(directory, checkpoint);
   const selected = snapshot.selected, data = cohort(selected.directory, selected.generation);
   const genomes = parseEvolution<{contenders: Genome[]}>(data.text).contenders;
   assert.deepEqual(genomes.find(g => g.id === selected.genome.id), selected.genome);
@@ -203,11 +206,11 @@ try {
   if (process.argv.includes("--resume")) {
     const saved = readHead(directory); snapshot = saved.snapshot; previous = saved.head.snapshotSha256;
     assert.equal(snapshot.protocolSha256, protocolHash); checkArchives(directory, snapshot.checkpoint);
-    trainer = Trainer.restore(parseCheckpoint(stringifyEvolution(snapshot.checkpoint)));
+    trainer = Trainer.restore(parseNativeCheckpoint(stringifyEvolution(snapshot.checkpoint)));
   } else {
     assert.equal(fs.existsSync(`${directory}/HEAD.json`), false, "Existing run requires --resume");
     const text = fs.readFileSync(protocol.parent.snapshotFile, "utf8"); assert.equal(sha256(text), protocol.parent.snapshotSha256);
-    const parent = parseEvolution<Snapshot>(text), cp = parseCheckpoint(stringifyEvolution(parent.checkpoint));
+    const parent = parseEvolution<Snapshot>(text), cp = parseNativeCheckpoint(stringifyEvolution(parent.checkpoint));
     const parentProtocolPath = fs.existsSync(`${protocol.parent.directory}/protocol.json`) ? `${protocol.parent.directory}/protocol.json` : `${path.dirname(protocol.parent.directory)}/protocol.json`;
     const parentOffset = (JSON.parse(fs.readFileSync(parentProtocolPath, "utf8")) as Partial<Protocol>).lineageOffset ?? 0;
     let selected = readSelection(parent, protocol.parent.directory, parentOffset);

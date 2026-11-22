@@ -1,5 +1,6 @@
 import { hazardsAt, signalAt, type World } from "./world";
-import { platformsAt } from "./upstream";
+import { platformsAt, sourceFramePosition } from "./upstream";
+import { modulo } from "./rng";
 import { sensorIndex, sensorCount, VARIANT_TWO_EXTRA_INPUTS, VARIANT_TWO_INPUT_START } from "./sensor-version";
 import {
   DELTA,
@@ -226,6 +227,7 @@ export function observation(
 }
 
 const variantTwoPrefixMasks = new WeakMap<Uint8Array, Uint8Array>();
+const variantTwoPrefixViews = new WeakMap<Float32Array, Float32Array>();
 /** Same V9 channels and arithmetic; skip unused inputs and share platform positions. */
 function sparseVariantTwoObservation(world: World, agent: AgentState, tick: number,
   mask: Uint8Array, target?: Float32Array): Float32Array {
@@ -235,13 +237,25 @@ function sparseVariantTwoObservation(world: World, agent: AgentState, tick: numb
   let prefix = variantTwoPrefixMasks.get(mask);
   if (!prefix) {prefix = mask.slice(0, INPUT_COUNT); variantTwoPrefixMasks.set(mask, prefix);}
   const out = target ?? new Float32Array(size);
-  out.fill(0); out.set(observation(world, agent, tick, 8, prefix));
-  const now = new Map<Row, ReturnType<typeof platformsAt>>(), later = new Map<Row, ReturnType<typeof platformsAt>>();
+  out.fill(0);
+  let view = variantTwoPrefixViews.get(out);
+  if (!view) {view = out.subarray(0, INPUT_COUNT); variantTwoPrefixViews.set(out, view);}
+  observation(world, agent, tick, 8, prefix, view);
+  const now = new Map<Row, number[]>(), later = new Map<Row, number[]>();
   const supported = (row: Row, future: boolean, x: number) => {
+    if (!row.platforms?.length) return 0;
     const cache = future ? later : now;
-    let platforms = cache.get(row);
-    if (!platforms) {platforms = platformsAt(row, tick + (future ? HOP_TICKS : 0)); cache.set(row, platforms);}
-    return +platforms.some(p => Math.abs(p.x - x) < p.length / 2 + .25);
+    let positions = cache.get(row);
+    if (!positions) {
+      const time = tick + (future ? HOP_TICKS : 0);
+      positions = row.platforms.map(p => row.platformLoop ?
+        modulo(p.offset + p.speed * time / 60 + row.platformLoop / 2, row.platformLoop) - row.platformLoop / 2 :
+        sourceFramePosition(p.offset, p.speed / 60, time));
+      cache.set(row, positions);
+    }
+    for (let i = 0; i < positions.length; i++)
+      if (Math.abs(positions[i] - x) < row.platforms[i].length / 2 + .25) return 1;
+    return 0;
   };
   const cx = Math.round(agent.x), cy = Math.round(agent.row);
   let index = INPUT_COUNT;

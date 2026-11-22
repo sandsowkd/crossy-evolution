@@ -8,6 +8,8 @@ import { parseEvolution } from "./serialization";
 import { sensorCount, sensorNodeId, VARIANT_TWO_INPUT_START } from "../core/sensor-version";
 /** Accommodate resumed full-population histories while keeping imports bounded. */
 export const MAX_CHECKPOINT_CHARACTERS = 128_000_000;
+/** Explicit opt-in for trusted headless histories; UI imports retain the smaller bound. */
+export const NATIVE_MAX_CHECKPOINT_CHARACTERS = 256_000_000;
 export function validGenome(g: Genome) {
   if (
     !g ||
@@ -70,9 +72,11 @@ export function validGenome(g: Genome) {
   }
   return true;
 }
-export function parseCheckpoint(text: string): Checkpoint {
-  if (text.length > MAX_CHECKPOINT_CHARACTERS)
-    throw new Error("Checkpoint exceeds 128 MB limit");
+export function parseCheckpoint(text: string, maxCharacters = MAX_CHECKPOINT_CHARACTERS): Checkpoint {
+  if (!Number.isInteger(maxCharacters) || maxCharacters < 1 || maxCharacters > NATIVE_MAX_CHECKPOINT_CHARACTERS)
+    throw new Error("Invalid checkpoint size limit");
+  if (text.length > maxCharacters)
+    throw new Error(`Checkpoint exceeds ${maxCharacters / 1_000_000} MB limit`);
   const c = parseEvolution<Checkpoint>(text);
   if (
     c?.format !== "crossy-evolution" ||
