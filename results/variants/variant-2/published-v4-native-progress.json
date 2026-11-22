@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-22T19:45:13.810Z",
+  "createdAt": "2026-11-22T21:43:37.270Z",
   "simulationContract": "clustered-traffic-v4",
   "studentObservation": "native-v9",
   "inferenceUsesTeacher": false,
@@ -13,41 +13,43 @@
   "records": [
     {
       "kind": "development",
-      "run": "v4-pareto-strong-source-003/pareto",
-      "generation": 16,
-      "genome": 253827,
-      "meanRow": 456.0703125,
-      "maximumRow": 1991,
+      "run": "v4-focused64-continue-002/focused",
+      "generation": 424,
+      "genome": 260314,
+      "meanRow": 494.03515625,
+      "maximumRow": 1905,
       "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
       "previewFile": "public/variant-2/transfer.json",
       "actualSavedCohort": 200,
-      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
-      "sourceCohortSha256": "07be46ddf9945dd0538f312019d267007b90a25855ff9aa0da76a9b46bddfece",
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 102400
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceCohortSha256": "36f6b0bdebadf1f1cb11a86fb049159570b4c9f02bb9af110f4953d6f3a523e8",
+      "declaredContinuationStartGeneration": 320,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 1331200
     },
     {
       "kind": "peak-development",
-      "run": "v4-pareto-strong-source-002/pareto",
-      "generation": 64,
-      "genome": 252323,
-      "meanRow": 336.39453125,
-      "maximumRow": 2123,
+      "run": "v4-mean-source-rng-b-003/pareto",
+      "generation": 36,
+      "genome": 257811,
+      "meanRow": 366.25390625,
+      "maximumRow": 2222,
       "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json",
       "previewFile": "public/variant-2/peak.json",
       "actualSavedCohort": 200,
       "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
-      "sourceCohortSha256": "d7a9e5f7630209e5b0bce2c794f3d48006913dba4b5a0cff60c46baf385b0b9e",
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600
+      "sourceCohortSha256": "d91f4de06945c229a36b879bfe50dede21eacc5970147a2555f03cb78e903328",
+      "declaredContinuationStartGeneration": 0,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 230400
     }
   ],
-  "method": "Native NEAT evolves inherited ordinary-input policies through gameplay under coequal training mean/maximum Pareto fitness. Both published child runs use zero critical/safety label fitness and make no teacher queries, while retaining critical-guidance ancestry. Selected-cohort resets and RNG reseeding are explicit; the mean record used102400 new gameplay episodes after its declared restart, not training from scratch. Both choose every ordinary V9/Network/Replay action. Each policy retains its own metrics.",
+  "method": "Native NEAT evolves inherited ordinary-input policies through gameplay. The mean policy is an exact320→448 continuation retaining394 fixed critical fitness examples at margin10; they affect training fitness only. The separate peak policy comes from a selected425cohort RNG/training-stream sibling with coequal native mean/maximum Pareto fitness and zero label fitness. Both make zero teacher queries in these child studies and choose every ordinary V9/Network/Replay action. Per-policy metrics, inherited ancestry, new gameplay, candidate selection and repeat verification remain distinct.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
     "maximumRow": 1724,
     "scope": "Same unchanged V3 policy re-evaluated under V4; new-physics baseline, not learning"
   },
-  "publicationScope": "Verified native snapshot and actual200-member champion cohorts; unchanged V4 physics and ordinary inference. Private observation reference studies, unrelated concurrent work, giant live snapshots and logs excluded.",
+  "publicationScope": "Verified native actual200-member champion cohorts; unchanged V4 physics/ordinary inference. Private observation reference studies, unrelated concurrent work, giant live snapshots and logs excluded.",
   "lineageProofFile": "results/variants/variant-2/published-v4-native-lineage-proof.json",
   "goalAverage": 1000,
   "goalMet": false
