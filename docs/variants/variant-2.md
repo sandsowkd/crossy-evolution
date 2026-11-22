@@ -19,7 +19,7 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 
 ## Results
 
-**Best transfer policy: 220.58 average on 256 development maps**, median 163.5, longest run 981. It reaches 100 on 176/256 maps and 1,000 on 0/256. This is a 2.79% average improvement over the previous champion (214.59). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
+**Best transfer policy: 223.80 average on 256 development maps**, median 160.5, longest run 1,330. It reaches 100 on 179/256 maps and 1,000 on 1/256. This is a 1.46% average improvement over the previous champion (220.58). The 1,000-average goal remains unmet. These are development-selection results; **all 512 final maps remain unopened**.
 
 | Training stage | Best audited 256-map average |
 | --- | ---: |
@@ -31,9 +31,10 @@ The current **`clustered-traffic-v3`** rules are explicit project changes:
 | Smaller mutations plus consistency fitness | 181.01 |
 | Continued consistency training, generation 496 | 208.61 |
 | Consistency after exact native continuation, generation 540 | 214.59 |
-| Consistency with 64 training maps, generation 592 | **220.58** |
+| Consistency with 64 training maps, generation 592 | 220.58 |
+| Continued 64-map consistency, generation 624 | **223.80** |
 
-Winner: generation 592, genome 157828 in `transfer-consistent64-001`. Its ancestry contains **684 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
+Winner: generation 624, genome 164315 in `transfer-consistent64-001`. Its ancestry contains **716 Variant 2 generation positions plus 1,174 inherited Variant 1 positions**. Sibling searches and repeated validation are counted separately. [Policy and evaluation](../../results/variants/variant-2/best-development.json), [matched iteration comparison](../../results/variants/variant-2/parameter-batch-001/comparison-00416.json), [search ledger](../../results/variants/variant-2/training-ledger-map-budget-start.json).
 
 On the same 64 development maps, generation 416 populations average **149.43 control / 158.39 fine / 159.62 consistency**, compared with **52.74** for the initial 100-chicken transfer cohort. Every chicken in each current 200-chicken cohort averages at least 100. Consistency’s weakest chicken averages **129.09**. The separate plasticity generation 96 cohort averages 133.55; its training history differs. These population checks total 51,200 development episodes, counted separately from training. [All policies and distributions](../../results/variants/variant-2/population-comparison-003.json).
 
@@ -41,9 +42,11 @@ Random, road-only heuristic and hand-written water-aware baselines average 1.25,
 
 ## Current training
 
-Work continues in the recovered chat. **Six 200-chicken experiments are active**: control, consistency, fine64, adaptation of the best cohort, stronger consistency fitness, and a new 64-map consistency continuation. The older plasticity run completed and passed native checkpoint, all 256 cohort hashes and exact replay verification; its best audited policy averaged 170.00, so the stronger consistency champion is preserved.
+Work continues in the recovered chat. **Six 200-chicken native experiments are active**: consistency, fine64, adaptation of the best cohort, stronger consistency fitness, 64-map consistency, and a gentler 64-map mutation branch. The completed control is archived. The older plasticity run completed and passed native checkpoint, all 256 cohort hashes and exact replay verification; its best audited policy averaged 170.00, so the stronger consistency champion is preserved.
 
-The 64-map consistency sibling has produced the strongest native policy at **220.58**. The archived generation 592 cohort matches all 200 viewer policies, and its audit reproduces the selected policy exactly. The gain is a development-selection result; no whole-population comparison for this cohort or general speed advantage is claimed. [Verified iteration](../../results/variants/variant-2/iteration-2026-11-21-2135.json).
+The 64-map consistency sibling has produced the strongest native policy at **223.80**. The archived generation 624 cohort matches all 200 viewer policies, and its audit reproduces the selected policy exactly. This is a development-selection result; all final maps stay unopened. [Verified iteration](../../results/variants/variant-2/iteration-2026-11-21-2205.json).
+
+The control completed its 248-generation continuation and all 768 saved cohorts passed native archive and exact replay verification. Its whole-population average on 64 development maps changed from **143.24 to 144.17**, while its weakest policy fell from **91.20 to 76.73**. The separate consistency64 generation 640 population averages **197.29**, with minimum **144.89**. These 38,400 development episodes are separate from training. The freed slot now runs `transfer-gentle64-001`, initialized from exact native consistency generation 640; only river-input mutation step **0.12→0.06** changes. Its 128-generation budget is 1,638,400 training episodes. This sibling comparison has not established a speed advantage. [Complete population comparison](../../results/variants/variant-2/control-closeout-populations-001.json).
 
 The new `transfer-consistent64-001` continues the exact native consistency generation 576 population for 256 more generations (3,276,800 training episodes). Only training maps **32→64** and stride **37→69** change. It is a distinct sibling experiment; the original consistency run continues. A sequential map-budget test does not yet establish faster learning.
 

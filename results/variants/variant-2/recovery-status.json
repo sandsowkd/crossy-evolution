@@ -4,26 +4,9 @@
   "currentThreadId": "01a20124-b277-7841-88aa-08b343676ee6",
   "recoveredTurns": 44,
   "allTurnPagesRecovered": true,
-  "updatedAt": "2026-11-22T04:38:11.155210+00:00",
+  "updatedAt": "2026-11-22T05:13:31.095290+00:00",
   "phase": "training-active-after-verified-migration",
   "activeRuns": [
-    {
-      "run": "transfer-control-fast-001",
-      "pidAtLaunch": 14737,
-      "initialGeneration": 520,
-      "generationCap": 768,
-      "population": 200,
-      "mapsPerGeneration": 32,
-      "residualMutation": {
-        "rate": 0.3,
-        "sigma": 0.35
-      },
-      "fitnessRiskWeight": 0,
-      "initialization": "resume",
-      "parentRun": "transfer-control-003",
-      "protocolFile": "results/variants/variant-2/transfer-control-fast-001/protocol.json",
-      "plannedNewTrainingEpisodes": 1587200
-    },
     {
       "run": "transfer-consistent-fast-001",
       "pidAtLaunch": 14738,
@@ -108,12 +91,32 @@
       "parentRun": "transfer-consistent-fast-001",
       "protocolFile": "results/variants/variant-2/transfer-consistent64-001/protocol.json",
       "plannedNewTrainingEpisodes": 3276800
+    },
+    {
+      "run": "transfer-gentle64-001",
+      "pidAtLaunch": 63399,
+      "initialGeneration": 640,
+      "generationCap": 768,
+      "population": 200,
+      "mapsPerGeneration": 64,
+      "residualMutation": {
+        "rate": 0.15,
+        "sigma": 0.06
+      },
+      "fitnessRiskWeight": 0.25,
+      "initialization": "resume",
+      "parentRun": "transfer-consistent64-001",
+      "protocolFile": "results/variants/variant-2/transfer-gentle64-001/protocol.json",
+      "plannedNewTrainingEpisodes": 1638400,
+      "frozenExecutionWorkspace": "/Users/jeremyhuang/Documents/ChatGPT/crossy road/.publication/native-consistency64-frozen",
+      "intervention": "Only river-input mutation sigma changes from0.12 to0.06; rate remains0.15. Native population/RNG/innovations/species/history/configuration are exact."
     }
   ],
   "monitorStatusFiles": [
     "results/variants/variant-2/recovery-batch-001/monitor-status.json",
     "results/variants/variant-2/recovery-risk-batch-001/monitor-status.json",
-    "results/variants/variant-2/consistency64-batch-001/monitor-status.json"
+    "results/variants/variant-2/consistency64-batch-001/monitor-status.json",
+    "results/variants/variant-2/gentle64-batch-001/monitor-status.json"
   ],
   "baselineBestDevelopmentMean": 181.0078125,
   "bestAtRecovery": 208.609375,
@@ -125,12 +128,33 @@
   "plannedNewEpisodesAcrossSixRuns": 10892800,
   "verificationEpisodesNotNewTraining": 12800,
   "finalMapsOpened": false,
-  "latestBestDevelopmentMean": 220.58203125,
+  "latestBestDevelopmentMean": 223.8046875,
   "latestPopulationComparisonFiles": [
     "results/variants/variant-2/plasticity-closeout-populations-001.json",
-    "results/variants/variant-2/risk50-population-comparison-001.json"
+    "results/variants/variant-2/risk50-population-comparison-001.json",
+    "results/variants/variant-2/control-closeout-populations-001.json"
   ],
   "newFollowupPlannedTrainingEpisodes": 3276800,
   "originalRecoveredBatchPlannedTrainingEpisodes": 10892800,
-  "latestBestDevelopmentIteration": "results/variants/variant-2/iteration-2026-11-21-2135.json"
+  "latestBestDevelopmentIteration": "results/variants/variant-2/iteration-2026-11-21-2205.json",
+  "completedRuns": [
+    {
+      "run": "transfer-control-fast-001",
+      "completedGeneration": 768,
+      "initialGeneration": 520,
+      "newTrainingGenerations": 248,
+      "newTrainingEpisodes": 1587200,
+      "allPopulationArchivesVerified": 768,
+      "checkpointSha256": "0284900485684d4b99701dcec1bf00153c4123cd144b399a78489206af2c4aaf",
+      "exactReplay": true,
+      "bestAuditedDevelopmentMean256": 189.41796875,
+      "repeatedVerificationEpisodes": 322,
+      "populationMeanDevelopment64Before": 143.2396875,
+      "populationMeanDevelopment64After": 144.167421875,
+      "populationMinimumPolicyMean64Before": 91.203125,
+      "populationMinimumPolicyMean64After": 76.734375,
+      "status": "completed-verified-and-archived",
+      "decision": "Retire this completed high-step control strategy. Its slot tests a smaller mutation step from the stronger consistency64 native state; this new run is not a control descendant."
+    }
+  ]
 }

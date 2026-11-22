@@ -5,7 +5,7 @@ Teach chickens to cross procedurally generated terrain using genuine NEAT. Simul
 | Variant | Mechanics | Status |
 | --- | --- | --- |
 | [1](docs/variants/variant-1.md) | Cars/roads; at most three consecutive road lanes | Complete: 1,361.21 independent-test average |
-| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Training active: 220.58 average on 256 development maps; six 200-chicken runs |
+| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Training active: 223.80 average on 256 development maps; six 200-chicken runs |
 | [3](docs/variants/variant-3.md) | Reserved; rivers were included in Variant2 | Pending scope |
 | [4](docs/variants/variant-4.md) | Longer roads and broader full-game rules | Planned |
 
