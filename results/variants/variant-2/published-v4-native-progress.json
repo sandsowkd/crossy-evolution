@@ -1,0 +1,45 @@
+{
+  "createdAt": "2026-11-22T13:37:09.872410+00:00",
+  "simulationContract": "clustered-traffic-v4",
+  "studentObservation": "native-v9",
+  "inferenceUsesTeacher": false,
+  "nativeNetworkChoosesAllActions": true,
+  "selectionObjectives": [
+    "meanRow",
+    "maximumRow"
+  ],
+  "mapRole": "Opened development suite used for selection,256 maps; not final testing",
+  "finalMapsOpened": false,
+  "records": [
+    {
+      "kind": "development",
+      "run": "v4-focused64-continue-001/focused",
+      "generation": 316,
+      "genome": 238794,
+      "meanRow": 360.0390625,
+      "maximumRow": 1845,
+      "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
+      "previewFile": "public/variant-2/transfer.json",
+      "actualSavedCohort": 200
+    },
+    {
+      "kind": "peak-development",
+      "run": "transfer-v4-risk64-001",
+      "generation": 792,
+      "genome": 197873,
+      "meanRow": 190.50390625,
+      "maximumRow": 2112,
+      "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json",
+      "previewFile": "public/variant-2/peak.json",
+      "actualSavedCohort": 200
+    }
+  ],
+  "method": "Native NEAT evolves inherited weights/topology through gameplay. Mean leader descends from critical-guidance training, where394 fixed ordinary-input examples affect training fitness at weight10. Native deployment and evaluation use no labels, forecasts, searches, vetoes or teacher queries. Peak leader is from the original risk-weight native continuation. Different policies retain separate metrics.",
+  "baselineV4": {
+    "genome": 189048,
+    "meanRow": 236.5546875,
+    "maximumRow": 1724,
+    "scope": "Same unchanged V3 policy re-evaluated under V4; new-physics baseline, not learning"
+  },
+  "publicationScope": "Current native gameplay rules, ordinary inference, real200-member champion cohorts and exact replay evidence. Private observation-assisted reference policies/studies and unrelated viewer work are excluded. Large native trainer snapshots remain local."
+}

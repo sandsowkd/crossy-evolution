@@ -1,5 +1,5 @@
 import { GameSimulation } from "../core/simulation";
-import { HOP_TICKS, type AgentState, type Config } from "../core/types";
+import { hopTicks, type AgentState, type Config } from "../core/types";
 import { hazardsAt, signalAt } from "../core/world";
 import { platformsAt } from "../core/upstream";
 import { type Genome } from "./genome";
@@ -65,6 +65,7 @@ export class Replay {
     return this.agents.every((a) => !a.sim.agent.alive);
   }
   snapshot(alpha = 1, terminalSeconds = 0, allAgents = false) {
+    const HOP_TICKS = hopTicks(this.config);
     const tick = Math.max(0, this.decisions - 1 + alpha) * HOP_TICKS,
       focus = this.current.sim.agent.row,
       rows = [];

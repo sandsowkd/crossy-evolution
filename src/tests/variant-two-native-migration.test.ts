@@ -5,7 +5,7 @@ import { observation as referenceObservation } from "./fixtures/reference-v9-obs
 import { RNG } from "../core/rng";
 import { sensorCount } from "../core/sensor-version";
 import { GameSimulation } from "../core/simulation";
-import { VARIANT_TWO_CONFIG } from "../core/upstream";
+import { CLUSTERED_VARIANT_TWO_V3_CONFIG as VARIANT_TWO_CONFIG } from "../core/upstream";
 import { ACTIONS } from "../core/types";
 import { MAX_CHECKPOINT_CHARACTERS, NATIVE_MAX_CHECKPOINT_CHARACTERS, parseCheckpoint } from "../evolution/checkpoint";
 import { Trainer } from "../evolution/trainer";

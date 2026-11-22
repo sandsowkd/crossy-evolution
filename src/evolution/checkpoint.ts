@@ -98,7 +98,7 @@ export function parseCheckpoint(text: string, maxCharacters = MAX_CHECKPOINT_CHA
     !["roads", "trains", "mixed"].includes(s.curriculum) ||
     (s.mechanics !== undefined && s.mechanics !== "upstream-v2") ||
     (s.curriculum === "mixed" && s.mechanics !== "upstream-v2") ||
-    (s.variantTwoRules !== undefined && (!["varied-traffic-v1", "clustered-traffic-v2", "clustered-traffic-v3"].includes(s.variantTwoRules) || s.mechanics !== "upstream-v2" || s.curriculum !== "mixed")) ||
+    (s.variantTwoRules !== undefined && (!["varied-traffic-v1", "clustered-traffic-v2", "clustered-traffic-v3", "clustered-traffic-v4"].includes(s.variantTwoRules) || s.mechanics !== "upstream-v2" || s.curriculum !== "mixed")) ||
     !Number.isInteger(s.maxTicks) ||
     s.maxTicks < 12 ||
     s.maxTicks > 36000 ||

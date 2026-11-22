@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { World, hazardsAt, signalAt } from "../core/world";
-import { VARIANT_TWO_CONFIG, CLUSTERED_VARIANT_TWO_V2_CONFIG, VARIED_VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
+import { CLUSTERED_VARIANT_TWO_V3_CONFIG as VARIANT_TWO_CONFIG, CLUSTERED_VARIANT_TWO_V2_CONFIG, VARIED_VARIANT_TWO_CONFIG, UPSTREAM_VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
 import { VARIANT_TWO_RULES, scheduledTrainSignal } from "../core/variant-two-rules";
 import { GameSimulation } from "../core/simulation";
 import type { Row } from "../core/types";

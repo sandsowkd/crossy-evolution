@@ -8,7 +8,7 @@ export type Config = {
   difficulty: number;
   mechanics?: "upstream-v2";
   /** Explicit project rules; absent preserves the initial source-port experiment. */
-  variantTwoRules?: "varied-traffic-v1" | "clustered-traffic-v2" | "clustered-traffic-v3";
+  variantTwoRules?: "varied-traffic-v1" | "clustered-traffic-v2" | "clustered-traffic-v3" | "clustered-traffic-v4";
   /** Missing means historical rules. New games explicitly opt in. */
   eagle?: { afterTicks: number; warningTicks: number };
 };
@@ -93,6 +93,9 @@ export const DT = 1 / 60,
   HOP_TICKS = 12,
   HALF_WIDTH = 4,
   TRAFFIC_LOOP = 22;
+/** Keep archived simulations at five decisions/s; revised Variant 2 uses six. */
+export const hopTicks = (config: Pick<Config, "variantTwoRules">) =>
+  config.variantTwoRules === "clustered-traffic-v4" ? 10 : HOP_TICKS;
 export const DELTA: Record<Action, readonly [number, number]> = {
   UP: [0, 1],
   DOWN: [0, -1],

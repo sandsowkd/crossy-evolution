@@ -1,10 +1,16 @@
 # Variant 2 — trains and rivers
 
+Current published V4 native policy averages **360.04**, with its own **1,845** maximum on256 opened development maps (focused64 generation316/genome238794). A separate peak policy reaches **2,112**, averaging **190.50** (risk64 generation792/genome197873). Both have exact native256-map trace and actual peak-game Replay checks, with their actual200-member cohorts. These are development-selection results; all512 final maps remain unopened. Students use ordinary V9 inputs and choose every action. The mean leader has critical-label guidance in training fitness only; deployment has no guidance labels, extra forecasts, searches or action overrides.
+
+V4 retains600-second games and10-second eagle capture, uses10-tick hops/six actions persecond,10% slower logs (0.864–3.024tiles/s),15% neighboring same-direction log rows with maximum streak2, and nearest-slot snapping for partial log overlap. Historical V3 replays retain their exact older rules. The same unchanged starting policy re-evaluated under V4 scored236.55/max1724; different-physics score changes are not learning. Rapid manual taps queue, with repeats/pause/focus handled separately.
+
+Run `node --import tsx scripts/verify-published-variant-two.ts` to reproduce both native records and their actual peak replays. [Published policies, scope and provenance](../../results/variants/variant-2/published-v4-native-progress.json). GitHub updates are batched roughly every1–2hours. The private observation-assisted reference study is excluded from this native publication. The older results below describe earlier stages.
+
 Open `http://127.0.0.1:5173/?variant=2` for mechanics demos, maps and actual saved population replays. Original Evan Bacon models, train assembly and the source support/collision behavior remain in use. [Source audit](variant-2-upstream-audit.md).
 
 **Map approved for training:** the user confirmed the current map and requested both fresh and Variant 1 transfer training. The example map opens paused at row 0; use Opening, First river, First tracks or the row slider to inspect it. Play animates traffic and logs. [Review status](../../results/variants/variant-2/map-review-status.json).
 
-The current **`clustered-traffic-v3`** rules are explicit project changes:
+The historical **`clustered-traffic-v3`** rules are explicit project changes:
 
 | Rule | Behavior |
 | --- | --- |

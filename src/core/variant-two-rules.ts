@@ -78,15 +78,21 @@ function differentSpeed(previous: number, rng: RNG) {
   const distance = rng.next() * (low + high);
   return distance < low ? min + distance : previous + gap + distance - low;
 }
-function logMotion(seed: number, index: number) {
+function logMotion(seed: number, index: number, rareMatches = false) {
   let start = index;
   while (movingWater(seed, start - 1)) start--;
   let speed = 0, direction = 0, same = 0;
   for (let r = start; r <= index; r++) {
     const rng = new RNG(hash(seed, r, 744));
     speed = r === start ? rng.range(CLUSTERED_VARIANT_TWO_RULES_V2.logSpeedMin, CLUSTERED_VARIANT_TWO_RULES_V2.logSpeedMax) : differentSpeed(speed, rng);
-    let next = rng.next() < .5 ? -1 : 1;
-    if (same === CLUSTERED_VARIANT_TWO_RULES_V2.maxSameLogDirection && next === direction) next = -next;
+    const choice = rng.next();
+    let next = choice < .5 ? -1 : 1;
+    if (rareMatches && r > start) {
+      // Every adjacent pair has marginal match probability 15%. A forced flip
+      // after a matching pair retains the historical maximum streak of two.
+      const chance = r === start + 1 ? .15 : .15 / .85;
+      next = same < 2 && choice < chance ? direction : -direction;
+    } else if (same === CLUSTERED_VARIANT_TWO_RULES_V2.maxSameLogDirection && next === direction) next = -next;
     same = next === direction ? same + 1 : 1;
     direction = next;
   }
@@ -119,7 +125,7 @@ function generateClusteredVariantTwoRow(seed: number, index: number, config: Con
       row.platforms = positions.sort((a, b) => a - b).map(x => ({offset: -x, length: 1, speed: 0, kind: "lily", variant: 0}));
       row.speed = 0;
     } else {
-      row.speed = logMotion(seed, index);
+      row.speed = logMotion(seed, index, config.variantTwoRules === "clustered-traffic-v4");
       const widths = [1,2,3,3.875], variants:number[] = [], gaps:number[] = [];
       let circumference = 0;
       while (variants.length < CLUSTERED_VARIANT_TWO_RULES_V2.minimumLogsPerRow || circumference < CLUSTERED_VARIANT_TWO_RULES_V2.minimumLogLoopLength) {
@@ -167,7 +173,7 @@ export function scheduledTrainSignal(row: Row, tick: number) {
 
 
 /** Current pace revision; historical clustered-v2 maps keep their exact velocities and clocks. */
-export const VARIANT_TWO_RULES = {
+export const CLUSTERED_VARIANT_TWO_RULES_V3 = {
   ...CLUSTERED_VARIANT_TWO_RULES_V2,
   version: "clustered-traffic-v3",
   logSpeedMin: .96,
@@ -177,8 +183,20 @@ export const VARIANT_TWO_RULES = {
   trainArrivalGapTicks: [504, 1008],
 } as const;
 
+export const VARIANT_TWO_RULES = {
+  ...CLUSTERED_VARIANT_TWO_RULES_V3,
+  version: "clustered-traffic-v4",
+  logSpeedMin: .864,
+  logSpeedMax: 3.024,
+  logSpeedDifferenceMin: .576,
+  adjacentLogDirectionMatchProbability: .15,
+  hopTicks: 10,
+  logLanding: "nearest-slot",
+} as const;
+
 export function generateVariantTwoRow(seed: number, index: number, config: Config, sourceRow: (type: Row["type"]) => Row): Row {
-  const revised = config.variantTwoRules === "clustered-traffic-v3";
+  const v4 = config.variantTwoRules === "clustered-traffic-v4";
+  const revised = v4 || config.variantTwoRules === "clustered-traffic-v3";
   // Generate enough of the old timeline before compression to cover the entire new episode.
   const sourceConfig = revised ? {...config, maxTicks:Math.ceil(config.maxTicks * 10 / 7)} : config;
   const row = generateClusteredVariantTwoRow(seed,index,sourceConfig,sourceRow);
@@ -186,6 +204,10 @@ export function generateVariantTwoRow(seed: number, index: number, config: Confi
   if (row.platforms?.[0]?.kind === "log") {
     row.speed *= .8;
     for (const platform of row.platforms) platform.speed *= .8;
+    if (v4) {
+      row.speed *= .9;
+      for (const platform of row.platforms) platform.speed *= .9;
+    }
   }
   if (row.trainSchedule) row.trainSchedule.arrivals = row.trainSchedule.arrivals.map(tick=>Math.floor((tick*7+5)/10));
   return row;

@@ -1,7 +1,7 @@
 /** Deterministic 60Hz adaptation of Evan Bacon's MIT Row/Water, Row/RailRoad,
  * Row/Road and GameEngine. Full attribution and compatibility limits are in docs/variants/variant-2-upstream-audit.md. */
 import { RNG, hash, modulo } from "./rng";
-import { DELTA, HOP_TICKS, type Action, type AgentState, type Config, type Row, type Hazard, type Support } from "./types";
+import { DELTA, hopTicks, type Action, type AgentState, type Config, type Row, type Hazard, type Support } from "./types";
 import { generateVariantTwoRow, scheduledTrainAt, scheduledTrainSignal } from "./variant-two-rules";
 import { generateVariantTwoRow as generateVariantTwoV1Row } from "./variant-two-rules-v1";
 
@@ -11,7 +11,8 @@ export const UPSTREAM_VARIANT_TWO_CONFIG: Config = {
 };
 export const VARIED_VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "varied-traffic-v1" };
 export const CLUSTERED_VARIANT_TWO_V2_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v2" };
-export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v3" };
+export const CLUSTERED_VARIANT_TWO_V3_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v3" };
+export const VARIANT_TWO_CONFIG: Config = { ...UPSTREAM_VARIANT_TWO_CONFIG, variantTwoRules: "clustered-traffic-v4" };
 export const SOURCE_CARS = ["police_car", "blue_car", "blue_truck", "green_car", "orange_car", "purple_car", "red_truck", "taxi"] as const;
 export const SOURCE_CAR_WIDTHS = [2, 1, 3, 2, 2, 2, 3, 2];
 export const SOURCE_LOG_WIDTHS = [1, 2, 3, 4];
@@ -37,7 +38,7 @@ function rawType(seed: number, index: number): Row["type"] {
 export function generateUpstreamRow(seed: number, index: number, config: Config): Row {
   if (config.variantTwoRules === "varied-traffic-v1")
     return generateVariantTwoV1Row(seed, index, config, type => generateSourceRow(seed, index, config, type));
-  if (config.variantTwoRules === "clustered-traffic-v2" || config.variantTwoRules === "clustered-traffic-v3")
+  if (config.variantTwoRules === "clustered-traffic-v2" || config.variantTwoRules === "clustered-traffic-v3" || config.variantTwoRules === "clustered-traffic-v4")
     return generateVariantTwoRow(seed, index, config, type => generateSourceRow(seed, index, config, type));
   return generateSourceRow(seed, index, config);
 }
@@ -127,14 +128,22 @@ export function upstreamSupportAt(row: Row, tick: number, x: number) {
   // Source loops through all matches; last attachment wins.
   return platformsAt(row, tick).filter(p => Math.abs(x - p.x) < .25 + p.length / 2).at(-1);
 }
+/** A log of N tiles has N centers, spaced one tile apart in its moving frame. */
+export function logSlotAt(support: Support, x: number) {
+  const first = support.x - (support.length - 1) / 2;
+  const slot = Math.max(0, Math.min(support.length - 1, Math.round(x - first)));
+  return first + slot;
+}
 export function sourceHopFraction(t: number) {
   const ease = (x: number) => 1 - (1 - x) * (1 - x);
   return t <= .5 ? .75 * ease(t * 2) : .75 + .25 * ease(t * 2 - 1);
 }
 type Context = {tick: number; agent: AgentState; config: Config; world: { row(index: number): Row }};
 export function advanceUpstream(s: Context, action: Action) {
+  const HOP_TICKS = hopTicks(s.config), slots = s.config.variantTwoRules === "clustered-traffic-v4";
   const a = s.agent, old = a.maxRow, ox = a.x, oy = a.row, [dx, dy] = DELTA[action];
   let tx = dy ? -Math.round(-ox) : ox + dx, ty = oy + dy;
+  if (slots && dx && a.ridingOn) tx += (a.ridingSpeed ?? 0) * HOP_TICKS / 60;
   a.lastAction = action; a.blocked = false;
   if (action !== "WAIT") { a.ridingOn = undefined; a.ridingSpeed = undefined; }
   if (ty < 0) { a.alive = false; a.deathReason = "bounds"; return -2; }
@@ -160,7 +169,10 @@ export function advanceUpstream(s: Context, action: Action) {
       if (!a.ridingOn) {
         const p = upstreamSupportAt(row, s.tick, a.x);
         if (!p) { a.alive = false; a.deathReason = "water"; a.visualY = -.2; }
-        else { a.ridingOn = p.id; a.ridingSpeed = p.speed; a.visualY = p.kind === "lily" ? .325 : .2; }
+        else {
+          if (slots && p.kind === "log") a.x = logSlotAt(p, a.x);
+          a.ridingOn = p.id; a.ridingSpeed = p.speed; a.visualY = p.kind === "lily" ? .325 : .2;
+        }
       }
       if (a.ridingOn) a.x += (a.ridingSpeed ?? 0) / 60;
     } else if (row.type !== "water") a.visualY = row.type === "road" ? .3 : row.type === "rail" ? .4 : .4;

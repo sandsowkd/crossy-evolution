@@ -6,7 +6,7 @@ import {
   DELTA,
   ACTIONS,
   HALF_WIDTH,
-  HOP_TICKS,
+  hopTicks,
   DT,
   TRAFFIC_LOOP,
   type AgentState,
@@ -83,6 +83,7 @@ export function observation(
   requiredInputs?: Uint8Array,
   target?: Float32Array,
 ): Float32Array {
+  const HOP_TICKS = hopTicks(world.config);
   if (version === 9 && requiredInputs)
     return sparseVariantTwoObservation(world, agent, tick, requiredInputs, target);
   if (version === 9) {
@@ -231,6 +232,7 @@ const variantTwoPrefixViews = new WeakMap<Float32Array, Float32Array>();
 /** Same V9 channels and arithmetic; skip unused inputs and share platform positions. */
 function sparseVariantTwoObservation(world: World, agent: AgentState, tick: number,
   mask: Uint8Array, target?: Float32Array): Float32Array {
+  const HOP_TICKS = hopTicks(world.config);
   const size = sensorCount(9);
   if (mask.length !== size) throw new Error(`Observation mask must contain ${size} channels`);
   if (target && target.length !== size) throw new Error(`Observation buffer must contain ${size} channels`);
@@ -321,6 +323,7 @@ function sparseObservation(
   requiredInputs: Uint8Array,
   target?: Float32Array,
 ): Float32Array {
+  const HOP_TICKS = hopTicks(world.config);
   const o = observationBuffer(target),
     cx = Math.round(agent.x), cy = Math.round(agent.row),
     plan = observationPlan(requiredInputs),
