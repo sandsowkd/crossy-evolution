@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-22T23:01:21.230Z",
+  "createdAt": "2026-11-23T02:20:44.198Z",
   "records": [
     {
       "kind": "development",
@@ -49,7 +49,7 @@
         "verificationFile": "results/variants/variant-2/published-v4-development-verification.json"
       },
       "initialization": {
-        "type": "Exact unchanged native320 continuation; all population, genes, RNG, tracker, species, parameters, history and caches retained",
+        "type": "Exact unchanged native320 continuation; all native genes, RNG, tracker, species, parameters, history and caches retained",
         "continuation": {
           "parentDirectory": "results/variants/variant-2/v4-focused64-continue-001/focused",
           "parentGeneration": 320,
@@ -62,7 +62,7 @@
         "noRngOrGenerationReset": true
       },
       "fitness": {
-        "type": "Game score fitness plus fixed critical-example margin fitness",
+        "type": "Gameplay fitness plus fixed critical-example margin fitness",
         "criticalExamples": 394,
         "criticalDatasetSha256": "7d4d6909d54e99a887a5167c84643ff522f727aa4039893b64220068932620bd",
         "criticalMarginWeight": 10,
@@ -72,95 +72,102 @@
       },
       "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 1331200,
       "inheritedTrainingAndPriorSearchSeparate": true,
-      "discovery": "Audit024 discovered an already evolved native genotype in actual424cohort; excludes all200 unchanged initial320 policies. The audit and repeat verification add no training.",
+      "discovery": "Audit024 selected an already evolved native424 policy; excludes all200 unchanged initial320 policies.",
+      "candidateSelectionAndRepeatVerificationAreNotTraining": true,
       "inferenceUsesTeacher": false,
       "studentObservation": "native-v9",
       "finalMapsOpened": false
     },
     {
       "kind": "peak-development",
-      "run": "v4-peak-source-rng-c-005/pareto",
-      "generation": 56,
-      "genome": 274761,
-      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
-      "sourceProtocolSha256": "3c6fbd06c7f8f9a8e55f53a3abd0aa18593425de8384afe0a70d49ab47792a94",
-      "sourceCohortSha256": "abd0a260cd2d161d35419108ff645a79fc0ead997807dd68204e2a5284b35a0a",
-      "sourceVerificationSha256": "0566c43cbd3f72df9b66d3096b01528949b6a52dc53ee0fba2e7ed0a130fba19",
+      "run": "v4-focused64-rng-d-001/focused",
+      "generation": 512,
+      "genome": 277993,
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceProtocolSha256": "16f4299ca1183ec067730a254502434b83e4188bc5db2fb9bf2cad3e919628a2",
+      "sourceCohortSha256": "4e41cc1df56010fe33423acb62f3c7a8b0e00a0c5c583db276994788d60321bb",
+      "sourceVerificationSha256": "6407f94b4976edcacdb23cfc252fcdee6a6e66b1f0f3cb2ec289e083bcafd9ae",
       "genotypeProof": {
-        "createdAt": "2026-11-22T22:46:43.997Z",
-        "kind": "peak-development",
-        "run": "v4-peak-source-rng-c-005/pareto",
-        "generation": 56,
-        "genome": 274761,
-        "mean256": 434.80859375,
-        "maximum256": 2223,
-        "initializationGeneration": 0,
-        "comparedAll200ExactInitialPolicies": true,
+        "createdAt": "2026-11-23T02:06:03.182Z",
+        "genome": 277993,
+        "generation": 512,
+        "initializationGeneration": 448,
+        "initialSnapshotSha256": "edd5b432170941e33db005034163073d580ee1e6562baffd3b5222cd39163400",
+        "comparedAll200InitialPolicies": true,
         "unchangedMatches": 0,
-        "all200ViewerGenomesExact": true,
-        "sourceCohortSha256": "abd0a260cd2d161d35419108ff645a79fc0ead997807dd68204e2a5284b35a0a",
-        "initialPopulationSha256": "055b71d32b6c77550c93c417cb614842a35a23fb7b3cf0273b1850b121bd51c8",
-        "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
-        "verificationFile": "results/variants/variant-2/v4-peak-source-rng-c-005/pareto/record-274761-0566c43cbd3f-verification.json",
+        "actual200ViewerGenomesExact": true,
+        "cohortSha256": "4e41cc1df56010fe33423acb62f3c7a8b0e00a0c5c583db276994788d60321bb",
+        "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+        "verificationFile": "results/variants/variant-2/v4-focused64-rng-d-001/focused/record-277993-6407f94b4976-verification.json",
         "exact256NativeTraces": true,
         "actualPeakRendererVerified": true,
-        "actualPeakRendererSeed": 2557673587,
+        "actualPeakRendererSeed": 2564489435,
         "additionalGameplayEpisodes": 0,
         "additionalDevelopmentEpisodes": 0,
-        "additionalRenderers": 0,
-        "newGameplayTrainingEpisodesFromChildStart": 358400,
+        "additionalActualPeakRendererEpisodes": 0,
+        "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 819200,
+        "criticalFitnessExamples": 394,
+        "terminalCriticalMargin": 10,
+        "teacherQueriesInThisContinuation": 0,
         "inferenceUsesTeacher": false,
-        "futureTrainingHasNoLabelFitnessOrTeacherQueries": true,
-        "criticalGuidanceAncestryRetained": true,
-        "attribution": "New mutated native genotype in declared RNG/training-stream sibling search; all200 exact initial genotypes excluded. Inherited ancestry, sibling search, development selection and repeat validation remain distinct.",
+        "attribution": "Audit032 discovered an already evolved ordinaryV9 native policy in RNG siblingD generation512. Complete448 source state andcritical weight10 were retained; only future native RNG/map streams had changed. First449 was inherited, first child-bred offspring450. Candidate selection/repeat verification add no new training; all actions remain ordinary nativeV9.",
         "finalMapsOpened": false
       },
       "actualPeakReplay": {
         "exactRendererReplay": true,
-        "rendererSeed": 2557673587,
+        "rendererSeed": 2564489435,
         "peak": {
-          "seed": 2557673587,
-          "score": 2223,
-          "fitness": 21870,
-          "ticks": 36000,
-          "deathReason": "timeout"
+          "seed": 2564489435,
+          "score": 2235,
+          "fitness": 21994.6,
+          "ticks": 35340,
+          "deathReason": "water"
         },
         "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json"
       },
       "initialization": {
-        "type": "Selected native366.25390625/max2222 actual36 cohort of mean-source-rng-b-003, pinned64 tracker; full native genes/tracker/parameters retained. Never-trained baseline generation/species/progress reset and threshold0.12, followed by declared native RNG20261204/trainingstream20323 reseeding; not chronological continuation",
-        "source": {
-          "directory": "results/variants/variant-2/v4-mean-source-rng-b-003/pareto",
-          "generation": 36,
-          "genome": 257811,
-          "cohortFile": "results/variants/variant-2/v4-mean-source-rng-b-003/pareto/generations/00036.json.gz",
-          "cohortSha256": "d91f4de06945c229a36b879bfe50dede21eacc5970147a2555f03cb78e903328",
-          "snapshotFile": "results/variants/variant-2/v4-mean-source-rng-b-003/pareto/snapshots/00064.json.gz",
-          "snapshotSha256": "0cf91af6242d05bed166a860bacb1e1f56139b64a77e38b60dd0b961f0b7ba06"
+        "type": "Complete native448 state retained; only future native RNG and training seed/stream reseeded20261212/28403. Generation/species/progress retained, first449 inherited, first child-bred mutants450. Declared sibling search, not an unchanged continuation or from-scratch learning",
+        "continuation": {
+          "parentDirectory": "results/variants/variant-2/v4-focused64-continue-002/focused",
+          "parentGeneration": 448,
+          "parentProtocolSha256": "769ebc08e11e18c574c52056de0ed8e44b9783fc233addf2569c2bc581a879ee",
+          "parentSnapshotSha256": "7802ea363f15d96c7c3f685f4c936eccf17ad7b13bf44a3f845fa571f1ac1335",
+          "additionalGenerations": 64,
+          "additionalGameplayTrainingEpisodes": 819200,
+          "intervention": "Only future evolutionary RNG and gameplay map stream are reseeded. Every inherited genotype, tracker, species, parameter, history, cache and budget counter is retained. This is a bounded native sibling search, not an unchanged chronological continuation.",
+          "futureRngAndTrainingStreamChange": {
+            "before": {
+              "seed": 20261121,
+              "stream": 6752,
+              "nativeRng": 4133298969
+            },
+            "after": {
+              "seed": 20261212,
+              "stream": 28403,
+              "nativeRng": 3442075288
+            },
+            "startsAtEvaluationGeneration": 449,
+            "intervention": "Only future evolutionary RNG and gameplay map stream are reseeded. Every inherited genotype, tracker, species, parameter, history, cache and budget counter is retained. This is a bounded native sibling search, not an unchanged chronological continuation."
+          }
         },
-        "replicate": {
-          "parentDirectory": "results/variants/variant-2/v4-peak-source-base-005/pareto",
-          "sourceInitialSnapshotSha256": "dfde899945cf9f93306763f169e8ce07a8853acc7a7ba5ad6dfca10959dfae8e",
-          "previousSeed": 20261122,
-          "previousStream": 8129,
-          "previousRng": 3633333851,
-          "newRng": 2678333201,
-          "intervention": "Independent training maps and evolutionary RNG; exact inherited population, tracker and parameters. Selected-cohort sibling search, not chronological continuation or a new method."
-        },
-        "seed": 20261204,
-        "stream": 20323,
-        "independentMethodEffectNotEstablished": true
+        "seed": 20261212,
+        "stream": 28403,
+        "firstInheritedRuntimeGeneration": 449,
+        "firstChildBredOffspringEvaluatedAt": 450
       },
       "fitness": {
-        "type": "Coequal native training mean/maximum Pareto fronts/crowding",
-        "coequalNativeTrainingMeanAndMaximum": true,
-        "safetyOrCriticalLabelFitness": 0,
+        "type": "Gameplay fitness plus fixed critical-example margin fitness",
+        "criticalExamples": 394,
+        "criticalDatasetSha256": "7d4d6909d54e99a887a5167c84643ff522f727aa4039893b64220068932620bd",
+        "criticalMarginWeight": 10,
         "teacherQueries": 0,
-        "criticalGuidanceAncestryRetained": true
+        "labelsUsedAtInference": false,
+        "coequalNativeTrainingMeanAndMaximum": false
       },
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 358400,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 819200,
       "inheritedTrainingAndPriorSearchSeparate": true,
-      "discovery": "Newly evolved native genotype in declared selected2222-cohort RNG sibling; excludes all200 unchanged initial0 policies. Development selection and repeat verification add no training.",
+      "discovery": "Audit032 selected an already evolved native512 policy in RNG siblingD; excludes all200 unchanged initial448 policies. The parent completed and remains closed.",
+      "candidateSelectionAndRepeatVerificationAreNotTraining": true,
       "inferenceUsesTeacher": false,
       "studentObservation": "native-v9",
       "finalMapsOpened": false

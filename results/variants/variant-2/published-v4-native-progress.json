@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-22T23:01:21.230Z",
+  "createdAt": "2026-11-23T02:20:44.198Z",
   "simulationContract": "clustered-traffic-v4",
   "studentObservation": "native-v9",
   "inferenceUsesTeacher": false,
@@ -28,29 +28,30 @@
     },
     {
       "kind": "peak-development",
-      "run": "v4-peak-source-rng-c-005/pareto",
-      "generation": 56,
-      "genome": 274761,
-      "meanRow": 434.80859375,
-      "maximumRow": 2223,
+      "run": "v4-focused64-rng-d-001/focused",
+      "generation": 512,
+      "genome": 277993,
+      "meanRow": 447.6328125,
+      "maximumRow": 2235,
       "verificationFile": "results/variants/variant-2/published-v4-peak-development-verification.json",
       "previewFile": "public/variant-2/peak.json",
       "actualSavedCohort": 200,
-      "sourceCodeSha256": "7779ba5a74722d674ec28ec332ebaade9517731d5535b6c3ad92f5c13a58b817",
-      "sourceCohortSha256": "abd0a260cd2d161d35419108ff645a79fc0ead997807dd68204e2a5284b35a0a",
-      "declaredContinuationStartGeneration": 0,
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 358400
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceCohortSha256": "4e41cc1df56010fe33423acb62f3c7a8b0e00a0c5c583db276994788d60321bb",
+      "declaredContinuationStartGeneration": 448,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 819200
     }
   ],
-  "method": "Native NEAT evolves inherited ordinary-input policies through gameplay. The mean policy is an exact320→448 continuation retaining394 fixed critical fitness examples at margin10; they affect training fitness only. The separate peak policy comes from the actual2222-policy cohort36 RNG/training-stream sibling with coequal native mean/maximum Pareto fitness and zero label fitness. Both make zero teacher queries in these child studies and choose every ordinary V9/Network/Replay action. Per-policy metrics, inherited ancestry, new gameplay, candidate selection and repeat verification remain distinct.",
+  "method": "Both verified champions use ordinary native V9/Network/Replay and choose every action. Their child training retains394 fixed critical fitness examples at weight10 with zero teacher queries; labels never affect inference. The average champion is an exact320-state continuation. The new peak champion comes from a complete448-state future-RNG/map-stream sibling retaining generation/species/progress. Both were found by audits of already evolved cohorts. Inherited ancestry, new gameplay, sibling search, candidate selection and repeat verification are separate.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
     "maximumRow": 1724,
     "scope": "Same unchanged V3 policy re-evaluated under V4; new-physics baseline, not learning"
   },
-  "publicationScope": "Verified native actual200-member champion cohorts; unchanged V4 physics/ordinary inference. Private observation reference studies, unrelated concurrent work, giant live snapshots and logs excluded.",
+  "publicationScope": "Verified ordinary-input native actual200-member champion cohorts and completed native comparison summaries. Frozen V4 physics/inference unchanged; private observation reference studies, unrelated concurrent work, giant live snapshots/logs excluded.",
   "lineageProofFile": "results/variants/variant-2/published-v4-native-lineage-proof.json",
   "goalAverage": 1000,
-  "goalMet": false
+  "goalMet": false,
+  "completedStudiesFile": "results/variants/variant-2/published-v4-completed-training-studies.json"
 }
