@@ -1,0 +1,3675 @@
+{
+  "createdAt": "2026-11-23T13:13:49.066Z",
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
+  "seeds": [
+    2483027968,
+    2483093505,
+    2483159042,
+    2483224579,
+    2483290116,
+    2483355653,
+    2483421190,
+    2483486727,
+    2483552264,
+    2483617801,
+    2483683338,
+    2483748875,
+    2483814412,
+    2483879949,
+    2483945486,
+    2484011023,
+    2484076560,
+    2484142097,
+    2484207634,
+    2484273171,
+    2484338708,
+    2484404245,
+    2484469782,
+    2484535319,
+    2484600856,
+    2484666393,
+    2484731930,
+    2484797467,
+    2484863004,
+    2484928541,
+    2484994078,
+    2485059615,
+    2485125152,
+    2485190689,
+    2485256226,
+    2485321763,
+    2485387300,
+    2485452837,
+    2485518374,
+    2485583911,
+    2485649448,
+    2485714985,
+    2485780522,
+    2485846059,
+    2485911596,
+    2485977133,
+    2486042670,
+    2486108207,
+    2486173744,
+    2486239281,
+    2486304818,
+    2486370355,
+    2486435892,
+    2486501429,
+    2486566966,
+    2486632503,
+    2486698040,
+    2486763577,
+    2486829114,
+    2486894651,
+    2486960188,
+    2487025725,
+    2487091262,
+    2487156799
+  ],
+  "mapRole": "development",
+  "finalMapsOpened": false,
+  "reports": [
+    {
+      "directory": "results/variants/variant-2/v4-native009-rngb64-weight0/focused",
+      "generation": 96,
+      "cohortFile": "results/variants/variant-2/v4-native009-rngb64-weight0/focused/generations/00096.json.gz",
+      "cohortSha256": "3e0ed88ad31564a7087dff4b80358533d1dea4537b30bd9a3c94548d9f43756a",
+      "sourceSnapshotSha256": "5ea0a644dd2f8d8bb829ea904592dd7947c0da1d69b3cbd743fb234b057b74c3",
+      "population": 200,
+      "developmentEpisodes": 12800,
+      "populationMeanRow": 533.6596875,
+      "policyMeanDistribution": {
+        "minimum": 383.953125,
+        "p10": 448.703125,
+        "p25": 479.859375,
+        "median": 533.96875,
+        "p75": 572.625,
+        "p90": 621.015625,
+        "maximum": 717.671875
+      },
+      "policiesAveraging100": 200,
+      "gameplayTrainingEpisodesAdded": 0,
+      "studentObservation": "native-v9",
+      "teacherUsedInEvaluation": false,
+      "episodes": {
+        "meanRow": 533.6596875,
+        "medianRow": 395,
+        "maximumRow": 2131,
+        "reach100": 0.893359375,
+        "reach300": 0.6065625,
+        "reach1000": 0.14328125,
+        "timeoutRate": 0.025703125,
+        "deaths": {
+          "eagle": 3458,
+          "car": 4969,
+          "timeout": 329,
+          "bounds": 910,
+          "water": 2261,
+          "train": 873
+        }
+      },
+      "policies": [
+        {
+          "genome": 293875,
+          "meanRow": 717.671875,
+          "medianRow": 610.5,
+          "maximumRow": 1909,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.328125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 9,
+            "car": 21,
+            "eagle": 17,
+            "train": 6,
+            "timeout": 3,
+            "bounds": 8
+          }
+        },
+        {
+          "genome": 293800,
+          "meanRow": 714.75,
+          "medianRow": 619,
+          "maximumRow": 1940,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.28125,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "car": 20,
+            "eagle": 17,
+            "train": 6,
+            "water": 9,
+            "bounds": 8,
+            "timeout": 4
+          }
+        },
+        {
+          "genome": 293904,
+          "meanRow": 681.796875,
+          "medianRow": 554.5,
+          "maximumRow": 1952,
+          "reach100": 0.921875,
+          "reach300": 0.65625,
+          "reach1000": 0.28125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 8,
+            "water": 12,
+            "eagle": 14,
+            "car": 24,
+            "bounds": 4,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293828,
+          "meanRow": 670.203125,
+          "medianRow": 468.5,
+          "maximumRow": 2002,
+          "reach100": 0.90625,
+          "reach300": 0.625,
+          "reach1000": 0.28125,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "eagle": 18,
+            "car": 21,
+            "water": 14,
+            "train": 3,
+            "timeout": 5,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293861,
+          "meanRow": 659.96875,
+          "medianRow": 464,
+          "maximumRow": 1949,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.25,
+          "timeoutRate": 0.09375,
+          "deaths": {
+            "water": 7,
+            "eagle": 14,
+            "car": 21,
+            "bounds": 13,
+            "timeout": 6,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293974,
+          "meanRow": 658.265625,
+          "medianRow": 401,
+          "maximumRow": 1926,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.125,
+          "deaths": {
+            "car": 29,
+            "eagle": 9,
+            "train": 5,
+            "timeout": 8,
+            "water": 6,
+            "bounds": 7
+          }
+        },
+        {
+          "genome": 293989,
+          "meanRow": 655.296875,
+          "medianRow": 559.5,
+          "maximumRow": 1711,
+          "reach100": 0.921875,
+          "reach300": 0.75,
+          "reach1000": 0.234375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 22,
+            "train": 6,
+            "eagle": 15,
+            "water": 16,
+            "bounds": 4,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293976,
+          "meanRow": 649.890625,
+          "medianRow": 410,
+          "maximumRow": 1922,
+          "reach100": 0.90625,
+          "reach300": 0.5625,
+          "reach1000": 0.25,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "train": 4,
+            "car": 31,
+            "eagle": 12,
+            "water": 12,
+            "timeout": 3,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293962,
+          "meanRow": 649.484375,
+          "medianRow": 465.5,
+          "maximumRow": 2051,
+          "reach100": 0.921875,
+          "reach300": 0.71875,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "water": 10,
+            "train": 5,
+            "car": 22,
+            "bounds": 7,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293907,
+          "meanRow": 645.09375,
+          "medianRow": 485.5,
+          "maximumRow": 1846,
+          "reach100": 0.953125,
+          "reach300": 0.703125,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 21,
+            "car": 19,
+            "bounds": 10,
+            "water": 10,
+            "timeout": 2,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293823,
+          "meanRow": 644.53125,
+          "medianRow": 460.5,
+          "maximumRow": 1890,
+          "reach100": 0.921875,
+          "reach300": 0.65625,
+          "reach1000": 0.234375,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "bounds": 8,
+            "eagle": 20,
+            "car": 18,
+            "water": 13,
+            "train": 1,
+            "timeout": 4
+          }
+        },
+        {
+          "genome": 293874,
+          "meanRow": 642.9375,
+          "medianRow": 606.5,
+          "maximumRow": 2001,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.234375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "bounds": 6,
+            "car": 26,
+            "water": 12,
+            "eagle": 17,
+            "timeout": 2,
+            "train": 1
+          }
+        },
+        {
+          "genome": 293842,
+          "meanRow": 640.90625,
+          "medianRow": 507,
+          "maximumRow": 1827,
+          "reach100": 0.890625,
+          "reach300": 0.71875,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 24,
+            "water": 15,
+            "eagle": 17,
+            "train": 6,
+            "timeout": 1,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293994,
+          "meanRow": 639.609375,
+          "medianRow": 405.5,
+          "maximumRow": 1891,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.234375,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 17,
+            "bounds": 10,
+            "water": 10,
+            "car": 21,
+            "train": 3,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293853,
+          "meanRow": 636.578125,
+          "medianRow": 462.5,
+          "maximumRow": 1983,
+          "reach100": 0.90625,
+          "reach300": 0.65625,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 12,
+            "car": 24,
+            "water": 17,
+            "train": 3,
+            "timeout": 3,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293808,
+          "meanRow": 636.28125,
+          "medianRow": 518,
+          "maximumRow": 1917,
+          "reach100": 0.9375,
+          "reach300": 0.65625,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 20,
+            "bounds": 5,
+            "car": 21,
+            "water": 13,
+            "timeout": 3,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293931,
+          "meanRow": 631.71875,
+          "medianRow": 421.5,
+          "maximumRow": 1931,
+          "reach100": 0.9375,
+          "reach300": 0.546875,
+          "reach1000": 0.25,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 8,
+            "car": 28,
+            "eagle": 15,
+            "water": 6,
+            "bounds": 5,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293893,
+          "meanRow": 625.640625,
+          "medianRow": 504,
+          "maximumRow": 1824,
+          "reach100": 0.90625,
+          "reach300": 0.671875,
+          "reach1000": 0.234375,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 20,
+            "car": 19,
+            "train": 2,
+            "water": 11,
+            "timeout": 3,
+            "bounds": 9
+          }
+        },
+        {
+          "genome": 293805,
+          "meanRow": 624.59375,
+          "medianRow": 495,
+          "maximumRow": 2052,
+          "reach100": 0.921875,
+          "reach300": 0.625,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "car": 26,
+            "eagle": 15,
+            "timeout": 4,
+            "water": 12,
+            "train": 1,
+            "bounds": 6
+          }
+        },
+        {
+          "genome": 293877,
+          "meanRow": 621.78125,
+          "medianRow": 468,
+          "maximumRow": 1946,
+          "reach100": 0.9375,
+          "reach300": 0.609375,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 13,
+            "water": 12,
+            "car": 30,
+            "bounds": 3,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293957,
+          "meanRow": 621.015625,
+          "medianRow": 548,
+          "maximumRow": 2056,
+          "reach100": 0.953125,
+          "reach300": 0.640625,
+          "reach1000": 0.125,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "train": 8,
+            "car": 20,
+            "eagle": 19,
+            "bounds": 5,
+            "water": 8,
+            "timeout": 4
+          }
+        },
+        {
+          "genome": 293838,
+          "meanRow": 618.953125,
+          "medianRow": 463.5,
+          "maximumRow": 1952,
+          "reach100": 0.90625,
+          "reach300": 0.6875,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "car": 23,
+            "eagle": 20,
+            "train": 3,
+            "timeout": 4,
+            "bounds": 7,
+            "water": 7
+          }
+        },
+        {
+          "genome": 293879,
+          "meanRow": 618.84375,
+          "medianRow": 441,
+          "maximumRow": 1909,
+          "reach100": 0.90625,
+          "reach300": 0.71875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 11,
+            "car": 19,
+            "eagle": 23,
+            "timeout": 3,
+            "train": 5,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293985,
+          "meanRow": 618.21875,
+          "medianRow": 449,
+          "maximumRow": 1921,
+          "reach100": 0.921875,
+          "reach300": 0.625,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 22,
+            "car": 20,
+            "water": 11,
+            "timeout": 1,
+            "bounds": 6,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293986,
+          "meanRow": 615.15625,
+          "medianRow": 417,
+          "maximumRow": 1938,
+          "reach100": 0.9375,
+          "reach300": 0.578125,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 2,
+            "car": 34,
+            "water": 9,
+            "eagle": 16,
+            "bounds": 1,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293937,
+          "meanRow": 614.28125,
+          "medianRow": 430,
+          "maximumRow": 1971,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 18,
+            "train": 5,
+            "car": 26,
+            "water": 9,
+            "bounds": 3,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293939,
+          "meanRow": 613.796875,
+          "medianRow": 424.5,
+          "maximumRow": 2000,
+          "reach100": 0.9375,
+          "reach300": 0.59375,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 3,
+            "eagle": 17,
+            "car": 27,
+            "water": 10,
+            "bounds": 5,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293849,
+          "meanRow": 612.703125,
+          "medianRow": 418,
+          "maximumRow": 2002,
+          "reach100": 0.859375,
+          "reach300": 0.6875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 9,
+            "timeout": 3,
+            "eagle": 21,
+            "train": 4,
+            "car": 18,
+            "bounds": 9
+          }
+        },
+        {
+          "genome": 293910,
+          "meanRow": 608.765625,
+          "medianRow": 474,
+          "maximumRow": 1923,
+          "reach100": 0.921875,
+          "reach300": 0.71875,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "bounds": 5,
+            "car": 25,
+            "eagle": 22,
+            "water": 6,
+            "timeout": 3,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293982,
+          "meanRow": 608.65625,
+          "medianRow": 512,
+          "maximumRow": 1722,
+          "reach100": 0.90625,
+          "reach300": 0.640625,
+          "reach1000": 0.234375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 32,
+            "bounds": 2,
+            "eagle": 21,
+            "train": 3,
+            "water": 6
+          }
+        },
+        {
+          "genome": 293900,
+          "meanRow": 608.375,
+          "medianRow": 470.5,
+          "maximumRow": 1935,
+          "reach100": 0.859375,
+          "reach300": 0.59375,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 30,
+            "bounds": 4,
+            "water": 14,
+            "train": 4,
+            "eagle": 11,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293896,
+          "meanRow": 605,
+          "medianRow": 456,
+          "maximumRow": 2036,
+          "reach100": 0.953125,
+          "reach300": 0.59375,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 13,
+            "car": 32,
+            "water": 9,
+            "timeout": 3,
+            "train": 3,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293965,
+          "meanRow": 604.234375,
+          "medianRow": 397.5,
+          "maximumRow": 1854,
+          "reach100": 0.921875,
+          "reach300": 0.640625,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 26,
+            "eagle": 16,
+            "water": 8,
+            "train": 6,
+            "bounds": 5,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293922,
+          "meanRow": 604.125,
+          "medianRow": 439,
+          "maximumRow": 1890,
+          "reach100": 0.953125,
+          "reach300": 0.6875,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 16,
+            "car": 20,
+            "water": 13,
+            "bounds": 11,
+            "train": 2,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293814,
+          "meanRow": 603.109375,
+          "medianRow": 506,
+          "maximumRow": 1945,
+          "reach100": 0.90625,
+          "reach300": 0.671875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 20,
+            "bounds": 6,
+            "eagle": 18,
+            "water": 11,
+            "train": 6,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293890,
+          "meanRow": 598.625,
+          "medianRow": 516,
+          "maximumRow": 1846,
+          "reach100": 0.90625,
+          "reach300": 0.640625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 19,
+            "bounds": 3,
+            "car": 25,
+            "water": 11,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293841,
+          "meanRow": 596.375,
+          "medianRow": 470.5,
+          "maximumRow": 1897,
+          "reach100": 0.9375,
+          "reach300": 0.703125,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 27,
+            "bounds": 2,
+            "eagle": 18,
+            "water": 11,
+            "timeout": 1,
+            "train": 5
+          }
+        },
+        {
+          "genome": 293929,
+          "meanRow": 592.21875,
+          "medianRow": 460,
+          "maximumRow": 2045,
+          "reach100": 0.875,
+          "reach300": 0.625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 22,
+            "car": 24,
+            "train": 4,
+            "timeout": 2,
+            "water": 7,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293897,
+          "meanRow": 591.859375,
+          "medianRow": 418,
+          "maximumRow": 1915,
+          "reach100": 0.90625,
+          "reach300": 0.671875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 10,
+            "bounds": 8,
+            "eagle": 20,
+            "car": 22,
+            "timeout": 2,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293930,
+          "meanRow": 589.9375,
+          "medianRow": 500.5,
+          "maximumRow": 1747,
+          "reach100": 0.9375,
+          "reach300": 0.734375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 20,
+            "car": 21,
+            "water": 9,
+            "train": 7,
+            "bounds": 6,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293826,
+          "meanRow": 583.046875,
+          "medianRow": 398.5,
+          "maximumRow": 1911,
+          "reach100": 0.921875,
+          "reach300": 0.609375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 25,
+            "water": 8,
+            "eagle": 19,
+            "train": 8,
+            "timeout": 2,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293811,
+          "meanRow": 581.625,
+          "medianRow": 372,
+          "maximumRow": 2074,
+          "reach100": 0.875,
+          "reach300": 0.59375,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 29,
+            "train": 7,
+            "water": 5,
+            "eagle": 14,
+            "timeout": 3,
+            "bounds": 6
+          }
+        },
+        {
+          "genome": 293830,
+          "meanRow": 581.109375,
+          "medianRow": 445.5,
+          "maximumRow": 1922,
+          "reach100": 0.890625,
+          "reach300": 0.65625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 18,
+            "car": 23,
+            "water": 17,
+            "train": 3,
+            "bounds": 2,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293966,
+          "meanRow": 580.828125,
+          "medianRow": 370,
+          "maximumRow": 1912,
+          "reach100": 0.96875,
+          "reach300": 0.609375,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 8,
+            "car": 31,
+            "eagle": 11,
+            "timeout": 2,
+            "water": 11,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293933,
+          "meanRow": 577.53125,
+          "medianRow": 464,
+          "maximumRow": 1832,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.1875,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 20,
+            "car": 21,
+            "water": 16,
+            "train": 5,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293864,
+          "meanRow": 576.96875,
+          "medianRow": 481.5,
+          "maximumRow": 1930,
+          "reach100": 0.875,
+          "reach300": 0.65625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "train": 7,
+            "car": 28,
+            "water": 12,
+            "eagle": 13,
+            "timeout": 1,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293846,
+          "meanRow": 575.84375,
+          "medianRow": 427,
+          "maximumRow": 2003,
+          "reach100": 0.90625,
+          "reach300": 0.65625,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 13,
+            "train": 4,
+            "car": 21,
+            "eagle": 21,
+            "timeout": 2,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293854,
+          "meanRow": 575.75,
+          "medianRow": 419,
+          "maximumRow": 1882,
+          "reach100": 0.875,
+          "reach300": 0.59375,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 23,
+            "bounds": 3,
+            "water": 15,
+            "eagle": 14,
+            "train": 7,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293813,
+          "meanRow": 575,
+          "medianRow": 491.5,
+          "maximumRow": 1942,
+          "reach100": 0.90625,
+          "reach300": 0.671875,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 29,
+            "eagle": 19,
+            "timeout": 2,
+            "water": 9,
+            "bounds": 2,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293817,
+          "meanRow": 574.796875,
+          "medianRow": 490,
+          "maximumRow": 1946,
+          "reach100": 0.875,
+          "reach300": 0.609375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 26,
+            "water": 15,
+            "train": 8,
+            "eagle": 13,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293947,
+          "meanRow": 572.625,
+          "medianRow": 397,
+          "maximumRow": 1958,
+          "reach100": 0.953125,
+          "reach300": 0.59375,
+          "reach1000": 0.125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 31,
+            "water": 10,
+            "train": 4,
+            "eagle": 14,
+            "timeout": 3,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293991,
+          "meanRow": 572.4375,
+          "medianRow": 442,
+          "maximumRow": 1923,
+          "reach100": 0.90625,
+          "reach300": 0.625,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 17,
+            "water": 12,
+            "car": 27,
+            "train": 5,
+            "bounds": 2,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293913,
+          "meanRow": 571.53125,
+          "medianRow": 417.5,
+          "maximumRow": 1952,
+          "reach100": 0.859375,
+          "reach300": 0.5625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 17,
+            "car": 22,
+            "train": 11,
+            "water": 7,
+            "bounds": 4,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293856,
+          "meanRow": 571.4375,
+          "medianRow": 418,
+          "maximumRow": 1864,
+          "reach100": 0.890625,
+          "reach300": 0.65625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "bounds": 8,
+            "eagle": 13,
+            "car": 25,
+            "water": 12,
+            "train": 4,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293952,
+          "meanRow": 570.609375,
+          "medianRow": 476,
+          "maximumRow": 1976,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 19,
+            "water": 15,
+            "car": 23,
+            "timeout": 3,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293876,
+          "meanRow": 570.375,
+          "medianRow": 443,
+          "maximumRow": 1909,
+          "reach100": 0.9375,
+          "reach300": 0.609375,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 4,
+            "car": 32,
+            "water": 8,
+            "eagle": 14,
+            "bounds": 4,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293891,
+          "meanRow": 570.0625,
+          "medianRow": 435.5,
+          "maximumRow": 1905,
+          "reach100": 0.9375,
+          "reach300": 0.671875,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 5,
+            "eagle": 16,
+            "car": 31,
+            "timeout": 2,
+            "water": 8,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293944,
+          "meanRow": 569,
+          "medianRow": 438,
+          "maximumRow": 1962,
+          "reach100": 0.84375,
+          "reach300": 0.59375,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "car": 24,
+            "bounds": 5,
+            "eagle": 17,
+            "water": 8,
+            "train": 6,
+            "timeout": 4
+          }
+        },
+        {
+          "genome": 293923,
+          "meanRow": 568.90625,
+          "medianRow": 409.5,
+          "maximumRow": 1976,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 18,
+            "train": 8,
+            "car": 24,
+            "water": 7,
+            "bounds": 4,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293942,
+          "meanRow": 565.984375,
+          "medianRow": 391,
+          "maximumRow": 2038,
+          "reach100": 0.890625,
+          "reach300": 0.59375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "water": 13,
+            "timeout": 4,
+            "eagle": 16,
+            "car": 24,
+            "train": 4,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293988,
+          "meanRow": 565.25,
+          "medianRow": 395.5,
+          "maximumRow": 1852,
+          "reach100": 0.859375,
+          "reach300": 0.59375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 10,
+            "car": 25,
+            "eagle": 11,
+            "bounds": 8,
+            "timeout": 3,
+            "train": 7
+          }
+        },
+        {
+          "genome": 293895,
+          "meanRow": 565.046875,
+          "medianRow": 465,
+          "maximumRow": 1912,
+          "reach100": 0.9375,
+          "reach300": 0.609375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "train": 6,
+            "eagle": 15,
+            "water": 11,
+            "car": 28,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293912,
+          "meanRow": 563.359375,
+          "medianRow": 463.5,
+          "maximumRow": 1947,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 33,
+            "eagle": 17,
+            "water": 9,
+            "bounds": 3,
+            "train": 1,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293820,
+          "meanRow": 562.359375,
+          "medianRow": 362.5,
+          "maximumRow": 2117,
+          "reach100": 0.890625,
+          "reach300": 0.65625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 15,
+            "water": 8,
+            "car": 23,
+            "train": 6,
+            "bounds": 10,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293918,
+          "meanRow": 561.328125,
+          "medianRow": 391.5,
+          "maximumRow": 1956,
+          "reach100": 0.875,
+          "reach300": 0.578125,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 22,
+            "eagle": 18,
+            "water": 12,
+            "train": 3,
+            "bounds": 6,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293839,
+          "meanRow": 561.25,
+          "medianRow": 366.5,
+          "maximumRow": 1931,
+          "reach100": 0.875,
+          "reach300": 0.5625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 15,
+            "eagle": 19,
+            "train": 3,
+            "car": 23,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293885,
+          "meanRow": 560.09375,
+          "medianRow": 424.5,
+          "maximumRow": 1979,
+          "reach100": 0.859375,
+          "reach300": 0.59375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 29,
+            "eagle": 17,
+            "water": 10,
+            "train": 4,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293880,
+          "meanRow": 557.9375,
+          "medianRow": 491,
+          "maximumRow": 1979,
+          "reach100": 0.875,
+          "reach300": 0.640625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 25,
+            "eagle": 14,
+            "water": 11,
+            "train": 4,
+            "bounds": 8,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293978,
+          "meanRow": 557.578125,
+          "medianRow": 414,
+          "maximumRow": 1845,
+          "reach100": 0.890625,
+          "reach300": 0.65625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 8,
+            "eagle": 15,
+            "train": 5,
+            "car": 30,
+            "timeout": 1,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293878,
+          "meanRow": 557.1875,
+          "medianRow": 411,
+          "maximumRow": 2035,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 33,
+            "eagle": 14,
+            "water": 9,
+            "bounds": 6,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293835,
+          "meanRow": 556.3125,
+          "medianRow": 432.5,
+          "maximumRow": 1746,
+          "reach100": 0.875,
+          "reach300": 0.625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 27,
+            "water": 16,
+            "eagle": 14,
+            "train": 4,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293945,
+          "meanRow": 556.046875,
+          "medianRow": 386,
+          "maximumRow": 1970,
+          "reach100": 0.84375,
+          "reach300": 0.609375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 14,
+            "car": 21,
+            "eagle": 19,
+            "bounds": 6,
+            "train": 1,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293901,
+          "meanRow": 555.71875,
+          "medianRow": 445,
+          "maximumRow": 1947,
+          "reach100": 0.875,
+          "reach300": 0.671875,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 8,
+            "train": 4,
+            "car": 21,
+            "water": 11,
+            "eagle": 19,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293867,
+          "meanRow": 553.828125,
+          "medianRow": 479.5,
+          "maximumRow": 1711,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.140625,
+          "timeoutRate": 0,
+          "deaths": {
+            "train": 6,
+            "eagle": 14,
+            "car": 28,
+            "water": 11,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293980,
+          "meanRow": 552.96875,
+          "medianRow": 419.5,
+          "maximumRow": 1869,
+          "reach100": 0.84375,
+          "reach300": 0.6875,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 32,
+            "water": 9,
+            "eagle": 15,
+            "timeout": 2,
+            "train": 2,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293935,
+          "meanRow": 552.671875,
+          "medianRow": 485,
+          "maximumRow": 1765,
+          "reach100": 0.890625,
+          "reach300": 0.703125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 16,
+            "car": 20,
+            "water": 13,
+            "bounds": 10,
+            "train": 4,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293892,
+          "meanRow": 551.953125,
+          "medianRow": 378,
+          "maximumRow": 1856,
+          "reach100": 0.953125,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "eagle": 20,
+            "car": 23,
+            "timeout": 4,
+            "water": 10,
+            "bounds": 2,
+            "train": 5
+          }
+        },
+        {
+          "genome": 293919,
+          "meanRow": 549.171875,
+          "medianRow": 338.5,
+          "maximumRow": 2037,
+          "reach100": 0.890625,
+          "reach300": 0.53125,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "water": 11,
+            "eagle": 16,
+            "car": 26,
+            "train": 4,
+            "timeout": 4,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293851,
+          "meanRow": 548.9375,
+          "medianRow": 352,
+          "maximumRow": 1959,
+          "reach100": 0.859375,
+          "reach300": 0.546875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "water": 9,
+            "car": 26,
+            "bounds": 3,
+            "eagle": 18,
+            "timeout": 4,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293884,
+          "meanRow": 548.65625,
+          "medianRow": 327,
+          "maximumRow": 1994,
+          "reach100": 0.9375,
+          "reach300": 0.53125,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "train": 6,
+            "eagle": 13,
+            "car": 26,
+            "water": 11,
+            "bounds": 5,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293905,
+          "meanRow": 548.609375,
+          "medianRow": 459.5,
+          "maximumRow": 1809,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "train": 5,
+            "car": 26,
+            "eagle": 16,
+            "water": 16,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293977,
+          "meanRow": 546.921875,
+          "medianRow": 364.5,
+          "maximumRow": 1865,
+          "reach100": 0.90625,
+          "reach300": 0.59375,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 14,
+            "car": 19,
+            "eagle": 21,
+            "timeout": 1,
+            "train": 4,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293950,
+          "meanRow": 546.421875,
+          "medianRow": 412,
+          "maximumRow": 1829,
+          "reach100": 0.90625,
+          "reach300": 0.640625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 17,
+            "water": 11,
+            "car": 26,
+            "train": 6,
+            "timeout": 1,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293967,
+          "meanRow": 544.28125,
+          "medianRow": 449.5,
+          "maximumRow": 1804,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 17,
+            "water": 9,
+            "car": 28,
+            "train": 2,
+            "bounds": 5,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293857,
+          "meanRow": 544.09375,
+          "medianRow": 403,
+          "maximumRow": 1962,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "water": 8,
+            "car": 29,
+            "bounds": 3,
+            "train": 4,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293863,
+          "meanRow": 543.734375,
+          "medianRow": 462.5,
+          "maximumRow": 1818,
+          "reach100": 0.890625,
+          "reach300": 0.671875,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 12,
+            "car": 29,
+            "train": 3,
+            "bounds": 7,
+            "water": 12,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293999,
+          "meanRow": 543.6875,
+          "medianRow": 325.5,
+          "maximumRow": 2131,
+          "reach100": 0.875,
+          "reach300": 0.546875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "train": 7,
+            "water": 7,
+            "eagle": 19,
+            "car": 22,
+            "timeout": 4,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293959,
+          "meanRow": 543.265625,
+          "medianRow": 399.5,
+          "maximumRow": 1944,
+          "reach100": 0.875,
+          "reach300": 0.625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 19,
+            "bounds": 4,
+            "water": 15,
+            "car": 20,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293946,
+          "meanRow": 542.421875,
+          "medianRow": 391.5,
+          "maximumRow": 1883,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 15,
+            "car": 25,
+            "timeout": 3,
+            "bounds": 10,
+            "water": 9,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293859,
+          "meanRow": 542.25,
+          "medianRow": 453.5,
+          "maximumRow": 1750,
+          "reach100": 0.921875,
+          "reach300": 0.703125,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 31,
+            "water": 9,
+            "eagle": 13,
+            "train": 6,
+            "bounds": 4,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293834,
+          "meanRow": 542.21875,
+          "medianRow": 427,
+          "maximumRow": 1825,
+          "reach100": 0.921875,
+          "reach300": 0.609375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "train": 5,
+            "car": 29,
+            "water": 11,
+            "eagle": 14,
+            "timeout": 3,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293881,
+          "meanRow": 541.859375,
+          "medianRow": 392.5,
+          "maximumRow": 1938,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 12,
+            "bounds": 4,
+            "eagle": 21,
+            "train": 4,
+            "car": 22,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293924,
+          "meanRow": 541.234375,
+          "medianRow": 415,
+          "maximumRow": 1943,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "bounds": 2,
+            "car": 27,
+            "train": 5,
+            "water": 10,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293902,
+          "meanRow": 540.75,
+          "medianRow": 351.5,
+          "maximumRow": 1978,
+          "reach100": 0.875,
+          "reach300": 0.640625,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 16,
+            "car": 29,
+            "bounds": 4,
+            "water": 11,
+            "timeout": 1,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293928,
+          "meanRow": 538.078125,
+          "medianRow": 481.5,
+          "maximumRow": 2100,
+          "reach100": 0.90625,
+          "reach300": 0.65625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 25,
+            "eagle": 14,
+            "water": 13,
+            "timeout": 2,
+            "train": 8,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293882,
+          "meanRow": 537.984375,
+          "medianRow": 402.5,
+          "maximumRow": 1707,
+          "reach100": 0.875,
+          "reach300": 0.640625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 34,
+            "water": 12,
+            "eagle": 15,
+            "timeout": 1,
+            "bounds": 1,
+            "train": 1
+          }
+        },
+        {
+          "genome": 293847,
+          "meanRow": 537.375,
+          "medianRow": 416.5,
+          "maximumRow": 1871,
+          "reach100": 0.875,
+          "reach300": 0.65625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 28,
+            "water": 16,
+            "eagle": 17,
+            "bounds": 2,
+            "train": 1
+          }
+        },
+        {
+          "genome": 293887,
+          "meanRow": 536.8125,
+          "medianRow": 389.5,
+          "maximumRow": 1856,
+          "reach100": 0.9375,
+          "reach300": 0.625,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "water": 7,
+            "car": 33,
+            "bounds": 4,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293956,
+          "meanRow": 534.625,
+          "medianRow": 347,
+          "maximumRow": 1773,
+          "reach100": 0.921875,
+          "reach300": 0.546875,
+          "reach1000": 0.203125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "car": 17,
+            "train": 6,
+            "water": 11,
+            "eagle": 24,
+            "bounds": 3,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293888,
+          "meanRow": 534.4375,
+          "medianRow": 382,
+          "maximumRow": 1920,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 14,
+            "car": 29,
+            "eagle": 14,
+            "timeout": 2,
+            "train": 3,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293855,
+          "meanRow": 533.96875,
+          "medianRow": 396,
+          "maximumRow": 1944,
+          "reach100": 0.921875,
+          "reach300": 0.625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 7,
+            "car": 25,
+            "eagle": 22,
+            "bounds": 7,
+            "timeout": 2,
+            "train": 1
+          }
+        },
+        {
+          "genome": 293908,
+          "meanRow": 533.25,
+          "medianRow": 408.5,
+          "maximumRow": 1885,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 19,
+            "train": 3,
+            "water": 12,
+            "eagle": 23,
+            "bounds": 5,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293941,
+          "meanRow": 532.53125,
+          "medianRow": 399,
+          "maximumRow": 1921,
+          "reach100": 0.90625,
+          "reach300": 0.65625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 10,
+            "train": 5,
+            "eagle": 19,
+            "car": 19,
+            "bounds": 10,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293996,
+          "meanRow": 531.609375,
+          "medianRow": 371,
+          "maximumRow": 2053,
+          "reach100": 0.921875,
+          "reach300": 0.640625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 18,
+            "water": 10,
+            "train": 4,
+            "car": 23,
+            "bounds": 8,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293862,
+          "meanRow": 530.171875,
+          "medianRow": 383,
+          "maximumRow": 1823,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 15,
+            "timeout": 2,
+            "car": 29,
+            "train": 4,
+            "water": 10,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293958,
+          "meanRow": 529.8125,
+          "medianRow": 461.5,
+          "maximumRow": 2000,
+          "reach100": 0.90625,
+          "reach300": 0.625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 14,
+            "car": 24,
+            "water": 21,
+            "timeout": 2,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293997,
+          "meanRow": 527.484375,
+          "medianRow": 414,
+          "maximumRow": 1858,
+          "reach100": 0.9375,
+          "reach300": 0.625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 13,
+            "car": 19,
+            "eagle": 18,
+            "train": 5,
+            "bounds": 7,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293806,
+          "meanRow": 527.109375,
+          "medianRow": 406.5,
+          "maximumRow": 1777,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 23,
+            "eagle": 19,
+            "water": 11,
+            "timeout": 1,
+            "train": 6,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293850,
+          "meanRow": 526.734375,
+          "medianRow": 408.5,
+          "maximumRow": 1543,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 26,
+            "water": 14,
+            "eagle": 16,
+            "train": 6,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293951,
+          "meanRow": 526.5625,
+          "medianRow": 402,
+          "maximumRow": 1835,
+          "reach100": 0.890625,
+          "reach300": 0.59375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0,
+          "deaths": {
+            "water": 11,
+            "eagle": 21,
+            "car": 24,
+            "bounds": 4,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293858,
+          "meanRow": 525.1875,
+          "medianRow": 389,
+          "maximumRow": 1977,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 24,
+            "train": 7,
+            "car": 23,
+            "water": 5,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293816,
+          "meanRow": 522.125,
+          "medianRow": 364.5,
+          "maximumRow": 1744,
+          "reach100": 0.828125,
+          "reach300": 0.578125,
+          "reach1000": 0.1875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 8,
+            "car": 26,
+            "eagle": 22,
+            "bounds": 3,
+            "train": 4,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293926,
+          "meanRow": 520.9375,
+          "medianRow": 399.5,
+          "maximumRow": 1931,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "bounds": 4,
+            "water": 10,
+            "train": 4,
+            "car": 21,
+            "eagle": 21,
+            "timeout": 4
+          }
+        },
+        {
+          "genome": 293920,
+          "meanRow": 520.796875,
+          "medianRow": 358.5,
+          "maximumRow": 1878,
+          "reach100": 0.90625,
+          "reach300": 0.59375,
+          "reach1000": 0.15625,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 15,
+            "water": 11,
+            "train": 7,
+            "car": 27,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293921,
+          "meanRow": 520.015625,
+          "medianRow": 381,
+          "maximumRow": 2003,
+          "reach100": 0.875,
+          "reach300": 0.59375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 17,
+            "water": 13,
+            "car": 24,
+            "timeout": 3,
+            "train": 5,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293940,
+          "meanRow": 519.984375,
+          "medianRow": 355.5,
+          "maximumRow": 1886,
+          "reach100": 0.8125,
+          "reach300": 0.5625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 27,
+            "eagle": 17,
+            "water": 12,
+            "train": 4,
+            "bounds": 2,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293971,
+          "meanRow": 519.359375,
+          "medianRow": 410.5,
+          "maximumRow": 1697,
+          "reach100": 0.875,
+          "reach300": 0.59375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 6,
+            "car": 26,
+            "eagle": 15,
+            "water": 13,
+            "train": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293925,
+          "meanRow": 519.046875,
+          "medianRow": 403.5,
+          "maximumRow": 1802,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 6,
+            "car": 28,
+            "eagle": 15,
+            "water": 9,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293970,
+          "meanRow": 518.28125,
+          "medianRow": 473,
+          "maximumRow": 1632,
+          "reach100": 0.90625,
+          "reach300": 0.625,
+          "reach1000": 0.078125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 16,
+            "water": 18,
+            "car": 23,
+            "bounds": 2,
+            "train": 3,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293964,
+          "meanRow": 516.640625,
+          "medianRow": 382.5,
+          "maximumRow": 2056,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.125,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "bounds": 8,
+            "water": 8,
+            "car": 22,
+            "eagle": 19,
+            "train": 4,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293871,
+          "meanRow": 516.03125,
+          "medianRow": 347,
+          "maximumRow": 1907,
+          "reach100": 0.890625,
+          "reach300": 0.59375,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 6,
+            "car": 22,
+            "eagle": 21,
+            "water": 10,
+            "timeout": 1,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293953,
+          "meanRow": 515.78125,
+          "medianRow": 371.5,
+          "maximumRow": 1891,
+          "reach100": 0.90625,
+          "reach300": 0.5625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 19,
+            "bounds": 5,
+            "car": 18,
+            "train": 9,
+            "water": 11,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293899,
+          "meanRow": 513.953125,
+          "medianRow": 435.5,
+          "maximumRow": 1912,
+          "reach100": 0.90625,
+          "reach300": 0.640625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 19,
+            "car": 24,
+            "water": 11,
+            "timeout": 1,
+            "bounds": 7,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293866,
+          "meanRow": 513.15625,
+          "medianRow": 400.5,
+          "maximumRow": 1722,
+          "reach100": 0.875,
+          "reach300": 0.609375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 36,
+            "eagle": 18,
+            "train": 2,
+            "bounds": 2,
+            "water": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293870,
+          "meanRow": 510.96875,
+          "medianRow": 385.5,
+          "maximumRow": 1939,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 13,
+            "car": 27,
+            "train": 5,
+            "bounds": 9,
+            "water": 7,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293825,
+          "meanRow": 510.640625,
+          "medianRow": 370.5,
+          "maximumRow": 1834,
+          "reach100": 0.859375,
+          "reach300": 0.609375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "water": 11,
+            "car": 20,
+            "eagle": 20,
+            "train": 4,
+            "bounds": 9
+          }
+        },
+        {
+          "genome": 293932,
+          "meanRow": 510.140625,
+          "medianRow": 375.5,
+          "maximumRow": 1935,
+          "reach100": 0.828125,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 26,
+            "bounds": 1,
+            "eagle": 18,
+            "water": 13,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293906,
+          "meanRow": 509.921875,
+          "medianRow": 386.5,
+          "maximumRow": 1878,
+          "reach100": 0.859375,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 34,
+            "eagle": 15,
+            "water": 9,
+            "train": 2,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293973,
+          "meanRow": 508.96875,
+          "medianRow": 341.5,
+          "maximumRow": 1924,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 18,
+            "water": 18,
+            "eagle": 21,
+            "train": 3,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293815,
+          "meanRow": 508.265625,
+          "medianRow": 394,
+          "maximumRow": 1607,
+          "reach100": 0.90625,
+          "reach300": 0.625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 31,
+            "water": 10,
+            "train": 3,
+            "bounds": 5,
+            "eagle": 15
+          }
+        },
+        {
+          "genome": 293807,
+          "meanRow": 507.703125,
+          "medianRow": 355,
+          "maximumRow": 2023,
+          "reach100": 0.890625,
+          "reach300": 0.609375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 20,
+            "car": 18,
+            "train": 4,
+            "water": 11,
+            "bounds": 9,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293827,
+          "meanRow": 507.171875,
+          "medianRow": 339,
+          "maximumRow": 1535,
+          "reach100": 0.859375,
+          "reach300": 0.546875,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "eagle": 25,
+            "water": 13,
+            "car": 15,
+            "train": 5,
+            "timeout": 4,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293886,
+          "meanRow": 506.75,
+          "medianRow": 416.5,
+          "maximumRow": 1892,
+          "reach100": 0.84375,
+          "reach300": 0.625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 23,
+            "train": 3,
+            "bounds": 8,
+            "eagle": 17,
+            "water": 11,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293812,
+          "meanRow": 502.1875,
+          "medianRow": 413,
+          "maximumRow": 1952,
+          "reach100": 0.890625,
+          "reach300": 0.578125,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 16,
+            "water": 12,
+            "car": 27,
+            "train": 5,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293936,
+          "meanRow": 499.53125,
+          "medianRow": 389,
+          "maximumRow": 1840,
+          "reach100": 0.90625,
+          "reach300": 0.59375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 22,
+            "water": 9,
+            "train": 6,
+            "car": 22,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293987,
+          "meanRow": 498.65625,
+          "medianRow": 400.5,
+          "maximumRow": 1840,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 22,
+            "eagle": 19,
+            "water": 16,
+            "train": 5,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293833,
+          "meanRow": 496.046875,
+          "medianRow": 381,
+          "maximumRow": 1710,
+          "reach100": 0.890625,
+          "reach300": 0.640625,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 16,
+            "car": 29,
+            "train": 3,
+            "water": 10,
+            "bounds": 6
+          }
+        },
+        {
+          "genome": 293883,
+          "meanRow": 495.921875,
+          "medianRow": 362,
+          "maximumRow": 1844,
+          "reach100": 0.84375,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 16,
+            "water": 17,
+            "bounds": 6,
+            "car": 20,
+            "train": 3,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293809,
+          "meanRow": 495.484375,
+          "medianRow": 376,
+          "maximumRow": 1747,
+          "reach100": 0.890625,
+          "reach300": 0.5625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 17,
+            "car": 20,
+            "train": 4,
+            "bounds": 7,
+            "eagle": 15,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293961,
+          "meanRow": 495.296875,
+          "medianRow": 312.5,
+          "maximumRow": 1954,
+          "reach100": 0.84375,
+          "reach300": 0.515625,
+          "reach1000": 0.171875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 13,
+            "car": 25,
+            "eagle": 22,
+            "timeout": 1,
+            "train": 2,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293938,
+          "meanRow": 493.09375,
+          "medianRow": 351,
+          "maximumRow": 1968,
+          "reach100": 0.859375,
+          "reach300": 0.59375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "eagle": 16,
+            "bounds": 9,
+            "train": 5,
+            "car": 24,
+            "water": 7,
+            "timeout": 3
+          }
+        },
+        {
+          "genome": 293865,
+          "meanRow": 492.875,
+          "medianRow": 429.5,
+          "maximumRow": 1790,
+          "reach100": 0.921875,
+          "reach300": 0.625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 14,
+            "car": 29,
+            "water": 13,
+            "train": 3,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293903,
+          "meanRow": 491.21875,
+          "medianRow": 377,
+          "maximumRow": 1840,
+          "reach100": 0.890625,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 19,
+            "train": 2,
+            "water": 13,
+            "eagle": 22,
+            "timeout": 1,
+            "bounds": 7
+          }
+        },
+        {
+          "genome": 293836,
+          "meanRow": 489.4375,
+          "medianRow": 355.5,
+          "maximumRow": 1952,
+          "reach100": 0.890625,
+          "reach300": 0.59375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 12,
+            "water": 18,
+            "train": 4,
+            "car": 27,
+            "timeout": 1,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293992,
+          "meanRow": 489.15625,
+          "medianRow": 388,
+          "maximumRow": 1827,
+          "reach100": 0.875,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 18,
+            "eagle": 16,
+            "train": 5,
+            "bounds": 9,
+            "water": 15,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293810,
+          "meanRow": 487.75,
+          "medianRow": 390.5,
+          "maximumRow": 1556,
+          "reach100": 0.890625,
+          "reach300": 0.625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "eagle": 24,
+            "car": 24,
+            "bounds": 4,
+            "water": 7,
+            "timeout": 4,
+            "train": 1
+          }
+        },
+        {
+          "genome": 293824,
+          "meanRow": 487.265625,
+          "medianRow": 376.5,
+          "maximumRow": 1863,
+          "reach100": 0.890625,
+          "reach300": 0.59375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 20,
+            "water": 13,
+            "car": 25,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293960,
+          "meanRow": 483.609375,
+          "medianRow": 320.5,
+          "maximumRow": 1934,
+          "reach100": 0.859375,
+          "reach300": 0.546875,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 7,
+            "timeout": 1,
+            "car": 24,
+            "eagle": 16,
+            "water": 12,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293927,
+          "meanRow": 480.078125,
+          "medianRow": 284,
+          "maximumRow": 1955,
+          "reach100": 0.890625,
+          "reach300": 0.484375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 14,
+            "water": 10,
+            "train": 8,
+            "car": 25,
+            "timeout": 2,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293911,
+          "meanRow": 479.96875,
+          "medianRow": 407,
+          "maximumRow": 1665,
+          "reach100": 0.828125,
+          "reach300": 0.59375,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "bounds": 7,
+            "car": 20,
+            "eagle": 20,
+            "water": 13,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293803,
+          "meanRow": 479.859375,
+          "medianRow": 432.5,
+          "maximumRow": 1891,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 14,
+            "water": 13,
+            "car": 29,
+            "timeout": 2,
+            "bounds": 1,
+            "train": 5
+          }
+        },
+        {
+          "genome": 293948,
+          "meanRow": 479.390625,
+          "medianRow": 364.5,
+          "maximumRow": 1871,
+          "reach100": 0.875,
+          "reach300": 0.59375,
+          "reach1000": 0.0625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 33,
+            "eagle": 13,
+            "water": 10,
+            "train": 6,
+            "timeout": 1,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293949,
+          "meanRow": 478.8125,
+          "medianRow": 355,
+          "maximumRow": 1994,
+          "reach100": 0.875,
+          "reach300": 0.640625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 17,
+            "car": 24,
+            "train": 4,
+            "bounds": 7,
+            "water": 11,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293955,
+          "meanRow": 478.796875,
+          "medianRow": 328.5,
+          "maximumRow": 1854,
+          "reach100": 0.859375,
+          "reach300": 0.53125,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 28,
+            "eagle": 20,
+            "train": 6,
+            "water": 7,
+            "bounds": 2,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293963,
+          "meanRow": 476.640625,
+          "medianRow": 388.5,
+          "maximumRow": 1931,
+          "reach100": 0.921875,
+          "reach300": 0.640625,
+          "reach1000": 0.0625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "bounds": 7,
+            "car": 24,
+            "eagle": 16,
+            "water": 12,
+            "timeout": 1,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293995,
+          "meanRow": 476.53125,
+          "medianRow": 393,
+          "maximumRow": 1558,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 17,
+            "car": 25,
+            "water": 15,
+            "train": 5,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293981,
+          "meanRow": 475.953125,
+          "medianRow": 350,
+          "maximumRow": 1747,
+          "reach100": 0.890625,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "water": 16,
+            "car": 20,
+            "train": 5,
+            "bounds": 6,
+            "eagle": 15,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293969,
+          "meanRow": 475.703125,
+          "medianRow": 382.5,
+          "maximumRow": 1666,
+          "reach100": 0.859375,
+          "reach300": 0.5625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 15,
+            "bounds": 3,
+            "water": 9,
+            "train": 6,
+            "car": 31
+          }
+        },
+        {
+          "genome": 293868,
+          "meanRow": 475.6875,
+          "medianRow": 363.5,
+          "maximumRow": 1720,
+          "reach100": 0.875,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 27,
+            "water": 11,
+            "eagle": 18,
+            "train": 4,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293860,
+          "meanRow": 475.328125,
+          "medianRow": 349.5,
+          "maximumRow": 1790,
+          "reach100": 0.90625,
+          "reach300": 0.546875,
+          "reach1000": 0.125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 20,
+            "bounds": 2,
+            "car": 22,
+            "train": 8,
+            "water": 10,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293898,
+          "meanRow": 474.734375,
+          "medianRow": 345.5,
+          "maximumRow": 1842,
+          "reach100": 0.875,
+          "reach300": 0.53125,
+          "reach1000": 0.15625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 26,
+            "timeout": 2,
+            "eagle": 17,
+            "train": 3,
+            "water": 12,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293872,
+          "meanRow": 474.078125,
+          "medianRow": 345,
+          "maximumRow": 1878,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 13,
+            "car": 24,
+            "train": 3,
+            "eagle": 20,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293917,
+          "meanRow": 473.34375,
+          "medianRow": 346,
+          "maximumRow": 1781,
+          "reach100": 0.875,
+          "reach300": 0.53125,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "water": 16,
+            "bounds": 8,
+            "train": 4,
+            "eagle": 19,
+            "car": 16,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293990,
+          "meanRow": 472.265625,
+          "medianRow": 381.5,
+          "maximumRow": 1667,
+          "reach100": 0.828125,
+          "reach300": 0.609375,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "bounds": 9,
+            "eagle": 16,
+            "train": 5,
+            "water": 12,
+            "car": 22
+          }
+        },
+        {
+          "genome": 293909,
+          "meanRow": 469.421875,
+          "medianRow": 327,
+          "maximumRow": 1958,
+          "reach100": 0.9375,
+          "reach300": 0.5625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 24,
+            "car": 19,
+            "train": 4,
+            "water": 7,
+            "bounds": 9,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293819,
+          "meanRow": 469.109375,
+          "medianRow": 354.5,
+          "maximumRow": 1780,
+          "reach100": 0.875,
+          "reach300": 0.578125,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 20,
+            "car": 20,
+            "water": 18,
+            "train": 1,
+            "bounds": 4,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293983,
+          "meanRow": 468.796875,
+          "medianRow": 334,
+          "maximumRow": 1470,
+          "reach100": 0.890625,
+          "reach300": 0.546875,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 22,
+            "car": 23,
+            "train": 4,
+            "water": 11,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293831,
+          "meanRow": 467.421875,
+          "medianRow": 437,
+          "maximumRow": 1132,
+          "reach100": 0.9375,
+          "reach300": 0.703125,
+          "reach1000": 0.0625,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 19,
+            "car": 32,
+            "train": 4,
+            "water": 8,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293840,
+          "meanRow": 465.140625,
+          "medianRow": 320.5,
+          "maximumRow": 1924,
+          "reach100": 0.90625,
+          "reach300": 0.515625,
+          "reach1000": 0.140625,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "timeout": 2,
+            "water": 9,
+            "eagle": 16,
+            "car": 27,
+            "train": 7,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293844,
+          "meanRow": 463.921875,
+          "medianRow": 365.5,
+          "maximumRow": 1705,
+          "reach100": 0.875,
+          "reach300": 0.5625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 29,
+            "bounds": 2,
+            "train": 7,
+            "water": 12,
+            "eagle": 14
+          }
+        },
+        {
+          "genome": 293818,
+          "meanRow": 460.921875,
+          "medianRow": 376,
+          "maximumRow": 1540,
+          "reach100": 0.90625,
+          "reach300": 0.640625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 30,
+            "eagle": 17,
+            "water": 9,
+            "train": 3,
+            "bounds": 5
+          }
+        },
+        {
+          "genome": 293979,
+          "meanRow": 458.625,
+          "medianRow": 359.5,
+          "maximumRow": 1868,
+          "reach100": 0.90625,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "timeout": 2,
+            "car": 29,
+            "eagle": 17,
+            "train": 5,
+            "water": 11
+          }
+        },
+        {
+          "genome": 293914,
+          "meanRow": 456.671875,
+          "medianRow": 330,
+          "maximumRow": 2016,
+          "reach100": 0.859375,
+          "reach300": 0.515625,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "car": 25,
+            "water": 17,
+            "eagle": 14,
+            "train": 4,
+            "timeout": 2,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293832,
+          "meanRow": 455.703125,
+          "medianRow": 371.5,
+          "maximumRow": 1488,
+          "reach100": 0.875,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 15,
+            "car": 27,
+            "bounds": 2,
+            "water": 14,
+            "train": 5,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293934,
+          "meanRow": 455.640625,
+          "medianRow": 339,
+          "maximumRow": 1823,
+          "reach100": 0.84375,
+          "reach300": 0.5625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "train": 5,
+            "car": 26,
+            "bounds": 5,
+            "water": 13,
+            "eagle": 14,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293801,
+          "meanRow": 455.46875,
+          "medianRow": 356,
+          "maximumRow": 1707,
+          "reach100": 0.90625,
+          "reach300": 0.609375,
+          "reach1000": 0.0625,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 19,
+            "water": 9,
+            "car": 24,
+            "train": 6,
+            "bounds": 6
+          }
+        },
+        {
+          "genome": 293848,
+          "meanRow": 454.828125,
+          "medianRow": 302,
+          "maximumRow": 1839,
+          "reach100": 0.84375,
+          "reach300": 0.5,
+          "reach1000": 0.09375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 17,
+            "water": 15,
+            "car": 22,
+            "bounds": 5,
+            "timeout": 2,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293821,
+          "meanRow": 452.40625,
+          "medianRow": 402.5,
+          "maximumRow": 1449,
+          "reach100": 0.921875,
+          "reach300": 0.671875,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 21,
+            "train": 6,
+            "car": 29,
+            "water": 6,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293822,
+          "meanRow": 450.171875,
+          "medianRow": 345,
+          "maximumRow": 1772,
+          "reach100": 0.859375,
+          "reach300": 0.515625,
+          "reach1000": 0.078125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "train": 2,
+            "car": 19,
+            "bounds": 12,
+            "water": 11,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293843,
+          "meanRow": 449.875,
+          "medianRow": 315.5,
+          "maximumRow": 1625,
+          "reach100": 0.890625,
+          "reach300": 0.53125,
+          "reach1000": 0.078125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "eagle": 18,
+            "water": 16,
+            "car": 21,
+            "train": 7,
+            "timeout": 2
+          }
+        },
+        {
+          "genome": 293802,
+          "meanRow": 448.703125,
+          "medianRow": 397.5,
+          "maximumRow": 1604,
+          "reach100": 0.890625,
+          "reach300": 0.578125,
+          "reach1000": 0.046875,
+          "timeoutRate": 0,
+          "deaths": {
+            "bounds": 5,
+            "car": 28,
+            "eagle": 17,
+            "water": 10,
+            "train": 4
+          }
+        },
+        {
+          "genome": 293852,
+          "meanRow": 447.34375,
+          "medianRow": 298,
+          "maximumRow": 1754,
+          "reach100": 0.90625,
+          "reach300": 0.5,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "train": 5,
+            "car": 33,
+            "eagle": 17,
+            "water": 8,
+            "bounds": 1
+          }
+        },
+        {
+          "genome": 293804,
+          "meanRow": 444.9375,
+          "medianRow": 363.5,
+          "maximumRow": 1774,
+          "reach100": 0.84375,
+          "reach300": 0.578125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "water": 21,
+            "bounds": 4,
+            "train": 2,
+            "car": 26,
+            "eagle": 11
+          }
+        },
+        {
+          "genome": 293894,
+          "meanRow": 443.46875,
+          "medianRow": 332.5,
+          "maximumRow": 1436,
+          "reach100": 0.859375,
+          "reach300": 0.515625,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 19,
+            "water": 19,
+            "car": 17,
+            "train": 7,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293829,
+          "meanRow": 441.875,
+          "medianRow": 319,
+          "maximumRow": 1774,
+          "reach100": 0.859375,
+          "reach300": 0.53125,
+          "reach1000": 0.109375,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "train": 6,
+            "car": 22,
+            "water": 13,
+            "eagle": 17,
+            "timeout": 2,
+            "bounds": 4
+          }
+        },
+        {
+          "genome": 293954,
+          "meanRow": 441.5625,
+          "medianRow": 399.5,
+          "maximumRow": 1551,
+          "reach100": 0.84375,
+          "reach300": 0.59375,
+          "reach1000": 0.09375,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 14,
+            "car": 34,
+            "water": 10,
+            "train": 4,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293972,
+          "meanRow": 441.21875,
+          "medianRow": 319.5,
+          "maximumRow": 1837,
+          "reach100": 0.859375,
+          "reach300": 0.53125,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "water": 16,
+            "eagle": 20,
+            "car": 25,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293968,
+          "meanRow": 439.65625,
+          "medianRow": 310,
+          "maximumRow": 1835,
+          "reach100": 0.921875,
+          "reach300": 0.53125,
+          "reach1000": 0.03125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 21,
+            "car": 27,
+            "water": 9,
+            "train": 3,
+            "bounds": 3,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293984,
+          "meanRow": 438.859375,
+          "medianRow": 282.5,
+          "maximumRow": 1655,
+          "reach100": 0.875,
+          "reach300": 0.484375,
+          "reach1000": 0.125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 21,
+            "train": 2,
+            "bounds": 7,
+            "water": 15,
+            "car": 18,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293889,
+          "meanRow": 437.859375,
+          "medianRow": 383.5,
+          "maximumRow": 1105,
+          "reach100": 0.90625,
+          "reach300": 0.59375,
+          "reach1000": 0.03125,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 28,
+            "train": 6,
+            "water": 15,
+            "eagle": 12,
+            "bounds": 3
+          }
+        },
+        {
+          "genome": 293915,
+          "meanRow": 436.375,
+          "medianRow": 330.5,
+          "maximumRow": 1616,
+          "reach100": 0.875,
+          "reach300": 0.546875,
+          "reach1000": 0.046875,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 18,
+            "bounds": 3,
+            "car": 20,
+            "water": 18,
+            "train": 5
+          }
+        },
+        {
+          "genome": 293943,
+          "meanRow": 433.828125,
+          "medianRow": 322.5,
+          "maximumRow": 1468,
+          "reach100": 0.890625,
+          "reach300": 0.53125,
+          "reach1000": 0.078125,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 21,
+            "car": 21,
+            "water": 16,
+            "bounds": 3,
+            "train": 3
+          }
+        },
+        {
+          "genome": 293869,
+          "meanRow": 427.484375,
+          "medianRow": 311.5,
+          "maximumRow": 1496,
+          "reach100": 0.875,
+          "reach300": 0.5625,
+          "reach1000": 0.078125,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "eagle": 17,
+            "car": 25,
+            "water": 10,
+            "train": 4,
+            "bounds": 7,
+            "timeout": 1
+          }
+        },
+        {
+          "genome": 293873,
+          "meanRow": 425.265625,
+          "medianRow": 333,
+          "maximumRow": 1408,
+          "reach100": 0.890625,
+          "reach300": 0.546875,
+          "reach1000": 0.125,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 19,
+            "train": 9,
+            "bounds": 9,
+            "car": 18,
+            "water": 9
+          }
+        },
+        {
+          "genome": 293845,
+          "meanRow": 418.6875,
+          "medianRow": 312,
+          "maximumRow": 1352,
+          "reach100": 0.890625,
+          "reach300": 0.546875,
+          "reach1000": 0.046875,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 16,
+            "water": 10,
+            "car": 33,
+            "train": 3,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293837,
+          "meanRow": 411.859375,
+          "medianRow": 256.5,
+          "maximumRow": 1721,
+          "reach100": 0.859375,
+          "reach300": 0.453125,
+          "reach1000": 0.078125,
+          "timeoutRate": 0.03125,
+          "deaths": {
+            "bounds": 7,
+            "car": 19,
+            "eagle": 24,
+            "water": 7,
+            "timeout": 2,
+            "train": 5
+          }
+        },
+        {
+          "genome": 293975,
+          "meanRow": 406.890625,
+          "medianRow": 314,
+          "maximumRow": 1949,
+          "reach100": 0.890625,
+          "reach300": 0.515625,
+          "reach1000": 0.046875,
+          "timeoutRate": 0.015625,
+          "deaths": {
+            "car": 23,
+            "train": 7,
+            "eagle": 14,
+            "water": 13,
+            "timeout": 1,
+            "bounds": 6
+          }
+        },
+        {
+          "genome": 293998,
+          "meanRow": 404.359375,
+          "medianRow": 328.5,
+          "maximumRow": 1198,
+          "reach100": 0.828125,
+          "reach300": 0.5625,
+          "reach1000": 0.078125,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 27,
+            "water": 9,
+            "eagle": 22,
+            "bounds": 4,
+            "train": 2
+          }
+        },
+        {
+          "genome": 293916,
+          "meanRow": 392.421875,
+          "medianRow": 281,
+          "maximumRow": 1697,
+          "reach100": 0.796875,
+          "reach300": 0.4375,
+          "reach1000": 0.109375,
+          "timeoutRate": 0,
+          "deaths": {
+            "car": 30,
+            "water": 9,
+            "eagle": 19,
+            "train": 4,
+            "bounds": 2
+          }
+        },
+        {
+          "genome": 293993,
+          "meanRow": 383.953125,
+          "medianRow": 322,
+          "maximumRow": 1567,
+          "reach100": 0.890625,
+          "reach300": 0.53125,
+          "reach1000": 0.046875,
+          "timeoutRate": 0,
+          "deaths": {
+            "eagle": 17,
+            "water": 9,
+            "car": 26,
+            "train": 6,
+            "bounds": 6
+          }
+        }
+      ]
+    }
+  ]
+}
