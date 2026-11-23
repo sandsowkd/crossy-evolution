@@ -8,7 +8,8 @@
     "results/variants/variant-2/native008-64-comparison-summary-001.json",
     "results/variants/variant-2/native009-96-comparison-summary-001.json",
     "results/variants/variant-2/native010-128-comparison-summary-001.json",
-    "results/variants/variant-2/native011-160-comparison-summary-001.json"
+    "results/variants/variant-2/native011-160-comparison-summary-001.json",
+    "results/variants/variant-2/native012-192-comparison-summary-001.json"
   ],
   "sharedInitialRuntime449": {
     "populationMeanRow": 469.684296875,
@@ -313,7 +314,7 @@
   "fixedLabelsNeverUsedAtInference": true,
   "finalMapsOpened": false,
   "interpretation": "One matched same-source/RNG critical-weight study: weight20 has the strongest population mean, weight0 the strongest minimum, weight10 the highest trainer-selected256 mean. Native RNG A/C strengthen mean and minimum; B/D regress minimum, although D yields the new2235 peak through a separate policy. No general method/speed advantage or independent from-scratch replication claim.",
-  "updatedAt": "2026-11-23T18:09:20.738997+00:00",
+  "updatedAt": "2026-11-23T19:29:53.147902+00:00",
   "bounded512To576": {
     "summaryFile": "results/variants/variant-2/native576-endpoint-comparison-summary-001.json",
     "auditSummaryFile": "results/variants/variant-2/native576-objective-audit-summary-036.json",
@@ -4839,6 +4840,777 @@
     "preparationAndChildPrelaunchValidationSeparate": true,
     "allEightOriginalParentsClosed": true,
     "interpretation": "Five011 endpoint population means improve and three regress. Four arms improve both mean and minimum: critical0/5 and RNG-I/J. RNG-I has the strongest endpoint mean599.963828125 and minimum416.703125. Bounded source/sibling search establishes no general critical-weight, RNG, method or speed benefit.",
+    "finalMapsOpened": false
+  },
+  "boundedContinuation012160To192": {
+    "summaryFile": "results/variants/variant-2/native012-192-comparison-summary-001.json",
+    "auditSummaryFile": "results/variants/variant-2/native012-objective-audit-summary-047.json",
+    "sourceContract": {
+      "initialGeneration": 160,
+      "generationCap": 192,
+      "fullNativeGenesPopulationRngTrackerSpeciesProgressParametersHistoryCacheCountersRetained": true,
+      "noGenerationSpeciesProgressResetIn012": true,
+      "threeExactContinuationsAndFiveDeclaredSingleChangeFutureSiblings": true,
+      "first161InheritedFirstChildBred162": true,
+      "actual161DiffersFromEvaluated160Boundary": true,
+      "initialFamilyReuse": {
+        "rngi": 6,
+        "rngj": 1,
+        "record": 1
+      },
+      "fixed394CriticalLabelsFitnessOnly": true,
+      "zeroWeightStillComputesDiagnosticCriticalScores": true,
+      "ordinaryNativeV9ChoosesEveryAction": true,
+      "source496SelectedCohortRestartIn007AncestryOnly": true,
+      "sourceSnapshotSha256Meaning": "HEAD at audit start; requested cohort and exact historical snapshot are separately pinned."
+    },
+    "comparisons": [
+      {
+        "study": "v4-native012-rngi160-continue",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-continue/focused",
+        "profile": "normal10",
+        "family": "rngi",
+        "weight": 10,
+        "declaredOptions": [],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-continue-192-population-001.json",
+        "populationMean": 602.271875,
+        "policyMeanDistribution": {
+          "minimum": 416.546875,
+          "p10": 511.5625,
+          "p25": 555.671875,
+          "median": 603.921875,
+          "p75": 648.375,
+          "p90": 682.765625,
+          "maximum": 846.53125
+        },
+        "populationMeanDelta": 16.608124999999973,
+        "minimumPolicyMeanDelta": 43.875,
+        "trainerSelected256": {
+          "meanRow": 642.66796875,
+          "medianRow": 499,
+          "maximumRow": 1844,
+          "reach100": 0.87109375,
+          "reach300": 0.62890625,
+          "reach1000": 0.24609375,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "car": 98,
+            "train": 14,
+            "eagle": 67,
+            "timeout": 20,
+            "water": 43,
+            "bounds": 14
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 156,
+          "genome": 305935,
+          "metrics": {
+            "meanRow": 642.66796875,
+            "medianRow": 499,
+            "maximumRow": 1844,
+            "reach100": 0.87109375,
+            "reach300": 0.62890625,
+            "reach1000": 0.24609375,
+            "timeoutRate": 0.078125,
+            "deaths": {
+              "car": 98,
+              "train": 14,
+              "eagle": 67,
+              "timeout": 20,
+              "water": 43,
+              "bounds": 14
+            }
+          },
+          "inheritedThroughParent160": true,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "e493506a537bbb4565989659db95c0baa636b2cbfd0cee2a28ccb11913dd2c22",
+        "cohortSha256": "3a5be99057f204b35f287877874c252124f3c1d8544ed54d3ff1646f8b6ef1ed",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62060,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngj160-continue",
+        "directory": "results/variants/variant-2/v4-native012-rngj160-continue/focused",
+        "profile": "rngj10",
+        "family": "rngj",
+        "weight": 10,
+        "declaredOptions": [],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngj-shared161-population-001.json",
+        "initialPopulationMean": 598.002421875,
+        "initialPolicyMeanDistribution": {
+          "minimum": 435.890625,
+          "p10": 518.640625,
+          "p25": 559.484375,
+          "median": 599.1875,
+          "p75": 637.234375,
+          "p90": 668.859375,
+          "maximum": 751.703125
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngj160-continue-192-population-001.json",
+        "populationMean": 573.362421875,
+        "policyMeanDistribution": {
+          "minimum": 268.28125,
+          "p10": 480.765625,
+          "p25": 523.015625,
+          "median": 568.609375,
+          "p75": 630.78125,
+          "p90": 672.75,
+          "maximum": 796.40625
+        },
+        "populationMeanDelta": -24.639999999999986,
+        "minimumPolicyMeanDelta": -167.609375,
+        "trainerSelected256": {
+          "meanRow": 674.77734375,
+          "medianRow": 537,
+          "maximumRow": 2068,
+          "reach100": 0.91015625,
+          "reach300": 0.67578125,
+          "reach1000": 0.25390625,
+          "timeoutRate": 0.046875,
+          "deaths": {
+            "water": 48,
+            "eagle": 66,
+            "car": 105,
+            "timeout": 12,
+            "train": 12,
+            "bounds": 13
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 168,
+          "genome": 308238,
+          "metrics": {
+            "meanRow": 674.77734375,
+            "medianRow": 537,
+            "maximumRow": 2068,
+            "reach100": 0.91015625,
+            "reach300": 0.67578125,
+            "reach1000": 0.25390625,
+            "timeoutRate": 0.046875,
+            "deaths": {
+              "water": 48,
+              "eagle": 66,
+              "car": 105,
+              "timeout": 12,
+              "train": 12,
+              "bounds": 13
+            }
+          },
+          "inheritedThroughParent160": false,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "371d8d7b70fe0651cb44ba33e29b790bcdaaff9b907e13b41f163891ace574ff",
+        "cohortSha256": "8c72b9ea2462f9686344e24bb4a2f62298cb01ab043bcf3c8f543b3a7f554a64",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62066,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-record160-continue",
+        "directory": "results/variants/variant-2/v4-native012-record160-continue/focused",
+        "profile": "record0",
+        "family": "record",
+        "weight": 0,
+        "declaredOptions": [],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-record-shared161-population-001.json",
+        "initialPopulationMean": 594.9971875,
+        "initialPolicyMeanDistribution": {
+          "minimum": 356.078125,
+          "p10": 500.703125,
+          "p25": 535.953125,
+          "median": 597.03125,
+          "p75": 646.34375,
+          "p90": 693.59375,
+          "maximum": 800.375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-record160-continue-192-population-001.json",
+        "populationMean": 557.776953125,
+        "policyMeanDistribution": {
+          "minimum": 294.15625,
+          "p10": 485.640625,
+          "p25": 514.828125,
+          "median": 557.453125,
+          "p75": 601.09375,
+          "p90": 637.171875,
+          "maximum": 720.796875
+        },
+        "populationMeanDelta": -37.22023437500002,
+        "minimumPolicyMeanDelta": -61.921875,
+        "trainerSelected256": {
+          "meanRow": 649.83984375,
+          "medianRow": 534.5,
+          "maximumRow": 2051,
+          "reach100": 0.890625,
+          "reach300": 0.66796875,
+          "reach1000": 0.21875,
+          "timeoutRate": 0.0390625,
+          "deaths": {
+            "water": 43,
+            "car": 97,
+            "eagle": 68,
+            "train": 16,
+            "bounds": 22,
+            "timeout": 10
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 140,
+          "genome": 302732,
+          "metrics": {
+            "meanRow": 649.83984375,
+            "medianRow": 534.5,
+            "maximumRow": 2051,
+            "reach100": 0.890625,
+            "reach300": 0.66796875,
+            "reach1000": 0.21875,
+            "timeoutRate": 0.0390625,
+            "deaths": {
+              "water": 43,
+              "car": 97,
+              "eagle": 68,
+              "train": 16,
+              "bounds": 22,
+              "timeout": 10
+            }
+          },
+          "inheritedThroughParent160": true,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "7ebabfab8fd1f9009a4858f8a2a6e90ed5ed1e0249a09e5b9f3f2b6bdc333d8d",
+        "cohortSha256": "ed5e08f9370f8800bb4d32e9342f3940741005b62c5328990f24303515516a14",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62073,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngi160-weight0",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-weight0/focused",
+        "profile": "weight0",
+        "family": "rngi",
+        "weight": 0,
+        "declaredOptions": [
+          "--critical-margin=0"
+        ],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-weight0-192-population-001.json",
+        "populationMean": 574.30875,
+        "policyMeanDistribution": {
+          "minimum": 292,
+          "p10": 485.84375,
+          "p25": 522.78125,
+          "median": 571.921875,
+          "p75": 624.078125,
+          "p90": 671.875,
+          "maximum": 766.28125
+        },
+        "populationMeanDelta": -11.355000000000018,
+        "minimumPolicyMeanDelta": -80.671875,
+        "trainerSelected256": {
+          "meanRow": 642.66796875,
+          "medianRow": 499,
+          "maximumRow": 1844,
+          "reach100": 0.87109375,
+          "reach300": 0.62890625,
+          "reach1000": 0.24609375,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "car": 98,
+            "train": 14,
+            "eagle": 67,
+            "timeout": 20,
+            "water": 43,
+            "bounds": 14
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 156,
+          "genome": 305935,
+          "metrics": {
+            "meanRow": 642.66796875,
+            "medianRow": 499,
+            "maximumRow": 1844,
+            "reach100": 0.87109375,
+            "reach300": 0.62890625,
+            "reach1000": 0.24609375,
+            "timeoutRate": 0.078125,
+            "deaths": {
+              "car": 98,
+              "train": 14,
+              "eagle": 67,
+              "timeout": 20,
+              "water": 43,
+              "bounds": 14
+            }
+          },
+          "inheritedThroughParent160": true,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "2780cbafa5bf87144ab40e544e5d4d062de84b50474105cb10814c787fb1d236",
+        "cohortSha256": "e9f7b04d537f72098644536ba95de3debba2a8759f1adcca3b75e7efdffff74a",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62080,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngi160-weight5",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-weight5/focused",
+        "profile": "weight5",
+        "family": "rngi",
+        "weight": 5,
+        "declaredOptions": [
+          "--critical-margin=5"
+        ],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-weight5-192-population-001.json",
+        "populationMean": 598.03,
+        "policyMeanDistribution": {
+          "minimum": 378.90625,
+          "p10": 528.1875,
+          "p25": 561.53125,
+          "median": 596.203125,
+          "p75": 642.453125,
+          "p90": 666.703125,
+          "maximum": 719.0625
+        },
+        "populationMeanDelta": 12.366249999999923,
+        "minimumPolicyMeanDelta": 6.234375,
+        "trainerSelected256": {
+          "meanRow": 659.4609375,
+          "medianRow": 467.5,
+          "maximumRow": 2027,
+          "reach100": 0.91015625,
+          "reach300": 0.65234375,
+          "reach1000": 0.26171875,
+          "timeoutRate": 0.0625,
+          "deaths": {
+            "car": 100,
+            "bounds": 24,
+            "eagle": 46,
+            "train": 24,
+            "water": 46,
+            "timeout": 16
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 188,
+          "genome": 312220,
+          "metrics": {
+            "meanRow": 659.4609375,
+            "medianRow": 467.5,
+            "maximumRow": 2027,
+            "reach100": 0.91015625,
+            "reach300": 0.65234375,
+            "reach1000": 0.26171875,
+            "timeoutRate": 0.0625,
+            "deaths": {
+              "car": 100,
+              "bounds": 24,
+              "eagle": 46,
+              "train": 24,
+              "water": 46,
+              "timeout": 16
+            }
+          },
+          "inheritedThroughParent160": false,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "f257ec8dc47c0ef2f0f84553edc8f166f691c7d414902782f29c5200dbda7416",
+        "cohortSha256": "a673d9af761bfcc83fc1dc31440681a80b2234474d2ec5ec9ae5cd60fccec9dc",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62087,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngi160-rng-l",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-rng-l/focused",
+        "profile": "rng-l",
+        "family": "rngi",
+        "weight": 10,
+        "declaredOptions": [
+          "--evolution-seed=20261229",
+          "--training-stream=45613"
+        ],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-rng-l-192-population-001.json",
+        "populationMean": 600.670390625,
+        "policyMeanDistribution": {
+          "minimum": 331.578125,
+          "p10": 486.671875,
+          "p25": 559.640625,
+          "median": 612.28125,
+          "p75": 655.75,
+          "p90": 692.328125,
+          "maximum": 759.03125
+        },
+        "populationMeanDelta": 15.006640624999932,
+        "minimumPolicyMeanDelta": -41.09375,
+        "trainerSelected256": {
+          "meanRow": 642.66796875,
+          "medianRow": 499,
+          "maximumRow": 1844,
+          "reach100": 0.87109375,
+          "reach300": 0.62890625,
+          "reach1000": 0.24609375,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "car": 98,
+            "train": 14,
+            "eagle": 67,
+            "timeout": 20,
+            "water": 43,
+            "bounds": 14
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 156,
+          "genome": 305935,
+          "metrics": {
+            "meanRow": 642.66796875,
+            "medianRow": 499,
+            "maximumRow": 1844,
+            "reach100": 0.87109375,
+            "reach300": 0.62890625,
+            "reach1000": 0.24609375,
+            "timeoutRate": 0.078125,
+            "deaths": {
+              "car": 98,
+              "train": 14,
+              "eagle": 67,
+              "timeout": 20,
+              "water": 43,
+              "bounds": 14
+            }
+          },
+          "inheritedThroughParent160": true,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "6cc8d9851935984be8629837ac2afb531a8d18097563eb151df5ddf24fdca29f",
+        "cohortSha256": "8aab0b08ea6daa0a35c0bc5d6dafc84ba062a360098ddf8309a9990b20e17536",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62093,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngi160-rng-m",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-rng-m/focused",
+        "profile": "rng-m",
+        "family": "rngi",
+        "weight": 10,
+        "declaredOptions": [
+          "--evolution-seed=20261230",
+          "--training-stream=46619"
+        ],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-rng-m-192-population-001.json",
+        "populationMean": 587.2696875,
+        "policyMeanDistribution": {
+          "minimum": 431.8125,
+          "p10": 510.46875,
+          "p25": 543.578125,
+          "median": 582.046875,
+          "p75": 624.578125,
+          "p90": 670.09375,
+          "maximum": 745.6875
+        },
+        "populationMeanDelta": 1.6059374999999818,
+        "minimumPolicyMeanDelta": 59.140625,
+        "trainerSelected256": {
+          "meanRow": 651.3203125,
+          "medianRow": 502,
+          "maximumRow": 1997,
+          "reach100": 0.8828125,
+          "reach300": 0.61328125,
+          "reach1000": 0.25,
+          "timeoutRate": 0.0546875,
+          "deaths": {
+            "water": 50,
+            "car": 104,
+            "eagle": 56,
+            "bounds": 13,
+            "timeout": 14,
+            "train": 19
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 172,
+          "genome": 309121,
+          "metrics": {
+            "meanRow": 651.3203125,
+            "medianRow": 502,
+            "maximumRow": 1997,
+            "reach100": 0.8828125,
+            "reach300": 0.61328125,
+            "reach1000": 0.25,
+            "timeoutRate": 0.0546875,
+            "deaths": {
+              "water": 50,
+              "car": 104,
+              "eagle": 56,
+              "bounds": 13,
+              "timeout": 14,
+              "train": 19
+            }
+          },
+          "inheritedThroughParent160": false,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "79b59cce0e790bcadcab111337f49fa15fb6eec64d0c7b194503c413a1ee9bc0",
+        "cohortSha256": "3e07dd52fd6f01587958c7ab13528e7ba391505411eefbe650631009db3d5e6e",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62099,
+        "originalTrainerExitedAndClosed": true
+      },
+      {
+        "study": "v4-native012-rngi160-rng-n",
+        "directory": "results/variants/variant-2/v4-native012-rngi160-rng-n/focused",
+        "profile": "rng-n",
+        "family": "rngi",
+        "weight": 10,
+        "declaredOptions": [
+          "--evolution-seed=20261231",
+          "--training-stream=47623"
+        ],
+        "generation": 192,
+        "initialActualRuntimeGeneration": 161,
+        "initialPopulationReport": "results/variants/variant-2/v4-native012-rngi-shared161-population-001.json",
+        "initialPopulationMean": 585.66375,
+        "initialPolicyMeanDistribution": {
+          "minimum": 372.671875,
+          "p10": 486.78125,
+          "p25": 533.765625,
+          "median": 594.71875,
+          "p75": 636.1875,
+          "p90": 670.875,
+          "maximum": 744.234375
+        },
+        "populationReport": "results/variants/variant-2/v4-native012-rngi160-rng-n-192-population-001.json",
+        "populationMean": 607.2921875,
+        "policyMeanDistribution": {
+          "minimum": 423.96875,
+          "p10": 535.921875,
+          "p25": 564.328125,
+          "median": 602.3125,
+          "p75": 649.4375,
+          "p90": 687.078125,
+          "maximum": 781.765625
+        },
+        "populationMeanDelta": 21.628437499999905,
+        "minimumPolicyMeanDelta": 51.296875,
+        "trainerSelected256": {
+          "meanRow": 642.66796875,
+          "medianRow": 499,
+          "maximumRow": 1844,
+          "reach100": 0.87109375,
+          "reach300": 0.62890625,
+          "reach1000": 0.24609375,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "car": 98,
+            "train": 14,
+            "eagle": 67,
+            "timeout": 20,
+            "water": 43,
+            "bounds": 14
+          }
+        },
+        "trainerSelectedPolicy": {
+          "generation": 156,
+          "genome": 305935,
+          "metrics": {
+            "meanRow": 642.66796875,
+            "medianRow": 499,
+            "maximumRow": 1844,
+            "reach100": 0.87109375,
+            "reach300": 0.62890625,
+            "reach1000": 0.24609375,
+            "timeoutRate": 0.078125,
+            "deaths": {
+              "car": 98,
+              "train": 14,
+              "eagle": 67,
+              "timeout": 20,
+              "water": 43,
+              "bounds": 14
+            }
+          },
+          "inheritedThroughParent160": true,
+          "first161AlreadyBredParentSelection": false,
+          "initial160GenotypeExclusionRequiredBeforeNew012MutationClaim": true
+        },
+        "counterDeltas160To192": {
+          "trainingEpisodes": 409600,
+          "developmentEpisodes": 5636,
+          "guidanceExampleEvaluations": 2521600,
+          "teacherQueries": 0,
+          "renderedReplayEpisodes": 4
+        },
+        "snapshotSha256": "34ea2609385749d7f8a6e0f732c17d1f13eb71cc22315586fae12f69d224698a",
+        "cohortSha256": "04e2143fef5a1babaff74bacaf98cbbd8c02eb0f93840dab7915bbd6ab413924",
+        "all192NativeCohortsVerified": true,
+        "nativeRepeatedDevelopmentEpisodes": 257,
+        "seed42RendererEpisodes": 1,
+        "seed42RendererIsActualMaximumGameProof": false,
+        "originalTrainerPid": 62105,
+        "originalTrainerExitedAndClosed": true
+      }
+    ],
+    "completedAdditionalGameplayEpisodes": 3276800,
+    "endpointPopulationDevelopmentEpisodes": 102400,
+    "initialActual161DevelopmentEpisodesReused": 38400,
+    "nativeEndpointRepeatedDevelopmentEpisodes": 2056,
+    "nativeEndpointSeed42Renderers": 8,
+    "automaticDevelopmentEpisodesAcrossEight": 45088,
+    "fixedCriticalExampleComputationsAcrossEight": 20172800,
+    "candidateAudit047DevelopmentEpisodes": 7936,
+    "candidateAudit047Promoted": [],
+    "allEightOriginalParentsClosed": true,
+    "preparationAndChildPrelaunchValidationSeparate": true,
+    "interpretation": "Five012 endpoint population means improve and three regress. Four improve both mean and minimum: unchangedI, critical5, RNG-M/N. RNG-N has strongest mean607.2921875/min423.96875; RNG-M has strongest minimum431.8125/mean587.2696875. RecordJ regresses in mean and minimum despite producing674.77734375/own2068 at168. No general RNG, critical-weight, method or speed benefit is established.",
     "finalMapsOpened": false
   }
 }

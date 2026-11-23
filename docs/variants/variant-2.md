@@ -6,6 +6,21 @@ The new mean policy retains the complete RNG-J generation160 native state: fixed
 
 Across all200 actual policies on the same64 opened development maps, the population mean changes from cached actual161 **598.00** to record168 **588.81** (delta **-9.19**); its minimum changes from **435.890625** to **364.3125** (delta **-71.58**). These12,800 development games and the reused12,800-game initial cache are separate from training. Actual161 differs from evaluated160. Historical649.84/own2051,629.24/own2123,600.95/own1955,592.50/own1995 and585.72/own2120 records and all cohorts remain archived. [Record-cohort comparison](../../results/variants/variant-2/native012-rngj161-168-comparison-001.json).
 
+All eight **160→192 study012 arms completed**, adding **3,276,800 gameplay episodes** beyond inherited ancestry. Three exact continuations and five declared future-only siblings retained full native state without generation/species/progress resets. Generation161 evaluated already-bred parent160 policies; first child-bred mutants162. All200 policies per192 endpoint used the same64 opened development maps:102,400 development games, reusing three actual161 caches totaling38,400 games. Evaluated160 and actual161 are distinct.
+
+| Arm | Actual161 population mean / minimum | Generation192 population mean / minimum |
+| --- | ---: | ---: |
+| Unchanged RNG-I10 | 585.66 / 372.67 | 602.27 / 416.55 |
+| Unchanged recordJ10 | 598.00 / 435.89 | 573.36 / 268.28 |
+| Unchanged prior-record0 | 595.00 / 356.08 | 557.78 / 294.16 |
+| RNG-I critical10→0 | 585.66 / 372.67 | 574.31 / 292.00 |
+| RNG-I critical10→5 | 585.66 / 372.67 | 598.03 / 378.91 |
+| New RNG/mapsL | 585.66 / 372.67 | 600.67 / 331.58 |
+| New RNG/mapsM | 585.66 / 372.67 | 587.27 / 431.81 |
+| New RNG/mapsN | 585.66 / 372.67 | 607.29 / 423.97 |
+
+Five population means improve and three regress. Four improve both mean and minimum: unchangedI, critical5 and RNG-M/N. RNG-N has the strongest mean; RNG-M has the strongest minimum. The recordJ population regresses in both despite producing the674.78/own2068 individual at168. Four native642.67 selections remain inherited156; prior-record0 retains649.84 at140. All8 original trainers and monitors are closed. Full192-cohort checks,2,056 repeated development games and8 seed42 renderers passed; seed42 checks are separate from actual record-maximum Replay proofs. Audit047 checked31 uncached nominees on7,936 development games with no promotion, repeat development or renderer games. Bounded source/sibling search establishes no general method or speed benefit. [Completed comparison](../../results/variants/variant-2/native012-192-comparison-summary-001.json).
+
 All eight **128→160 study011 arms completed**, adding **3,276,800 gameplay episodes** beyond inherited ancestry. Three exact continuations and five declared future-only siblings retained full native evolution state without resets. Generation129 evaluated already-bred parent128 policies; first child-bred mutants130. All200 policies per160 endpoint used the same64 opened development maps:102,400 development games, with three actual129 caches totaling38,400 games reused. Evaluated128 and actual129 are distinct.
 
 | Arm | Actual129 population mean / minimum | Generation160 population mean / minimum |
