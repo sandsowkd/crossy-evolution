@@ -13,18 +13,18 @@
   "records": [
     {
       "kind": "development",
-      "run": "v4-focused64-margin20-to40-001/focused",
-      "generation": 548,
-      "genome": 285167,
-      "meanRow": 574.44140625,
-      "maximumRow": 2027,
+      "run": "v4-cohort496-rnga32-rng-a-008/focused",
+      "generation": 64,
+      "genome": 287474,
+      "meanRow": 592.50390625,
+      "maximumRow": 1995,
       "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
       "previewFile": "public/variant-2/transfer.json",
       "actualSavedCohort": 200,
       "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
-      "sourceCohortSha256": "8140a182d1e6ed51541bbdb820ad650031478d4dd73b778b5e3a28e0da03a100",
-      "declaredContinuationStartGeneration": 512,
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 460800
+      "sourceCohortSha256": "a4c9786417b58b1d64a2e1d994e88adde6abfc3a59ac9e94950a2389816be422",
+      "declaredContinuationStartGeneration": 32,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 409600
     },
     {
       "kind": "peak-development",
@@ -42,7 +42,7 @@
       "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 819200
     }
   ],
-  "method": "Ordinary V9/Network/Replay chooses every action. The574 mean policy retains full512-state ancestry and changes only future394-example critical fitness weight20\u219240, with zero queries or inference labels. Separate2235peak retains originalweight10 RNG/map sibling ancestry. Completed576 population results are mixed or regressed: six means decline, while two small mean gains accompany lower minima. The individual mean record does not establish general weight40 or plasticity benefit. Inherited state, new gameplay, source/sibling search, development selection and repeat verification are counted separately.",
+  "method": "Ordinary V9/Network/Replay chooses every action. New592.50390625 mean/own1995 policy evolved in a bounded32\u219264 future RNG/map sibling retaining full parent32 state and fixed394-example critical fitness weight10, with zero teacher queries. Source-cohort496 restart is ancestry, not another reset. Endpoint audit038 discovered an already evolved64 policy; selection and repeat verification are not training. Its population regresses from actual33 start; no general RNG or method benefit established. Separate447.6328125/2235 peak unchanged.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
@@ -56,29 +56,38 @@
   "completedStudiesFile": "results/variants/variant-2/published-v4-completed-training-studies.json",
   "currentRecordPopulationComparisonFile": "results/variants/variant-2/v4-weight40-513-516-548-comparison-001.json",
   "currentRecordPopulationSummary": {
-    "generation": 548,
-    "population": 200,
-    "populationMeanRow": 492.282421875,
-    "policyMeanDistribution": {
-      "minimum": 321.59375,
-      "p10": 421.8125,
-      "p25": 456.1875,
-      "median": 486.703125,
-      "p75": 533.078125,
-      "p90": 568.15625,
-      "maximum": 619.234375
-    },
-    "developmentEpisodes": 12800,
-    "cachedPopulationDevelopmentEpisodesReused": 25600,
-    "matched576StudyIncomplete": false,
-    "selectedRecordGainDespitePopulationRegression": true,
-    "notGeneralWeight40Benefit": true
+    "actual33PopulationMean": 535.976796875,
+    "actual33PolicyMinimum": 378.1875,
+    "record64PopulationMean": 529.138671875,
+    "record64PolicyMinimum": 375.65625,
+    "populationRegressedDespiteSelectedRecord": true,
+    "same64OpenedDevelopmentMaps": true,
+    "comparisonFile": "results/variants/variant-2/native008-64-comparison-summary-001.json"
   },
-  "updatedAt": "2026-11-23T08:06:03.791613+00:00",
+  "updatedAt": "2026-11-23T11:38:05.088291+00:00",
   "completed576ComparisonFile": "results/variants/variant-2/native576-endpoint-comparison-summary-001.json",
   "completed576AuditFile": "results/variants/variant-2/native576-objective-audit-summary-036.json",
-  "newRecordThisComparisonBatch": false,
+  "newRecordThisComparisonBatch": true,
   "completedSource496Restart007ComparisonFile": "results/variants/variant-2/native-cohort496-007-32-comparison-summary-001.json",
   "completedSource496Restart007AuditFile": "results/variants/variant-2/native-cohort496-objective-audit-summary-037.json",
-  "completedSource496Restart007Interpretation": "Three endpoint population means improve and five regress. Only RNG-A improves both mean and minimum; plastic3 improves mean with a lower minimum, and weight40 has a large minimum decline. Six selected policies are unchanged inherited starting policies. No global extreme record, general method benefit or speed advantage is established."
+  "completedSource496Restart007Interpretation": "Three endpoint population means improve and five regress. Only RNG-A improves both mean and minimum; plastic3 improves mean with a lower minimum, and weight40 has a large minimum decline. Six selected policies are unchanged inherited starting policies. No global extreme record, general method benefit or speed advantage is established.",
+  "historicalPublishedMeanRecords": [
+    {
+      "kind": "development",
+      "run": "v4-focused64-margin20-to40-001/focused",
+      "generation": 548,
+      "genome": 285167,
+      "meanRow": 574.44140625,
+      "maximumRow": 2027,
+      "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
+      "previewFile": "public/variant-2/transfer.json",
+      "actualSavedCohort": 200,
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "sourceCohortSha256": "8140a182d1e6ed51541bbdb820ad650031478d4dd73b778b5e3a28e0da03a100",
+      "declaredContinuationStartGeneration": 512,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 460800
+    }
+  ],
+  "completed008ComparisonFile": "results/variants/variant-2/native008-64-comparison-summary-001.json",
+  "completed008AuditFile": "results/variants/variant-2/native008-objective-audit-summary-038.json"
 }
