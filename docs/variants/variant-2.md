@@ -4,7 +4,24 @@ Current published V4 native policy averages **574.44**, with its own **2,027** m
 
 Across all200 policies on the same64 opened development maps, the actual548 record cohort averages **492.28**, with minimum **321.59375**, below the cached actual513 starting genes502.32/min369.609375 and record516504.92/min377.375. The selected256-map average improved543.31→574.44, while that policy own maximum fell2041→2027. This is an individual record alongside population regression, not a general weight40 benefit. The completed576 endpoint of this weight40 arm averages485.11/min339.703125, also below the actual513 start. The new population evaluation used12,800development episodes and reused25,600prior episodes; audit035 checked4uncached nominees/1024development episodes with no promotion. See the [record-cohort comparison](../../results/variants/variant-2/v4-weight40-513-516-548-comparison-001.json).
 
-The subsequent eight512→576 arms all completed their64-generation budgets: **6,553,600 new gameplay episodes** beyond inherited work, with zero teacher queries. All200 policies from each endpoint were evaluated on the same64 opened development maps (102,400 development episodes); three actual513 starting-population caches (38,400 episodes) were reused. The evaluated512 boundary is a different cohort from already-bred runtime513.
+A later bounded source study selected **all 200 actual generation 496 policies** from original RNG-A, with population mean **519.40** and minimum **369.53** on the same 64 opened development maps. It retained their genes, tracker, IDs and parameters while explicitly resetting fitness, generation, history, nominations, counters, species, progress and RNG. Full original ancestry remains archived. This was a selected-cohort restart; generation 1 evaluated inherited policies and child-bred mutants first appeared at 2. All 1,600 runtime genotype checks passed, allowing one cached 12,800-game source-population evaluation to serve all eight arms.
+
+Each arm completed 32 generations, totaling **3,276,800 new gameplay episodes** beyond inherited work, with zero queries. Every action used ordinary V9/Network/Replay. Endpoint population evaluations added 102,400 development episodes, separate from training.
+
+| Arm | Generation 32 population mean / minimum |
+| --- | ---: |
+| Critical weight 10 | 512.60 / 391.70 |
+| Critical weight 0 | 517.89 / 277.44 |
+| Critical weight 20 | 488.16 / 345.38 |
+| Critical weight 40 | 525.52 / 235.06 |
+| RNG/map sibling A | 528.37 / 371.20 |
+| RNG/map sibling B | 508.98 / 326.55 |
+| All-weight mutation .001/.002 | 507.62 / 388.25 |
+| All-weight mutation .003/.005 | 528.30 / 358.30 |
+
+Three means improved and five regressed. Only RNG-A improved both mean and minimum; stronger all-weight mutation improved mean with a lower minimum, while weight 40 had a large minimum decline. Six trainer-selected 256-map policies remained inherited 541.36/own 2035; RNG-A selected 552.59/2042 at 32 and weight 40 selected 566.52/1878 at 24. None replaced either global record. All original 32-generation trainers are closed. Native checks covered every saved cohort and 2,056 repeated development games plus 8 seed42 renderer checks; those renderer checks are separate from actual record-maximum Replay proofs. Audit 037 evaluated 30 uncached nominees on 7,680 development games with no promotion. These bounded results establish no general method or speed benefit. [Completed comparison](../../results/variants/variant-2/native-cohort496-007-32-comparison-summary-001.json), [source and runtime proofs, population reports and accounting](../../results/variants/variant-2/published-v4-completed-training-studies.json).
+
+The earlier eight512→576 arms all completed their64-generation budgets: **6,553,600 new gameplay episodes** beyond inherited work, with zero teacher queries. All200 policies from each endpoint were evaluated on the same64 opened development maps (102,400 development episodes); three actual513 starting-population caches (38,400 episodes) were reused. The evaluated512 boundary is a different cohort from already-bred runtime513.
 
 | Arm | Actual513 population mean / minimum |576 population mean / minimum |
 | --- | ---: | ---: |
