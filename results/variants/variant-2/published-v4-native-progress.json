@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-11-23T02:20:44.198Z",
+  "createdAt": "2026-11-23T03:29:13.465Z",
   "simulationContract": "clustered-traffic-v4",
   "studentObservation": "native-v9",
   "inferenceUsesTeacher": false,
@@ -13,18 +13,18 @@
   "records": [
     {
       "kind": "development",
-      "run": "v4-focused64-continue-002/focused",
-      "generation": 424,
-      "genome": 260349,
-      "meanRow": 525.11328125,
-      "maximumRow": 1951,
+      "run": "v4-focused64-margin20-to40-001/focused",
+      "generation": 516,
+      "genome": 278735,
+      "meanRow": 543.3125,
+      "maximumRow": 2041,
       "verificationFile": "results/variants/variant-2/published-v4-development-verification.json",
       "previewFile": "public/variant-2/transfer.json",
       "actualSavedCohort": 200,
       "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
-      "sourceCohortSha256": "36f6b0bdebadf1f1cb11a86fb049159570b4c9f02bb9af110f4953d6f3a523e8",
-      "declaredContinuationStartGeneration": 320,
-      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 1331200
+      "sourceCohortSha256": "762d3a5ec5b9a09d6d5f5b84582c3bebf0c439120411c3113d7751a75185d360",
+      "declaredContinuationStartGeneration": 512,
+      "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 51200
     },
     {
       "kind": "peak-development",
@@ -42,7 +42,7 @@
       "newGameplayTrainingEpisodesFromDeclaredStartThroughRecord": 819200
     }
   ],
-  "method": "Both verified champions use ordinary native V9/Network/Replay and choose every action. Their child training retains394 fixed critical fitness examples at weight10 with zero teacher queries; labels never affect inference. The average champion is an exact320-state continuation. The new peak champion comes from a complete448-state future-RNG/map-stream sibling retaining generation/species/progress. Both were found by audits of already evolved cohorts. Inherited ancestry, new gameplay, sibling search, candidate selection and repeat verification are separate.",
+  "method": "Ordinary V9/Network/Replay chooses every action. New mean policy comes from a full512-state weight20\u219240 critical-fitness sibling with394fixed examples, zero queries and no inference labels. Separate2235peak retains originalweight10 RNG/map sibling ancestry. Inherited state, new gameplay, source/sibling search, development selection and repeat verification are separate; matched576comparisons remain incomplete, so no general weight40 advantage is claimed.",
   "baselineV4": {
     "genome": 189048,
     "meanRow": 236.5546875,
@@ -53,5 +53,24 @@
   "lineageProofFile": "results/variants/variant-2/published-v4-native-lineage-proof.json",
   "goalAverage": 1000,
   "goalMet": false,
-  "completedStudiesFile": "results/variants/variant-2/published-v4-completed-training-studies.json"
+  "completedStudiesFile": "results/variants/variant-2/published-v4-completed-training-studies.json",
+  "currentRecordPopulationComparisonFile": "results/variants/variant-2/v4-weight40-513-516-comparison-001.json",
+  "currentRecordPopulationSummary": {
+    "generation": 516,
+    "population": 200,
+    "populationMeanRow": 504.923203125,
+    "policyMeanDistribution": {
+      "minimum": 377.375,
+      "p10": 433.421875,
+      "p25": 463.984375,
+      "median": 503.90625,
+      "p75": 542.40625,
+      "p90": 575.421875,
+      "maximum": 655.734375
+    },
+    "developmentEpisodes": 12800,
+    "initialDevelopmentEpisodesReused": 12800,
+    "matched576StudyIncomplete": true,
+    "notGeneralWeight40Benefit": true
+  }
 }
