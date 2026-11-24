@@ -6,16 +6,21 @@ The new policy retains the complete015 RNG-W generation288 native state, includi
 
 On the same64 opened development maps, all200 policies change from the cached actual289 population mean **649.54953125** to record300 **658.34101562** (+8.79148437); the minimum changes from **436.140625** to **445.03125** (+8.89062500). This12,800-game record-population evaluation and the reused12,800-game starting cache are development, separate from training. Actual289 differs from evaluated288. The record300 distribution was measured after the immutable policy proof. No general RNG, critical-weight, method or speed benefit is established. [Record-cohort comparison](../../results/variants/variant-2/native016-mean289-300-comparison-001.json). Audit057 checked4 uncached record300 nominees on1024 development games, skipping0 cached nominees, with no promotion, repeat, renderer or training games.
 
-The **288→320 study016 remains in progress**. Eight starts retain the full015 exact floor288 record-source state; one retains the full015 RNG-W288 strongest-population-mean state. Two continuations are exact, and seven siblings change only future critical fitness weight or RNG/maps. The batch plans3,686,400 additional gameplay episodes beyond inherited ancestry; that is a planned budget, not completed work. Every new cohort remains eligible for both mean and maximum nominations.
+All nine **288→320 study016 arms completed**, adding **3,686,400 gameplay episodes** beyond inherited ancestry. Two exact continuations and seven declared future-only siblings retained full native genes, RNG, innovations, species, progress, parameters, history, caches and counters without resets. Generation289 evaluated already-bred parent288 policies; first child-bred mutants were evaluated at290. All200 policies per320 endpoint used the same64 opened development maps: **115,200 development games**, reusing two actual289 starting caches totaling25,600 games. Actual289 differs from the evaluated288 boundary.
 
-Two unique actual289 starting populations on the same64 development maps are complete (25,600 development games):
+| Arm | Actual289 mean / minimum | Generation320 mean / minimum |
+| --- | ---: | ---: |
+| normal5 | 633.41 / 411.25 | 647.50 / 351.89 |
+| weight0 | 633.41 / 411.25 | 650.46 / 392.39 |
+| weight10 | 633.41 / 411.25 | 642.50 / 398.52 |
+| weight20 | 633.41 / 411.25 | 627.65 / 303.81 |
+| rng-z | 633.41 / 411.25 | 609.41 / 386.08 |
+| rng-aa | 633.41 / 411.25 | 607.69 / 387.78 |
+| rng-ab | 633.41 / 411.25 | 639.20 / 471.75 |
+| rng-ac | 633.41 / 411.25 | 646.28 / 486.55 |
+| mean10 | 649.55 / 436.14 | 658.95 / 484.20 |
 
-| Actual289 source family | Population mean | Minimum policy mean | Identical starts reusing cache |
-| --- | ---: | ---: | ---: |
-| Exact floor288 record source | 633.407109375 | 411.25 | 8 |
-| RNG-W288 mean source | 649.54953125 | 436.140625 | 1 |
-
-All1,800 initial288/runtime289 genotype comparisons and shared-stream0/5/10/20 fitness-linearity checks passed with no proof games. All400 starting IDs, means, quantiles, cohort hashes and exact historical289 snapshots are verified. Report sourceSnapshotSha256 is HEAD at audit start; exact historical snapshots and cohort hashes are pinned separately. Audit055 checked8 uncached nominees on2,048 development games with no promotion, repeat, renderer or training games. First289 policies are inherited parent-bred policies. The320 endpoint comparison remains incomplete; compare its distributions against these actual289 family caches before any further continuation. [Starting-population evidence](../../results/variants/variant-2/published-v4-starting-native016-289.json).
+Six016 endpoint population means improve and three regress. Exactly RNG-AB, RNG-AC and exactmean improve both mean and minimum. Exactmean320 has strongest mean658.948984375/min484.203125, gaining9.399453125/48.0625 from actual289. AC320 has strongest minimum486.546875/mean646.28, gaining75.296875/12.872890625. AB is dominated byAC onendpoint mean/minimum. Native731.5859375/own1951 remains ORIGINAL016mean300, and separate517.7109375/2296 remains ORIGINAL013O224. No general method, critical-weight, RNG or speed benefit is established. All9 original trainers and monitors are closed. All320 cohorts,2,313 repeated native development games and9 seed42 renderers passed. Seed42 checks are separate from the actual record-maximum Replay proofs. Audit056 checked35 uncached nominees on8,960 development games, skipped1 cached nominee and produced no promotion, repeat development, renderer or training games. Record300 population12,800 development games and its ONE ACTUAL1951 maximum Replay were already counted separately and are reused; they are not part of the nine endpoint115,200 population total. Ordinary V9 chooses every action; labels remain fitness only. All512 reserved finals remain unopened. [Completed comparison](../../results/variants/variant-2/native016-320-comparison-summary-001.json).
 
 All nine **256→288 study015 arms completed**, adding **3,686,400 gameplay episodes** beyond inherited ancestry. Two exact continuations and seven declared future-only siblings retained full native state without resets. Generation257 contains already-bred parent256 policies; first child-bred offspring are evaluated at258. All200 policies per endpoint used the same64 opened development maps: **115,200 development games**, reusing two actual257 caches totaling25,600 games.
 
