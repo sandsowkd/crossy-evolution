@@ -1,3 +1,4 @@
+import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import { CURRENT_CONFIG, type Action } from "../core/types";
 import { INPUT_COUNT } from "../core/observation";
@@ -18,6 +19,8 @@ import { WorldView } from "./three/scene";
 import { NeuralGraph } from "./components/NeuralGraph";
 import { EvolutionChart } from "./components/EvolutionChart";
 import { loadCohort } from "./cohorts";
+import { ReplayMenu } from "./ReplayMenu";
+import { labUrl, parseMapSeed } from "./replay-links";
 
 type Inspector = {
   genome: Genome;
@@ -72,6 +75,8 @@ function isWarmStart(provenance: Demo["provenance"]) {
   );
 }
 export function App() {
+  const requested = useRef(new URLSearchParams(window.location.search));
+  const explicitMapSeed = useRef<number | undefined>(requested.current.has("seed") ? parseMapSeed(requested.current.get("seed")) : undefined);
   const host = useRef<HTMLDivElement>(null),
     view = useRef<WorldView | undefined>(undefined),
     worker = useRef<Worker | undefined>(undefined),
@@ -150,7 +155,7 @@ export function App() {
   const loadRecord = (
     r: Generation | undefined,
     many = populationRef.current,
-    seed?: number,
+    seed: number | undefined = explicitMapSeed.current,
   ) => {
     const token = ++loadToken.current;
     const install = (loaded: Generation | undefined) => {
@@ -186,6 +191,10 @@ export function App() {
       view.current?.select(index);
       setAgentIndex(index);
       setMapSeed(worldSeed);
+      if (loaded?.cohortFile && historyRef.current.includes(r!)) {
+        window.history.replaceState(null, "", labUrl(loaded.generation, worldSeed));
+        document.title = `Variant 1 · generation ${loaded.generation} · map ${worldSeed} — Crossy Evolution`;
+      }
       publish();
       loadingRef.current = false;
       setCohortLoading(false);
@@ -215,7 +224,7 @@ export function App() {
     setSelected(index);
     setLive(false);
     liveRef.current = false;
-    loadRecord(historyRef.current[index]);
+    loadRecord(historyRef.current[index], populationRef.current, explicitMapSeed.current);
   };
   const initialize = (c: TrainingConfig, saved?: Checkpoint) => {
     worker.current?.terminate();
@@ -304,7 +313,7 @@ export function App() {
           setError(`Original game assets could not load: ${String(e)}`);
       });
     initialize(DEFAULT_TRAINING);
-    fetch("/demo.json")
+    fetch(sitePath("/demo.json"))
       .then(async (r) =>
         r.ok ? parseEvolution<Demo>(await r.text()) : undefined,
       )
@@ -314,10 +323,11 @@ export function App() {
         if (interacted.current) return;
         setHistory(d.history);
         historyRef.current = d.history;
+        const requestedGeneration = Number(requested.current.get("generation"));
         const startIndex = Math.max(
           0,
           d.history.findIndex(
-            (r) => r.generation === d.selectedModel?.generation,
+            (r) => r.generation === (requested.current.has("generation") && d.history.some(item => item.generation === requestedGeneration) ? requestedGeneration : d.selectedModel?.generation),
           ),
         );
         setSelected(startIndex);
@@ -328,10 +338,10 @@ export function App() {
         configRef.current = d.config;
         featuredRef.current = d.selectedModel;
         const record = d.history[startIndex];
-        loadRecord(record, true);
+        loadRecord(record, true, explicitMapSeed.current);
         setPopulation(true);
         populationRef.current = true;
-        setMapSeed(record.seeds[0]);
+        if (requested.current.has("generation")) { homeRef.current = false; setHome(false); }
         publish();
       })
       .catch(() => {});
@@ -419,7 +429,7 @@ export function App() {
       if (
         homeRef.current &&
         [" ", "Enter", "ArrowUp"].includes(e.key) &&
-        !["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(
+        !["INPUT", "SELECT", "TEXTAREA", "BUTTON", "A"].includes(
           (e.target as HTMLElement).tagName,
         )
       ) {
@@ -432,7 +442,7 @@ export function App() {
 
       if (
         !debugRef.current ||
-        ["INPUT", "SELECT", "BUTTON", "TEXTAREA"].includes(
+        ["INPUT", "SELECT", "BUTTON", "TEXTAREA", "A"].includes(
           (e.target as HTMLElement).tagName,
         )
       )
@@ -515,7 +525,7 @@ export function App() {
     setSwitching(true);
     interacted.current = true;
     try {
-      const response = await fetch("/trained-checkpoint.json");
+      const response = await fetch(sitePath("/trained-checkpoint.json"));
       if (!response.ok) throw new Error("Trained checkpoint unavailable");
       const saved = eagleTransfer(parseCheckpoint(await response.text()));
       // Start a new, explicitly labelled rules branch from the archived population.
@@ -619,7 +629,7 @@ export function App() {
   const download = () => {
     if (source === "Recorded run") {
       const a = document.createElement("a");
-      a.href = "/trained-checkpoint.json";
+      a.href = sitePath("/trained-checkpoint.json");
       a.download = "crossy-evolution-recorded.json";
       a.click();
       return;
@@ -677,7 +687,7 @@ export function App() {
       const saved =
         source === "Recorded run"
           ? parseCheckpoint(
-              await (await fetch("/trained-checkpoint.json")).text(),
+              await (await fetch(sitePath("/trained-checkpoint.json"))).text(),
             )
           : checkpoint;
       if (!saved) throw new Error("No completed generation is available yet");
@@ -702,7 +712,7 @@ export function App() {
   const togglePopulation = (many: boolean) => {
     setPopulation(many);
     populationRef.current = many;
-    loadRecord(record, many);
+    loadRecord(record, many, explicitMapSeed.current);
   };
   const beginViewing = () => {
     homeRef.current = false;
@@ -760,6 +770,16 @@ export function App() {
   };
   return (
     <main className="crossy-game">
+      <ReplayMenu seed={mapSeed} generation={record?.generation} generations={history.map(item => item.generation)}
+        disabled={cohortLoading || running || switching}
+        onGeneration={generation => {
+          setPlaying(false); homeRef.current = false; setHome(false);
+          chooseGeneration(history.findIndex(item => item.generation === generation));
+        }}
+        onSeed={seed => {
+          explicitMapSeed.current = seed; setPlaying(false); loadRecord(record, population, seed);
+        }}
+        onInspect={() => setControlsOpen(true)} />
       <div
         className="game-world"
         ref={host}
@@ -797,7 +817,7 @@ export function App() {
           disabled={!assetsReady || cohortLoading}
           onClick={beginViewing}
         >
-          <img src="/upstream/images/title.png" alt="Crossy Road" />
+          <img src={sitePath("/upstream/images/title.png")} alt="Crossy Road" />
           <span className="watch-caption">
             {demo?.selectedModel
               ? `WATCH TRAINED CHICKENS · GEN ${demo.selectedModel.generation}`
@@ -816,14 +836,14 @@ export function App() {
           aria-label={population ? "Show champion" : "Show population"}
           onClick={() => togglePopulation(!population)}
         >
-          <img src="/upstream/images/buttons/character.png" alt="" />
+          <img src={sitePath("/upstream/images/buttons/character.png")} alt="" />
         </button>
         <button
           className="sprite-button"
           aria-label="Evolution controls"
           onClick={() => setControlsOpen(true)}
         >
-          <img src="/upstream/images/buttons/menu.png" alt="" />
+          <img src={sitePath("/upstream/images/buttons/menu.png")} alt="" />
         </button>
       </div>
       {!home && (
@@ -877,7 +897,7 @@ export function App() {
             aria-label="Back to game"
             onClick={() => setControlsOpen(false)}
           >
-            <img src="/upstream/images/buttons/back.png" alt="" />
+            <img src={sitePath("/upstream/images/buttons/back.png")} alt="" />
           </button>
           <h1>EVOLUTION</h1>
           <span>
@@ -1011,7 +1031,7 @@ export function App() {
           </button>
           <button disabled={locked} onClick={() => playWithEagle(false)}>Watch with eagle</button>
           <button disabled={locked} onClick={() => playWithEagle(true)}>Play with eagle</button>
-          <a className="highlight-link" href="/?highlights">Six training highlights →</a>
+          <a className="highlight-link" href={sitePath("/?generation=1&seed=561909326&variant=1")}>Six training highlights →</a>
         </div>
         <p className="rules-note">
           {config.simulation.eagle

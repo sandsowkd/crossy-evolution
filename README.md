@@ -25,15 +25,34 @@ These clips show the entire saved population on one selected map. Chickens at th
 
 ## Variant 2: Cars, trains, and logs
 
-Variant 2 adds moving logs, rivers, lily pads, train crossings, and eagle pressure. The networks must handle moving support surfaces and train warnings as well as traffic.
+[![The frozen final Variant 2 AI](docs/media/variant-2-main-final-1x.gif)](https://jeremyhua.ng/crossyroadai/play?variant=2)
 
-[![One chicken playing a saved Variant 2 development policy](docs/media/variant-2-main-1x.gif)](https://jeremyhua.ng/crossyroadai/explore?variant=2)
+Variant 2 adds rivers, moving logs, lily pads, train crossings, and eagle pressure. Training is complete. The default final AI is one frozen ordinary-input neural network, used on every race seed.
 
-**Training is ongoing.** The website shows an actual saved development policy, and the race page can use the development AI. Its six homepage highlight cards and bloodline clip are currently labeled placeholders that reuse Variant 1 footage. They do not show six completed Variant 2 milestones.
+On **256 opened development maps**, this policy averages **763.05 rows**, with its own maximum of **2,082**. A separate policy reached **2,296**, averaging **517.71** on that suite. Those are two different brains. No independent final assessment is claimed; all 512 reserved final maps remain unopened. The 1,000-average goal was not reached.
 
-[Explore Variant 2](https://jeremyhua.ng/crossyroadai/explore?variant=2) · [Race the development AI](https://jeremyhua.ng/crossyroadai/play?variant=2) · [Latest development results and methods](docs/variants/variant-2.md) · [Recovered training history](docs/variants/variant-2-recovery.md)
+[Explore Variant 2](https://jeremyhua.ng/crossyroadai/explore?variant=2) · [Race the final AI](https://jeremyhua.ng/crossyroadai/play?variant=2) · [All generation scores](https://jeremyhua.ng/crossyroadai/variant-2/replay-audit.html) · [Methods and provenance](docs/variants/variant-2-showcase.md)
 
-Development-selection scores, teacher references, and native NEAT results are recorded separately. Variant 2 has no completed independent final assessment. The website is a saved preview and may lag behind ongoing local training.
+### Highlights
+
+The six clips show authentic complete saved populations. GIFs run at 1×; later clips are 15-second excerpts. Each **High Score** is the whole population’s actual maximum on the linked map, rather than the final AI’s benchmark score.
+
+| Generation | Replay at 1× | What changes |
+| --- | --- | --- |
+| **[Gen 1: Random movement](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=2)** | [![Variant 2 generation 1 population](docs/media/variant-2-initial-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=2) | Random networks meet roads, rivers, and train crossings.<br>**High Score: 9** |
+| **[Gen 5: Forward selection](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=2)** | [![Variant 2 generation 5 population](docs/media/variant-2-early-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=2) | Early selection favors useful forward movement.<br>**High Score: 13** |
+| **[Gen 50: River crossings](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=2)** | [![Variant 2 generation 50 population](docs/media/variant-2-rivers-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=2) | Transferred road skills adapt to moving support and river hazards.<br>**High Score: 300** |
+| **[Gen 85: Consistent crossings](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=2)** | [![Variant 2 generation 85 population](docs/media/variant-2-consistent-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=2) | The population handles changing traffic, train warnings, and logs.<br>**High Score: 1,487** |
+| **[Gen 100: Longer journeys](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=2)** | [![Variant 2 generation 100 population](docs/media/variant-2-longer-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=2) | Native networks travel farther through the full world.<br>**High Score: 1,643** |
+| **[Gen 150: Final population](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=2)** | [![Variant 2 generation 150 population](docs/media/variant-2-final-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=2) | The original population containing the frozen final AI.<br>**High Score: 1,969** |
+
+### From first steps to the final flock
+
+![Measured Variant 2 population progression over 150 curated display positions](docs/media/variant-2-progression.png)
+
+Display generations **1–150** condense authentic saved populations from separate scratch, transfer, river-adaptation, and native-input experiments. They are presentation positions, not 150 uninterrupted training generations. Original source generations, every genome, population hashes, transfers, and the historical cohort reset remain recorded. No networks or scores were interpolated.
+
+Every saved chicken was audited on the same eight maps under frozen V4 rules: **220,000 evaluation episodes, zero new training**. The curve retains measured plateaus and regressions. It measures whole populations on the viewing panel, separately from the selected final AI’s 256-map development result. Advanced Replay offers all 150 positions and any uint32 map seed.
 
 ## Variant 3: Speedruns (Coming soon?)
 
@@ -49,7 +68,7 @@ Reach 100, 500, or 1,000 rows, or collect 10, 50, or 100 coins, as fast as possi
 
 ### Training a population
 
-1. **Population and maps.** The completed Variant 1 memory phase evaluates **100 chickens on 32 randomly generated maps per generation**. Every chicken faces the same maps within that generation, and map panels change between generations. Earlier runs used up to 200 chickens on smaller map panels to try more networks with less evaluation per network. Variant 2 continues with separately recorded populations and training budgets.
+1. **Population and maps.** The completed Variant 1 memory phase evaluates **100 chickens on 32 randomly generated maps per generation**. Every chicken faces the same maps within that generation, and map panels change between generations. Earlier runs used up to 200 chickens on smaller map panels to try more networks with less evaluation per network. Variant 2’s final batches evaluated 200 chickens on 64 changing maps per generation; training has now stopped.
 2. **Reward forward progress.** A chicken’s game score is its furthest row before death or timeout. The final Variant 1 run ranks networks by their average score across the 32 maps. Other experiments also test consistency-sensitive selection; their fitness definitions and results stay separate.
 3. **Breed and change.** NEAT—NeuroEvolution of Augmenting Topologies—selects successful networks as parents, crosses over their connections, mutates weights, and can add neurons or connections. Species group related networks so new structures can develop. The next population plays another set of evaluations.
 
@@ -61,7 +80,9 @@ Ten saved networks from each of the 150 curated display generations run together
 
 [![A mixed population of 1,500 saved chickens on one map](docs/media/all-generations-1x.gif)](https://jeremyhua.ng/crossyroadai/#crowd-title)
 
-This mixes authentic saved networks across generations; it does not reconstruct parent–child relationships. The website keeps the Variant 1 clip and Variant 2 placeholder side by side.
+[![A mixed population of 1,500 authentic Variant 2 chickens](docs/media/variant-2-all-generations-1x.gif)](https://jeremyhua.ng/crossyroadai/#crowd-title)
+
+Each variant mixes ten unchanged saved networks from every one of its 150 display generations: 1,500 chickens on the same map. These clips preserve the original networks and source manifests; they do not reconstruct parent–child relationships.
 
 ## Run locally
 

@@ -19,3 +19,12 @@ Later highlights were re-recorded from the same saved populations and map seeds 
 Each GIF loops at 10 fps. [Timing metadata](timing.json) records simulation ranges, score windows, source/video durations, and population hashes where applicable. Encoded GIF durations match their source recordings within 0.1 seconds. Versioned `-1x.gif` filenames avoid stale cached previews.
 
 Original visuals and source adaptations: [Evan Bacon’s Expo-Crossy-Road](https://github.com/EvanBacon/Expo-Crossy-Road). [Attribution](../ATTRIBUTION.md) · [Homepage recordings](../homepage-previews.md).
+
+
+## Final Variant 2 GIFs
+
+The completed Variant 2 showcase adds eight genuine recordings, each at 1× simulation speed: six full-population highlights, the frozen final AI, and its own1,500-chicken population mix. The six anchors are display1,5,50,85,100,150. Early highlights show the complete replay; later highlights show15-second excerpts. They preserve all original chickens and deaths before capture begins. Native V4 timing is six hops per second.
+
+[Timing receipts](variant-2-timing.json) identify frame counts, exact decision ranges, encoded durations and source files. The source populations, map seeds and actual whole-map maxima are in `public/homepage-data.json`; the frozen default AI is genome353089. These recordings replace the earlier Variant2 development main clip and V1 placeholders. Variant1 GIFs remain unchanged.
+
+The final Variant 2 GIFs use a 480-pixel width, 10fps, and a 96-color palette to reduce downloads while preserving 1× timing. Each is below 10MB. The original 15fps recordings remain unchanged.

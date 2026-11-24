@@ -4,6 +4,7 @@ import { Replay } from "../evolution/replay";
 
 /** Viewing replays run until death; archived evaluation limits stay untouched. */
 export function highlightReplayConfig(archived: Config): Config {
+  if (archived.mechanics === "upstream-v2") return { ...archived };
   return { ...archived, maxTicks: Number.MAX_SAFE_INTEGER,
     eagle: { afterTicks: 600, warningTicks: 0 } };
 }
@@ -35,19 +36,19 @@ export function highlightAutoSpeedPlan(finished: Replay): HighlightAutoSpeedPlan
   return { finalGenomeId: last.genome.id, finalScore, slowAtDecision: slowAtDecision!, finishAtDecision };
 }
 
-/** Fifteen viewing seconds at 10x / 100x cover 150 / 1,500 simulation seconds. */
-export function highlightAutomaticSpeed(decision: number, plan?: HighlightAutoSpeedPlan) {
-  const seconds = decision * HOP_TICKS / 60;
+/** Five viewing seconds at 10x / 100x cover 50 / 500 simulation seconds. */
+export function highlightAutomaticSpeed(decision: number, plan?: HighlightAutoSpeedPlan, ticksPerHop = HOP_TICKS) {
+  const seconds = decision * ticksPerHop / 60;
   if (seconds < 5) return 1;
-  if (seconds < 155) return 10;
+  if (seconds < 55) return 10;
   if (plan && decision >= plan.finishAtDecision) return 1;
   if (plan && decision >= plan.slowAtDecision) return 10;
-  return seconds < 1655 ? 100 : 500;
+  return seconds < 555 ? 100 : 500;
 }
 
 export const highlightJumpSeconds = (speed: number) => 5 * speed;
-export const highlightJumpTarget = (decision: number, speed: number) =>
-  decision + highlightJumpSeconds(speed) * 60 / HOP_TICKS;
+export const highlightJumpTarget = (decision: number, speed: number, ticksPerHop = HOP_TICKS) =>
+  decision + highlightJumpSeconds(speed) * 60 / ticksPerHop;
 
 /** Include dead chickens and keep the viewing session's record through seeks. */
 export function highlightBestScore(replay: Pick<Replay, "agents">, record = 0) {

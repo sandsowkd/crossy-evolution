@@ -1,3 +1,11 @@
+# Variant 2 training is complete
+
+The original final nine runs and their audits have closed. No further training will start. The completed showcase provides 150 authentic saved populations, genuine highlights and bloodline media, arbitrary-seed replays, and races against one frozen AI. See [the final showcase guide](variant-2-showcase.md).
+
+The frozen default AI averages 763.046875 on 256 opened development maps, with its own maximum 2082. The separate peak policy averages 517.7109375 with maximum 2296. Reserved finals remain unopened; no independent final result or 1000-average success is claimed. Historical training evidence is preserved below.
+
+---
+
 # Variant 2 — trains and rivers
 
 Current published V4 native policy averages **763.05**, with its own **2,082 maximum**, on256 opened development maps (exact record-source continuation019, generation392/genome353089). It improves mean by25.58203125 and its own maximum by106 over the previous737.46484375/1976 policy, preserved at commit276cf97. A separate policy reaches **2,296**, averaging **517.71**. Both current policies have immutable canonical256 traces, actual maximum-game Replay checks, exact200-member cohorts and the correct starting-genotype exclusion. All512 reserved final maps remain unopened; the1,000-average goal is unmet.

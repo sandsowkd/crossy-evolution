@@ -1,3 +1,4 @@
+import { sitePath } from "./site-path";
 import { type Generation } from "../evolution/trainer";
 import { type Genome } from "../evolution/genome";
 import { parseEvolution } from "../evolution/serialization";
@@ -18,7 +19,7 @@ export async function loadCohort<T extends Pick<Generation,
   let pending = cache.get(key);
   if (!pending) {
     pending = (async () => {
-      const response = await fetch(file);
+      const response = await fetch(sitePath(file));
       if (!response.ok || !response.body)
         throw new Error(
           `Population archive unavailable: generation ${record.generation}`,

@@ -1,3 +1,4 @@
+import { sitePath } from "../site-path";
 /**
  * Browser adapter for Evan Bacon's original Expo-Crossy-Road assets.
  * Original source/asset attribution: public/upstream/LICENSE.txt and docs/ATTRIBUTION.md.
@@ -6,7 +7,7 @@
 import * as THREE from "three";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 
-const ROOT = "/upstream/models/";
+const ROOT = sitePath("/upstream/models/");
 type Descriptor = {
   key: string;
   model: string;

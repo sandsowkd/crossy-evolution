@@ -4,6 +4,8 @@
 import * as THREE from "three";
 import { Assets } from "./assets";
 import { followCameraAxis } from "../camera-follow";
+import { insideCamera } from "../scene-visibility";
+import { raceEaglePose } from "../race-eagle";
 import type { Support } from "../../core/types";
 import { scheduledTrainSignal } from "../../core/variant-two-rules";
 import type { Row } from "../../core/types";
@@ -39,7 +41,7 @@ export type SceneAgent = {
   populationCount?: number;
   visualY?: number;
   deathReason?: string;
-  eagle?: { remainingTicks: number; warning: boolean; captured: boolean; captureTicks: number };
+  eagle?: { remainingTicks: number; warning: boolean; captured: boolean; captureTicks: number; swoopFromTop?: boolean };
 };
 export type SceneSnapshot = {
   rows: SceneRow[];
@@ -87,7 +89,7 @@ export class WorldView {
   constructor(
     private host: HTMLDivElement,
     onSelect?: (id: number) => void,
-    private framing: { focusScreenY?: number; responsiveFollow?: boolean } = {},
+    private framing: { focusScreenY?: number; focusScreenX?: number; responsiveFollow?: boolean; zoom?: number } = {},
   ) {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this.renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -193,7 +195,7 @@ export class WorldView {
     this.camera.right = width * scale;
     this.camera.top = height * scale;
     this.camera.bottom = -height * scale;
-    this.camera.zoom = 400;
+    this.camera.zoom = this.framing.zoom ?? 400;
     this.camera.updateProjectionMatrix();
     // The source camera was framed for a tall mobile display. On short,
     // low-DPI desktop viewports its player falls below the screen. Shift only
@@ -204,6 +206,14 @@ export class WorldView {
       const offset = (feet.y - (this.framing.focusScreenY ?? -0.5)) * height * scale / this.camera.zoom;
       this.camera.top += offset;
       this.camera.bottom += offset;
+      this.camera.updateProjectionMatrix();
+    }
+    // Race views also centre the followed chicken horizontally. The source
+    // camera's lateral offset otherwise pushes it outside narrow phone screens.
+    if (this.framing.focusScreenX !== undefined) {
+      const offset = (feet.x - this.framing.focusScreenX) * width * scale / this.camera.zoom;
+      this.camera.left += offset;
+      this.camera.right += offset;
       this.camera.updateProjectionMatrix();
     }
     this.renderer.setSize(width, height);
@@ -389,10 +399,12 @@ export class WorldView {
       // CrossyPlayer's squash on death; no renderer callback alters the core state.
       const captured = a.eagle?.captured;
       const capture = Math.min(1, (a.eagle?.captureTicks ?? 0) / 60);
-      g.visible = !captured || capture < .95;
+      const swoop = a.eagle?.swoopFromTop ? raceEaglePose(a.eagle.captureTicks) : undefined;
+      g.visible = swoop ? !swoop.finished : !captured || capture < .95;
       g.scale.set(1, a.alive || captured ? 1 : 0.2, 1);
       if (a.deathReason === "water") { g.scale.set(1,1,1); g.position.y = -.2; }
-      if (captured && capture > .35) g.position.y += (capture - .35) * 13;
+      if (swoop) g.position.y += swoop.lift;
+      else if (captured && capture > .35) g.position.y += (capture - .35) * 13;
       g.userData.previous = { x: -a.x, row: a.row };
     }
     const supportIds = new Set((snapshot.supports ?? []).map(p => p.id));
@@ -409,7 +421,11 @@ export class WorldView {
     if (target && eagle && this.eagle.visible) {
       const t = (snapshot.tick ?? 0) / 60;
       const capture = Math.min(1, eagle.captureTicks / 60);
-      this.eagle.position.set(
+      const swoop = eagle.swoopFromTop ? raceEaglePose(eagle.captureTicks) : undefined;
+      if (swoop) {
+        this.eagle.visible = !swoop.finished;
+        this.eagle.position.set(-target.x + swoop.x, GROUND + swoop.height, target.row + STARTING_ROW + swoop.row);
+      } else this.eagle.position.set(
         -target.x + (eagle.captured ? (1 - Math.min(1, capture / .35)) * 7 : Math.cos(t * 3) * 2.5),
         eagle.captured ? .9 + Math.abs(capture - .35) * 13 : 4.5,
         target.row + STARTING_ROW + (eagle.captured ? 0 : Math.sin(t * 3)),
@@ -422,6 +438,13 @@ export class WorldView {
   }
   select(id: number) {
     this.selected = id;
+  }
+  /** Used only by the race's AI inset; existing replay cameras are unchanged. */
+  agentOnScreen(id: number) {
+    const agent = this.agents.get(id);
+    if (!agent?.visible) return false;
+    agent.updateWorldMatrix(true, false);
+    return insideCamera(agent.getWorldPosition(new THREE.Vector3()).project(this.camera));
   }
   private releaseAgent(group: THREE.Group) {
     for (const material of (group.userData.densityMaterials ?? []) as THREE.Material[]) material.dispose();

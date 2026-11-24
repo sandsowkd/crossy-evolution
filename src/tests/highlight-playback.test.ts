@@ -152,26 +152,26 @@ test("best score keeps a dead leader's record, increases only when passed, and s
   assert.equal(highlightBestScore(replay, 0), 0, "Restart can explicitly reset the record");
 });
 
-test("automatic playback spends 15 viewing seconds at 10x and 100x before reaching 500x, then slows for the ending", () => {
+test("automatic playback spends five viewing seconds at 1x, 10x and 100x before reaching 500x, then slows for the ending", () => {
   const plan = { finalGenomeId: 1, finalScore: 10000, slowAtDecision: 10000, finishAtDecision: 11000 };
-  for (const [decision, speed] of [[0, 1], [24, 1], [25, 10], [774, 10], [775, 100],
-    [8274, 100], [8275, 500], [9999, 500], [10000, 10], [10999, 10], [11000, 1], [12000, 1], [0, 1]]) {
+  for (const [decision, speed] of [[0, 1], [24, 1], [25, 10], [274, 10], [275, 100],
+    [2774, 100], [2775, 500], [9999, 500], [10000, 10], [10999, 10], [11000, 1], [12000, 1], [0, 1]]) {
     assert.equal(highlightAutomaticSpeed(decision, plan), speed, `At decision ${decision}`);
   }
   const viewingSeconds = new Map<number, number>();
-  for (let decision = 0; decision < 8275; decision++) {
+  for (let decision = 0; decision < 2775; decision++) {
     const speed = highlightAutomaticSpeed(decision, plan);
     viewingSeconds.set(speed, (viewingSeconds.get(speed) ?? 0) + HOP_TICKS / 60 / speed);
   }
-  for (const [speed, duration] of [[1, 5], [10, 15], [100, 15]]) {
+  for (const [speed, duration] of [[1, 5], [10, 5], [100, 5]]) {
     assert.ok(Math.abs(viewingSeconds.get(speed)! - duration) < 1e-8, `${duration} viewing seconds at ${speed}x`);
   }
   const short = { ...plan, finalScore: 20, slowAtDecision: 0, finishAtDecision: 50 };
   assert.equal(highlightAutomaticSpeed(24, short), 1);
   assert.equal(highlightAutomaticSpeed(25, short), 10);
   assert.equal(highlightAutomaticSpeed(50, short), 10, "Short episodes preserve the requested opening ramp");
-  assert.equal(highlightAutomaticSpeed(774, short), 10);
-  assert.equal(highlightAutomaticSpeed(775, short), 1);
+  assert.equal(highlightAutomaticSpeed(274, short), 10);
+  assert.equal(highlightAutomaticSpeed(275, short), 1);
   const earlyEnding = { ...plan, slowAtDecision: 2000, finishAtDecision: 2200 };
   assert.equal(highlightAutomaticSpeed(1999, earlyEnding), 100);
   assert.equal(highlightAutomaticSpeed(2000, earlyEnding), 10, "The ending takes priority over the 500x ramp");
@@ -210,6 +210,6 @@ test("all six highlights have precomputed ending milestones within their fixed t
     assert.ok(plan.slowAtDecision >= 0 && plan.slowAtDecision <= plan.finishAtDecision);
     assert.ok(plan.finishAtDecision <= entry.populationReplayDecisions);
     assert.equal(highlightAutomaticSpeed(entry.populationReplayDecisions, plan),
-      entry.populationReplayDecisions < 775 ? 10 : 1);
+      entry.populationReplayDecisions < 275 ? 10 : 1);
   }
 });

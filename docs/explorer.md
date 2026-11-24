@@ -1,6 +1,6 @@
 # Saved-population explorer
 
-[Variant 1](https://jeremyhua.ng/crossyroadai/explore?variant=1) and [Variant 2](https://jeremyhua.ng/crossyroadai/explore?variant=2) open a replay chooser over the default saved population. The chooser shows six highlight cards first. **Advanced replay** selects a specific generation and available training-map seed. The compact variant toggle switches experiments, and the replay settings button reopens the chooser. Clicking outside closes it.
+[Variant 1](https://jeremyhua.ng/crossyroadai/explore?variant=1) and [Variant 2](https://jeremyhua.ng/crossyroadai/explore?variant=2) open a replay chooser over the default saved population. The chooser shows six highlight cards first. **Advanced replay** selects a specific generation and a common audited map seed or a custom uint32 seed. The compact variant toggle switches experiments, and the replay settings button reopens the chooser. Clicking outside closes it.
 
 Replay links use query parameters: `?generation=150&seed=561909326&variant=1`. The app also reads old `/generation/<generation>/seed/<seed>` and historical milestone links. The full-screen viewer preserves the existing HUD, density rendering, camera, timeline, playback speeds, and Auto schedule. Space pauses or resumes a replay when a form or modal is not focused.
 
@@ -23,9 +23,11 @@ Positions within these ranges sample original whole populations. The six public 
 
 The catalog retains native source phases and generation numbers, real map seeds, simulation configurations, and population hashes. Historical phase-qualified links add `phase=prototype`, `binary`, `lookahead`, `memory-audit`, or `memory` to disambiguate overlapping native generation numbers. The completed native memory phase separately contains all 150 saved populations, with 100 original genomes and 32 training maps per generation.
 
-## Variant 2 development snapshot
+## Completed Variant 2 showcase
 
-The public explorer includes generations 1–64 from the frozen `v4-mean-source-rng-b-003/pareto` development branch, with 200 original genomes per population. This is a saved snapshot rather than the latest ongoing training state. Native six-decisions-per-second timing, clustered-traffic-v4 mechanics, eagle rules, and its 600-second evaluation limit are preserved. The original development visualizer remains separate.
+Variant 2 now has 150 curated authentic saved populations and six genuine highlights. Display 150 contains the original native019 generation392 population and frozen final genome353089. Earlier display positions include scratch, transfer, river adaptation, and native-input phases; real source generations and hashes remain in the provenance. These are presentation positions, not 150 uninterrupted training generations.
+
+All 27,500 original chickens were audited on the same eight maps under clustered-traffic-v4 rules: 220,000 evaluation episodes, with the600-second limit and native eagle timing intact. Advanced Replay accepts the common panel or any uint32 map seed. The final AI in race mode is frozen and identical on every seed. See [the showcase and reproduction guide](variants/variant-2-showcase.md).
 
 ## Data and reproduction
 
@@ -34,3 +36,5 @@ The public explorer includes generations 1–64 from the frozen `v4-mean-source-
 The selector lists available saved map seeds. URLs can address uint32 map seeds, and replays resimulate the same saved networks deterministically. The original inspectors remain at `/lab/variant-1` and `/?variant=2`. Static hosting needs an index fallback for `/explore`, `/play`, `/lab/*`, and supported legacy replay paths.
 
 To reproduce the catalog, use the retained native archives described in the [training-data guide](DATA_RELEASE.md), then run `npx tsx scripts/export-explorer.ts`. The same exporter includes the curated sequence. The optional common-map audit uses `scripts/audit-replay-sequence.ts` and publishes its existing results with `scripts/publish-replay-audit.ts`; rebuild homepage data and recordings as documented in [homepage previews](homepage-previews.md). Exports preserve source trainers, checkpoints, and saved genomes. The browser does not train networks when opening a replay.
+
+For Variant 2, use the reviewed `export-variant-two-showcase.ts` exporter and `audit-replay-sequence.ts --variant 2`; the legacy combined exporter retains an older development source. Do not blindly rerun it over the final showcase.

@@ -179,9 +179,23 @@ add({ id: "variant-1-final", title: "Final Variant 1 policy",
   note: "Frozen memory generation 150, selected before the independent FB assessment. Its 1,174 cumulative selected phase positions include multiple warm starts and NEAT population crossover, not one uninterrupted run. Final mean and interval describe 512 held-out maps for this one policy.",
 }, strongestCohort.genomes);
 
+// Add a genuine early binary population for the homepage without changing the
+// original six replay records, including existing generation-470 links.
+const progressGeneration = 50;
+const progressRecord = checkpoint(binaryDirectory).history[progressGeneration - 1];
+const progressCohort = cohort(binaryDirectory, progressGeneration);
+add({ id: "binary-road-progress", title: "Some progress", phaseGeneration: progressGeneration,
+  developmentMean: progressRecord.evalRow, developmentMaps: progressRecord.evaluation.length,
+  developmentMaxTicks: 3600, developmentLabel: "Historical monitoring maps · 60 seconds",
+  config: structuredClone(checkpoint(binaryDirectory).config.simulation), genome: progressRecord.champion,
+  source: `${binaryDirectory}/checkpoint.json#history[49].champion`, sourceArchive: progressCohort.file,
+  note: "Actual generation 50 of the binary-sensor phase. The homepage uses this earlier population; the generation-470 replay remains separately available.",
+}, progressCohort.genomes);
+const homepageProgress = entries.pop()!;
+
 const manifest = { format: "crossy-evolution-highlights", version: 4, mapSeed,
   interpretation: "Authentic policies from different recorded phases. Historical horizons and no-eagle rules are preserved. Monitoring, validation and wider-development means use different panels; the fixed-map replay score is an illustration, not a final-test result. Cumulative generations count selected warm-start phase positions only.",
-  entries };
+  entries, additionalEntries: [homepageProgress] };
 const encoded = stringifyEvolution(manifest);
 assert.deepEqual(parseEvolution(encoded), manifest);
 fs.writeFileSync("public/highlights.json", encoded + "\n");
