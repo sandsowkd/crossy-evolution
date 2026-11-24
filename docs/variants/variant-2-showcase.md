@@ -44,7 +44,7 @@ The curve retains real plateaus and regressions. Its average is over complete po
 
 ## Highlights, bloodline, and races
 
-Highlights use complete saved populations and their actual map maxima. Variant 2 website previews show normal-speed early crossings; the linked full replays retain Auto controls. README GIFs play at 1×; later highlight GIFs are 15-second excerpts of early crossings. Main and bloodline clips also retain 1× timing. Clip IDs, seeds, source generations, populations, frame counts, score windows, and timing receipts accompany the media.
+Highlights use complete saved populations and their actual map maxima. The six Variant 2 website highlights show complete population replays with the same Auto acceleration and last-survivor slowdown as Variant 1. Linked replays also provide manual speed controls. README GIFs play at 1×; later highlight GIFs are 15-second excerpts of early crossings. Main and bloodline clips also retain 1× timing. Clip IDs, seeds, source generations, populations, frame counts, score windows, and timing receipts accompany the media.
 
 The bloodline clip samples ten unchanged, distinct original members from each display population, for 1,500 chickens on one map. `public/variant-2/flock-preview.json` records the exact source IDs/hashes. This is a population mix, not reconstructed parent–child relationships.
 

@@ -68,13 +68,12 @@ const server = createServer(async (request, response) => {
       await fs.mkdir(directory, { recursive: true });
       await fs.writeFile(path.join(directory, `${frame}.jpg`), Buffer.concat(chunks));
     } else if (operation === "finish") {
-      if (readme) {
-        const chunks: Buffer[] = [];
-        for await (const chunk of request) chunks.push(chunk);
-        const timing = JSON.parse(Buffer.concat(chunks).toString());
-        if (timing.speed !== 1 || timing.fps !== 15) throw new Error("README recordings must stay at 1x");
-        await fs.writeFile(`${output}/${id}.json`, JSON.stringify(timing, null, 2) + "\n");
-      }
+      const chunks: Buffer[] = [];
+      for await (const chunk of request) chunks.push(chunk);
+      const timing = JSON.parse(Buffer.concat(chunks).toString());
+      if (timing.fps !== 15 || (readme && timing.speed !== 1)) throw new Error("Invalid recording timing");
+      if (timing.speed === "auto" && !timing.completed) throw new Error("Auto recording must include the complete replay");
+      await fs.writeFile(`${output}/${id}.json`, JSON.stringify(timing, null, 2) + "\n");
       await run(["-framerate", "15", "-i", `${directory}/%05d.jpg`, "-c:v", "libx264", "-preset", "veryfast", "-crf", "25", "-pix_fmt", "yuv420p", "-movflags", "+faststart", `${output}/${id}.mp4`]);
       const files = await fs.readdir(directory);
       const posterFrame = id.endsWith("-main") ? 0 : Math.min(files.length - 1,

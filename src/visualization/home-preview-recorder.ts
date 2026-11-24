@@ -74,6 +74,7 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
         finishAtDecision: clip.automaticPlayback.finishAtDecision * scale };
       const speed = () => range ? 1 : highlightAutomaticSpeed(replay.decisions * scale, plan);
       let credit = 0, observedSpeed = 1, terminal = 0, frame = 0;
+      const recordedSpeeds = new Set<number>();
       const lastFrame = range ? Math.round((range.end - range.start) * hop * fps) : Infinity;
       while (range ? frame <= lastFrame : terminal < 9) {
         let alpha: number;
@@ -100,6 +101,7 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
           if (replay.finished) terminal++;
           alpha = replay.finished ? 1 : Math.min(1, credit / hop);
         }
+        recordedSpeeds.add(range ? 1 : observedSpeed);
         view.update(populationFrame(replay, alpha, frame / fps * 1000));
         const score = range && alpha < 1 ? Math.max(...replay.agents.map(agent => agent.previous.maxRow)) : highlightBestScore(replay);
         const blob = await new Promise<Blob>((resolve, reject) => requestAnimationFrame(() => {
@@ -124,7 +126,9 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
       }
       status.textContent = `Encoding ${clip.id}`;
       const response = await fetch(`${sink}/finish/${clip.id}`, {method: "POST",
-        ...(readmePlan ? {body: JSON.stringify({fps, speed: 1, decisionRange: range, frameCount: frame})} : {})});
+        body: JSON.stringify({fps, speed: range ? 1 : "auto", decisionRange: range, frameCount: frame,
+          recordedSpeeds: [...recordedSpeeds], completed: replay.finished, decisions: replay.decisions,
+          highestScore: highlightBestScore(replay), population: genomes.length, mapSeed: replay.seed})});
       if (!response.ok) throw new Error(await response.text());
       view.dispose(); view = undefined;
     }

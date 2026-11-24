@@ -30,7 +30,7 @@ for(const m of VARIANT_TWO_MILESTONES) {
  ranges.push({id:m.id,decisionRange:{start,end}});
  const clip:PreviewClip={id:m.id,variant:2,generation:m.generation,sourceGeneration:row.sourceGeneration,population:genomes.length,
    mapSeed:m.previewSeed,highestScore:high,decisions:replay.decisions,seconds:replay.decisions*hopTicks(row.config)/60,
-   sourceArchive:row.cohortFile,automaticPlayback:highlightAutoSpeedPlan(replay),videoDecisionRange:{start,end},videoPlaybackSpeed:1,
+   sourceArchive:row.cohortFile,automaticPlayback:highlightAutoSpeedPlan(replay),
    video:`/previews/${m.id}.mp4`,poster:`/previews/${m.id}.jpg`};
  data.clips.push(clip);console.log(`${m.id}: ${high}, ${replay.decisions} moves`);
 }

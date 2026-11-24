@@ -4,7 +4,7 @@ import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import type { HomepageData } from "../visualization/homepage-data";
-import { HOMEPAGE_MILESTONES } from "../visualization/site-content";
+import { HOMEPAGE_MILESTONES, VARIANT_TWO_MILESTONES } from "../visualization/site-content";
 import { parseEvolution } from "../evolution/serialization";
 import { Replay } from "../evolution/replay";
 import type { Config } from "../core/types";
@@ -28,6 +28,24 @@ test("homepage previews identify the full archived generations and their automat
     assert.ok(clip.decisions > 0 && clip.automaticPlayback);
   }
   assert.equal(data.clips.filter(clip => clip.variant === 2).length, 8);
+});
+
+test("Variant 2 website highlights retain complete Auto runs independently of README excerpts", () => {
+  const github = read<{speed: number; clips: {id: string; timing: {speed: number; decisionRange: {start: number; end: number}}}[]}>("docs/media/variant-2-timing.json");
+  assert.equal(github.speed, 1);
+  for (const item of VARIANT_TWO_MILESTONES) {
+    const clip = data.clips.find(row => row.id === item.id)!;
+    assert.ok(clip.automaticPlayback);
+    assert.equal(clip.decisionRange, undefined);
+    assert.equal(clip.videoDecisionRange, undefined);
+    assert.equal(clip.videoPlaybackSpeed, undefined);
+    assert.equal(clip.mapSeed, item.previewSeed);
+    assert.ok(clip.automaticPlayback!.finishAtDecision <= clip.decisions);
+    const excerpt = github.clips.find(row => row.id === item.id)!;
+    assert.equal(excerpt.timing.speed, 1);
+    assert.ok(excerpt.timing.decisionRange.end <= clip.decisions);
+    if (item.generation > 5) assert.ok(excerpt.timing.decisionRange.end < clip.decisions);
+  }
 });
 
 test("the middle highlight is an authentic population with performance between its neighboring chapters", () => {
