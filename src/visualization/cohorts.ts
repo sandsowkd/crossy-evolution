@@ -1,3 +1,4 @@
+import { isCohortArchivePath } from "../evolution/archive-path";
 import { sitePath } from "./site-path";
 import { type Generation } from "../evolution/trainer";
 import { type Genome } from "../evolution/genome";
@@ -13,7 +14,7 @@ export async function loadCohort<T extends Pick<Generation,
   const file = record.cohortFile;
   if (!file || record.contenders.length === record.populationSize)
     return record;
-  if (!/^\/training-cohorts\/(?:[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?\/)?\d{5}\.json\.gz$/.test(file))
+  if (!isCohortArchivePath(file))
     throw new Error("Invalid population archive path");
   const key = `${file}:${record.cohortHash ?? "unhashed"}`;
   let pending = cache.get(key);

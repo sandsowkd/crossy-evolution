@@ -34,7 +34,8 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
     const readmePlan: {clips: {id: string; decisionRange: {start: number; end: number}}[]} | undefined = params.has("readme")
       ? await fetch(`${sink}/readme-plan.json`).then(response => response.json()) : undefined;
     const selectedId = params.get("clip");
-    const clips = data.clips.filter(clip => (!params.has("variant2") || clip.variant===2) && (!selectedId || clip.id === selectedId) && (!params.has("highlights") || !clip.decisionRange)
+    const selectedIds = params.get("clips")?.split(",");
+    const clips = data.clips.filter(clip => (!params.has("variant2") || clip.variant===2) && (!selectedId || clip.id === selectedId) && (!selectedIds || selectedIds.includes(clip.id)) && (!params.has("highlights") || !clip.decisionRange)
       && (!readmePlan || readmePlan.clips.some(item => item.id === clip.id)));
     if (!clips.length) throw new Error("Unknown preview clip");
     for (const clip of clips) {

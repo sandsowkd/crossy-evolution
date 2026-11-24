@@ -79,17 +79,22 @@ test("population namespaces preserve legacy paths and reject unsafe or nested ar
       "/training-cohorts/warm-v3-100/99997.json.gz",
       `/training-cohorts/${"a".repeat(64)}/99997.json.gz`,
       "/training-cohorts/0/99997.json.gz",
+      "/training-cohorts/variant-1/sequence/lookahead/99997.json.gz",
+      "/training-cohorts/variant-1/highlights/traffic/99997.json.gz",
+      "/training-cohorts/variant-2/sequence/99997.json.gz",
     ]) {
       assert.deepEqual(
         (await loadCohort({ ...manifest, cohortFile: file })).contenders,
         record.contenders,
       );
     }
-    assert.equal(fetched.length, 4);
+    assert.equal(fetched.length, 7);
     for (const file of [
       "/training-cohorts/../99997.json.gz",
       "/training-cohorts/%2e%2e/99997.json.gz",
       "/training-cohorts/run/nested/99997.json.gz",
+      "/training-cohorts/variant-3/sequence/99997.json.gz",
+      "/training-cohorts/variant-1/sequence/run/nested/99997.json.gz",
       "/training-cohorts/UPPER/99997.json.gz",
       "/training-cohorts/under_score/99997.json.gz",
       "/training-cohorts/-run/99997.json.gz",
@@ -100,7 +105,7 @@ test("population namespaces preserve legacy paths and reject unsafe or nested ar
     ]) {
       await assert.rejects(loadCohort({ ...manifest, cohortFile: file }), /path/i);
     }
-    assert.equal(fetched.length, 4, "Unsafe paths must fail before fetching");
+    assert.equal(fetched.length, 7, "Unsafe paths must fail before fetching");
   } finally {
     globalThis.fetch = originalFetch;
   }

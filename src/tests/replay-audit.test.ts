@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { gunzipSync } from "node:zlib";
-import type { AuditResult } from "../../scripts/audit-replay-sequence";
+import type { AuditResult } from "../../scripts/evaluation/audit-replay-sequence";
 import type { ExplorerCatalog } from "../visualization/explorer-data";
 import { REPLAY_MAP_SEEDS } from "../visualization/explorer-sequence";
 import { highlightReplayConfig, HIGHLIGHT_REPLAY_OPTIONS } from "../visualization/highlight-playback";

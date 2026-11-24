@@ -54,7 +54,7 @@ test("the middle highlight is an authentic population with performance between i
   const preserved = manifest.entries.find(entry => entry.id === "binary-road-learner")!;
   const cohortText = gunzipSync(fs.readFileSync(new URL(`../../public${middle.cohortFile}`, import.meta.url))).toString();
   const population = parseEvolution<{contenders: Genome[]}>(cohortText);
-  const archive = read<{history: {generation: number; cohortHash: string}[]}>("results/experiments/average/lookahead-100/training-summary.json");
+  const archive = read<{history: {generation: number; cohortHash: string}[]}>(".archive/results/variant-1/experiments/average/lookahead-100/training-summary.json");
   assert.equal(archive.history[29].generation, 30);
   assert.equal(createHash("sha256").update(cohortText).digest("hex"), "13f87e946c5395d802d88f7211a3fde797bfd16875751e98f1adcd114273a5c5");
   assert.equal(population.contenders.length, 100);

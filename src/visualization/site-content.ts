@@ -74,7 +74,7 @@ export const VARIANT_TWO_MILESTONES = [
     description:"Chickens move in random directions.",note:"Original scratch population · generation 1"},
   {id:"variant-2-early",generation:5,title:"Forward selection",previewSeed:4984,
     description:"Early selection starts to favor chickens that keep moving forward.",note:"Original scratch experiment · generation 5"},
-  {id:"variant-2-rivers",generation:50,title:"River crossings",previewSeed:14232,
+  {id:"variant-2-rivers",generation:50,title:"River crossings",previewSeed:318,
     description:"Road skills develop, but river crossings are still tricky.",note:"Archived river-adaptation population"},
   {id:"variant-2-consistent",generation:85,title:"Consistent crossings",previewSeed:14232,
     description:"The chickens combine signals to cross train tracks and logs more consistently.",note:"Archived consistency experiment"},

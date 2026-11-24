@@ -12,7 +12,7 @@ Inspired by [Trackmania AI experiments](https://www.youtube.com/watch?v=Dw3BZ6O_
 
 [![One chicken running the final Variant 1 policy](docs/media/variant-1-main-1x.gif)](https://jeremyhua.ng/crossyroadai/explore?variant=1)
 
-[Full results and evaluation details for Variant 1](docs/variants/variant-1.md)
+[Full results and evaluation details for Variant 1](docs/results/variant-1.md)
 
 ### Highlights
 
@@ -60,7 +60,7 @@ These clips show the entire saved population on one selected map. Chickens at th
 
 [![The frozen final Variant 2 AI](docs/media/variant-2-main-final-1x.gif)](https://jeremyhua.ng/crossyroadai/play?variant=2)
 
-[Full results and evaluation details for Variant 2](docs/variants/variant-2-showcase.md)
+[Full results and evaluation details for Variant 2](docs/results/variant-2.md)
 
 ### Highlights
 
@@ -83,9 +83,9 @@ The six clips show authentic complete saved populations. GIFs run at 1×; later 
     <td>Early selection starts to favor chickens that keep moving forward.<br><br><strong>High Score: 26</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=14232&amp;variant=2">Gen 50: River crossings</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=14232&amp;variant=2"><img src="docs/media/variant-2-rivers-1x.gif" width="320" height="180" alt="Variant 2 generation 50 population"></a></td>
-    <td>Road skills develop, but river crossings are still tricky.<br><br><strong>High Score: 721</strong></td>
+    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=318&amp;variant=2">Gen 50: River crossings</a></strong></td>
+    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-rivers-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 50 population"></a></td>
+    <td>Road skills develop, but river crossings are still tricky.<br><br><strong>High Score: 275</strong></td>
   </tr>
   <tr>
     <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=85&amp;seed=14232&amp;variant=2">Gen 85: Consistent crossings</a></strong></td>
@@ -94,8 +94,8 @@ The six clips show authentic complete saved populations. GIFs run at 1×; later 
   </tr>
   <tr>
     <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=4984&amp;variant=2">Gen 100: Longer journeys</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-longer-1x.gif" width="320" height="180" alt="Variant 2 generation 100 population"></a></td>
-    <td>The chickens build on earlier skills for longer, more consistent crossings.<br><br><strong>High Score: 1,967</strong></td>
+    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-longer-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 100 population"></a></td>
+    <td>The chickens build on earlier skills for longer, more consistent crossings.<br><br><strong>High Score: 1,454</strong></td>
   </tr>
   <tr>
     <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=150&amp;seed=318&amp;variant=2">Gen 150: Final population</a></strong></td>
@@ -126,7 +126,7 @@ The simulation and neural decisions run independently of the Three.js renderer. 
 
 ## The entire bloodline (10 chickens from each generation)
 
-Ten saved networks from each of the 150 curated display generations run together on one map: **1,500 chickens**. The Variant 1 GIF loops score 0–100 at normal speed.
+Ten saved networks from each of the 150 display generations run together on one map: **1,500 chickens**. The Variant 1 GIF loops score 0–100 at normal speed.
 
 <table>
   <tr>
@@ -135,7 +135,7 @@ Ten saved networks from each of the 150 curated display generations run together
   </tr>
   <tr>
     <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/all-generations-1x.gif" width="384" height="216" alt="A mixed population of 1,500 saved Variant 1 chickens on one map"></a></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
+    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif?sequence=2" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
   </tr>
 </table>
 
@@ -165,7 +165,7 @@ Open the Local URL printed by Vite, normally `http://127.0.0.1:5173`.
 
 Replay URLs use query parameters for the generation, seed, and variant. The chooser shows six highlights first; Advanced replay exposes specific generations and available map seeds. Historical phase-qualified and older path links remain supported.
 
-The hosted website includes the populations used by its replay menus. Local regeneration requires the matching saved training archives; see [explorer data](docs/explorer.md), [homepage previews](docs/homepage-previews.md), and the [data guide](docs/DATA_RELEASE.md).
+The hosted website includes the saved populations used by both replay menus. See the [development guide](docs/README.md) for code layout, replay data, media exports and deployment.
 
 ```bash
 npm test
@@ -174,10 +174,18 @@ npm run build
 
 ## Results and data
 
-- [Completed Variant 1 results](docs/variants/variant-1.md), [frozen evaluation](results/variants/variant-1/final/evaluation.json), and [verification](results/variants/variant-1/final/verification.json).
-- [Historical learning milestones and population-size comparison](docs/variants/variant-1-highlights.md).
-- [Variant 2 development results and experiments](docs/variants/variant-2.md) and [recovered decisions and training history](docs/variants/variant-2-recovery.md).
-- [Training-data guide](docs/DATA_RELEASE.md), [technical archive](docs/VARIANT_1_TECHNICAL_ARCHIVE.md), and [Variant 1 research log](docs/variants/variant-1-research-log.md).
+- **[Variant 1: learning to read traffic](docs/results/variant-1.md)** — the 512-map held-out assessment, baseline comparisons, input ablation and replay measurements. [Data](results/variant-1/).
+- **[Variant 2: traffic, trains and moving water](docs/results/variant-2.md)** — the two frozen policies, development-map distributions, final continuation study and replay measurements. [Data](results/variant-2/).
+
+## Repository guide
+
+| Path | Contents |
+| --- | --- |
+| [src/](src/) | Simulation, neural networks and website |
+| [scripts/](scripts/) | Training, evaluation, export and media tools |
+| [public/training-cohorts/](public/training-cohorts/) | Saved populations, organized by variant |
+| [results/](results/) | Final evaluations and comparison data, organized by variant |
+| [docs/](docs/README.md) | Development guide, results reports and figures |
 
 ## Credits
 

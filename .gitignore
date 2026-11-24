@@ -7,34 +7,34 @@ dist/
 results/checkpoint.json
 results/trains/checkpoint.json
 
-results/batch-200/checkpoint.json
+.archive/results/variant-1/batch-200/checkpoint.json
 
 # Reproducible long-run datasets (hundreds of complete populations).
-results/learned/generations/
-results/learned/checkpoint.json
+.archive/results/variant-1/learned/generations/
+.archive/results/variant-1/learned/checkpoint.json
 results/probe-original/
 results/probe-v2/
 public/training-cohorts/*
-!public/training-cohorts/further-1335-restart038/
+!public/training-cohorts/variant-1/releases/further-1335-restart038/
 
 results/unused-overrun/
 
-results/continued/generations/
-results/continued/checkpoint.json
+.archive/results/variant-1/continued/generations/
+.archive/results/variant-1/continued/checkpoint.json
 
 # Full experiment populations and resumable states are generated locally.
-results/experiments/**/generations/
-results/experiments/**/checkpoint.json
+.archive/results/variant-1/experiments/**/generations/
+.archive/results/variant-1/experiments/**/checkpoint.json
 results/previews/**/generations/
 results/previews/**/checkpoint.json
-results/experiments/**/ancestor-checkpoint.json
+.archive/results/variant-1/experiments/**/ancestor-checkpoint.json
 results/**/*.tmp
-results/frozen/**/checkpoint.json
-results/frozen/**/generations/
-results/releases/**/checkpoint.json
-results/releases/**/generations/
-results/releases/**/ancestor-checkpoint.json
-results/releases/**/browser-checkpoint-*.json
+.archive/results/variant-1/frozen/**/checkpoint.json
+.archive/results/variant-1/frozen/**/generations/
+.archive/results/variant-1/releases/**/checkpoint.json
+.archive/results/variant-1/releases/**/generations/
+.archive/results/variant-1/releases/**/ancestor-checkpoint.json
+.archive/results/variant-1/releases/**/browser-checkpoint-*.json
 
 # Local reference art is fetched from the pinned upstream commit, not redistributed.
 public/upstream/*
@@ -44,22 +44,28 @@ docs/*.jpg
 .publication/
 artifacts/variant-1-highlights/
 artifacts/variant-2/
-results/variants/variant-2/**/snapshots/
+.archive/results/variant-2/**/snapshots/
 public/variant-2/*
 !public/variant-2/scratch.json
 !public/variant-2/transfer.json
 __pycache__/
-results/variants/variant-2/recovered-conversation.json
-!public/training-cohorts/variant-1-final/
-public/training-cohorts/variant-1-final/*
-!public/training-cohorts/variant-1-final/00001.json.gz
-!public/training-cohorts/variant-1-final/00100.json.gz
-!public/training-cohorts/variant-1-final/00150.json.gz
+.archive/results/variant-2/recovered-conversation.json
+!public/training-cohorts/variant-1/final/
+public/training-cohorts/variant-1/final/*
+!public/training-cohorts/variant-1/final/00001.json.gz
+!public/training-cohorts/variant-1/final/00100.json.gz
+!public/training-cohorts/variant-1/final/00150.json.gz
 !public/training-cohorts/highlight-*/
 
 # Variant native archives are release data.
 results/variants/**/generations/
 results/variants/**/checkpoint.json
 results/variants/**/ancestor-checkpoint.json
-results/variants/variant-2/**/trainer.lock.json
-results/variants/variant-2/**/monitor.lock.json
+.archive/results/variant-2/**/trainer.lock.json
+.archive/results/variant-2/**/monitor.lock.json
+
+# Exported public replay data is versioned independently from native checkpoints.
+!public/training-cohorts/variant-1/
+!public/training-cohorts/variant-1/**
+!public/training-cohorts/variant-2/
+!public/training-cohorts/variant-2/**

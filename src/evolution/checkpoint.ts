@@ -1,3 +1,4 @@
+import { isCohortArchivePath } from "./archive-path";
 import { INPUT_COUNT } from "../core/observation";
 import {
   BASE_NODES, BIAS, OUTPUT_START, EVOLUTION_NUMERIC_PARAMETERS,
@@ -182,7 +183,7 @@ export function parseCheckpoint(text: string, maxCharacters = MAX_CHECKPOINT_CHA
           h.populationSize === c.config.population) &&
         (h.cohortHash === undefined || /^[0-9a-f]{64}$/.test(h.cohortHash)) &&
         (h.cohortFile === undefined ||
-          /^\/training-cohorts\/(?:[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?\/)?\d{5}\.json\.gz$/.test(h.cohortFile)) &&
+          isCohortArchivePath(h.cohortFile)) &&
         ["roads", "trains", "mixed"].includes(h.curriculum) &&
         Array.isArray(h.seeds) &&
         h.seeds.every(Number.isInteger) &&

@@ -166,7 +166,7 @@ test("optional low thresholds split nearby warm genomes and survive exact native
   assert.throws(() => parseCheckpoint(stringifyEvolution(invalid)), /adaptive species/);
 });
 
-test("checkpoint archive references accept one safe run namespace and legacy root paths", () => {
+test("checkpoint archive references accept bounded variant folders and legacy run paths", () => {
   const trainer = new Trainer({ population: 50, trainingSeeds: 1,
     simulation: { curriculum: "roads", maxTicks: 12, difficulty: 1 } });
   trainer.runGeneration();
@@ -174,6 +174,8 @@ test("checkpoint archive references accept one safe run namespace and legacy roo
   for (const path of [
     "/training-cohorts/00001.json.gz", "/training-cohorts/a/00001.json.gz",
     "/training-cohorts/warm-v3-run-100/00001.json.gz",
+    "/training-cohorts/variant-1/sequence/lookahead/00001.json.gz",
+    "/training-cohorts/variant-2/sequence/00001.json.gz",
     `/training-cohorts/${"a".repeat(64)}/00001.json.gz`,
   ]) {
     checkpoint.history[0].cohortFile = path;

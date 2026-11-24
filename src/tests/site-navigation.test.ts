@@ -65,7 +65,7 @@ test("map seeds preserve all uint32 values, including zero, and reject invalid i
 });
 
 test("Variant1 benchmark stays frozen while both public showcases are complete", () => {
-  const verification = JSON.parse(fs.readFileSync(new URL("../../results/variants/variant-1/final/verification.json", import.meta.url), "utf8"));
+  const verification = JSON.parse(fs.readFileSync(new URL("../../results/variant-1/final/verification.json", import.meta.url), "utf8"));
   assert.equal(VARIANT_ONE_RESULT.mean, verification.meanRow);
   assert.equal(VARIANT_ONE_RESULT.maps, verification.testEpisodes);
   assert.deepEqual(VARIANT_ONE_RESULT.interval, verification.meanBootstrap95);
