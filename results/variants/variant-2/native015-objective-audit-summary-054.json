@@ -1,0 +1,928 @@
+{
+  "createdAt": "2026-11-24T06:53:00.293Z",
+  "domain": "86bb35857c8b55bd6565a08f1d1ad284a6a171702390f5528fc410ab783648f1",
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
+  "nomination": "union of top2 means and top2 maxima per actual cohort",
+  "skipped": [
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "generation": 288,
+      "genome": 332325,
+      "fingerprint": "5a03c5c9499f47dccf79d04075311b5d02716ffdc02435a8a2c73466acacc7ad"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "generation": 288,
+      "genome": 332274,
+      "fingerprint": "d7e7a11ce2d903649d3f6f6e728352d6b9fa53c34374f49ae49694a65eb5b122"
+    }
+  ],
+  "newCandidateDevelopmentEpisodes": 8704,
+  "promoted": [
+    "development"
+  ],
+  "repeatedDevelopmentEpisodes": 256,
+  "rendererEpisodes": 1,
+  "newTrainingEpisodes": 0,
+  "finalMapsOpened": false,
+  "results": [
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 288,
+      "genome": 332299,
+      "fingerprint": "cba1d7c9db349b4d6ce9f779495ca186ca99b63f1824965cb2df219d44c32b97",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "metrics": {
+        "meanRow": 669.4921875,
+        "medianRow": 503,
+        "maximumRow": 2069,
+        "reach100": 0.8984375,
+        "reach300": 0.65234375,
+        "reach1000": 0.23828125,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "car": 83,
+          "water": 52,
+          "timeout": 18,
+          "train": 13,
+          "bounds": 20,
+          "eagle": 70
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 288,
+      "genome": 332276,
+      "fingerprint": "1b3191ffbb63fd3af9f58245e1091f5078069baa0263884050aee6ff9f4e35d9",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "metrics": {
+        "meanRow": 651.203125,
+        "medianRow": 480.5,
+        "maximumRow": 1924,
+        "reach100": 0.91796875,
+        "reach300": 0.70703125,
+        "reach1000": 0.22265625,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "car": 96,
+          "water": 52,
+          "bounds": 11,
+          "eagle": 63,
+          "timeout": 18,
+          "train": 16
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 288,
+      "genome": 332306,
+      "fingerprint": "83c7a2a5f2b54e05ab1d184edfff001f0557c37020afeec0eb1748f6e49b7811",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "metrics": {
+        "meanRow": 578.03125,
+        "medianRow": 389,
+        "maximumRow": 2064,
+        "reach100": 0.86328125,
+        "reach300": 0.6015625,
+        "reach1000": 0.19921875,
+        "timeoutRate": 0.046875,
+        "deaths": {
+          "bounds": 13,
+          "car": 108,
+          "water": 48,
+          "eagle": 60,
+          "train": 15,
+          "timeout": 12
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 288,
+      "genome": 332300,
+      "fingerprint": "7a0fcefb78fdf62c2d409c4db317b9cbab9c74943368d1b25eb8c377d05c8730",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "metrics": {
+        "meanRow": 547.8125,
+        "medianRow": 394,
+        "maximumRow": 2048,
+        "reach100": 0.8828125,
+        "reach300": 0.609375,
+        "reach1000": 0.171875,
+        "timeoutRate": 0.0234375,
+        "deaths": {
+          "train": 18,
+          "car": 104,
+          "timeout": 6,
+          "eagle": 69,
+          "water": 47,
+          "bounds": 12
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "generation": 288,
+      "genome": 332332,
+      "fingerprint": "7553193a4ce7acf32aea4edbaff54086314c141bf031b40d2732c5144d6b0052",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight0/focused/generations/00288.json.gz",
+      "cohortSha256": "de9a08cc43bb4992d62ad353547ff3c28741cbf2441ff853e0c3de83830ba6a6",
+      "metrics": {
+        "meanRow": 597.9140625,
+        "medianRow": 485,
+        "maximumRow": 1937,
+        "reach100": 0.85546875,
+        "reach300": 0.640625,
+        "reach1000": 0.203125,
+        "timeoutRate": 0.046875,
+        "deaths": {
+          "eagle": 76,
+          "water": 51,
+          "train": 15,
+          "car": 92,
+          "timeout": 12,
+          "bounds": 10
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "generation": 288,
+      "genome": 332330,
+      "fingerprint": "3d9ac60c71511116f2bd7031c89f9084cb90a2ac89186fdefbaa6994a80b530e",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight0/focused/generations/00288.json.gz",
+      "cohortSha256": "de9a08cc43bb4992d62ad353547ff3c28741cbf2441ff853e0c3de83830ba6a6",
+      "metrics": {
+        "meanRow": 553.8515625,
+        "medianRow": 399,
+        "maximumRow": 2055,
+        "reach100": 0.87109375,
+        "reach300": 0.5625,
+        "reach1000": 0.140625,
+        "timeoutRate": 0.04296875,
+        "deaths": {
+          "car": 104,
+          "water": 65,
+          "bounds": 8,
+          "eagle": 56,
+          "timeout": 11,
+          "train": 12
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "generation": 288,
+      "genome": 332321,
+      "fingerprint": "b94ff33228b5b12729e3efb44fb50b5c2e90ad300632a1ce4862ca0771015c32",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight0/focused/generations/00288.json.gz",
+      "cohortSha256": "de9a08cc43bb4992d62ad353547ff3c28741cbf2441ff853e0c3de83830ba6a6",
+      "metrics": {
+        "meanRow": 558.484375,
+        "medianRow": 385,
+        "maximumRow": 2052,
+        "reach100": 0.8984375,
+        "reach300": 0.59765625,
+        "reach1000": 0.15625,
+        "timeoutRate": 0.046875,
+        "deaths": {
+          "car": 100,
+          "water": 59,
+          "eagle": 58,
+          "bounds": 13,
+          "train": 14,
+          "timeout": 12
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "generation": 288,
+      "genome": 332239,
+      "fingerprint": "8a4338b22aa47af3709ca0c73db3ed13a137036c905a58b90c4879e23cd26ce0",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight5/focused/generations/00288.json.gz",
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "metrics": {
+        "meanRow": 608.484375,
+        "medianRow": 431.5,
+        "maximumRow": 1911,
+        "reach100": 0.83203125,
+        "reach300": 0.62109375,
+        "reach1000": 0.20703125,
+        "timeoutRate": 0.05859375,
+        "deaths": {
+          "timeout": 15,
+          "water": 72,
+          "car": 72,
+          "bounds": 13,
+          "eagle": 70,
+          "train": 14
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "generation": 288,
+      "genome": 332245,
+      "fingerprint": "6eb8343284708e2c776ee9b0dc135441808a4f6339e5dfe8478bb8ee4c60c1d2",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight5/focused/generations/00288.json.gz",
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "metrics": {
+        "meanRow": 578.51953125,
+        "medianRow": 404.5,
+        "maximumRow": 1782,
+        "reach100": 0.83984375,
+        "reach300": 0.5859375,
+        "reach1000": 0.20703125,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "bounds": 13,
+          "train": 9,
+          "water": 43,
+          "car": 102,
+          "eagle": 71,
+          "timeout": 18
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "generation": 288,
+      "genome": 332290,
+      "fingerprint": "35b3738dbabc99996d13318dd29d0137d1e1a4e6112fb508c4f560c4cab2a6d0",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight5/focused/generations/00288.json.gz",
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "metrics": {
+        "meanRow": 566.21875,
+        "medianRow": 427,
+        "maximumRow": 2081,
+        "reach100": 0.859375,
+        "reach300": 0.6328125,
+        "reach1000": 0.171875,
+        "timeoutRate": 0.02734375,
+        "deaths": {
+          "car": 100,
+          "water": 70,
+          "eagle": 59,
+          "timeout": 7,
+          "train": 12,
+          "bounds": 8
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "generation": 288,
+      "genome": 332280,
+      "fingerprint": "7af58dd2dde730ae185625e1abfee1ae8896f98e7306fda93f6f234a23bda753",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight5/focused/generations/00288.json.gz",
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "metrics": {
+        "meanRow": 594.71875,
+        "medianRow": 470,
+        "maximumRow": 2109,
+        "reach100": 0.87890625,
+        "reach300": 0.61328125,
+        "reach1000": 0.203125,
+        "timeoutRate": 0.03515625,
+        "deaths": {
+          "train": 19,
+          "water": 60,
+          "car": 96,
+          "eagle": 62,
+          "timeout": 9,
+          "bounds": 10
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "generation": 288,
+      "genome": 332311,
+      "fingerprint": "f146b28784016f349c155759f86b0a334f670f763bfc71cd6b79988f5df13f0f",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight20/focused/generations/00288.json.gz",
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "metrics": {
+        "meanRow": 623.19140625,
+        "medianRow": 479,
+        "maximumRow": 1848,
+        "reach100": 0.875,
+        "reach300": 0.6640625,
+        "reach1000": 0.23046875,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "eagle": 70,
+          "water": 47,
+          "car": 83,
+          "bounds": 18,
+          "train": 20,
+          "timeout": 18
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "generation": 288,
+      "genome": 332374,
+      "fingerprint": "ae96fa14da7cccb8e015edd4569da3c9abf6bcf9a02b5d6845c273ee1d49dfd8",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight20/focused/generations/00288.json.gz",
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "metrics": {
+        "meanRow": 602.71875,
+        "medianRow": 434.5,
+        "maximumRow": 2023,
+        "reach100": 0.86328125,
+        "reach300": 0.61328125,
+        "reach1000": 0.19140625,
+        "timeoutRate": 0.05078125,
+        "deaths": {
+          "water": 51,
+          "car": 89,
+          "bounds": 15,
+          "eagle": 70,
+          "timeout": 13,
+          "train": 18
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "generation": 288,
+      "genome": 332320,
+      "fingerprint": "6cfcf0a7b6553c4f7e75b0017fdb25ef2330b36ec155080051c0fb5ad6cda2ac",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight20/focused/generations/00288.json.gz",
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "metrics": {
+        "meanRow": 606.5234375,
+        "medianRow": 404.5,
+        "maximumRow": 2139,
+        "reach100": 0.85546875,
+        "reach300": 0.61328125,
+        "reach1000": 0.1875,
+        "timeoutRate": 0.05859375,
+        "deaths": {
+          "timeout": 15,
+          "water": 42,
+          "train": 23,
+          "car": 91,
+          "eagle": 71,
+          "bounds": 14
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "generation": 288,
+      "genome": 332265,
+      "fingerprint": "b3c2bb3189c960bd3e94312d3429b007d683cb793fc9f625869ec386cb51c5cb",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-weight20/focused/generations/00288.json.gz",
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "metrics": {
+        "meanRow": 558.87890625,
+        "medianRow": 389,
+        "maximumRow": 2146,
+        "reach100": 0.85546875,
+        "reach300": 0.59375,
+        "reach1000": 0.17578125,
+        "timeoutRate": 0.03515625,
+        "deaths": {
+          "water": 43,
+          "train": 17,
+          "eagle": 77,
+          "car": 101,
+          "bounds": 9,
+          "timeout": 9
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "generation": 288,
+      "genome": 332245,
+      "fingerprint": "f617b02de5a94e1ea9ed30724e1da555aab2c1ab7e337dea00266c5a5bb3bdbe",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-v/focused/generations/00288.json.gz",
+      "cohortSha256": "683f84561e30ac1d0dd95826afdaf6c6fd749d1431cf2dd2058525ab2b8ed315",
+      "metrics": {
+        "meanRow": 659.2421875,
+        "medianRow": 465.5,
+        "maximumRow": 1964,
+        "reach100": 0.8828125,
+        "reach300": 0.640625,
+        "reach1000": 0.23828125,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "car": 87,
+          "water": 52,
+          "timeout": 18,
+          "eagle": 68,
+          "bounds": 15,
+          "train": 16
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "generation": 288,
+      "genome": 332353,
+      "fingerprint": "23c7d3a908076f25443fc028cbf65a0126d5f1cbf3210ed9f1cf0fcbaeb5ce51",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-v/focused/generations/00288.json.gz",
+      "cohortSha256": "683f84561e30ac1d0dd95826afdaf6c6fd749d1431cf2dd2058525ab2b8ed315",
+      "metrics": {
+        "meanRow": 618.26171875,
+        "medianRow": 499,
+        "maximumRow": 1930,
+        "reach100": 0.89453125,
+        "reach300": 0.63671875,
+        "reach1000": 0.22265625,
+        "timeoutRate": 0.05078125,
+        "deaths": {
+          "bounds": 12,
+          "water": 63,
+          "car": 97,
+          "timeout": 13,
+          "eagle": 63,
+          "train": 8
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "generation": 288,
+      "genome": 332312,
+      "fingerprint": "8081d22e225ff0a6db2a83386fd8d75f7e8383efeda74ec449c4a0f41c077e67",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-v/focused/generations/00288.json.gz",
+      "cohortSha256": "683f84561e30ac1d0dd95826afdaf6c6fd749d1431cf2dd2058525ab2b8ed315",
+      "metrics": {
+        "meanRow": 618.83984375,
+        "medianRow": 433.5,
+        "maximumRow": 2063,
+        "reach100": 0.87109375,
+        "reach300": 0.64453125,
+        "reach1000": 0.19921875,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "timeout": 18,
+          "water": 38,
+          "car": 94,
+          "bounds": 32,
+          "eagle": 63,
+          "train": 11
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "generation": 288,
+      "genome": 332308,
+      "fingerprint": "620015403fa365cbae4aaf632257fee0f62b202db27abb46149f067040040d46",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-w/focused/generations/00288.json.gz",
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "metrics": {
+        "meanRow": 618.81640625,
+        "medianRow": 494,
+        "maximumRow": 1897,
+        "reach100": 0.91015625,
+        "reach300": 0.67578125,
+        "reach1000": 0.19921875,
+        "timeoutRate": 0.0390625,
+        "deaths": {
+          "train": 9,
+          "water": 63,
+          "eagle": 70,
+          "car": 99,
+          "timeout": 10,
+          "bounds": 5
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "generation": 288,
+      "genome": 332374,
+      "fingerprint": "6728769df4396d8824a61dcc72c020040298407f15f7e99f4cca53a5a527a3cb",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-w/focused/generations/00288.json.gz",
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "metrics": {
+        "meanRow": 658.94921875,
+        "medianRow": 508,
+        "maximumRow": 1987,
+        "reach100": 0.90625,
+        "reach300": 0.64453125,
+        "reach1000": 0.23828125,
+        "timeoutRate": 0.07421875,
+        "deaths": {
+          "car": 84,
+          "water": 63,
+          "timeout": 19,
+          "eagle": 66,
+          "train": 20,
+          "bounds": 4
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "generation": 288,
+      "genome": 332255,
+      "fingerprint": "164112164eeeb5b6cd413444cf25e4e70e1296f628aae8b51c31419972a02a13",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-w/focused/generations/00288.json.gz",
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "metrics": {
+        "meanRow": 537.03515625,
+        "medianRow": 404,
+        "maximumRow": 1988,
+        "reach100": 0.83984375,
+        "reach300": 0.58984375,
+        "reach1000": 0.14453125,
+        "timeoutRate": 0.0234375,
+        "deaths": {
+          "eagle": 75,
+          "water": 74,
+          "train": 14,
+          "car": 72,
+          "bounds": 15,
+          "timeout": 6
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "generation": 288,
+      "genome": 332347,
+      "fingerprint": "f293d3cc3529c8fdd222f639b71ab579ab18e6f8b895dc2bb32d602fe480d6db",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-w/focused/generations/00288.json.gz",
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "metrics": {
+        "meanRow": 608.19921875,
+        "medianRow": 461.5,
+        "maximumRow": 2067,
+        "reach100": 0.85546875,
+        "reach300": 0.6171875,
+        "reach1000": 0.20703125,
+        "timeoutRate": 0.05078125,
+        "deaths": {
+          "car": 113,
+          "water": 41,
+          "eagle": 64,
+          "train": 12,
+          "timeout": 13,
+          "bounds": 13
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "generation": 288,
+      "genome": 332312,
+      "fingerprint": "20d652753fe1272a25e0b37c60abfcde74b66aba1de2d1894c9466467220921b",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-x/focused/generations/00288.json.gz",
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "metrics": {
+        "meanRow": 572.921875,
+        "medianRow": 421,
+        "maximumRow": 1933,
+        "reach100": 0.8671875,
+        "reach300": 0.6015625,
+        "reach1000": 0.18359375,
+        "timeoutRate": 0.0703125,
+        "deaths": {
+          "eagle": 62,
+          "water": 37,
+          "car": 107,
+          "train": 16,
+          "bounds": 16,
+          "timeout": 18
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "generation": 288,
+      "genome": 332242,
+      "fingerprint": "2614b8979314f22d8773d8be7babd2753c5c024be431704025ef6fecde4846f5",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-x/focused/generations/00288.json.gz",
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "metrics": {
+        "meanRow": 633.890625,
+        "medianRow": 501.5,
+        "maximumRow": 1911,
+        "reach100": 0.87109375,
+        "reach300": 0.64453125,
+        "reach1000": 0.23046875,
+        "timeoutRate": 0.06640625,
+        "deaths": {
+          "timeout": 17,
+          "water": 48,
+          "bounds": 16,
+          "car": 96,
+          "train": 12,
+          "eagle": 67
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "generation": 288,
+      "genome": 332329,
+      "fingerprint": "a00c171965e986b3ecd098db6d3b836c58a21084406dd49f859ccfcfbc83670e",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-x/focused/generations/00288.json.gz",
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "metrics": {
+        "meanRow": 664.7734375,
+        "medianRow": 516,
+        "maximumRow": 2087,
+        "reach100": 0.87109375,
+        "reach300": 0.65625,
+        "reach1000": 0.2578125,
+        "timeoutRate": 0.03515625,
+        "deaths": {
+          "car": 105,
+          "water": 52,
+          "eagle": 70,
+          "timeout": 9,
+          "bounds": 5,
+          "train": 15
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "generation": 288,
+      "genome": 332310,
+      "fingerprint": "59cb33ed2d894b627867c9f9d185fe7d5b35a69591613b9253d247c74821e986",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-x/focused/generations/00288.json.gz",
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "metrics": {
+        "meanRow": 648.40234375,
+        "medianRow": 470,
+        "maximumRow": 2087,
+        "reach100": 0.85546875,
+        "reach300": 0.65234375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.0234375,
+        "deaths": {
+          "car": 93,
+          "water": 57,
+          "bounds": 10,
+          "eagle": 73,
+          "train": 17,
+          "timeout": 6
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "generation": 288,
+      "genome": 332260,
+      "fingerprint": "e83d11a3eed874ca946087bb742d6d110e0d28086c764cab107b0907d1a9bece",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-y/focused/generations/00288.json.gz",
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "metrics": {
+        "meanRow": 649.24609375,
+        "medianRow": 492,
+        "maximumRow": 1929,
+        "reach100": 0.8984375,
+        "reach300": 0.66015625,
+        "reach1000": 0.23046875,
+        "timeoutRate": 0.0625,
+        "deaths": {
+          "water": 58,
+          "car": 88,
+          "eagle": 74,
+          "timeout": 16,
+          "bounds": 11,
+          "train": 9
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "generation": 288,
+      "genome": 332279,
+      "fingerprint": "cf6ff45f8521483687f3060dd2a806ced6d325169997cf464f41bbb60dc84a71",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-y/focused/generations/00288.json.gz",
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "metrics": {
+        "meanRow": 658.85546875,
+        "medianRow": 515.5,
+        "maximumRow": 1999,
+        "reach100": 0.8828125,
+        "reach300": 0.671875,
+        "reach1000": 0.22265625,
+        "timeoutRate": 0.06640625,
+        "deaths": {
+          "car": 90,
+          "water": 58,
+          "timeout": 17,
+          "train": 11,
+          "eagle": 70,
+          "bounds": 10
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "generation": 288,
+      "genome": 332258,
+      "fingerprint": "37a2e960ed1c3c1db21e313f9e0df689626e389e9abf6b2f54b84787d8c32f2e",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-y/focused/generations/00288.json.gz",
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "metrics": {
+        "meanRow": 663.390625,
+        "medianRow": 479,
+        "maximumRow": 2098,
+        "reach100": 0.89453125,
+        "reach300": 0.6796875,
+        "reach1000": 0.234375,
+        "timeoutRate": 0.06640625,
+        "deaths": {
+          "car": 98,
+          "train": 12,
+          "eagle": 55,
+          "water": 65,
+          "timeout": 17,
+          "bounds": 9
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "generation": 288,
+      "genome": 332341,
+      "fingerprint": "686ca164b336666aaccf8324e7e3f0dc89349f34cd9fc6ec8ee3ae813d92ef42",
+      "cohortFile": "results/variants/variant-2/v4-native015-record256-rng-y/focused/generations/00288.json.gz",
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "metrics": {
+        "meanRow": 624.48828125,
+        "medianRow": 434.5,
+        "maximumRow": 2019,
+        "reach100": 0.890625,
+        "reach300": 0.64453125,
+        "reach1000": 0.21875,
+        "timeoutRate": 0.04296875,
+        "deaths": {
+          "eagle": 70,
+          "car": 92,
+          "water": 46,
+          "bounds": 21,
+          "train": 16,
+          "timeout": 11
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 288,
+      "genome": 332380,
+      "fingerprint": "f2f61bf270d0840e2ca809aae248fda8add72883cbbf11997339008f826e9596",
+      "cohortFile": "results/variants/variant-2/v4-native015-floor256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "metrics": {
+        "meanRow": 707.2109375,
+        "medianRow": 535.5,
+        "maximumRow": 1931,
+        "reach100": 0.90625,
+        "reach300": 0.69921875,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.09765625,
+        "deaths": {
+          "car": 99,
+          "water": 45,
+          "eagle": 54,
+          "bounds": 25,
+          "train": 8,
+          "timeout": 25
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 288,
+      "genome": 332245,
+      "fingerprint": "c085d7816c3203d258509ec02ec0c75b2e56dcefd8644244fcb668cbccddefb4",
+      "cohortFile": "results/variants/variant-2/v4-native015-floor256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "metrics": {
+        "meanRow": 597.84765625,
+        "medianRow": 399.5,
+        "maximumRow": 1890,
+        "reach100": 0.875,
+        "reach300": 0.61328125,
+        "reach1000": 0.20703125,
+        "timeoutRate": 0.06640625,
+        "deaths": {
+          "car": 92,
+          "water": 60,
+          "train": 20,
+          "bounds": 13,
+          "timeout": 17,
+          "eagle": 54
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 288,
+      "genome": 332372,
+      "fingerprint": "cbbd7316e9604f46ee31ebd0352742a94d695fb9f30bccedc56a569f4bb6989f",
+      "cohortFile": "results/variants/variant-2/v4-native015-floor256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "metrics": {
+        "meanRow": 633.43359375,
+        "medianRow": 488,
+        "maximumRow": 1948,
+        "reach100": 0.8671875,
+        "reach300": 0.640625,
+        "reach1000": 0.23046875,
+        "timeoutRate": 0.06640625,
+        "deaths": {
+          "car": 89,
+          "water": 57,
+          "timeout": 17,
+          "bounds": 19,
+          "eagle": 66,
+          "train": 8
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 288,
+      "genome": 332267,
+      "fingerprint": "b2f40ac075a9653995a86ad424d5cb89e0f4dda9a19c027011080f427d5ffa89",
+      "cohortFile": "results/variants/variant-2/v4-native015-floor256-continue/focused/generations/00288.json.gz",
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "metrics": {
+        "meanRow": 599.9296875,
+        "medianRow": 403.5,
+        "maximumRow": 2016,
+        "reach100": 0.83203125,
+        "reach300": 0.6171875,
+        "reach1000": 0.21484375,
+        "timeoutRate": 0.0546875,
+        "deaths": {
+          "car": 86,
+          "water": 53,
+          "bounds": 18,
+          "eagle": 71,
+          "timeout": 14,
+          "train": 14
+        }
+      },
+      "attribution": "Mean/peak nomination from an already evolved actual cohort; selection is not new training"
+    }
+  ],
+  "uncachedCandidates": 34,
+  "candidateSelectionAndRepeatAreNotTraining": true,
+  "fullAuditRetainedLocally": "results/variants/variant-2/native-objective-audit-v4-054.json",
+  "fullAuditSha256": "c6e2f3f890a1644a21f71434c000a3a9a05c1c745f6d77b9447bf1c0b558d7f3"
+}

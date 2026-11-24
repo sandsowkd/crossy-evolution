@@ -1,0 +1,1112 @@
+{
+  "createdAt": "2026-11-24T06:51:35.445503+00:00",
+  "simulation": {
+    "curriculum": "mixed",
+    "mechanics": "upstream-v2",
+    "maxTicks": 36000,
+    "difficulty": 1,
+    "eagle": {
+      "afterTicks": 600,
+      "warningTicks": 180
+    },
+    "variantTwoRules": "clustered-traffic-v4"
+  },
+  "seeds": [
+    2483027968,
+    2483093505,
+    2483159042,
+    2483224579,
+    2483290116,
+    2483355653,
+    2483421190,
+    2483486727,
+    2483552264,
+    2483617801,
+    2483683338,
+    2483748875,
+    2483814412,
+    2483879949,
+    2483945486,
+    2484011023,
+    2484076560,
+    2484142097,
+    2484207634,
+    2484273171,
+    2484338708,
+    2484404245,
+    2484469782,
+    2484535319,
+    2484600856,
+    2484666393,
+    2484731930,
+    2484797467,
+    2484863004,
+    2484928541,
+    2484994078,
+    2485059615,
+    2485125152,
+    2485190689,
+    2485256226,
+    2485321763,
+    2485387300,
+    2485452837,
+    2485518374,
+    2485583911,
+    2485649448,
+    2485714985,
+    2485780522,
+    2485846059,
+    2485911596,
+    2485977133,
+    2486042670,
+    2486108207,
+    2486173744,
+    2486239281,
+    2486304818,
+    2486370355,
+    2486435892,
+    2486501429,
+    2486566966,
+    2486632503,
+    2486698040,
+    2486763577,
+    2486829114,
+    2486894651,
+    2486960188,
+    2487025725,
+    2487091262,
+    2487156799
+  ],
+  "mapRole": "development",
+  "finalMapsOpened": false,
+  "comparisons": [
+    {
+      "study": "v4-native015-record256-continue",
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "profile": "normal10",
+      "family": "record",
+      "weight": 10,
+      "declaredOptions": [],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-continue-288-population-001.json",
+      "populationMean": 609.027421875,
+      "policyMeanDistribution": {
+        "minimum": 408.984375,
+        "p10": 504.21875,
+        "p25": 559.84375,
+        "median": 615.0625,
+        "p75": 659.21875,
+        "p90": 697.984375,
+        "maximum": 815.8125
+      },
+      "populationMeanDelta": -21.98656249999999,
+      "minimumPolicyMeanDelta": 148.890625,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "cd725f952cf12dbc06ac3e99621d9d196a19ec6de6c7062d885c754597f4f374",
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36071,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-weight0",
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "profile": "weight0",
+      "family": "record",
+      "weight": 0,
+      "declaredOptions": [
+        "--critical-margin=0"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-weight0-288-population-001.json",
+      "populationMean": 610.476875,
+      "policyMeanDistribution": {
+        "minimum": 423.578125,
+        "p10": 517.203125,
+        "p25": 570.390625,
+        "median": 611.3125,
+        "p75": 656.0625,
+        "p90": 686.1875,
+        "maximum": 816.390625
+      },
+      "populationMeanDelta": -20.537109375,
+      "minimumPolicyMeanDelta": 163.484375,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "795b1e661d0afbe2b738df3d9b6027f223fd87aae28aa7a7ea5faf2df6612e93",
+      "cohortSha256": "de9a08cc43bb4992d62ad353547ff3c28741cbf2441ff853e0c3de83830ba6a6",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36077,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-weight5",
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "profile": "weight5",
+      "family": "record",
+      "weight": 5,
+      "declaredOptions": [
+        "--critical-margin=5"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-weight5-288-population-001.json",
+      "populationMean": 602.449375,
+      "policyMeanDistribution": {
+        "minimum": 322.21875,
+        "p10": 518,
+        "p25": 555.171875,
+        "median": 597.5,
+        "p75": 649,
+        "p90": 689.5,
+        "maximum": 805.515625
+      },
+      "populationMeanDelta": -28.564609374999918,
+      "minimumPolicyMeanDelta": 62.125,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "cb7e2d32eb5539522f17cba044a94e868161e512ee470a765804f472b5f2c23f",
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36088,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-weight20",
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "profile": "weight20",
+      "family": "record",
+      "weight": 20,
+      "declaredOptions": [
+        "--critical-margin=20"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-weight20-288-population-001.json",
+      "populationMean": 613.666875,
+      "policyMeanDistribution": {
+        "minimum": 267.046875,
+        "p10": 510.640625,
+        "p25": 560.546875,
+        "median": 611.875,
+        "p75": 672.875,
+        "p90": 715.546875,
+        "maximum": 823.5625
+      },
+      "populationMeanDelta": -17.347109374999945,
+      "minimumPolicyMeanDelta": 6.953125,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "4377fadd42b8b70b25283bbf067fa8c5cf5b53e1bb080614e559b1a199bfee72",
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36094,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-rng-v",
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "profile": "rng-v",
+      "family": "record",
+      "weight": 10,
+      "declaredOptions": [
+        "--evolution-seed=20270108",
+        "--training-stream=55681"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-rng-v-288-population-001.json",
+      "populationMean": 637.816875,
+      "policyMeanDistribution": {
+        "minimum": 341.484375,
+        "p10": 552.734375,
+        "p25": 600.65625,
+        "median": 645.03125,
+        "p75": 685.1875,
+        "p90": 711.6875,
+        "maximum": 823.828125
+      },
+      "populationMeanDelta": 6.802890625000032,
+      "minimumPolicyMeanDelta": 81.390625,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "89e99d4b8f154e758569f1d68bf18de40a02ebbd8868aacc30a2fd20d7eb99ea",
+      "cohortSha256": "683f84561e30ac1d0dd95826afdaf6c6fd749d1431cf2dd2058525ab2b8ed315",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36101,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-rng-w",
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "profile": "rng-w",
+      "family": "record",
+      "weight": 10,
+      "declaredOptions": [
+        "--evolution-seed=20270109",
+        "--training-stream=56687"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-rng-w-288-population-001.json",
+      "populationMean": 650.969296875,
+      "policyMeanDistribution": {
+        "minimum": 366.84375,
+        "p10": 571.109375,
+        "p25": 604.1875,
+        "median": 655.609375,
+        "p75": 695.375,
+        "p90": 735.765625,
+        "maximum": 898.296875
+      },
+      "populationMeanDelta": 19.955312500000105,
+      "minimumPolicyMeanDelta": 106.75,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "cd99a39982d2e11197cb6976e7128852183d55eb66dfc7793399ea7500760195",
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36108,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-rng-x",
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "profile": "rng-x",
+      "family": "record",
+      "weight": 10,
+      "declaredOptions": [
+        "--evolution-seed=20270110",
+        "--training-stream=57689"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-rng-x-288-population-001.json",
+      "populationMean": 594.492890625,
+      "policyMeanDistribution": {
+        "minimum": 309.25,
+        "p10": 515.53125,
+        "p25": 549.203125,
+        "median": 589.421875,
+        "p75": 637.765625,
+        "p90": 681.734375,
+        "maximum": 789.109375
+      },
+      "populationMeanDelta": -36.52109374999998,
+      "minimumPolicyMeanDelta": 49.15625,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "6711414187c29c812b8a3d4224f556045dccb0acd785c712b18a8b267c9c77a7",
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36118,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-record256-rng-y",
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "profile": "rng-y",
+      "family": "record",
+      "weight": 10,
+      "declaredOptions": [
+        "--evolution-seed=20270111",
+        "--training-stream=58693"
+      ],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-record-shared257-population-001.json",
+      "initialPopulationMean": 631.013984375,
+      "initialPolicyMeanDistribution": {
+        "minimum": 260.09375,
+        "p10": 527.734375,
+        "p25": 579.6875,
+        "median": 633.9375,
+        "p75": 683.421875,
+        "p90": 737.375,
+        "maximum": 818.890625
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-record256-rng-y-288-population-001.json",
+      "populationMean": 615.461796875,
+      "policyMeanDistribution": {
+        "minimum": 360.125,
+        "p10": 539.921875,
+        "p25": 573.296875,
+        "median": 613.375,
+        "p75": 655.546875,
+        "p90": 692.21875,
+        "maximum": 804.40625
+      },
+      "populationMeanDelta": -15.552187499999945,
+      "minimumPolicyMeanDelta": 100.03125,
+      "trainerSelected288": {
+        "meanRow": 700.56640625,
+        "medianRow": 551.5,
+        "maximumRow": 1909,
+        "reach100": 0.875,
+        "reach300": 0.68359375,
+        "reach1000": 0.265625,
+        "timeoutRate": 0.11328125,
+        "deaths": {
+          "car": 92,
+          "water": 40,
+          "bounds": 18,
+          "eagle": 61,
+          "train": 16,
+          "timeout": 29
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325843,
+        "metrics": {
+          "meanRow": 700.56640625,
+          "medianRow": 551.5,
+          "maximumRow": 1909,
+          "reach100": 0.875,
+          "reach300": 0.68359375,
+          "reach1000": 0.265625,
+          "timeoutRate": 0.11328125,
+          "deaths": {
+            "car": 92,
+            "water": 40,
+            "bounds": 18,
+            "eagle": 61,
+            "train": 16,
+            "timeout": 29
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "17d9e40310138ac5bbbffac51cc5bbe4c7013f5965c18130794a25adb21810a1",
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36124,
+      "originalTrainerExitedAndClosed": true
+    },
+    {
+      "study": "v4-native015-floor256-continue",
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "profile": "floor5",
+      "family": "floor",
+      "weight": 5,
+      "declaredOptions": [],
+      "generation": 288,
+      "initialActualRuntimeGeneration": 257,
+      "initialPopulationReport": "results/variants/variant-2/v4-native015-floor-shared257-population-001.json",
+      "initialPopulationMean": 599.05640625,
+      "initialPolicyMeanDistribution": {
+        "minimum": 272.453125,
+        "p10": 521.484375,
+        "p25": 564.984375,
+        "median": 610.46875,
+        "p75": 643.859375,
+        "p90": 683.140625,
+        "maximum": 753.578125
+      },
+      "populationReport": "results/variants/variant-2/v4-native015-floor256-continue-288-population-001.json",
+      "populationMean": 632.451328125,
+      "policyMeanDistribution": {
+        "minimum": 403.84375,
+        "p10": 530.09375,
+        "p25": 580.09375,
+        "median": 635.359375,
+        "p75": 688.046875,
+        "p90": 729.953125,
+        "maximum": 831.796875
+      },
+      "populationMeanDelta": 33.39492187500002,
+      "minimumPolicyMeanDelta": 131.390625,
+      "trainerSelected288": {
+        "meanRow": 675.46875,
+        "medianRow": 469.5,
+        "maximumRow": 1860,
+        "reach100": 0.8828125,
+        "reach300": 0.65625,
+        "reach1000": 0.2734375,
+        "timeoutRate": 0.078125,
+        "deaths": {
+          "water": 49,
+          "car": 86,
+          "eagle": 77,
+          "timeout": 20,
+          "bounds": 11,
+          "train": 13
+        }
+      },
+      "trainerSelectedPolicy": {
+        "generation": 256,
+        "genome": 325838,
+        "metrics": {
+          "meanRow": 675.46875,
+          "medianRow": 469.5,
+          "maximumRow": 1860,
+          "reach100": 0.8828125,
+          "reach300": 0.65625,
+          "reach1000": 0.2734375,
+          "timeoutRate": 0.078125,
+          "deaths": {
+            "water": 49,
+            "car": 86,
+            "eagle": 77,
+            "timeout": 20,
+            "bounds": 11,
+            "train": 13
+          }
+        },
+        "inheritedThroughParent256": true,
+        "first257AlreadyBredParentSelection": false,
+        "initial256GenotypeExclusionRequiredBeforeNew015MutationClaim": true
+      },
+      "counterDeltas256To288": {
+        "trainingEpisodes": 409600,
+        "developmentEpisodes": 5636,
+        "guidanceExampleEvaluations": 2521600,
+        "teacherQueries": 0,
+        "renderedReplayEpisodes": 4
+      },
+      "snapshotSha256": "8767097feeebdbbb61b8042e7ed129d47bc48252380da8113a6542e4e9d95afc",
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "all288NativeCohortsVerified": true,
+      "nativeRepeatedDevelopmentEpisodes": 257,
+      "seed42RendererEpisodes": 1,
+      "seed42RendererIsActualMaximumGameProof": false,
+      "originalTrainerPid": 36130,
+      "originalTrainerExitedAndClosed": true
+    }
+  ],
+  "newGameplayAcrossNine": 3686400,
+  "newEndpointPopulationDevelopmentEpisodes": 115200,
+  "cachedInitialPopulationDevelopmentEpisodesReused": 25600,
+  "nativeRepeatedDevelopmentEpisodes": 2313,
+  "nativeSeed42RendererEpisodes": 9,
+  "nativeSeed42RendererIsActualMaximumGameReplay": false,
+  "first257InheritedFirstChildBred258": true,
+  "fullParent256NativeStateAndSource496AncestryPreserved": true,
+  "noGenerationSpeciesProgressResetsIn015": true,
+  "preparationAndPrelaunchValidationSeparate": true,
+  "allNineOriginalTrainersClosed": true,
+  "checks": [
+    {
+      "study": "v4-native015-record256-continue",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "cd725f952cf12dbc06ac3e99621d9d196a19ec6de6c7062d885c754597f4f374",
+      "protocolSha256": "61c579b0ae9b8918d26d8a6383a22699b820cb890022c598769a1109e9c98b3a",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-weight0",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "795b1e661d0afbe2b738df3d9b6027f223fd87aae28aa7a7ea5faf2df6612e93",
+      "protocolSha256": "a672591398e0bc9abdf8817f26ef0e97d799001df289cf162025925ee2c88895",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-weight5",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "cb7e2d32eb5539522f17cba044a94e868161e512ee470a765804f472b5f2c23f",
+      "protocolSha256": "6582e89e7426f35cf46800899709f096617b946f1ed26d1fc3a68b666be90a0e",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-weight20",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "4377fadd42b8b70b25283bbf067fa8c5cf5b53e1bb080614e559b1a199bfee72",
+      "protocolSha256": "9b30a71009a362e1543a73ad0675e355e226e63d6065a53ae6f42224049858da",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-rng-v",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "89e99d4b8f154e758569f1d68bf18de40a02ebbd8868aacc30a2fd20d7eb99ea",
+      "protocolSha256": "d17fd5b8d112d2bb6c7239af72be0cc2251a4039e84e1f482f96e1220146830b",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-rng-w",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "cd99a39982d2e11197cb6976e7128852183d55eb66dfc7793399ea7500760195",
+      "protocolSha256": "679cf6e960c2328ce72bf275a6cac3a2e4ebe26fc62ced551438495c392e63f4",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-rng-x",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "6711414187c29c812b8a3d4224f556045dccb0acd785c712b18a8b267c9c77a7",
+      "protocolSha256": "05a54786d65fd3d7ba83dc4cbb65564b4ff51c51cf9cd092dba5b78d2e18cce0",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-record256-rng-y",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "17d9e40310138ac5bbbffac51cc5bbe4c7013f5965c18130794a25adb21810a1",
+      "protocolSha256": "a1768b45fcf33f6927166357e5e8afbc6b0b99b32084c4bd8d832336258a1b8d",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    },
+    {
+      "study": "v4-native015-floor256-continue",
+      "sourceCodeSha256": "d917fa08b49acef11c851b0d588219d42158f9392ba2351b544e4b7e79d61c42",
+      "all33OwnFrozenFilesExact": true,
+      "committedHeadSha256": "8767097feeebdbbb61b8042e7ed129d47bc48252380da8113a6542e4e9d95afc",
+      "protocolSha256": "42f2c5c90fe8c010c148080b9b53b0b08e7887d8774d949241129ca5108d7fa2",
+      "all288CohortsPreviouslyVerified": true,
+      "originalTrainerAndMonitorExited": true
+    }
+  ],
+  "zeroGamePopulationValidation": [
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 257,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "b989c99f2467ec5ada572ee44a815de797098bd48f7ae2db9d8c6f671821f392",
+      "exactHistoricalSnapshotSha256": "f47f854f4dbd51e497face507f6a4d4f2e542381b96f4d166466563ac1123be7",
+      "sourceSnapshotSha256AtAuditStart": "01400d57df68d3911dade62fce0e76e6c55057f0dbefb994e6b0bfbe2e43b6a2",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 257,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "1d6ff35829568411897aaa1304c38819bfb411019b080b2337d9830e4a6c6ec5",
+      "exactHistoricalSnapshotSha256": "10fd80e18a12d466065ef97785fa977b1c356fa43c18ca82a30d2f8698d10ad4",
+      "sourceSnapshotSha256AtAuditStart": "10fd80e18a12d466065ef97785fa977b1c356fa43c18ca82a30d2f8698d10ad4",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-continue/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "e33125d8e3ed8c8a3405df506409ce6f2b4b2a8972f19fe3eb57a34d055294ca",
+      "exactHistoricalSnapshotSha256": "cd725f952cf12dbc06ac3e99621d9d196a19ec6de6c7062d885c754597f4f374",
+      "sourceSnapshotSha256AtAuditStart": "cd725f952cf12dbc06ac3e99621d9d196a19ec6de6c7062d885c754597f4f374",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight0/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "de9a08cc43bb4992d62ad353547ff3c28741cbf2441ff853e0c3de83830ba6a6",
+      "exactHistoricalSnapshotSha256": "795b1e661d0afbe2b738df3d9b6027f223fd87aae28aa7a7ea5faf2df6612e93",
+      "sourceSnapshotSha256AtAuditStart": "795b1e661d0afbe2b738df3d9b6027f223fd87aae28aa7a7ea5faf2df6612e93",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight5/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "aa3145351608f035c40ce665cd95d4dc780996211aca7fdf129f62cd653c3261",
+      "exactHistoricalSnapshotSha256": "cb7e2d32eb5539522f17cba044a94e868161e512ee470a765804f472b5f2c23f",
+      "sourceSnapshotSha256AtAuditStart": "cb7e2d32eb5539522f17cba044a94e868161e512ee470a765804f472b5f2c23f",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-weight20/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "3a9fd10affc2c08274c919c418f1faaf344fd75024e835fb5fc886ad18997f68",
+      "exactHistoricalSnapshotSha256": "4377fadd42b8b70b25283bbf067fa8c5cf5b53e1bb080614e559b1a199bfee72",
+      "sourceSnapshotSha256AtAuditStart": "4377fadd42b8b70b25283bbf067fa8c5cf5b53e1bb080614e559b1a199bfee72",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-v/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "683f84561e30ac1d0dd95826afdaf6c6fd749d1431cf2dd2058525ab2b8ed315",
+      "exactHistoricalSnapshotSha256": "89e99d4b8f154e758569f1d68bf18de40a02ebbd8868aacc30a2fd20d7eb99ea",
+      "sourceSnapshotSha256AtAuditStart": "89e99d4b8f154e758569f1d68bf18de40a02ebbd8868aacc30a2fd20d7eb99ea",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-w/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "5f7a5d1a08704ea442f94bc68c843fdcf574e1d26d02aaf9515c4a2d05eaf31e",
+      "exactHistoricalSnapshotSha256": "cd99a39982d2e11197cb6976e7128852183d55eb66dfc7793399ea7500760195",
+      "sourceSnapshotSha256AtAuditStart": "cd99a39982d2e11197cb6976e7128852183d55eb66dfc7793399ea7500760195",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-x/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "fcdf16c9788f67bcaf974eb5c93d10676e6f06bb1480668fc7e903cb100681af",
+      "exactHistoricalSnapshotSha256": "6711414187c29c812b8a3d4224f556045dccb0acd785c712b18a8b267c9c77a7",
+      "sourceSnapshotSha256AtAuditStart": "6711414187c29c812b8a3d4224f556045dccb0acd785c712b18a8b267c9c77a7",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-record256-rng-y/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "95e4108952872f8f6310cb2f19a50d4c7af8748842c0f5541503d769b36eeda6",
+      "exactHistoricalSnapshotSha256": "17d9e40310138ac5bbbffac51cc5bbe4c7013f5965c18130794a25adb21810a1",
+      "sourceSnapshotSha256AtAuditStart": "17d9e40310138ac5bbbffac51cc5bbe4c7013f5965c18130794a25adb21810a1",
+      "newGames": 0
+    },
+    {
+      "directory": "results/variants/variant-2/v4-native015-floor256-continue/focused",
+      "generation": 288,
+      "all200IdsMeanQuantilesCohortHashVerified": true,
+      "cohortSha256": "a283ce1dce1082481649d0c9fa8a71d155a55e1ba50ca3478ab9bf957f720995",
+      "exactHistoricalSnapshotSha256": "8767097feeebdbbb61b8042e7ed129d47bc48252380da8113a6542e4e9d95afc",
+      "sourceSnapshotSha256AtAuditStart": "8767097feeebdbbb61b8042e7ed129d47bc48252380da8113a6542e4e9d95afc",
+      "newGames": 0
+    }
+  ],
+  "all2200IdsMeansQuantilesCohortHashesAndExactHistoricalSnapshotsChecked": true,
+  "newGamesFromCompilingComparison": 0,
+  "noGeneralMethodOrSpeedBenefitEstablished": true,
+  "fullComparisonFile": "results/variants/variant-2/native015-288-comparison-001.json",
+  "fullComparisonSha256": "6099f5b2a92491f52323f9016947a2c04dad4b9c299b492d038ff1d40146a34e"
+}
