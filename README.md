@@ -1,21 +1,90 @@
-# Crossy Evolution
+# Crossy Road AI
 
-Teach chickens to cross procedurally generated terrain using genuine NEAT. Simulation and learning run independently of the Three.js renderer.
+Training AI to play Crossy Road by evolving neural networks. Inspired by [Trackmania AI experiments](https://www.youtube.com/watch?v=Dw3BZ6O_8LY) and [Code Bullet’s AI projects](https://www.youtube.com/@CodeBullet).
 
-| Variant | Mechanics | Status |
+**[Visit the website](https://jeremyhua.ng/crossyroadai)** · **[Race against the AI](https://jeremyhua.ng/crossyroadai/play)** · **[Explore replays](https://jeremyhua.ng/crossyroadai/explore?variant=1)**
+
+Built by [Jeremy Huang](https://jeremyhua.ng).
+
+## Variant 1: Just cars and roads
+
+Chickens learn to cross traffic on deterministic, procedurally generated maps. Each neural network can wait or jump forward, backward, left, or right. Roads have at most three consecutive lanes.
+
+[![One chicken running the final Variant 1 policy](docs/media/variant-1-main.gif)](https://jeremyhua.ng/crossyroadai/explore?variant=1)
+
+**Variant 1 is complete.** The frozen final policy averages **1,361.21 rows across 512 independently reserved test maps**, with a median of **1,697**; **392/512** runs reach 1,000 rows. These results use the historical 600-second evaluation rules without an inactivity eagle. [Full results and evaluation details](docs/variants/variant-1.md).
+
+### Highlights
+
+These clips show the entire saved population on one selected map. Chickens at the same position share a glyph: denser groups appear more opaque, and the largest groups are solid white. Open a replay to watch the full run, change its map, pause, scrub, or adjust playback speed.
+
+| Saved generation | Preview | What changes |
 | --- | --- | --- |
-| [1](docs/variants/variant-1.md) | Cars/roads; at most three consecutive road lanes | Complete: 1,361.21 independent-test average |
-| [2](docs/variants/variant-2.md) | Trains, rivers/logs/lily pads; eagle | Training active: 223.80 average on 256 development maps; six 200-chicken runs |
-| [3](docs/variants/variant-3.md) | Reserved; rivers were included in Variant2 | Pending scope |
-| [4](docs/variants/variant-4.md) | Longer roads and broader full-game rules | Planned |
+| **[Gen 1: Random movement](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=1)** | [![Generation 1 population replay](docs/media/initial-population.gif)](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=1) | Randomly wired networks send chickens in different directions.<br>**High Score: 10** |
+| **[Gen 5: Forward selection](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=1)** | [![Generation 5 population replay](docs/media/early-five-generations.gif)](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=1) | Movement is still scattered, but more and more chickens move forward.<br>**High Score: 34** |
+| **[Gen 50: Traffic timing](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=1)** | [![Generation 50 population replay](docs/media/lookahead-progress.gif)](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=1) | The chickens learn to time their moves around nearby traffic.<br>**High Score: 946** |
+| **[Gen 85: Longer crossings](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=1)** | [![Generation 85 population replay](docs/media/two-hop-lookahead.gif)](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=1) | The chickens learn to use traffic farther ahead when choosing a crossing.<br>**High Score: 4,140** |
+| **[Gen 100: Action memory](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=1)** | [![Generation 100 population replay](docs/media/lookahead-memory.gif)](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=1) | The chickens learn to use previous actions when choosing their next move.<br>**High Score: 9,520** |
+| **[Gen 150: Final population](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=1)** | [![Generation 150 population replay](docs/media/variant-1-final.gif)](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=1) | The final saved population combines traffic lookahead and action memory.<br>**High Score: 13,639** |
 
-**Variant 1 is complete.** The frozen policy averages **1,361.21** on 512 separately reserved final maps (95% map-bootstrap interval **1,313.32–1,409.09**), with median 1,697; 392/512 runs reach 1,000. It was selected on 768 development maps, averaging 1,393.31, before the final assessment.
+The 1–150 generation labels form a **curated progression across several training phases**, rather than one uninterrupted training run. For example, display generation 50 comes from native lookahead generation 30. Original populations, map seeds, and source identities remain preserved. The final memory phase itself contains 150 saved populations. [Generation mapping](docs/explorer.md#curated-variant-1-sequence) · [Historical training lineage](docs/variants/variant-1.md#training-lineage).
 
-The selected warm-start lineage contains **1,174 phase generation positions**, including inherited training; this is not one uninterrupted run. Variant 1 uses 600-second roads episodes without eagle pressure. New manual games and training use the current eagle rule; historical replays preserve their saved rules.
+Lookahead and previous-action inputs were supplied by the experiment; evolution learned how to use those inputs. The descriptions summarize visible behavior rather than claiming that the networks invented new sensors. Replay high scores are population maxima on the linked map, with a 10-second inactivity eagle and no historical episode cutoff. They are separate from the frozen policy’s 512-map benchmark above.
+
+## Variant 2: Cars, trains, and logs
+
+Variant 2 adds moving logs, rivers, lily pads, train crossings, and eagle pressure. The networks must handle moving support surfaces and train warnings as well as traffic.
+
+[![One chicken playing a saved Variant 2 development policy](docs/media/variant-2-main.gif)](https://jeremyhua.ng/crossyroadai/explore?variant=2)
+
+**Training is ongoing.** The website shows an actual saved development policy, and the race page can use the development AI. Its six homepage highlight cards and bloodline clip are currently labeled placeholders that reuse Variant 1 footage. They do not show six completed Variant 2 milestones.
+
+[Explore Variant 2](https://jeremyhua.ng/crossyroadai/explore?variant=2) · [Race the development AI](https://jeremyhua.ng/crossyroadai/play?variant=2) · [Latest development results and methods](docs/variants/variant-2.md) · [Recovered training history](docs/variants/variant-2-recovery.md)
+
+Development-selection scores, teacher references, and native NEAT results are recorded separately. Variant 2 has no completed independent final assessment. The website is a saved preview and may lag behind ongoing local training.
+
+## Variant 3: Speed challenges (Coming soon!!!)
+
+Reach 100, 500, or 1,000 rows, or collect 10, 50, or 100 coins, as fast as possible, with time penalties for deaths. This is a proposed experiment, not an implemented training run.
+
+## The experiment
+
+### Choosing a move
+
+1. **Read the surroundings.** Each chicken receives numerical observations of nearby tiles, obstacles, traffic positions, and movement. Variant 2 also supplies train warnings and information about support from logs or lily pads. Later Variant 1 phases add traffic lookahead and previous-action context.
+2. **Choose an action.** A neural network assigns a score to each of five actions: wait, forward, backward, left, and right. The highest output selects the next action.
+3. **Run the decision.** Traffic and floating objects continue moving while the action executes. The simulation checks the jump path and landing for collisions, then supplies updated observations for the next decision.
+
+### Training a population
+
+1. **Population and maps.** The completed Variant 1 memory phase evaluates **100 chickens on 32 randomly generated maps per generation**. Every chicken faces the same maps within that generation, and map panels change between generations. Earlier runs used up to 200 chickens on smaller map panels to try more networks with less evaluation per network. Variant 2 continues with separately recorded populations and training budgets.
+2. **Reward forward progress.** A chicken’s game score is its furthest row before death or timeout. The final Variant 1 run ranks networks by their average score across the 32 maps. Other experiments also test consistency-sensitive selection; their fitness definitions and results stay separate.
+3. **Breed and change.** NEAT—NeuroEvolution of Augmenting Topologies—selects successful networks as parents, crosses over their connections, mutates weights, and can add neurons or connections. Species group related networks so new structures can develop. The next population plays another set of evaluations.
+
+The simulation and neural decisions run independently of the Three.js renderer. Replays load saved networks and resimulate them on a deterministic map; they do not retrain networks or change their weights. Development maps help select candidates, while separately reserved maps assess a frozen final policy.
+
+## The entire bloodline (10 chickens from each generation)
+
+Ten saved networks from each of the 150 curated display generations run together on one map: **1,500 chickens**. The website’s full clip loops from score 0 to 100 at normal speed; the GIF below is a short excerpt.
+
+[![A mixed population of 1,500 saved chickens on one map](docs/media/all-generations.gif)](https://jeremyhua.ng/crossyroadai/#crowd-title)
+
+This mixes authentic saved networks across generations; it does not reconstruct parent–child relationships. The website keeps the Variant 1 clip and Variant 2 placeholder side by side.
+
+## Race against the AI
+
+Choose a map seed, select Variant 1 or the Variant 2 development AI, and race on the same map. The AI starts when you make your first move; traffic already moves while you prepare.
+
+- **Move:** arrow keys or WASD; Space or tap/click to jump forward, or swipe/drag for a direction.
+- **Pause/resume:** P pauses; Space resumes. A pause overlay shows when the race is paused.
+- **Compare:** your score and the AI’s score stay visible. The ghost opponent has its own camera when it leaves your view, with a delay before that camera disappears.
+- **Keep moving:** the race camera gradually advances; falling too far behind triggers the eagle’s swoop. Land boundaries and trees block movement rather than causing an immediate out-of-bounds death.
+
+[Race against the AI](https://jeremyhua.ng/crossyroadai/play) · [Explore replays](https://jeremyhua.ng/crossyroadai/explore?variant=1)
 
 ## Run locally
 
-Use Node 24 LTS.
+Use Node 24 LTS. Install dependencies and fetch the pinned original visual assets:
 
 ```bash
 npm ci
@@ -23,25 +92,39 @@ npm run setup:assets
 npm run dev
 ```
 
-Click the title to watch population replays. The menu opens neural networks, measured charts, generation controls and saved learning milestones. Reference artwork is fetched from the pinned Evan Bacon commit and hash-verified locally; it is not redistributed here. [Attribution](docs/ATTRIBUTION.md).
+Open the Local URL printed by Vite, normally `http://127.0.0.1:5173`.
 
-## Results and data
+| Page | Local URL |
+| --- | --- |
+| Homepage | `/` |
+| Variant 1 replay chooser | `/explore?variant=1` |
+| Variant 2 replay chooser | `/explore?variant=2` |
+| Saved generation and map | `/?generation=150&seed=561909326&variant=1` |
+| Race setup | `/play` |
+| Original Variant 1 neural-network and graph inspector | `/lab/variant-1` |
+| Original Variant 2 development visualizer | `/?variant=2` |
 
-- [Concise project summary](docs/PROJECT_SUMMARY.md) and [Variant 1 report](docs/variants/variant-1.md).
-- [Learning milestones and batch-size comparison](docs/variants/variant-1-highlights.md).
-- [Eagle rule for new runs](docs/EAGLE_RULES.md). Open `/?highlights` locally for the six-policy replay gallery.
-- [Frozen closing evaluation](results/variants/variant-1/final/evaluation.json) and [verification](results/variants/variant-1/final/verification.json).
-- [Training data](docs/DATA_RELEASE.md): 116 dated phase summaries, 3,948 recorded generation rows and 4,608 final policy/map outcomes. Counts overlap across inherited/continued phases and are not a single training lineage.
-- [Variant 2 development reference](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-2-development-2026-11-21): generation 256 native state and all 256 actual 200-chicken cohorts (907 MB; training continues).
-- [Recovered Variant 2 context and current experiments](docs/variants/variant-2-recovery.md).
-- [Full checkpoint/population release](https://github.com/sandsowkd/crossy-evolution/releases/tag/training-snapshot-2026-11-21): 6.31 GB with SHA-256 manifests.
-- [Final checkpoint and closing data supplement](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21): all 150 final populations and later experimental data.
-- [Technical archive](docs/VARIANT_1_TECHNICAL_ARCHIVE.md) and [research log](docs/variants/variant-1-research-log.md).
+Replay URLs use query parameters for the generation, seed, and variant. The chooser shows six highlights first; Advanced replay exposes specific generations and available map seeds. Historical phase-qualified and older path links remain supported.
+
+Full-population archives are large and are distributed separately. To reproduce every generation locally, obtain the matching archives from the [data releases](#results-and-data) and follow the export steps in [explorer data](docs/explorer.md) and [homepage previews](docs/homepage-previews.md). The hosted website already includes the populations used by its replay menus.
 
 ```bash
 npm test
 npm run build
-npm run lint
 ```
 
-Higher development scores are not independent test claims. Each new variant keeps separate rules, observations, ancestry and evaluation maps.
+The website is deployed at `/crossyroadai/` through the personal website’s existing Vercel integration. Replay and race links work directly from that subpath. [Publication and preview details](docs/homepage-previews.md#friends-preview-deployment).
+
+## Results and data
+
+- [Completed Variant 1 results](docs/variants/variant-1.md), [frozen evaluation](results/variants/variant-1/final/evaluation.json), and [verification](results/variants/variant-1/final/verification.json).
+- [Historical learning milestones and population-size comparison](docs/variants/variant-1-highlights.md).
+- [Variant 2 development results and experiments](docs/variants/variant-2.md) and [recovered decisions and training history](docs/variants/variant-2-recovery.md).
+- [Training-data guide](docs/DATA_RELEASE.md), [technical archive](docs/VARIANT_1_TECHNICAL_ARCHIVE.md), and [Variant 1 research log](docs/variants/variant-1-research-log.md).
+- [Full checkpoint/population release](https://github.com/sandsowkd/crossy-evolution/releases/tag/training-snapshot-2026-11-21): 6.31 GB of recorded state and SHA-256 manifests.
+- [Variant 1 final supplement](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-1-final-2026-11-21): all 150 native final-phase populations and closing data.
+- [Variant 2 development reference](https://github.com/sandsowkd/crossy-evolution/releases/tag/variant-2-development-2026-11-21): the archived generation-256 state and its 200-chicken cohorts; subsequent training continues separately.
+
+## Credits
+
+Built by [Jeremy Huang](https://jeremyhua.ng). The visual layer uses original assets and source adaptations from [Evan Bacon’s Expo-Crossy-Road](https://github.com/EvanBacon/Expo-Crossy-Road). The README GIFs are recorded gameplay excerpts from this project. [Attribution and retained license notices](docs/ATTRIBUTION.md) · [GIF sources](docs/media/README.md).
