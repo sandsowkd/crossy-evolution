@@ -6,7 +6,32 @@ The new policy retains the complete018 record-source generation384 native state:
 
 On the same64 opened development maps, all200 policies change from the actual385 record-family population mean **660.357890625** to record392 **662.363671875** (+2.00578125); minimum policy mean changes from **420.984375** to **408.203125** (−12.78125). This12,800-game record-population evaluation and the reused12,800-game starting cache are development, separate from training and the eventual416 endpoint audit. Actual385 differs from evaluated384. The comparison completed after the immutable policy proof; its pending phrase is historical. No general RNG, critical-weight, method or speed benefit is established. [Record comparison](../../results/variants/variant-2/native019-record385-392-comparison-001.json). Audit066 checked4 uncached new392 nominees on1,024 development games, skipping4 cached nominees, with no promotion, repeats, renderers or training.
 
-The **384→416 study019 remains in progress**: eight complete018 weight20 generation384 mean-source starts and one complete018 record10 generation384 source. Two continuations are exact; seven siblings change only future critical fitness weight or RNG/maps. The bounded batch plans3,686,400 additional gameplay episodes beyond inherited ancestry, with no state resets. Every new cohort remains eligible for both mean and maximum nominations. The416 endpoint comparison is incomplete; compare its distributions against the correct actual385 family caches before any further continuation.
+All nine **384→416 study019 arms completed**, adding **3,686,400 gameplay episodes** beyond inherited ancestry without resets. All200 policies per endpoint used the same64 opened development maps:115,200 development games, reusing two actual385 caches totaling25,600 games. All2,200 IDs, means, quantiles, cohort hashes and exact385/416 snapshots were checked with zero new games. First385 evaluated already-bred parent384 policies; first child-bred386.
+
+| Study019 arm | Endpoint population mean | Minimum policy mean | Mean change from actual385 | Minimum change |
+| --- | ---: | ---: | ---: | ---: |
+| normal20 | 679.631875 | 451.765625 | -8.28335937 | +43.82812500 |
+| weight0 | 644.349375 | 300.734375 | -43.56585937 | -107.20312500 |
+| weight5 | 666.670546875 | 283.4375 | -21.24468750 | -124.50000000 |
+| weight10 | 665.330078125 | 446.609375 | -22.58515625 | +38.67187500 |
+| rng-al | 636.422890625 | 198.75 | -51.49234375 | -209.18750000 |
+| rng-am | 676.58765625 | 474.265625 | -11.32757812 | +66.32812500 |
+| rng-an | 660.4675 | 332.875 | -27.44773437 | -75.06250000 |
+| rng-ao | 666.69375 | 244.625 | -21.22148437 | -163.31250000 |
+| record10 | 675.63578125 | 453.3125 | +15.27789063 | +32.32812500 |
+
+Eight019 endpoint population means regress; only exact record10 improves BOTH mean/minimum, to675.63578125/min453.3125 (+15.277890625/+32.328125 from actual385 record-family). Normal20 has strongest endpoint mean679.631875/min451.765625 but mean regresses8.283359375. RNG-AM has strongest minimum474.265625/mean676.58765625, a mean−11.327578125/min+66.328125 tradeoff. Main763.046875/own2082 remains ORIGINAL019 exactrecord392; separate517.7109375/2296 remains ORIGINAL013O224. No general method/RNG/weight/speed advantage established. Audit065 checked34 uncached endpoint nominees on8,704 development games, skipping2 cached nominees, with no promotion, repeats, renderers or training. All9 original trainers and monitors closed after2,313 repeated native development games and9 seed42 renderer checks; seed42 is separate from actual record-maximum Replay proofs. The record392 population audit remains a separate12,800-game evaluation. [Completed416 comparison](../../results/variants/variant-2/native019-416-comparison-summary-001.json).
+
+The bounded **416→448 study020 is in progress**. Eight complete019 record416-source starts retain the763 ORIGINAL019392 cache, and one complete019 RNG-AM416 complementary floor source retains its own733.6640625 ORIGINAL018weight20 generation380 cache. The record source improved both population mean and minimum; the complementary source had the strongest minimum with a regressing mean. This supports one bounded follow-up, without a general method benefit. Two continuations are exact and seven change only future fitness weight or RNG/maps. Every new cohort is nominated for both mean and maximum objectives. Full native genes, population, RNG, innovations, species, parameters, progress, history, caches, counters and all cohort links are retained. All nine parent/helper and dedicated child native416/all416-cohort checks passed; those4,626 repeated development games and18 seed42 renderers are separate from training. Fixed394 labels remain fitness only; ordinary V9 chooses every action.
+
+Two actual417 starting populations are complete on the same64 opened development maps (25,600 development games, already paid):
+
+| Actual417 source family | Population mean | Minimum policy mean | Starts reusing cache |
+| --- | ---: | ---: | ---: |
+| Primary record416 source | 681.502109375 | 442.921875 | 8 |
+| Complementary RNG-AM416 floor source | 655.40484375 | 223.9375 | 1 |
+
+Actual417 differs from evaluated416; first417 policies are already-bred parent416 genotypes, and first child-bred offspring play at418. All1,800 initial416/runtime417 genotype checks and all200 shared0/5/10/20 fitness-linearity checks passed with zero proof games. All400 starting-policy IDs, means, quantiles, cohort hashes and exact historical417 snapshots were checked. Audit067 checked7 uncached starting nominees on1,792 development games, skipping1 cached nominee, with no promotion, repeats, renderers or training. Compare future448 endpoints against these actual417 family caches before any extension. The3,686,400-game batch budget is planned, not completed; current763 remains ORIGINAL019392. [Starting417 evidence](../../results/variants/variant-2/published-v4-starting-native020-417.json).
 
 Two unique actual385 starting populations on the same64 opened development maps are complete (25,600 development games):
 

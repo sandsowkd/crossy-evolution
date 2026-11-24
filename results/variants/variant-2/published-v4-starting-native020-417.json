@@ -1,0 +1,280 @@
+{
+  "createdAt": "2026-11-24T18:32:52.395168+00:00",
+  "sourceContract": {
+    "initialGeneration": 416,
+    "generationCap": 448,
+    "firstRuntimeGeneration": 417,
+    "firstChildBredGeneration": 418,
+    "allGenesPopulationNativeRngTrackerSpeciesParametersHistoryCachesCountersRetained": true,
+    "noGenerationSpeciesProgressResetsIn020": true,
+    "twoExactContinuationsSevenDeclaredFutureOnlySiblings": true,
+    "actual417DiffersFromEvaluated416Boundary": true,
+    "labelsUsedOnlyInFitness": true,
+    "fixedCriticalExamples": 394,
+    "outputMutationProbability": 0.15,
+    "outputMutationAmount": 0.12,
+    "ordinaryV9ChoosesEveryAction": true,
+    "teacherQueries": 0,
+    "new020MutationClaims418PlusRequireZeroAll200OwnInitial416Matches": true,
+    "first417ParentBredNot020ChildMutation": true,
+    "source496SelectedCohortResetOnly007Ancestry": true,
+    "canonical256ActualMaximumReplayAndAll200ViewerRequiredBeforeRecordClaims": true,
+    "all512FinalMapsRemainUnopened": true
+  },
+  "sourceSelection": "Completed019 actual385\u2192416 all2200-policy checks and065 CLOSED before selection. EIGHT means regress; ONLY record10 improves BOTH population mean/min:660.357890625/min420.984375\u2192675.63578125/min453.3125 (+15.277890625/+32.328125), and its native cache contains the new763.046875/own2082 ORIGINAL019392. Select eight full record416 starts for ONE bounded32 exact+seven future-only tests. ONE complementary exact RNG-AM416 start has strongest endpoint minimum474.265625 and mean676.58765625 (slightly above record endpoint), but its correct actual385-family mean regresses\u221211.327578125 while minimum improves+66.328125; explicitly a tradeoff, not a both-gain result. Its distinct retainedRNG20270125/72859/critical20 lineage is a bounded diversity test. Other SEVEN019 parents CLOSED; no endless weak extensions. Every new cohort nominates top2mean/top2peak COEQUALLY. Separate2296 policy remains separate. No general RNG/weight/method/speed benefit.",
+  "sourceParents": [
+    {
+      "family": "mean",
+      "directory": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "originalPid": 50196,
+      "headSha256": "74e2bd92c104698f5340e3f5e4e4a768fc33b1254f4f1a6b2ec8108c6223164e",
+      "protocolSha256": "fd20497e4eb4d84c7f63f2e551975e050e8451b7fae7e7309488239fdc78c91f",
+      "sourceJsonBytes": 18831355,
+      "trainingEpisodesInherited": 5324800,
+      "nativeBestGenome": 353089,
+      "nativeBestGeneration": 392,
+      "nativeBestMean": 763.046875,
+      "allOwn33FrozenFilesAndDatasetExact": true,
+      "originalParentExitedClosed": true,
+      "populationMean": 675.63578125,
+      "policyMeanMinimum": 453.3125,
+      "deltaMean": 15.277890625000055,
+      "deltaMinimum": 32.328125
+    },
+    {
+      "family": "record",
+      "directory": "results/variants/variant-2/v4-native019-mean384-rng-am/focused",
+      "originalPid": 50177,
+      "headSha256": "d5de4a89787c137a62a1c650f6be850a28ab8ab955dd2ef49916eaddae0f769f",
+      "protocolSha256": "cfc145bea3c4e6b8471a7783a6247188fc138ddc0bac1e777a4690cbfd7dccea",
+      "sourceJsonBytes": 19132404,
+      "trainingEpisodesInherited": 5324800,
+      "nativeBestGenome": 350766,
+      "nativeBestGeneration": 380,
+      "nativeBestMean": 733.6640625,
+      "allOwn33FrozenFilesAndDatasetExact": true,
+      "originalParentExitedClosed": true,
+      "populationMean": 676.58765625,
+      "policyMeanMinimum": 474.265625,
+      "deltaMean": -11.327578124999945,
+      "deltaMinimum": 66.328125
+    }
+  ],
+  "arms": [
+    {
+      "study": "v4-native020-record416-continue",
+      "directory": "results/variants/variant-2/v4-native020-record416-continue/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 10,
+      "profile": "normal10",
+      "family": "mean",
+      "extraOptions": [],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-weight0",
+      "directory": "results/variants/variant-2/v4-native020-record416-weight0/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 0,
+      "profile": "weight0",
+      "family": "mean",
+      "extraOptions": [
+        "--critical-margin=0"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-weight5",
+      "directory": "results/variants/variant-2/v4-native020-record416-weight5/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 5,
+      "profile": "weight5",
+      "family": "mean",
+      "extraOptions": [
+        "--critical-margin=5"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-weight20",
+      "directory": "results/variants/variant-2/v4-native020-record416-weight20/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 20,
+      "profile": "weight20",
+      "family": "mean",
+      "extraOptions": [
+        "--critical-margin=20"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-rng-ap",
+      "directory": "results/variants/variant-2/v4-native020-record416-rng-ap/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 10,
+      "profile": "rng-ap",
+      "family": "mean",
+      "extraOptions": [
+        "--evolution-seed=20270128",
+        "--training-stream=75889"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-rng-aq",
+      "directory": "results/variants/variant-2/v4-native020-record416-rng-aq/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 10,
+      "profile": "rng-aq",
+      "family": "mean",
+      "extraOptions": [
+        "--evolution-seed=20270129",
+        "--training-stream=76897"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-rng-ar",
+      "directory": "results/variants/variant-2/v4-native020-record416-rng-ar/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 10,
+      "profile": "rng-ar",
+      "family": "mean",
+      "extraOptions": [
+        "--evolution-seed=20270130",
+        "--training-stream=77933"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-record416-rng-as",
+      "directory": "results/variants/variant-2/v4-native020-record416-rng-as/focused",
+      "parent": "results/variants/variant-2/v4-native019-record384-continue/focused",
+      "weight": 10,
+      "profile": "rng-as",
+      "family": "mean",
+      "extraOptions": [
+        "--evolution-seed=20270131",
+        "--training-stream=78941"
+      ],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    },
+    {
+      "study": "v4-native020-floor416-continue",
+      "directory": "results/variants/variant-2/v4-native020-floor416-continue/focused",
+      "parent": "results/variants/variant-2/v4-native019-mean384-rng-am/focused",
+      "weight": 20,
+      "profile": "floor20",
+      "family": "record",
+      "extraOptions": [],
+      "initialGeneration": 416,
+      "generationCap": 448,
+      "plannedAdditionalGameplayEpisodes": 409600
+    }
+  ],
+  "initialFamilyReuse": {
+    "mean": 8,
+    "record": 1
+  },
+  "familyLabels": "mean label denotes eight primary record416-source children; record label denotes one complementary RNG-AM416 floor child. Labels are cohort cache identities.",
+  "populationChecks": [
+    {
+      "family": "mean",
+      "file": "results/variants/variant-2/v4-native020-mean-shared417-population-001.json",
+      "sha256": "ae15f598330d26eae35da613796f64a85ed8a8f1b9557ef4e5631235e3ecf9bf",
+      "workerPid": 76470,
+      "originalWorkerExitedClosed": true,
+      "actualRuntimeGeneration": 417,
+      "population": 200,
+      "populationMean": 681.502109375,
+      "policyMeanMinimum": 442.921875,
+      "policyMeanDistribution": {
+        "minimum": 442.921875,
+        "p10": 586.734375,
+        "p25": 624.328125,
+        "median": 681.390625,
+        "p75": 733.265625,
+        "p90": 772.546875,
+        "maximum": 858.046875
+      },
+      "cohortSha256": "70748ba7d92b7db49a167cbac6a4e72262abb2a4d43b7ce1e38f2b5872b25938",
+      "exactHistorical417SnapshotSha256": "ec0eb8bb4a1e685cfbe280e61ccfc25868933fe37b756c5b6a03521847b42f0e",
+      "auditStartHeadSnapshotSha256": "ec0eb8bb4a1e685cfbe280e61ccfc25868933fe37b756c5b6a03521847b42f0e",
+      "auditStartHeadMayDifferFromHistorical417Snapshot": true,
+      "developmentEpisodesAlreadyPaid": 12800,
+      "reusedAcrossIdenticalSourceStarts": 8,
+      "all200IdsMeanQuantilesCohortHashAndExactHistoricalSnapshotVerified": true,
+      "recheckAddsGames": 0
+    },
+    {
+      "family": "record",
+      "file": "results/variants/variant-2/v4-native020-record-shared417-population-001.json",
+      "sha256": "faa9c43c75f7b6acde6e89ec6ae9d21f03023438ea6d29ef8d16a5bd7f2bb764",
+      "workerPid": 77128,
+      "originalWorkerExitedClosed": true,
+      "actualRuntimeGeneration": 417,
+      "population": 200,
+      "populationMean": 655.40484375,
+      "policyMeanMinimum": 223.9375,
+      "policyMeanDistribution": {
+        "minimum": 223.9375,
+        "p10": 574.75,
+        "p25": 612.1875,
+        "median": 654.65625,
+        "p75": 707.375,
+        "p90": 741.5,
+        "maximum": 853.15625
+      },
+      "cohortSha256": "fa7d1d39170e68c44c1fb35e43ac40502733fe6aae5f610fa167a4fde85cb2c7",
+      "exactHistorical417SnapshotSha256": "5fd15c62ea0eee15785859b5a215d67e1e027f6b8049325db4daede5ae419021",
+      "auditStartHeadSnapshotSha256": "10788e220286d7857259ee01938a4921b99c289ac80a82082f49a612bb14aa0b",
+      "auditStartHeadMayDifferFromHistorical417Snapshot": true,
+      "developmentEpisodesAlreadyPaid": 12800,
+      "reusedAcrossIdenticalSourceStarts": 1,
+      "all200IdsMeanQuantilesCohortHashAndExactHistoricalSnapshotVerified": true,
+      "recheckAddsGames": 0
+    }
+  ],
+  "runtimeProofFile": "results/variants/variant-2/native020-first417-runtime-proof-001.json",
+  "futureMapProofFile": "results/variants/variant-2/native020-future-map-proof-001.json",
+  "initialCloseoutFile": "results/variants/variant-2/native020-initial417-population-closeout-001.json",
+  "nomineeAuditFile": "results/variants/variant-2/native020-objective-audit-summary-067.json",
+  "plannedAdditionalGameplayAcrossNine": 3686400,
+  "plannedGameplayIsNotCompletedWork": true,
+  "endpoint448ComparisonsIncomplete": true,
+  "compare448AgainstActual417FamiliesBeforeAnyContinuation": true,
+  "initialPopulationDevelopmentEpisodesPreviouslyPaid": 25600,
+  "objective067UncachedCandidates": 7,
+  "objective067CachedSkip": 1,
+  "objective067CandidateDevelopmentEpisodesPreviouslyPaid": 1792,
+  "objective067Promoted": [],
+  "parentHelperRepeatedDevelopmentEpisodesPreviouslyPaid": 2313,
+  "childPrelaunchRepeatedDevelopmentEpisodesPreviouslyPaid": 2313,
+  "parentAndChildSeed42RenderersPreviouslyPaid": 18,
+  "initialProofAddsGameplay": 0,
+  "publicationAddsGames": 0,
+  "currentMainMean": 763.046875,
+  "currentMainOwnMaximum": 2082,
+  "currentMainOrigin": "ORIGINAL019 exactrecord392/genome353089, inherited by eight020 source416 continuations; never new020 learning.",
+  "currentMainRecordPredatesEight020DescendantContinuations": true,
+  "separatePeakMean": 517.7109375,
+  "separatePeakMaximum": 2296,
+  "goalMean1000Met": false,
+  "finalMapsOpened": false
+}
