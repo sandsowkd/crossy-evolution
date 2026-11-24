@@ -41,7 +41,8 @@ function sample(from: AgentState, to: AgentState, start: number, end: number, no
   const alive = to.alive || (from.alive && now < end);
   return {id: 0, x: from.x + (to.x - from.x) * progress, row: from.row + (to.row - from.row) * progress,
     alive, maxRow: now >= end ? to.maxRow : from.maxRow,
-    hop: alive && (to.x !== from.x || to.row !== from.row) ? progress : 0,
+    hop: alive && to.lastAction !== "WAIT" && !to.blocked &&
+      (to.x !== from.x || to.row !== from.row) ? progress : 0,
     ...(to.visualY !== undefined ? {visualY: now >= end ? to.visualY : from.visualY} : {}),
     ...(!alive ? {deathReason: to.deathReason} : {})};
 }

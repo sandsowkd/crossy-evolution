@@ -24,21 +24,22 @@ for(const m of VARIANT_TWO_MILESTONES) {
  const genomes=parseEvolution<{contenders:Genome[]}>(text).contenders;
  const replay=new Replay(genomes,m.previewSeed,row.config,HIGHLIGHT_REPLAY_OPTIONS);
  const scores=[0];while(!replay.finished){replay.advance();scores.push(highlightBestScore(replay));}evaluationEpisodes+=genomes.length;
- const high=highlightBestScore(replay),middle=scores.findIndex(s=>s>=high/2),half=45;
- const start=m.generation<=5?0:Math.max(0,Math.min(middle-half,replay.decisions-half*2));
- const end=m.generation<=5?replay.decisions:Math.min(replay.decisions,start+half*2);
+ const high=highlightBestScore(replay),earlyCrossings=scores.findIndex(s=>s>=22);
+ const start=m.generation<=5?0:Math.max(0,Math.min(earlyCrossings,replay.decisions-90));
+ const end=m.generation<=5?replay.decisions:Math.min(replay.decisions,start+90);
  ranges.push({id:m.id,decisionRange:{start,end}});
  const clip:PreviewClip={id:m.id,variant:2,generation:m.generation,sourceGeneration:row.sourceGeneration,population:genomes.length,
    mapSeed:m.previewSeed,highestScore:high,decisions:replay.decisions,seconds:replay.decisions*hopTicks(row.config)/60,
-   sourceArchive:row.cohortFile,automaticPlayback:highlightAutoSpeedPlan(replay),video:`/previews/${m.id}.mp4`,poster:`/previews/${m.id}.jpg`};
- evaluationEpisodes++;data.clips.push(clip);console.log(`${m.id}: ${high}, ${replay.decisions} moves`);
+   sourceArchive:row.cohortFile,automaticPlayback:highlightAutoSpeedPlan(replay),videoDecisionRange:{start,end},videoPlaybackSpeed:1,
+   video:`/previews/${m.id}.mp4`,poster:`/previews/${m.id}.jpg`};
+ data.clips.push(clip);console.log(`${m.id}: ${high}, ${replay.decisions} moves`);
 }
 const final=read<{genomes:Genome[];simulation:Config;generation:number;sourceGeneration:number;sourceRun:string}>("public/variant-2/final-policy.json");
-const solo=new Replay(final.genomes,0,final.simulation,HIGHLIGHT_REPLAY_OPTIONS);
-while(solo.decisions<150 && !solo.finished)solo.advance();evaluationEpisodes++;
-const mainEnd=solo.decisions,mainStart=Math.max(0,mainEnd-100);
+const solo=new Replay(final.genomes,318,final.simulation,HIGHLIGHT_REPLAY_OPTIONS),soloScores=[0];
+while(highlightBestScore(solo)<125 && !solo.finished){solo.advance();soloScores.push(highlightBestScore(solo));}evaluationEpisodes++;
+const mainEnd=solo.decisions,mainStart=Math.max(0,soloScores.findIndex(score=>score>=25));
 assert.ok(mainEnd>mainStart);
-const main:PreviewClip={id:"variant-2-main",variant:2,generation:150,sourceGeneration:final.sourceGeneration,population:1,mapSeed:0,
+const main:PreviewClip={id:"variant-2-main",variant:2,generation:150,sourceGeneration:final.sourceGeneration,population:1,mapSeed:318,
  highestScore:highlightBestScore(solo),decisions:mainEnd-mainStart,seconds:(mainEnd-mainStart)*hopTicks(final.simulation)/60,
  decisionRange:{start:mainStart,end:mainEnd},policyGenomeId:final.genomes[0].id,sourceArchive:"public/variant-2/final-policy.json",
  video:"/previews/variant-2-main.mp4",poster:"/previews/variant-2-main.jpg"};data.clips.push(main);ranges.push({id:main.id,decisionRange:main.decisionRange!});
@@ -51,16 +52,16 @@ const sources=sequence.map(row=>{
  assert.equal(new Set(selected.map(g=>g.id)).size,10);flock.push(...selected);
  return{generation:row.generation,sourceGeneration:row.sourceGeneration,sourcePhase:row.sourcePhase,cohortFile:row.cohortFile,cohortHash:row.cohortHash,genomeIds:selected.map(g=>g.id)};
 });assert.equal(flock.length,1500);
-const mix=new Replay(flock,561909326,final.simulation,HIGHLIGHT_REPLAY_OPTIONS);
-while(highlightBestScore(mix)<100 && !mix.finished)mix.advance();evaluationEpisodes+=flock.length;
-assert.ok(highlightBestScore(mix)>=100);
-const range={start:0,end:mix.decisions},seconds=mix.decisions*hopTicks(final.simulation)/60;
+const mix=new Replay(flock,318,final.simulation,HIGHLIGHT_REPLAY_OPTIONS),mixScores=[0];
+while(highlightBestScore(mix)<125 && !mix.finished){mix.advance();mixScores.push(highlightBestScore(mix));}evaluationEpisodes+=flock.length;
+assert.ok(highlightBestScore(mix)>=125);
+const range={start:mixScores.findIndex(score=>score>=25),end:mix.decisions},seconds=(range.end-range.start)*hopTicks(final.simulation)/60;
 const input=".publication/homepage-preview-input";fs.mkdirSync(input,{recursive:true});
 write(`${input}/variant-2.json`,final);write(`${input}/variant-2-flock.json`,{genomes:flock,config:final.simulation});
 write("public/variant-2/flock-preview.json",{version:1,variant:2,population:1500,generations:150,samplePerGeneration:10,seed:mix.seed,
- decisions:mix.decisions,seconds,playbackSpeed:1,scoreRange:{start:0,end:highlightBestScore(mix)},sources});
+ decisions:range.end-range.start,sourceReplayDecisions:mix.decisions,decisionRange:range,seconds,playbackSpeed:1,scoreRange:{start:mixScores[range.start],end:highlightBestScore(mix)},sources});
 data.clips.push({id:"variant-2-all-generations",variant:2,generation:150,population:1500,mapSeed:mix.seed,highestScore:highlightBestScore(mix),
- decisions:mix.decisions,seconds,decisionRange:range,previewKind:"population-mix",sourceArchive:"public/variant-2/flock-preview.json",
+ decisions:range.end-range.start,seconds,decisionRange:range,previewKind:"population-mix",sourceArchive:"public/variant-2/flock-preview.json",
  video:"/previews/variant-2-all-generations.mp4",poster:"/previews/variant-2-all-generations.jpg"});
 ranges.push({id:"variant-2-all-generations",decisionRange:range});
 write("public/homepage-data.json",data);write(`${input}/variant-2-readme-plan.json`,{clips:ranges});

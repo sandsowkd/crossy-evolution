@@ -88,7 +88,10 @@ export class Replay {
             progress = duration > 0 ? Math.min(1, alpha / duration) : 1,
             from = a.previous,
             to = a.sim.agent,
-            moved = to.x !== from.x || to.row !== from.row;
+            // A waiting chicken can still move with its log. Only an actual
+            // unblocked action should animate a hop; drifting stays grounded.
+            moved = to.lastAction !== "WAIT" && !to.blocked &&
+              (to.x !== from.x || to.row !== from.row);
           return {
             id,
             x: from.x + (to.x - from.x) * progress,

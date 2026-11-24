@@ -3,6 +3,9 @@ export type PreviewClip = {
   highestScore: number; decisions: number; seconds: number; sourceArchive: string;
   video: string; poster: string;
   automaticPlayback?: { finalGenomeId: number; finalScore: number; slowAtDecision: number; finishAtDecision: number };
+  /** A normal-speed population excerpt; the linked live replay remains complete. */
+  videoDecisionRange?: { start: number; end: number };
+  videoPlaybackSpeed?: 1;
   /** Normal-speed previews repeat this exact range; population-mix includes every sampled brain. */
   decisionRange?: { start: number; end: number };
   policyGenomeId?: number;

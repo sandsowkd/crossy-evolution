@@ -44,9 +44,13 @@ The curve retains real plateaus and regressions. Its average is over complete po
 
 ## Highlights, bloodline, and races
 
-Highlights use complete saved populations and their actual map maxima. Website previews use the same Auto playback style as Variant 1. README GIFs play at 1×; later highlight GIFs are 15-second excerpts. Main and bloodline clips also retain 1× timing. Clip IDs, seeds, source generations, populations, frame counts, score windows, and timing receipts accompany the media.
+Highlights use complete saved populations and their actual map maxima. Variant 2 website previews show normal-speed early crossings; the linked full replays retain Auto controls. README GIFs play at 1×; later highlight GIFs are 15-second excerpts of early crossings. Main and bloodline clips also retain 1× timing. Clip IDs, seeds, source generations, populations, frame counts, score windows, and timing receipts accompany the media.
 
 The bloodline clip samples ten unchanged, distinct original members from each display population, for 1,500 chickens on one map. `public/variant-2/flock-preview.json` records the exact source IDs/hashes. This is a population mix, not reconstructed parent–child relationships.
+
+Preview maps 318, 4984, and 14232 were chosen for early trains/logs and no lily-pad rows through 150, using terrain inspection and unchanged archived populations. The main and 1,500-chicken clips show map 318 around rows 25–125, with logs at 26 and tracks at 31. The eight-map progression audit and frozen development records remain unchanged. Map-selection metadata is in `public/variant-2/showcase-map-selection.json`.
+
+Passive sideways drift on a log stays grounded in both replays and races. Only an unblocked active movement animates a jump; the simulation, neural actions, collisions, and log speeds are unchanged.
 
 Human and AI races share the same deterministic V4 map seed and renderer. The AI keeps its native decision cadence and frozen 600-second limit. The human retains the existing manual controls and moving-camera boundary rule. Pause/focus changes clear queued input. Neither race mode nor replay viewing changes learned weights.
 

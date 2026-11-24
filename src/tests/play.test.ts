@@ -134,10 +134,13 @@ test("interrupting a Variant 2 wait on a log preserves the drift already elapsed
   const landed=race.playerState.x,drift=race.player.agent.ridingSpeed!;
   race.advanceTicks(3);
   assert.ok(Math.abs(race.playerState.x-(landed+drift*3/60))<1e-12);
+  assert.equal(race.playerState.hop,0,"Standing on a moving log must not animate repeated jumps");
+  assert.equal(race.snapshot().agents[0].hop,0);
   const before=race.playerState.x;
   race.command("LEFT");
   assert.ok(Math.abs(race.playerState.x-before)<1e-12,"A new input must not snap the chicken back along the log");
   race.advanceTicks();assert.ok(race.playerState.x<before);
+  assert.ok(race.playerState.hop>0,"A deliberate move still animates its hop");
 });
 
 test("human input interrupts idle immediately and only the latest extra tap can queue",()=>{

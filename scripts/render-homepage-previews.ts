@@ -11,7 +11,8 @@ const output = path.resolve(readme ? ".publication/readme-preview-output" : ".pu
 const data: HomepageData = JSON.parse(await fs.readFile("public/homepage-data.json", "utf8"));
 const ids = new Set(data.clips.map(clip => clip.id));
 await fs.mkdir(output, { recursive: true });
-const recorderPage = path.resolve(readme ? "public/_record-readme-previews.html" : "public/_record-home-previews.html");
+// Vite transforms HTML entry points from the project root, not public/.
+const recorderPage = path.resolve(readme ? "_record-readme-previews.html" : "_record-home-previews.html");
 await fs.copyFile(new URL("./homepage-preview-recorder.html", import.meta.url), recorderPage);
 const run = (args: string[]) => new Promise<void>((resolve, reject) => {
   const child = spawn("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: "inherit" });

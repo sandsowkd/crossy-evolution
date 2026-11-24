@@ -70,17 +70,17 @@ export const PUBLIC_VARIANTS = [
 
 /** Authentic Variant 2 cohorts, curated into150 display positions; native origins remain in the catalog. */
 export const VARIANT_TWO_MILESTONES = [
-  {id:"variant-2-initial",generation:1,title:"Random movement",previewSeed:561909326,
-    description:"Randomly wired networks meet roads, rivers, and train crossings.",note:"Original scratch population · generation 1"},
-  {id:"variant-2-early",generation:5,title:"Forward selection",previewSeed:627233379,
+  {id:"variant-2-initial",generation:1,title:"Random movement",previewSeed:318,
+    description:"Chickens move in random directions.",note:"Original scratch population · generation 1"},
+  {id:"variant-2-early",generation:5,title:"Forward selection",previewSeed:4984,
     description:"Early selection starts to favor chickens that keep moving forward.",note:"Original scratch experiment · generation 5"},
-  {id:"variant-2-rivers",generation:50,title:"River crossings",previewSeed:346364751,
-    description:"Transferred road skills develop alongside observations of moving support.",note:"Archived river-adaptation population"},
-  {id:"variant-2-consistent",generation:85,title:"Consistent crossings",previewSeed:27099291,
-    description:"Saved populations tackle changing traffic, train warnings, and floating logs.",note:"Archived consistency experiment"},
-  {id:"variant-2-longer",generation:100,title:"Longer journeys",previewSeed:27099291,
-    description:"Native networks combine nearby hazards and log motion on longer journeys.",note:"Archived native-input experiment"},
-  {id:"variant-2-final",generation:150,title:"Final population",previewSeed:561909326,
-    description:"The frozen final AI and its original saved population face the full Variant 2 world.",note:"Original native019 · generation 392 · frozen policy 353089"},
+  {id:"variant-2-rivers",generation:50,title:"River crossings",previewSeed:14232,
+    description:"Road skills develop, but river crossings are still tricky.",note:"Archived river-adaptation population"},
+  {id:"variant-2-consistent",generation:85,title:"Consistent crossings",previewSeed:14232,
+    description:"The chickens combine signals to cross train tracks and logs more consistently.",note:"Archived consistency experiment"},
+  {id:"variant-2-longer",generation:100,title:"Longer journeys",previewSeed:4984,
+    description:"The chickens build on earlier skills for longer, more consistent crossings.",note:"Archived native-input experiment"},
+  {id:"variant-2-final",generation:150,title:"Final population",previewSeed:318,
+    description:"The final saved population combines traffic timing, train warnings, and log crossings.",note:"Original native019 · generation 392 · frozen policy 353089"},
 ] as const;
 export const homepageMilestones = (variant:1|2) => variant===1 ? HOMEPAGE_MILESTONES : VARIANT_TWO_MILESTONES;

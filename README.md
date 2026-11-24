@@ -35,16 +35,16 @@ On **256 opened development maps**, this policy averages **763.05 rows**, with i
 
 ### Highlights
 
-The six clips show authentic complete saved populations. GIFs run at 1×; later clips are 15-second excerpts. Each **High Score** is the whole population’s actual maximum on the linked map, rather than the final AI’s benchmark score.
+The six clips show authentic complete saved populations. GIFs run at 1×; later clips show 15 seconds around the early train and log crossings. Each **High Score** is the whole population’s actual maximum on the linked map, rather than the final AI’s benchmark score.
 
 | Generation | Replay at 1× | What changes |
 | --- | --- | --- |
-| **[Gen 1: Random movement](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=2)** | [![Variant 2 generation 1 population](docs/media/variant-2-initial-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=1&seed=561909326&variant=2) | Random networks meet roads, rivers, and train crossings.<br>**High Score: 9** |
-| **[Gen 5: Forward selection](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=2)** | [![Variant 2 generation 5 population](docs/media/variant-2-early-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=5&seed=627233379&variant=2) | Early selection favors useful forward movement.<br>**High Score: 13** |
-| **[Gen 50: River crossings](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=2)** | [![Variant 2 generation 50 population](docs/media/variant-2-rivers-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=50&seed=346364751&variant=2) | Transferred road skills adapt to moving support and river hazards.<br>**High Score: 300** |
-| **[Gen 85: Consistent crossings](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=2)** | [![Variant 2 generation 85 population](docs/media/variant-2-consistent-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=85&seed=27099291&variant=2) | The population handles changing traffic, train warnings, and logs.<br>**High Score: 1,487** |
-| **[Gen 100: Longer journeys](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=2)** | [![Variant 2 generation 100 population](docs/media/variant-2-longer-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=100&seed=27099291&variant=2) | Native networks travel farther through the full world.<br>**High Score: 1,643** |
-| **[Gen 150: Final population](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=2)** | [![Variant 2 generation 150 population](docs/media/variant-2-final-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=150&seed=561909326&variant=2) | The original population containing the frozen final AI.<br>**High Score: 1,969** |
+| **[Gen 1: Random movement](https://jeremyhua.ng/crossyroadai/?generation=1&seed=318&variant=2)** | [![Variant 2 generation 1 population](docs/media/variant-2-initial-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=1&seed=318&variant=2) | Chickens move in random directions.<br>**High Score: 13** |
+| **[Gen 5: Forward selection](https://jeremyhua.ng/crossyroadai/?generation=5&seed=4984&variant=2)** | [![Variant 2 generation 5 population](docs/media/variant-2-early-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=5&seed=4984&variant=2) | Early selection starts to favor chickens that keep moving forward.<br>**High Score: 26** |
+| **[Gen 50: River crossings](https://jeremyhua.ng/crossyroadai/?generation=50&seed=14232&variant=2)** | [![Variant 2 generation 50 population](docs/media/variant-2-rivers-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=50&seed=14232&variant=2) | Road skills develop, but river crossings are still tricky.<br>**High Score: 721** |
+| **[Gen 85: Consistent crossings](https://jeremyhua.ng/crossyroadai/?generation=85&seed=14232&variant=2)** | [![Variant 2 generation 85 population](docs/media/variant-2-consistent-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=85&seed=14232&variant=2) | The chickens combine signals to cross train tracks and logs more consistently.<br>**High Score: 989** |
+| **[Gen 100: Longer journeys](https://jeremyhua.ng/crossyroadai/?generation=100&seed=4984&variant=2)** | [![Variant 2 generation 100 population](docs/media/variant-2-longer-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=100&seed=4984&variant=2) | The chickens build on earlier skills for longer, more consistent crossings.<br>**High Score: 1,967** |
+| **[Gen 150: Final population](https://jeremyhua.ng/crossyroadai/?generation=150&seed=318&variant=2)** | [![Variant 2 generation 150 population](docs/media/variant-2-final-1x.gif)](https://jeremyhua.ng/crossyroadai/?generation=150&seed=318&variant=2) | The final saved population combines traffic timing, train warnings, and log crossings.<br>**High Score: 2,063** |
 
 ### From first steps to the final flock
 
@@ -76,13 +76,13 @@ The simulation and neural decisions run independently of the Three.js renderer. 
 
 ## The entire bloodline (10 chickens from each generation)
 
-Ten saved networks from each of the 150 curated display generations run together on one map: **1,500 chickens**. The GIF loops the full score 0–100 run at normal speed.
+Ten saved networks from each of the 150 curated display generations run together on one map: **1,500 chickens**. The Variant 1 GIF loops score 0–100 at normal speed.
 
 [![A mixed population of 1,500 saved chickens on one map](docs/media/all-generations-1x.gif)](https://jeremyhua.ng/crossyroadai/#crowd-title)
 
 [![A mixed population of 1,500 authentic Variant 2 chickens](docs/media/variant-2-all-generations-1x.gif)](https://jeremyhua.ng/crossyroadai/#crowd-title)
 
-Each variant mixes ten unchanged saved networks from every one of its 150 display generations: 1,500 chickens on the same map. These clips preserve the original networks and source manifests; they do not reconstruct parent–child relationships.
+Each variant mixes ten unchanged saved networks from every one of its 150 display generations: 1,500 chickens on the same map. The Variant 2 clip uses map 318, starting around row 25: logs begin at row 26, trains at row 31, and there are no lily-pad rows through row 150. These clips preserve the original networks and source manifests; they do not reconstruct parent–child relationships.
 
 ## Run locally
 

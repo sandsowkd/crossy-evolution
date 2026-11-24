@@ -12,6 +12,8 @@ import type {ExplorerCatalog} from "../visualization/explorer-data";
 import {resolveEntry} from "../visualization/explorer-selection";
 import {milestoneUrl,replayUrl,siteRoute} from "../visualization/replay-links";
 import {VARIANT_TWO_MILESTONES} from "../visualization/site-content";
+import {platformsAt,logSlotAt} from "../core/upstream";
+import {variantTwoRowPlan} from "../core/variant-two-rules";
 const read=(p:string)=>fs.readFileSync(p,"utf8");
 const catalog=JSON.parse(read("public/explorer-catalog.json")) as ExplorerCatalog;
 const saved=read("public/variant-2/final-policy.json"),policy=savedRacePolicy(saved,2);
@@ -61,4 +63,42 @@ test("Variant2 race and ordinary replay choose identical AI moves and share the 
    while(native.decisions<race.bot.decisions && !native.finished)native.advance();
   }
  }
+});
+
+test("replay and AI race snapshots carry idle chickens with logs without making them hop",()=>{
+ const replay=new Replay([policy.genome],42,policy.config);
+ const row=33,log=platformsAt(replay.current.sim.world.row(row),0).find(p=>p.kind==="log"&&Math.abs(p.x)<2&&p.length>=3)!;
+ assert.ok(log);
+ Object.assign(replay.current.sim.agent,{row,maxRow:row,x:logSlotAt(log,log.x),ridingOn:log.id,ridingSpeed:log.speed,visualY:.2});
+ replay.advance("WAIT");
+ assert.ok(replay.current.sim.agent.alive);
+ assert.notEqual(replay.current.previous.x,replay.current.sim.agent.x,"The frozen log physics still move the chicken");
+ const unchanged=stringifyEvolution(replay.current.sim.agent);
+ for(const alpha of [.1,.5,.9]){
+  const agent=replay.snapshot(alpha).agents[0];
+  assert.equal(agent.hop,0);
+  assert.ok(Math.abs(agent.x-(replay.current.previous.x+(replay.current.sim.agent.x-replay.current.previous.x)*alpha))<1e-12);
+ }
+ assert.equal(stringifyEvolution(replay.current.sim.agent),unchanged,"Rendering never alters simulation state");
+ const race=new RaceSession(policy,"42");
+ Object.assign(race.bot.current.sim.agent,replay.current.previous);
+ race.bot.advance("WAIT");race.advanceTicks(5);
+ assert.equal(race.botState.hop,0);
+ assert.equal(race.snapshot(0,"bot").agents[0].hop,0);
+ replay.advance("RIGHT");
+ assert.ok(replay.snapshot(.5).agents[0].hop>0,"Active movement still has a jump arc");
+});
+
+test("the selected preview maps show early logs and trains without lily pads through150",()=>{
+ for(const seed of new Set(VARIANT_TWO_MILESTONES.map(m=>m.previewSeed))){
+  const rows=Array.from({length:151},(_,index)=>variantTwoRowPlan(seed,index));
+  assert.ok(rows.findIndex(r=>r.waterKind==="log")<=37);
+  assert.ok(rows.findIndex(r=>r.type==="rail")<=31);
+  assert.equal(rows.filter(r=>r.waterKind==="lily").length,0);
+ }
+ const flock=JSON.parse(read("public/variant-2/flock-preview.json"));
+ assert.equal(flock.seed,318);assert.equal(flock.population,1500);
+ assert.equal(flock.scoreRange.start,25);
+ assert.equal(flock.scoreRange.end,125);
+ assert.ok(flock.decisionRange.start>0);
 });

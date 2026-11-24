@@ -60,7 +60,7 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
       const replay = new Replay(genomes, clip.mapSeed, config, HIGHLIGHT_REPLAY_OPTIONS);
       // README snippets use fixed simulation ranges, bypassing Auto acceleration.
       // These ranges never replace the production homepage's clip metadata.
-      const range = readmePlan?.clips.find(item => item.id === clip.id)?.decisionRange ?? clip.decisionRange;
+      const range = readmePlan?.clips.find(item => item.id === clip.id)?.decisionRange ?? clip.decisionRange ?? clip.videoDecisionRange;
       while (range && replay.decisions < range.start && !replay.finished) replay.advance();
       view = new WorldView(document.querySelector<HTMLDivElement>("#world")!, undefined, {focusScreenY: -.35, responsiveFollow: true});
       view.select(-1);

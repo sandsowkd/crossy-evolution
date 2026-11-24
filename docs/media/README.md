@@ -27,4 +27,8 @@ The completed Variant 2 showcase adds eight genuine recordings, each at 1× simu
 
 [Timing receipts](variant-2-timing.json) identify frame counts, exact decision ranges, encoded durations and source files. The source populations, map seeds and actual whole-map maxima are in `public/homepage-data.json`; the frozen default AI is genome353089. These recordings replace the earlier Variant2 development main clip and V1 placeholders. Variant1 GIFs remain unchanged.
 
-The final Variant 2 GIFs use a 480-pixel width, 10fps, and a 96-color palette to reduce downloads while preserving 1× timing. Each is below 10MB. The original 15fps recordings remain unchanged.
+The final Variant 2 GIFs use widths up to 480 pixels, 10fps, and a 96-color palette to reduce downloads while preserving 1× timing. Each is below 10MB. The original 15fps recordings remain unchanged.
+
+## Variant 2 early-crossing refresh
+
+The latest eight Variant 2 clips use the unchanged V4 maps318,4984,14232, selected for early logs/trains and no lily-pad rows through150. Main and bloodline clips cover approximately rows25–125 on map318. Later highlight GIFs show the early crossings. Every video/GIF was regenerated after correcting passive log-drift animation; standing on a log no longer makes a chicken jump. Normal1× timing and all original networks are preserved. See the updated timing receipts for exact ranges and durations.
