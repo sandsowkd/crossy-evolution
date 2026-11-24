@@ -1,8 +1,12 @@
 # Crossy Road AI
 
-Training AI to play Crossy Road by evolving neural networks.
+**Teaching the chicken to cross the road.**
 
-**[Visit the website](https://jeremyhua.ng/crossyroadai)** · **[Race against the AI](https://jeremyhua.ng/crossyroadai/play)** · **[Explore replays](https://jeremyhua.ng/crossyroadai/explore?variant=1)**
+An interactive machine learning experiment that teaches AI to play Crossy Road through neuroevolution. Watch neural networks evolve from random movement to navigating traffic, trains, and rivers over hundreds of generations—or race against the AI yourself!
+
+Inspired by [Trackmania AI experiments](https://www.youtube.com/watch?v=Dw3BZ6O_8LY) and [Code Bullet’s AI projects](https://www.youtube.com/@CodeBullet).
+
+**[Click for some cool visualizations!](https://jeremyhua.ng/crossyroadai)** · **[Race against the AI](https://jeremyhua.ng/crossyroadai/play)** · **[Explore replays](https://jeremyhua.ng/crossyroadai/explore?variant=1)**
 
 ## Variant 1: Just cars and roads
 

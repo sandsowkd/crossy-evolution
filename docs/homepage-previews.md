@@ -44,3 +44,10 @@ Use `scripts/export-variant-two-media.ts` for the final Variant 2 media inputs. 
 ## Early-crossing Variant 2 refresh
 
 Variant 2 previews now use maps318,4984,14232, each with no lily-pad rows through150. The main and population-mix recordings use map318 around rows25–125 (logs26, tracks31). Later README highlights capture early crossings rather than the midpoint of the whole-map high score. The same original networks, eight-map audit, frozen final opponent, and V4 rules are retained. Passive log drift no longer creates a jump animation.
+
+
+## Homepage copy and search metadata
+
+The public title is **Crossy Road AI**, with the subtitle **Teaching the chicken to cross the road.** The introduction describes the interactive neuroevolution experiment, followed by its inspiration links. README and website copy share this introduction.
+
+The published homepage keeps a descriptive page title, concise search description, canonical URL, and Open Graph/Twitter previews using an authentic gameplay poster. Packaging no longer injects the historical preview-only `noindex` tag. The personal website keeps its scoped exclusions for replay URLs and large data assets; its sitemap already includes the canonical homepage. Search indexing and ranking remain decisions of each search engine.

@@ -34,8 +34,8 @@ for(const [file,hash]of archives){
   if(hash)assert.equal(createHash("sha256").update(gunzipSync(buffer)).digest("hex"),hash,file);
   copy(file.slice(1));bytes+=buffer.length;
 }
-const index=path.join(staging,"index.html");
-fs.writeFileSync(index,fs.readFileSync(index,"utf8").replace("<head>",'<head>\n    <meta name="robots" content="noindex, nofollow, noarchive" />'));
+// Keep the public homepage indexable. The host excludes parameterized replay
+// pages and data assets through its scoped X-Robots-Tag headers and robots.txt.
 // The optional audit is a standalone HTML document, outside Vite's URL handling.
 const audit=path.join(staging,"replay-audit.html");
 fs.writeFileSync(audit,fs.readFileSync(audit,"utf8")
