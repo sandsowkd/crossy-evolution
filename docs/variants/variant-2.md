@@ -6,6 +6,19 @@ The new mean policy retains the complete record-source J generation224 native st
 
 Across all200 actual policies on the same64 opened development maps, population mean changes from cached actual225 **617.43** to record256 **625.37** (delta **+7.95**); minimum changes from **375.546875** to **366.0625** (delta **-9.48**). These12,800 development games and the reused12,800-game starting cache are separate from training. Actual225 differs from evaluated224. All historical records, actual cohorts and the nondominated front remain archived. [Record-cohort comparison](../../results/variants/variant-2/native014-rngs225-256-comparison-001.json). Audit052 checked34 uncached nominees/8704 development games without promotion, additional repeat games, renderers or training.
 
+The **256→288 study015 is in progress** from two completed014 source populations. Eight starts retain the full RNG-S generation256 state; one retains the full critical-weight5 generation256 state. Two continuations are exact; seven siblings declare changes only to future critical fitness or RNG/maps. Every learned weight, innovation, species, parameter, history, cache and counter is preserved without resets, apart from those declared future changes. Ordinary V9 chooses every action. The bounded batch plans **3,686,400 additional gameplay episodes** beyond inherited ancestry; this is a planned budget, not completed work.
+
+Runtime generation257 contains already-bred parent256 policies; the first child-bred offspring are evaluated at258. Actual257 differs from the evaluated256 boundary. Two unique200-policy starting evaluations on the same64 opened development maps are complete: **25,600 development games**, separate from training.
+
+| Actual257 source family | Population mean | Minimum policy mean | Starts reusing this cache |
+| --- | ---: | ---: | ---: |
+| RNG-S record source | 631.013984375 | 260.09375 | 8 |
+| Critical-weight5 source | 599.05640625 | 272.453125 | 1 |
+
+All **1,800 genotype comparisons** between the initial256 state and runtime257 passed. The four shared-stream0/5/10/20 fitness-linearity checks also passed without additional gameplay. All400 starting-policy IDs, means, quantiles, cohort hashes and exact historical257 snapshots are verified. The report sourceSnapshotSha256 records HEAD at audit start; cohort hashes and exact historical257 snapshot hashes are pinned separately. These actual257 caches are the required baselines for the future288 endpoint comparisons. That comparison is incomplete; further continuation must wait for it, and no general method benefit is established.
+
+Audit053 evaluated eight uncached top-mean/top-maximum nominees on **2,048 development games**, with no promotion and no repeat, renderer or training games. First257 policies are parent-bred, not new015 child-mutated learning. The current **700.56640625/own1909** record remains ORIGINAL014 RNG-S256; the separate **517.7109375/2296** record remains ORIGINAL013 RNG-O224. All512 final maps remain unopened. [Starting-population evidence](../../results/variants/variant-2/published-v4-starting-native015-257.json).
+
 All nine **224→256 study014 arms completed**, adding **3,686,400 gameplay episodes** beyond inherited ancestry. Full native state was retained without resets; two exact continuations and seven declared future-only siblings used ordinary V9 for every action. All200 policies per endpoint used the same64 opened development maps:115,200 development games, reusing two actual225 starting caches totaling25,600 games. Generation225 evaluates already-bred parent224 state; first child-bred mutants226.
 
 | Arm | Actual225 mean / minimum | Generation256 mean / minimum |
