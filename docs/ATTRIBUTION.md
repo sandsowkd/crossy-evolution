@@ -1,13 +1,5 @@
-# Attribution and local asset policy
+# Attribution
 
-The current visual layer directly uses [Expo-Crossy-Road by Evan Bacon](https://github.com/EvanBacon/Expo-Crossy-Road), commit 6f2e84e580c9c8f2b432aa365f706d45d96d8bc9. The original code's full MIT notice is retained in [EVAN_BACON_LICENSE.txt](EVAN_BACON_LICENSE.txt) and `public/upstream/LICENSE.txt`.
+Visual assets and source adaptations come from [Evan Bacon’s Expo-Crossy-Road](https://github.com/EvanBacon/Expo-Crossy-Road/tree/6f2e84e580c9c8f2b432aa365f706d45d96d8bc9). The full MIT copyright and license notice is retained in [EVAN_BACON_LICENSE.txt](EVAN_BACON_LICENSE.txt) and `public/upstream/LICENSE.txt`.
 
-At the user's explicit request to match the repository, the OBJ models, PNG textures, retro.ttf font, title image and UI button sprites are copied byte-for-byte into `public/upstream/`. `visualization/three/assets.ts` loads the original OBJ/PNG files with the original nearest filtering, SRGB texture color space and MeshLambertMaterial. The project uses the reference's Three.js 0.182.0 version. The source camera position/orientation, zoom, starting-row offset, follow easing, ambient/directional lighting and shadow settings are ported into `scene.ts`.
-
-The visible game HUD uses the original title PNG, pixel font, white 48px score with four-pixel black outline, yellow TOP score, original 60×48 button images, and full-screen game world. Evolution tools are accessible through the menu button; their functionality is an addition to the original game. Settings use the source's translucent blue screen treatment.
-
-These upstream files are being used for this local educational project. The reference README explicitly describes educational use of copyrighted game content; the MIT source-code license is not evidence of unrestricted third-party artwork/font redistribution rights. The public GitHub source/data release excludes the raw upstream artwork. At the user’s request, the README now includes recorded gameplay GIFs in `docs/media/`, with their source recordings and attribution documented alongside them. Run `npm run setup:assets` to fetch the exact pinned files locally; all102 hashes are verified. Public artwork redistribution still requires a separate rights assessment. No affiliation with Evan Bacon or Hipster Whale is claimed.
-
-The renderer is still replaceable and independent of the simulation. Original vehicle geometry is fitted along its travel axis to existing simulated hitbox lengths; this does not change inference, observations, collisions or training. The procedural maps and NEAT tools intentionally remain those of Crossy Evolution. No game audio is loaded.
-
-The 200-chicken revision preserves those original assets. One responsive camera adaptation shifts the orthographic projection centre on short, low-DPI desktop viewports when the original mobile framing would put the chicken below the screen. The original camera angle, zoom, lighting, models and textures remain in use. Generation/alive-count and replay controls are project-specific additions.
+Run `npm run setup:assets` to fetch and verify the pinned assets; raw upstream artwork is excluded from GitHub. [README GIFs](media/README.md) show recorded project gameplay. Third-party game artwork and fonts retain their original rights. This project is unaffiliated with Evan Bacon or Hipster Whale.

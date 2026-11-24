@@ -32,4 +32,4 @@ The saved website lives at [jeremyhua.ng/crossyroadai](https://jeremyhua.ng/cros
 
 Build with `npm run build -- --base=/crossyroadai/ --outDir=.publication/friends-preview-build`, then run `npx tsx scripts/package-friends-preview.ts <personal-website-checkout>/crossyroadai`. The packager copies static assets and hash-verifies required population archives without modifying training files. It retains a timestamped copy of an existing destination. Publish the scoped `crossyroadai/` snapshot through the personal website repository’s existing Vercel integration, preserving its subpath rewrites and current SEO configuration.
 
-The [README GIFs](media/README.md) are smaller excerpts converted from these recordings for GitHub. They do not replace the full website videos or live replays.
+The [README GIFs](media/README.md) play entirely at 1×. Main and bloodline GIFs use the full normal-speed recordings. Generations 1 and 5 use complete opening replays; the later highlights use dedicated 15-second recordings around half their final high score. The website videos and live replay controls remain separate.
