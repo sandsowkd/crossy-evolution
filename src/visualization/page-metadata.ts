@@ -1,5 +1,6 @@
 /** A single public origin keeps build-time HTML and browser navigation consistent. */
 export const SITE_ORIGIN = "https://crossyroadai.com";
+export const PERSON_ID = "https://jeremyhua.ng/#person";
 export const HOME_TITLE = "Crossy Road AI – Watch AI Learn to Play Crossy Road";
 export const HOME_DESCRIPTION = "Watch AI learn to play Crossy Road using neural networks and genetic algorithms. Explore interactive simulations, evolutionary training, and race against the AI.";
 export const INDEXABLE_PATHS = ["/", "/play", "/explore", "/explore?variant=2"] as const;
@@ -20,9 +21,10 @@ export function pageMetadata(url: URL): PageMetadata {
 export const escapeHtml = (value: string) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 export function structuredData(metadata: PageMetadata) {
   return {"@context": "https://schema.org", "@graph": [
-    {"@type": "Person", "@id": `${SITE_ORIGIN}/#author`, name: "Jeremy Huang", url: "https://jeremyhua.ng/"},
-    {"@type": "WebSite", "@id": `${SITE_ORIGIN}/#website`, name: "Crossy Road AI", alternateName: "CrossyRoadAI", url: `${SITE_ORIGIN}/`, author: {"@id": `${SITE_ORIGIN}/#author`}, description: "An independent, unofficial machine learning experiment exploring AI agents learning a Crossy Road-inspired game through neuroevolution."},
-    {"@type": "WebApplication", "@id": `${SITE_ORIGIN}/#application`, name: "Crossy Road AI", url: `${SITE_ORIGIN}/`, applicationCategory: "EducationalApplication", operatingSystem: "Web browser", browserRequirements: "JavaScript and WebGL", author: {"@id": `${SITE_ORIGIN}/#author`}, description: "An independent educational experiment with interactive neural network replays and a race against a saved AI. Not affiliated with Hipster Whale.", sameAs: "https://github.com/sandsowkd/crossy-road-ai", isPartOf: {"@id": `${SITE_ORIGIN}/#website`}},
+    {"@type": "Person", "@id": PERSON_ID, name: "Jeremy Huang", alternateName: "sandsowkd", url: "https://jeremyhua.ng/", sameAs: ["https://github.com/sandsowkd", "https://www.linkedin.com/in/jeremyhuang-"]},
+    {"@type": "WebSite", "@id": `${SITE_ORIGIN}/#website`, name: "Crossy Road AI", alternateName: "CrossyRoadAI", url: `${SITE_ORIGIN}/`, creator: {"@id": PERSON_ID}, description: "An independent, unofficial machine learning experiment exploring AI agents learning a Crossy Road-inspired game through neuroevolution."},
+    {"@type": "WebApplication", "@id": `${SITE_ORIGIN}/#application`, name: "Crossy Road AI", url: `${SITE_ORIGIN}/`, applicationCategory: "EducationalApplication", operatingSystem: "Web browser", browserRequirements: "JavaScript and WebGL", creator: {"@id": PERSON_ID}, description: "An independent educational experiment with interactive neural network replays and a race against a saved AI. Not affiliated with Hipster Whale.", isPartOf: {"@id": `${SITE_ORIGIN}/#website`}},
+    {"@type": "SoftwareSourceCode", "@id": `${SITE_ORIGIN}/#source`, name: "Crossy Road AI source code", codeRepository: "https://github.com/sandsowkd/crossy-road-ai", programmingLanguage: "TypeScript", creator: {"@id": PERSON_ID}, targetProduct: {"@id": `${SITE_ORIGIN}/#application`}},
     {"@type": "WebPage", "@id": metadata.canonical, url: metadata.canonical, name: metadata.title, description: metadata.description, isPartOf: {"@id": `${SITE_ORIGIN}/#website`}, about: {"@id": `${SITE_ORIGIN}/#application`}},
   ]};
 }

@@ -1,6 +1,6 @@
 import {strict as assert} from "node:assert";
 import {test} from "node:test";
-import {HOME_DESCRIPTION, HOME_TITLE, INDEXABLE_PATHS, metadataHtml, pageMetadata, safeJson, SITE_ORIGIN, structuredData} from "../visualization/page-metadata";
+import {HOME_DESCRIPTION, HOME_TITLE, INDEXABLE_PATHS, metadataHtml, pageMetadata, PERSON_ID, safeJson, SITE_ORIGIN, structuredData} from "../visualization/page-metadata";
 import {prerenderFile} from "../visualization/prerender-route";
 
 test("published pages have unique metadata and a stable production canonical on every host", () => {
@@ -13,6 +13,14 @@ test("published pages have unique metadata and a stable production canonical on 
     assert.equal((metadataHtml(metadata).match(/<title>/g) ?? []).length, 1);
     const graph = structuredData(metadata)["@graph"];
     assert.ok(graph.some(entity=>entity["@type"] === "WebSite"));
+    const person = graph.find(entity=>entity["@type"] === "Person")!;
+    assert.equal(person["@id"], PERSON_ID);
+    assert.equal(person.alternateName, "sandsowkd");
+    for (const entity of graph.filter(entity=>["WebSite", "WebApplication", "SoftwareSourceCode"].includes(entity["@type"])))
+      assert.deepEqual(entity.creator, {"@id": PERSON_ID});
+    const source = graph.find(entity=>entity["@type"] === "SoftwareSourceCode")!;
+    assert.equal(source.codeRepository, "https://github.com/sandsowkd/crossy-road-ai");
+    assert.deepEqual(source.targetProduct, {"@id": `${SITE_ORIGIN}/#application`});
     assert.ok(!JSON.stringify(graph).includes("aggregateRating"));
   }
   assert.equal(titles.size, INDEXABLE_PATHS.length);

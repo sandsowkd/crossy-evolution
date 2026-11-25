@@ -1,5 +1,15 @@
 # Technical SEO and deployment
 
+## Identity and alias follow-up — November 25, 2026
+
+The existing rendering, route metadata, sitemap, crawler policy, design, visible text, and simulation code are retained. The author now uses the same stable `https://jeremyhua.ng/#person` identifier as the personal website, with the verified public handle `sandsowkd`. The owner confirmed `https://www.linkedin.com/in/jeremyhuang-` as the current LinkedIn profile; the obsolete profile reference is not included. `WebSite`, `WebApplication`, and the added `SoftwareSourceCode` node reference this creator. The source node uses `codeRepository` and `targetProduct` to connect the actual TypeScript repository to the application.
+
+A fresh HTTP audit found that the default Vercel hostname's homepage returned 200 even though its child paths redirected. An explicit host-scoped `/` redirect supplements the existing wildcard, preserving preview hosts and meaningful parameters. Root and child aliases must both be verified after deployment; configuration alone is not evidence that Vercel has applied a redirect.
+
+The follow-up passed all 186 existing tests, lint, TypeScript checking through the production build, the build itself, and generated-HTML SEO checks. Mobile (390 × 844) and desktop (1280 × 800) homepage text and measured layout rectangles match the live pre-change site. No game, replay, training, layout, styling, media, or README content was changed. The existing large scene chunk warning remains; no real-user INP data is available from this audit. A fresh PageSpeed API measurement was unavailable because the free endpoint returned HTTP 429.
+
+The historical report below describes the earlier release; its separate `#author` identity and statements about default-host root behavior are superseded by this follow-up.
+
 The canonical site is **https://crossyroadai.com/**. This report covers the technical SEO release of November 24–25, 2026. Existing page wording, layout, colors, navigation, recorded gameplay, controls, and saved populations are preserved. The only visible addition is the separately approved affiliation notice at the bottom of the homepage; it also appears in the README credits.
 
 ## Audit and changes

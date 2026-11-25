@@ -34,4 +34,5 @@ assert.equal(await readFile(`${dir}/robots.txt`, "utf8"), `User-agent: *\nAllow:
 const config = JSON.parse(await readFile("vercel.json", "utf8"));
 assert.ok(!config.headers.some((rule: {source: string})=>rule.source.includes("play|explore")));
 assert.ok(config.redirects.some((rule: {has?: {type: string; value: string}[]})=>rule.has?.some(item=>item.type === "host" && item.value === "crossy-road-ai.vercel.app")));
+assert.ok(config.redirects.some((rule: {source: string; destination: string; permanent: boolean; has?: {type: string; value: string}[]})=>rule.source === "/" && rule.destination === `${SITE_ORIGIN}/` && rule.permanent && rule.has?.some(item=>item.type === "host" && item.value === "crossy-road-ai.vercel.app")));
 console.log("PASS sitemap, robots, homepage text, and indexable-route/production-host configuration");
