@@ -22,7 +22,13 @@ export function resolveEntry(catalog: ExplorerCatalog, selection: Selection): Re
   const record = phase?.records.find(item => item.generation === selection.generation);
   return record && phase && {...record, config: phase.config, title: `Variant ${variant.id} · Generation ${record.generation}`};
 }
-/** Actual recorded training maps only. Legacy short/custom links remain readable, not selectable. */
+/** The common audited replay panel, not the native training-map streams. */
 export function mapSeedOptions(record: Pick<SequenceRecord, "seeds">) {
   return [...new Set(record.seeds.filter(seed => seed !== 42))];
+}
+
+/** Keep Advanced Replay inside its recorded panel; old direct links still replay as saved. */
+export function replayMenuSeed(record: Pick<SequenceRecord, "seeds">, preferred: number) {
+  const seeds = mapSeedOptions(record);
+  return seeds.includes(preferred) ? preferred : seeds[0];
 }

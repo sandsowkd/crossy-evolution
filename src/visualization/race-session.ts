@@ -1,7 +1,7 @@
 import { GameSimulation } from "../core/simulation";
 import { DELTA, HALF_WIDTH, hopTicks, type Action, type AgentState, type Config } from "../core/types";
 import type { Genome } from "../evolution/genome";
-import { Replay } from "../evolution/replay";
+import { Replay, replayFacing, type ReplayFacing } from "../evolution/replay";
 import { hazardsAt, signalAt } from "../core/world";
 import { advanceUpstream, platformsAt } from "../core/upstream";
 import { highlightReplayConfig, HIGHLIGHT_REPLAY_OPTIONS } from "./highlight-playback";
@@ -35,12 +35,12 @@ export function raceSwipe(dx: number, dy: number): Action | undefined {
 }
 
 /** Sample a forecast hop at its actual collision tick, never showing future scores or deaths. */
-function sample(from: AgentState, to: AgentState, start: number, end: number, now: number): SceneAgent & {maxRow: number} {
+function sample(from: AgentState, to: AgentState, start: number, end: number, now: number, facing: ReplayFacing): SceneAgent & {maxRow: number} {
   const duration = end - start;
   const progress = duration > 0 ? Math.max(0, Math.min(1, (now - start) / duration)) : 1;
   const alive = to.alive || (from.alive && now < end);
   return {id: 0, x: from.x + (to.x - from.x) * progress, row: from.row + (to.row - from.row) * progress,
-    alive, maxRow: now >= end ? to.maxRow : from.maxRow,
+    alive, facing, maxRow: now >= end ? to.maxRow : from.maxRow,
     hop: alive && to.lastAction !== "WAIT" && !to.blocked &&
       (to.x !== from.x || to.row !== from.row) ? progress : 0,
     ...(to.visualY !== undefined ? {visualY: now >= end ? to.visualY : from.visualY} : {}),
@@ -59,6 +59,7 @@ export class RaceSession {
   private previous: AgentState;
   private previousTick = 0;
   private action: Action = "WAIT";
+  private facing: ReplayFacing = null;
   private pending?: {action: Action; expires: number};
   private active = false;
   private startTick = 0;
@@ -79,13 +80,14 @@ export class RaceSession {
     this.bot = new Replay([policy.genome], seed, this.config, HIGHLIGHT_REPLAY_OPTIONS);
   }
   get hasStarted() { return this.active; }
-  get playerState() { return sample(this.previous, this.player.agent, this.previousTick, this.player.tick, this.tick); }
+  get playerState() { return sample(this.previous, this.player.agent, this.previousTick, this.player.tick, this.tick, this.facing); }
   get botState() {
     const bot = this.bot.current;
-    return sample(bot.previous, bot.sim.agent, bot.ticks, bot.sim.tick, this.tick);
+    return sample(bot.previous, bot.sim.agent, bot.ticks, bot.sim.tick, this.tick, bot.facing);
   }
   get eagleAnimating() { return this.captureTick !== undefined && this.tick - this.captureTick < RACE_EAGLE_TICKS; }
   get finished() { return !this.playerState.alive && !this.botState.alive && !this.eagleAnimating; }
+  get canPause() { return this.playerState.alive && !this.finished; }
   get trailingWarning() { return this.playerState.alive && this.cameraRow - this.playerState.row > RACE_TRAILING_ROWS - 1; }
   clearInput() { this.pending = undefined; }
   setPlayerOffscreen(outside: boolean) { this.outsideCamera = outside; }
@@ -151,6 +153,7 @@ export class RaceSession {
       this.player.step(blocked ? "WAIT" : action, false);
       if (blocked) { agent.lastAction = action; agent.blocked = true; }
     }
+    this.facing = replayFacing(this.facing, this.previous, agent);
   }
   advanceTicks(count = 1) {
     if (!this.active) { this.tick += count; return; }
@@ -181,8 +184,8 @@ export class RaceSession {
   snapshot(subTick = 0, follow: "player" | "bot" = "player"): SceneSnapshot {
     const tick = this.tick + (!this.finished ? Math.max(0, Math.min(1, subTick)) : 0);
     const native = this.bot.current;
-    const player: SceneAgent = sample(this.previous, this.player.agent, this.previousTick, this.player.tick, tick);
-    const bot: SceneAgent = {...sample(native.previous, native.sim.agent, native.ticks, native.sim.tick, tick), id: 1, opacity: .7};
+    const player: SceneAgent = sample(this.previous, this.player.agent, this.previousTick, this.player.tick, tick, this.facing);
+    const bot: SceneAgent = {...sample(native.previous, native.sim.agent, native.ticks, native.sim.tick, tick, native.facing), id: 1, opacity: .7};
     if (this.captureTick !== undefined) player.eagle = {remainingTicks: 0, warning: false, captured: true,
       captureTicks: Math.max(0, tick - this.captureTick), swoopFromTop: true};
     const focus = follow === "bot" ? bot.row : this.cameraRow;

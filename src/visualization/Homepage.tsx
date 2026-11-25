@@ -1,3 +1,4 @@
+import { formatMapSeed } from "./map-seed";
 import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import { AUTHOR_WEBSITE, homepageMilestones, REPOSITORY } from "./site-content";
@@ -55,7 +56,7 @@ function Clip({ clip, title, active, activate, eager = false }: {
     onPointerLeave={event => { if (event.pointerType === "mouse") activate(false); }}
     onFocus={event => { if (event.currentTarget.matches(":focus-visible")) activate(true); }}
     onBlur={() => activate(false)} onClick={() => activate(!active)} onKeyDown={event => { if (event.key === "Escape") activate(false); }}>
-    <img src={sitePath(clip.poster)} alt={`${title}, saved generation ${clip.generation} on map ${clip.mapSeed}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
+    <img src={sitePath(clip.poster)} alt={`${title}, saved generation ${clip.generation} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
     <video ref={video} muted loop playsInline preload="none" aria-hidden="true" onPlaying={() => setReady(true)} onError={() => setFailed(true)} />
     {failed && <span className="home-clip-error">Open the replay below</span>}
   </button>;
@@ -85,7 +86,7 @@ function MainClip({ clip, title, eager = false }: {clip: PreviewClip; title: str
     return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); media.pause(); };
   }, [clip.video]);
   return <div ref={host} className={`home-clip home-main-clip${ready ? " is-playing" : ""}`} aria-label={`${title}, looping gameplay`}>
-    <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${clip.mapSeed}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
+    <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
     <video ref={video} muted loop playsInline preload="none" aria-label={`${title} gameplay`} onPlaying={() => setReady(true)} />
   </div>;
 }

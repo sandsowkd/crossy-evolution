@@ -1,3 +1,4 @@
+import { formatMapSeed } from "./map-seed";
 import { useEffect, useRef, useState } from "react";
 import { GameSimulation } from "../core/simulation";
 import { VARIANT_TWO_CONFIG, platformsAt } from "../core/upstream";
@@ -5,7 +6,7 @@ import { hazardsAt, signalAt } from "../core/world";
 import { hopTicks, type Action, type Config } from "../core/types";
 import { ManualActions } from "./manual-actions";
 import type { Genome } from "../evolution/genome";
-import { Replay } from "../evolution/replay";
+import { Replay, replayFacing, type ReplayFacing } from "../evolution/replay";
 import { parseEvolution } from "../evolution/serialization";
 import { WorldView } from "./three/scene";
 import { variantTwoRowPlan } from "../core/variant-two-rules";
@@ -16,7 +17,7 @@ export function VariantTwo() {
   const host = useRef<HTMLDivElement>(null), world = useRef<WorldView | undefined>(undefined);
   const querySeed=Number(new URLSearchParams(window.location.search).get("seed")??0);
   const initialSeed=Number.isInteger(querySeed)&&querySeed>=0&&querySeed<=0xffffffff?querySeed:0;
-  const sim = useRef(new GameSimulation(VARIANT_TWO_CONFIG, initialSeed));
+  const sim = useRef(new GameSimulation(VARIANT_TWO_CONFIG, initialSeed)), facing = useRef<ReplayFacing>(null);
   const previewSeed = useRef(initialSeed), inspectedRowRef=useRef<number|null>(null);
   const replay = useRef<Replay | undefined>(undefined), actions = useRef(new ManualActions());
   const modeRef = useRef<Mode>("map"), playingRef = useRef(false), speedRef = useRef(1), displayTick = useRef(0);
@@ -36,7 +37,7 @@ export function VariantTwo() {
   const install = async (choice: Mode) => {
     modeRef.current = choice; setMode(choice); setRecord(undefined); setMessage(""); replay.current = undefined;
     world.current?.clear();
-    actions.current.clear();
+    actions.current.clear(); facing.current = null;
     inspect(null);
     setStatus({score:0,tick:0,alive:1,total:1,death:""});
     if(choice==="map"){
@@ -96,7 +97,7 @@ export function VariantTwo() {
       while(elapsed>=duration){
         elapsed-=duration;changed=true;
         if(replay.current)replay.current.advance();
-        else {if(sim.current.agent.alive)sim.current.step(actions.current.take(),false);displayTick.current+=ticks;}
+        else {if(sim.current.agent.alive){const before={...sim.current.agent};sim.current.step(actions.current.take(),false);facing.current=replayFacing(facing.current,before,sim.current.agent);}displayTick.current+=ticks;}
       }
       const r=replay.current,s=r?.current.sim??sim.current;
       if(changed)setStatus({score:s.agent.maxRow,tick:s.tick,alive:r?r.agents.filter(a=>a.sim.agent.alive).length:+s.agent.alive,total:r?.agents.length??1,death:s.agent.deathReason??""});
@@ -104,7 +105,7 @@ export function VariantTwo() {
       else {
         const browsing=modeRef.current==="map"&&inspectedRowRef.current!==null,focus=browsing?inspectedRowRef.current!:s.agent.row;
         const center=Math.round(focus),rows=Array.from({length:22},(_,i)=>s.world.row(Math.max(0,center-6)+i)),tick=displayTick.current;
-        world.current?.update({tick,focus,rows,hazards:rows.flatMap(row=>hazardsAt(row,tick)),supports:rows.flatMap(row=>platformsAt(row,tick)),signals:rows.filter(row=>signalAt(row,tick)).map(row=>row.index),agents:browsing?[]:[{id:0,x:s.agent.x,row:s.agent.row,alive:s.agent.alive,visualY:s.agent.visualY,deathReason:s.agent.deathReason}]});
+        world.current?.update({tick,focus,rows,hazards:rows.flatMap(row=>hazardsAt(row,tick)),supports:rows.flatMap(row=>platformsAt(row,tick)),signals:rows.filter(row=>signalAt(row,tick)).map(row=>row.index),agents:browsing?[]:[{id:0,facing:facing.current,x:s.agent.x,row:s.agent.row,alive:s.agent.alive,visualY:s.agent.visualY,deathReason:s.agent.deathReason}]});
       }
     };
     frame=requestAnimationFrame(draw);
@@ -118,7 +119,7 @@ export function VariantTwo() {
   return <main className="crossy-game">
     <div className="game-world" ref={host}/>
     <div className="original-score" aria-label={mode==="map"?"Map row":"Forward score"}><span>{mode==="map"?inspectedRow??status.score:status.score}</span><small>VARIANT 2</small></div>
-    <div className="generation-hud"><strong>{record?`GEN ${record.generation}`:mode==="map"?"MAP PREVIEW":"MECHANICS DEMO"}</strong><span>{mode==="map"?`SEED ${seed}`:`${status.alive} / ${status.total} ALIVE`}</span><small>{record?`${record.branch} · actual saved population`:mode==="map"?"Browse terrain or play with arrow keys":"Scripted starting state · original assets"}</small></div>
+    <div className="generation-hud"><strong>{record?`GEN ${record.generation}`:mode==="map"?"MAP PREVIEW":"MECHANICS DEMO"}</strong><span>{mode==="map"?`SEED ${formatMapSeed(seed)}`:`${status.alive} / ${status.total} ALIVE`}</span><small>{record?`${record.branch} · actual saved population`:mode==="map"?"Browse terrain or play with arrow keys":"Scripted starting state · original assets"}</small></div>
     <div className="v2-modes" style={{position:"absolute",top:110,left:12,right:12,display:"flex",gap:6,flexWrap:"wrap",zIndex:4}}>
       {([['map','Example map'],['logs','Moving logs'],['lilies','Lily pads'],['trains','Train crossing'],['scratch','Fresh training'],['transfer','Best average'],['peak','Highest score']] as const).map(([id,label])=><button key={id} aria-pressed={mode===id} onClick={()=>void install(id)}>{label}</button>)}
     </div>
@@ -128,7 +129,7 @@ export function VariantTwo() {
     </div>}
     {status.death&&!(mode==="map"&&inspectedRow!==null)&&<div className="eagle-capture" style={{top:mode==="map"?285:175}} role="status">{status.death==="eagle"?"CAUGHT BY THE EAGLE":status.death==="water"?"FELL INTO THE WATER":`EPISODE ENDED · ${status.death.toUpperCase()}`}</div>}
     {!ready&&<div className="asset-loading">Loading original models…</div>}
-    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${record.seed} · ${record.meanRow===undefined?"First saved generation":`Development mean ${record.meanRow.toFixed(2)} · peak ${record.maximumRow??"—"}`} · no final tests opened`:`Map ${seed} · ${mode==="map"?"V4 · six hops/s · train intervals 30% shorter":mode==="trains"?"Grouped tracks · independent trains every 8.4–16.8s":mode==="logs"?"Logs: 0.864–3.024 tiles/s · 1–3 tile gaps":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
+    <p className="watch-caption" style={{fontSize:12,bottom:110}}>{record?`Map ${formatMapSeed(record.seed)} · ${record.meanRow===undefined?"First saved generation":`Development mean ${record.meanRow.toFixed(2)} · peak ${record.maximumRow??"—"}`} · no final tests opened`:`Map ${formatMapSeed(seed)} · ${mode==="map"?"V4 · six hops/s · train intervals 30% shorter":mode==="trains"?"Grouped tracks · independent trains every 8.4–16.8s":mode==="logs"?"Logs: 0.864–3.024 tiles/s · 1–3 tile gaps":"Lily pads: guaranteed clear center · arrows to hop"}`}</p>
     {message&&<div className="game-error" role="alert">{message}</div>}
     <div className="quick-replay">
       <button onClick={()=>setPlaying(!playing)}>{playing?"Pause":"Play"}</button><button onClick={()=>void install(mode)}>Restart / refresh</button>

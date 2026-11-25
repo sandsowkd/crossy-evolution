@@ -1,11 +1,17 @@
 import { GameSimulation } from "../core/simulation";
-import { hopTicks, type AgentState, type Config } from "../core/types";
+import { hopTicks, type Action, type AgentState, type Config } from "../core/types";
 import { hazardsAt, signalAt } from "../core/world";
 import { platformsAt } from "../core/upstream";
 import { type Genome } from "./genome";
 import { Network } from "./network";
 import { sensorCount } from "../core/sensor-version";
 export type ReplayOptions = { sparseObservations?: boolean; terrainBehind?: number; terrainAhead?: number };
+export type ReplayFacing = Exclude<Action, "WAIT"> | null;
+/** Presentation state only: platform drift and blocked inputs never turn a chicken. */
+export function replayFacing(previous: ReplayFacing, from: AgentState, to: AgentState): ReplayFacing {
+  return to.lastAction !== "WAIT" && !to.blocked && (to.x !== from.x || to.row !== from.row)
+    ? to.lastAction : previous;
+}
 export class Replay {
   agents: {
     genome: Genome;
@@ -13,6 +19,7 @@ export class Replay {
     sim: GameSimulation;
     previous: AgentState;
     ticks: number;
+    facing: ReplayFacing;
     observationBuffer?: Float32Array;
   }[];
   decisions = 0;
@@ -32,6 +39,7 @@ export class Replay {
         sim,
         previous: { ...sim.agent },
         ticks: 0,
+        facing: null,
         observationBuffer: options.sparseObservations ? new Float32Array(sensorCount(network.observationVersion)) : undefined,
       };
     });
@@ -49,6 +57,7 @@ export class Replay {
             ),
           false,
         );
+      a.facing = replayFacing(a.facing, a.previous, a.sim.agent);
     }
     this.decisions++;
   }
@@ -98,6 +107,7 @@ export class Replay {
             row: from.row + (to.row - from.row) * progress,
             alive: to.alive || (from.alive && alpha < duration),
             hop: moved ? progress : 0,
+            facing: a.facing,
             ...(this.config.mechanics === "upstream-v2" ? {visualY: to.visualY, deathReason: to.deathReason} : {}),
             ...(a.sim.eagleState ? { eagle: {
               ...a.sim.eagleState,

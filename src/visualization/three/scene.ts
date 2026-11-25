@@ -9,6 +9,8 @@ import { raceEaglePose } from "../race-eagle";
 import type { Support } from "../../core/types";
 import { scheduledTrainSignal } from "../../core/variant-two-rules";
 import type { Row } from "../../core/types";
+import type { ReplayFacing } from "../../evolution/replay";
+import { trainLightVisible, type TrainBounds } from "../train-light";
 export type SceneRow = {
   index: number;
   type: "grass" | "road" | "rail" | "water";
@@ -35,6 +37,7 @@ export type SceneAgent = {
   row: number;
   alive: boolean;
   hop?: number;
+  facing?: ReplayFacing;
   color?: string;
   /** One density glyph represents populationCount agents at this position. */
   opacity?: number;
@@ -292,15 +295,6 @@ export class WorldView {
           this.signals.set(row.index, lights);
         }
       }
-    for (const [r, lights] of this.signals) {
-      const row = snapshot.rows.find(row => row.index === r);
-      const active = snapshot.signals.includes(r),
-        phase = row?.trainSchedule ? scheduledTrainSignal(row as Row, snapshot.tick ?? 0).phase :
-          Math.floor(((snapshot.tick ?? 0) - (row?.upstream ? 138 : 0)) / 12) % 2;
-      lights[0].visible = !active;
-      lights[1].visible = active && phase === 0;
-      lights[2].visible = active && phase === 1;
-    }
     const ids = new Set(snapshot.hazards.map((h) => h.id));
     for (const [id, g] of this.hazards)
       if (!ids.has(id)) {
@@ -319,6 +313,11 @@ export class WorldView {
                 h.variant,
                 Math.abs(h.row) + Number(h.id.split(":")[1] || 0),
               );
+        if (h.kind === "train") {
+          g.rotation.y = h.upstream || h.speed < 0 ? 0 : Math.PI;
+          const box = new THREE.Box3().setFromObject(g);
+          g.userData.crossingBounds = {min: box.min.x, max: box.max.x} satisfies TrainBounds;
+        }
         this.hazards.set(h.id, g);
         this.world.add(g);
       }
@@ -335,6 +334,17 @@ export class WorldView {
           : h.speed < 0
             ? Math.PI / 2
             : -Math.PI / 2;
+    }
+    for (const [r, lights] of this.signals) {
+      const row = snapshot.rows.find(row => row.index === r);
+      const train = snapshot.hazards.find(hazard => hazard.row === r && hazard.kind === "train");
+      const bounds = train && this.hazards.get(train.id)?.userData.crossingBounds as TrainBounds | undefined;
+      const active = trainLightVisible(snapshot.signals.includes(r), train, bounds),
+        phase = row?.trainSchedule ? scheduledTrainSignal(row as Row, snapshot.tick ?? 0).phase :
+          Math.floor(((snapshot.tick ?? 0) - (row?.upstream ? 138 : 0)) / 12) % 2;
+      lights[0].visible = !active;
+      lights[1].visible = active && phase === 0;
+      lights[2].visible = active && phase === 1;
     }
     const agentIds = new Set(snapshot.agents.map((a) => a.id));
     for (const [id, g] of this.agents)
@@ -380,7 +390,9 @@ export class WorldView {
       const prev = g.userData.previous as { x: number; row: number },
         dx = -a.x - prev.x,
         dr = a.row - prev.row;
-      if (Math.abs(dx) > 1e-5)
+      if (a.facing !== undefined) {
+        g.rotation.y = a.facing === null ? Math.PI : {UP: 0, DOWN: Math.PI, LEFT: Math.PI / 2, RIGHT: -Math.PI / 2}[a.facing];
+      } else if (Math.abs(dx) > 1e-5)
         g.rotation.y = dx > 0 ? Math.PI / 2 : -Math.PI / 2;
       else if (Math.abs(dr) > 1e-5) g.rotation.y = dr > 0 ? 0 : Math.PI;
       const ground = (r: number) => {

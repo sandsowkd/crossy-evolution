@@ -1,3 +1,4 @@
+import { formatMapSeed } from "./map-seed";
 import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import { MILESTONES, HOMEPAGE_MILESTONES } from "./site-content";
@@ -14,10 +15,10 @@ type Props = {
 /** An additive, small menu; it never changes the existing HUD or transport. */
 export function ReplayMenu({ milestone, seed, disabled, generation, generations, onGeneration, onSeed, onInspect }: Props) {
   const [panel, setPanel] = useState<"navigation" | "help">();
-  const [draft, setDraft] = useState(String(seed));
+  const [draft, setDraft] = useState(formatMapSeed(seed));
   const [copied, setCopied] = useState(false);
   const root = useRef<HTMLDivElement>(null);
-  useEffect(() => { setDraft(String(seed)); setCopied(false); }, [seed, milestone, generation]);
+  useEffect(() => { setDraft(formatMapSeed(seed)); setCopied(false); }, [seed, milestone, generation]);
   useEffect(() => {
     const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setPanel(undefined); };
     const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setPanel(undefined); };

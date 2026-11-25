@@ -1,3 +1,4 @@
+import { formatMapSeed } from "./map-seed";
 import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import { CURRENT_CONFIG, type Action } from "../core/types";
@@ -1092,7 +1093,7 @@ export function App() {
             <div>
               <h2>Watch the population</h2>
               <p>
-                Map {mapSeed} · {(info.decision * 0.2).toFixed(1)}s ·{" "}
+                Map {formatMapSeed(mapSeed)} · {(info.decision * 0.2).toFixed(1)}s ·{" "}
                 {running ? `Evaluating ${Math.round(progress * 100)}%` : source}
               </p>
             </div>

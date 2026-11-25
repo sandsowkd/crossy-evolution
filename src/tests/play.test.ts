@@ -131,15 +131,18 @@ test("interrupting a Variant 2 wait on a log preserves the drift already elapsed
   race.command("UP");race.advanceTicks(10);
   assert.ok(race.playerState.alive);
   assert.ok(race.player.agent.ridingOn);
+  assert.equal(race.playerState.facing,"UP","A forward landing faces forward, even with sideways drift");
   const landed=race.playerState.x,drift=race.player.agent.ridingSpeed!;
   race.advanceTicks(3);
   assert.ok(Math.abs(race.playerState.x-(landed+drift*3/60))<1e-12);
   assert.equal(race.playerState.hop,0,"Standing on a moving log must not animate repeated jumps");
   assert.equal(race.snapshot().agents[0].hop,0);
+  assert.equal(race.snapshot().agents[0].facing,"UP","Waiting on a log preserves the last deliberate direction");
   const before=race.playerState.x;
   race.command("LEFT");
   assert.ok(Math.abs(race.playerState.x-before)<1e-12,"A new input must not snap the chicken back along the log");
   race.advanceTicks();assert.ok(race.playerState.x<before);
+  assert.equal(race.playerState.facing,"LEFT");
   assert.ok(race.playerState.hop>0,"A deliberate move still animates its hop");
 });
 
@@ -313,4 +316,19 @@ test("the crowd contains exactly ten unmodified original chickens from each of t
   assert.equal(crowd.playbackSpeed,1);
   assert.deepEqual(crowd.scoreRange,{start:0,end:100});
   assert.equal(crowd.decisions,clip.decisions); assert.equal(crowd.seconds,clip.seconds);
+});
+
+ test("a dead human cannot pause the AI's remaining race",()=>{
+  const race=new RaceSession(policy,"42");
+  race.command("UP");race.advanceTicks(race.ticksPerHop);
+  assert.equal(race.canPause,true);
+  race.player.agent.alive=false;race.player.agent.deathReason="car";
+  assert.equal(race.playerState.alive,false);
+  assert.equal(race.botState.alive,true);
+  assert.equal(race.finished,false);
+  assert.equal(race.canPause,false);
+  const decisions=race.bot.decisions;
+  race.advanceTicks(30);
+  assert.ok(race.bot.decisions>decisions,"AI playback continues after the death screen appears");
+  assert.equal(race.canPause,false);
 });

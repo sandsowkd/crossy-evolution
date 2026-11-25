@@ -2,15 +2,17 @@ import { applyPageMetadata } from "./page-metadata";
 import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import type { Action } from "../core/types";
+import { formatMapSeed } from "./map-seed";
 import { savedRacePolicy } from "./race-policy";
-import { raceAction, raceSwipe, RaceSession, type RacePolicy } from "./race-session";
+import { raceAction, raceSeed, raceSwipe, RaceSession, type RacePolicy } from "./race-session";
 import { WorldView } from "./three/scene";
 import { RaceCameraVisibility } from "./scene-visibility";
 import { ReplayButtons, ReplayHelpDialog } from "./ReplayChrome";
 import "./replay-menu.css";
 import "./play.css";
 
-const initialSeed = (url: string) => new URL(url).searchParams.get("seed")?.slice(0, 80) || "561909326";
+const seedInput = (text: string) => /^\d+$/.test(text) && Number(text) <= 0xffffffff ? formatMapSeed(Number(text)) : text;
+const initialSeed = (url: string) => seedInput(new URL(url).searchParams.get("seed")?.slice(0, 80) || "561909326");
 const initialVariant = (url: string) => new URL(url).searchParams.get("variant") === "2" ? 2 as const : 1 as const;
 const cause = (reason?: string) => ({car: "hit by a car", train: "hit by a train", water: "lost in the water", eagle: "caught by the eagle", bounds: "out of bounds", timeout: "out of time"}[reason ?? ""] ?? "out");
 type Status = {you: number; ai: number; youAlive: boolean; aiAlive: boolean; death?: string; aiDeath?: string;
@@ -35,16 +37,20 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
   const [running, setRunning] = useState(false), [started, setStarted] = useState(false);
   const [status, setStatus] = useState<Status>(initialStatus), [offscreen, setOffscreen] = useState(false);
   controls.current = {setup, started};
-  const paused = started && !running && !setup && !!session.current && !session.current.finished;
+  const paused = started && !running && !setup && !!session.current?.canPause;
   const currentSeed = useRef(seed);
-  const pause = () => {clock.current.running = false; setRunning(false); session.current?.clearInput(); gesture.current = undefined;};
+  const pause = () => {
+    session.current?.clearInput(); gesture.current = undefined;
+    if (!controls.current.started || controls.current.setup || !session.current?.canPause) return;
+    clock.current.running = false; setRunning(false);
+  };
   const resume = () => {
-    if (!session.current || session.current.finished) return;
+    if (!session.current?.canPause) return;
     clock.current.running = true; setRunning(true); shell.current?.focus({preventScroll: true});
   };
   const reset = (text = seed, start = false) => {
     if (!policy || !ready) return;
-    const normalized = text.trim() || "561909326";
+    const normalized = seedInput(text.trim() || "561909326");
     const keepPreview = start && session.current?.seedText === normalized && !session.current.hasStarted;
     if (!keepPreview) session.current = new RaceSession(policy, normalized);
     clock.current = {running: start, credit: keepPreview ? clock.current.credit : 0};
@@ -112,11 +118,12 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
       if (action && clock.current.running) {event.preventDefault(); session.current?.command(action);}
     };
     const blur = () => pause();
+    const visibility = () => { if (document.hidden) pause(); };
     window.addEventListener("keydown", key); window.addEventListener("blur", blur);
-    document.addEventListener("visibilitychange", blur);
+    document.addEventListener("visibilitychange", visibility);
     return () => {
       active = false; abort.abort(); cancelAnimationFrame(frame);
-      window.removeEventListener("keydown", key); window.removeEventListener("blur", blur); document.removeEventListener("visibilitychange", blur);
+      window.removeEventListener("keydown", key); window.removeEventListener("blur", blur); document.removeEventListener("visibilitychange", visibility);
       main.dispose(); mini.dispose(); session.current = undefined;
     };
   }, []);
@@ -159,7 +166,7 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
         if (!start.moved) move(raceSwipe(event.clientX - start.x, event.clientY - start.y) ?? "UP");
       }}
       onPointerCancel={() => {gesture.current = undefined;}} onLostPointerCapture={() => {gesture.current = undefined;}} />
-    <div className="race-label"><span>RACE THE AI · V{variant}</span><small title={seed}>MAP: {seed}</small></div>
+    <div className="race-label"><span>RACE THE AI · V{variant}</span><small title={seed}>MAP: {formatMapSeed(raceSeed(seed))}</small></div>
     <div className="race-scores" aria-label="Race scores"><div><span>YOU</span><b>{status.you.toLocaleString()}</b></div><div><span>AI</span><b>{status.ai.toLocaleString()}</b></div>{!status.aiAlive && <small>AI {cause(status.aiDeath)}</small>}</div>
     <div className="replay-menu"><ReplayButtons onSettings={() => {pause(); setSetup(true);}} settingsOpen={setup} /></div>
     <aside className={`race-ai-inset${offscreen && started ? " is-visible" : ""}`} aria-label="AI camera when off screen" aria-hidden={!offscreen || !started}>
@@ -173,7 +180,7 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
       <strong>PAUSED</strong><span>SPACE TO RESUME</span>
     </button></div>}
     <div className="race-touch-controls" aria-label="Touch movement controls">{([["UP", "↑"], ["LEFT", "←"], ["DOWN", "↓"], ["RIGHT", "→"]] as const).map(([action, label]) => <button key={action} className={`race-move-${action.toLowerCase()}`} aria-label={`Move ${action.toLowerCase()}`} disabled={!running || !status.youAlive} onPointerDown={event => {event.preventDefault(); move(action);}} onClick={event => {if (event.detail === 0) move(action);}}>{label}</button>)}</div>
-    <div className="race-transport"><span>ARROWS / WASD · TAP / SWIPE</span><div><button disabled={!ready || (!status.youAlive && !status.aiAlive)} onClick={toggle}>{running ? "Pause" : started ? "Resume" : "Play"}</button><button disabled={!ready} onClick={() => reset(seed, true)}>Restart</button><button onClick={() => {pause(); setSetup(true);}}>Map</button></div></div>
+    <div className="race-transport"><span>ARROWS / WASD · TAP / SWIPE</span><div><button disabled={!ready || !status.youAlive} onClick={toggle}>{running ? "Pause" : started ? "Resume" : "Play"}</button><button disabled={!ready} onClick={() => reset(seed, true)}>Restart</button><button onClick={() => {pause(); setSetup(true);}}>Map</button></div></div>
     {!ready && <div className="race-loading" role="status">{error || "Loading the saved AI…"}</div>}
     {setup && <ReplayHelpDialog title="Race the AI" className="race-setup-dialog" closeLabel="Close race setup" onClose={() => setSetup(false)}>
       <div className="race-variant-toggle" role="group" aria-label="Race variant">{([1,2] as const).map(choice=><button type="button" key={choice} aria-pressed={variant===choice} onClick={()=>{pause();setVariant(choice);}}>Variant {choice}</button>)}</div>

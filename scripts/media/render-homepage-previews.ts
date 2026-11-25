@@ -21,7 +21,7 @@ const run = (args: string[]) => new Promise<void>((resolve, reject) => {
 });
 let completed = 0;
 const server = createServer(async (request, response) => {
-  response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
+  response.setHeader("Access-Control-Allow-Origin", process.env.PREVIEW_ORIGIN ?? "http://127.0.0.1:5173");
   response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   response.setHeader("Access-Control-Allow-Headers", "Content-Type");
   if (request.method === "OPTIONS") { response.end(); return; }

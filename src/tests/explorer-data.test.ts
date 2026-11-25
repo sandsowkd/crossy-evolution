@@ -9,8 +9,9 @@ import type { Genome } from "../evolution/genome";
 import { HOMEPAGE_MILESTONES } from "../visualization/site-content";
 import { milestonePhase, replayUrl, siteRoute } from "../visualization/replay-links";
 import { highlightAutomaticSpeed, highlightJumpTarget, highlightReplayConfig } from "../visualization/highlight-playback";
-import { defaultSelection, mapSeedOptions, menuRecords, resolveEntry } from "../visualization/explorer-selection";
+import { defaultSelection, mapSeedOptions, replayMenuSeed, menuRecords, resolveEntry } from "../visualization/explorer-selection";
 import { sequenceSource, isReplaySpace, REPLAY_MAP_SEEDS } from "../visualization/explorer-sequence";
+import { formatMapSeed } from "../visualization/map-seed";
 import { hopTicks } from "../core/types";
 const read = (file: string) => fs.readFileSync(new URL(`../../${file}`, import.meta.url), "utf8");
 const catalog = JSON.parse(read("public/explorer-catalog.json")) as ExplorerCatalog;
@@ -100,4 +101,20 @@ test("Variant2 completes its150-position showcase and preserves native playback 
   assert.equal(highlightAutomaticSpeed(330, undefined, ticks), 100);
   assert.equal(highlightAutomaticSpeed(3330, undefined, ticks), 500);
   assert.equal(highlightJumpTarget(0, 10, ticks), 300);
+});
+
+test("Advanced Replay accepts only its provided map panel and pads labels without changing identities",()=>{
+  for(const variant of catalog.variants)for(const record of menuRecords(variant)){
+    const seeds=mapSeedOptions(record);
+    for(const seed of seeds){
+      assert.equal(replayMenuSeed(record,seed),seed);
+      assert.match(formatMapSeed(seed),/^\d{10}$/);
+      assert.equal(Number(formatMapSeed(seed)),seed);
+    }
+    for(const custom of [0,42,318,4294967295])
+      if(!seeds.includes(custom))assert.equal(replayMenuSeed(record,custom),seeds[0]);
+  }
+  assert.equal(formatMapSeed(0),"0000000000");
+  assert.equal(formatMapSeed(318),"0000000318");
+  assert.equal(formatMapSeed(4294967295),"4294967295");
 });

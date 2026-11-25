@@ -1,6 +1,6 @@
 # Gameplay media
 
-Every preview is recorded from saved project networks in the original Three.js world. The videos use the same actions and simulation as the replay viewer.
+Every preview is recorded from saved project networks in the original Three.js world. The videos use the same actions and simulation as the replay viewer. Chickens retain their last deliberate facing direction while a log carries them, and the visual train light switches off when the rendered train clears the crossing. These presentation changes do not alter physics, network observations, or recorded results.
 
 GitHub GIFs run at **1× simulation speed**. Generations 1 and 5 show their complete opening replays; later highlights show 15-second excerpts around early crossings. Each displayed high score describes the complete saved population on its linked map, rather than the excerpt's final row. Website highlight videos contain complete Auto runs.
 

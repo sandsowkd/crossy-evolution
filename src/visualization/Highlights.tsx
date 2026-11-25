@@ -1,3 +1,4 @@
+import { formatMapSeed } from "./map-seed";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { hopTicks } from "../core/types";
 import { Replay } from "../evolution/replay";
@@ -216,7 +217,7 @@ export function ReplayStage({entry, mapSeed, children, autoStart = false, suspen
             disabled={!ready || !cohortReady} onChange={event => { void seek(Number(event.target.value)); }} />
         </div>
       </div>
-      {(!ready || !cohortReady || error) && <div className="highlight-loading" role="status">{error || (planning ? `Preparing map ${mapSeed} for all ${entry?.populationSize} chickens…` : `Loading all ${entry?.populationSize ?? "archived"} chickens…`)}</div>}
+      {(!ready || !cohortReady || error) && <div className="highlight-loading" role="status">{error || (planning ? `Preparing map ${formatMapSeed(mapSeed)} for all ${entry?.populationSize} chickens…` : `Loading all ${entry?.populationSize ?? "archived"} chickens…`)}</div>}
     </section>
   </main>;
 }

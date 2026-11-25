@@ -9,7 +9,8 @@ import "./replay-menu.css";
 import "./explorer.css";
 import { closeOnBackdrop, ReplayButtons, ReplayHelpDialog } from "./ReplayChrome";
 
-import { defaultSelection, mapSeedOptions, menuRecords, resolveEntry, type Selection } from "./explorer-selection";
+import { formatMapSeed } from "./map-seed";
+import { defaultSelection, mapSeedOptions, replayMenuSeed, menuRecords, resolveEntry, type Selection } from "./explorer-selection";
 function selectionFromUrl(href = window.location.href): Selection | undefined {
   const route = siteRoute(new URL(href));
   if (route.page === "explorer" && route.generation !== undefined && route.seed !== undefined && route.phase !== undefined)
@@ -51,7 +52,6 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
   const initialRecord = records.find(row => row.generation === selection.generation) ?? records[0];
   const [generation, setGeneration] = useState(initialRecord.generation);
   const [seed, setSeed] = useState(selection.seed);
-  const [seedText,setSeedText]=useState(String(selection.seed));
   const record = records.find(item => item.generation === generation) ?? records[0];
   const selected = {variant, phase: available.sequence ? "sequence" : available.phases[0].id, generation: record.generation, seed};
   const cards = homepageMilestones(variant).map(item => ({generation:item.generation,
@@ -60,8 +60,8 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
     dialog.current!.showModal();
     dialog.current!.querySelector<HTMLElement>("#explorer-heading")!.focus({preventScroll: true});
   }, []);
-  const preview = (nextGeneration: number, nextSeed = homepageMilestones(variant).find(item=>item.generation===nextGeneration)?.previewSeed ?? seed) => {
-    setGeneration(nextGeneration);setSeed(nextSeed);setSeedText(String(nextSeed));
+  const preview = (nextGeneration: number, nextSeed = advanced ? replayMenuSeed(records.find(row=>row.generation===nextGeneration) ?? record, seed) : homepageMilestones(variant).find(item=>item.generation===nextGeneration)?.previewSeed ?? seed) => {
+    setGeneration(nextGeneration);setSeed(nextSeed);
     onPreview({variant,phase:available.sequence ? "sequence" : available.phases[0].id,generation:nextGeneration,seed:nextSeed});
   };
   return <dialog ref={dialog} className="explorer-dialog" aria-labelledby="explorer-heading"
@@ -74,7 +74,7 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
             onClick={() => {
               if (variant === item.id) return;
               const next = defaultSelection(item.id, catalog);
-              setVariant(item.id); setGeneration(1); setSeed(next.seed);setSeedText(String(next.seed)); onPreview(next);
+              setVariant(item.id); setGeneration(1); const nextSeed = advanced ? replayMenuSeed(menuRecords(item)[0], next.seed) : next.seed; setSeed(nextSeed); onPreview({...next,seed:nextSeed});
             }}>Variant {item.id}</button>)}
         </div>
         <span className="explorer-variant-info"><button type="button" aria-label="About the variants" aria-describedby="variant-explanation">?</button>
@@ -92,16 +92,11 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
           {records.map(row => <option value={row.generation} key={row.generation}>Generation {row.generation}</option>)}
         </select></label>
         <label>Map seed<select aria-label="Replay map seed" value={seed} onChange={event => preview(record.generation, Number(event.target.value))}>
-          {[...new Set([seed,...mapSeedOptions(record)])].map(value => <option key={value} value={value}>{value}</option>)}
+          {mapSeedOptions(record).map(value => <option key={value} value={value}>{formatMapSeed(value)}</option>)}
         </select></label></div>
-        <form className="explorer-custom-seed" onSubmit={event=>{event.preventDefault();if(/^\d+$/.test(seedText) && Number(seedText)<=0xffffffff) preview(record.generation,Number(seedText));}}>
-          <label>Custom map seed<input aria-label="Custom replay map seed" inputMode="numeric" pattern="[0-9]+" value={seedText} onChange={event=>setSeedText(event.target.value)} /></label>
-          <button type="submit" disabled={!/^\d+$/.test(seedText) || Number(seedText)>0xffffffff}>Load seed</button>
-        </form>
-        <div className="explorer-advanced-guide"><p><b>What is a seed?</b> The number recreates the same roads and traffic every time. {variant === 1 ? "Every generation uses the same eight numbered maps, so you can compare its behavior on identical roads. Custom seeds are also available." : "Every display generation is audited on the same eight maps under frozen V4 rules. You can also enter any seed from 0 to 4,294,967,295."}</p>
-          <p><b>What changes?</b> A new generation loads different saved brains. A new seed keeps those brains and changes the map. Individual runs vary.</p>
-          <p><b>Watch together.</b> Opacity shows how many chickens share a position. Press Play to start, or Space to pause and resume.</p></div>
-        <p className="explorer-population-size">{record.populationSize} chickens · {mapSeedOptions(record).length} audited maps{<> · <a href={sitePath(variant===1 ? "/replay-audit.html" : "/variant-2/replay-audit.html")} target="_blank" rel="noreferrer">View all generation scores ↗</a></>}</p>
+        <div className="explorer-advanced-guide"><p><b>What is a seed?</b> A map’s ID recreates the same terrain and traffic. Choose from the shared replay maps used to compare every generation.</p>
+          <p><b>What changes?</b> Generation changes the saved chickens. Map seed changes their course. These are comparison maps, separate from the changing maps used during training.</p>
+          <p><b>Watch together.</b> Every chicken faces the same map and clock. More opaque groups contain more chickens. Press Play to start; Space pauses or resumes.</p></div>
       </div> : <div className="explorer-highlight-grid" aria-label="Replay highlights">
         {cards.map(card => <button key={card.generation} type="button" className="explorer-highlight-card"
           aria-label={`Select generation ${card.generation}: ${card.title}`} aria-pressed={record.generation === card.generation}
@@ -112,7 +107,7 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
       </div>}
     </div>
     <div className="explorer-dialog-footer">
-      <button type="button" className="explorer-advanced-toggle" onClick={() => setAdvanced(!advanced)}>
+      <button type="button" className="explorer-advanced-toggle" onClick={() => {if (!advanced) preview(record.generation, replayMenuSeed(record, seed)); setAdvanced(!advanced);}}>
         {advanced ? "‹ Main highlights" : <>Advanced Replay <span>(choose a generation & map)</span></>}</button>
       <button className="explorer-play" type="button" onClick={() => onChoose(selected)}>Play ▶</button>
     </div>
