@@ -187,7 +187,6 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
       <svg width="44" height="48" viewBox="0 0 44 48" fill="currentColor" aria-hidden="true"><path d="M4 4h12v40H4zM28 4h12v40H28z" /></svg>
       <strong>PAUSED</strong><span>SPACE TO RESUME</span>
     </button></div>}
-    <div className="race-touch-controls" aria-label="Touch movement controls">{([["UP", "↑"], ["LEFT", "←"], ["DOWN", "↓"], ["RIGHT", "→"]] as const).map(([action, label]) => <button key={action} className={`race-move-${action.toLowerCase()}`} aria-label={`Move ${action.toLowerCase()}`} disabled={!running || !status.youAlive} onPointerDown={event => {event.preventDefault(); move(action);}} onClick={event => {if (event.detail === 0) move(action);}}>{label}</button>)}</div>
     <div className="race-transport"><span>ARROWS / WASD · TAP / SWIPE</span><div><button disabled={!ready || !status.youAlive} onClick={toggle}>{running ? "Pause" : started ? "Resume" : "Play"}</button><button disabled={!ready} onClick={() => reset(seed, true)}>Restart</button><button onClick={() => {pause(); setSetup(true);}}>Map</button></div></div>
     {!ready && <div className="race-loading" role="status">{error || "Loading the saved AI…"}</div>}
     {setup && <ReplayHelpDialog title="Race the AI" className="race-setup-dialog" closeLabel="Close race setup" onClose={closeSetup}>
