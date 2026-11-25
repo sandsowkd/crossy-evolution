@@ -9,7 +9,7 @@ Before this release, the apex domain had Vercel DNS but was absent from the proj
 Implemented changes:
 
 - Added the existing apex domain to the Vercel project, connected it to Production, and changed `www` to a permanent 308 redirect to the apex. No DNS or Google verification record was edited.
-- Added build-time rendering of the existing React homepage, race setup, and both replay selectors. The same components and data hydrate in the browser. Build-manifest CSS and image URLs prevent unstyled content and broken source-image references. Bootstrap JSON is escaped and includes only data needed by its view.
+- Added build-time rendering of the existing React homepage, race setup, and both replay selectors. The same components and data hydrate in the browser. Canonical pages are stored at internal static paths so Vercel's filesystem priority cannot bypass query-based routing. Build-manifest CSS and image URLs prevent unstyled content and broken source-image references. Bootstrap JSON is escaped and includes only data needed by its view.
 - Centralized titles, descriptions, absolute canonicals, robots, Open Graph, Twitter cards, and JSON-LD. The canonical origin is fixed independently of preview hosts or a stale environment variable.
 - Made the substantive race and replay selector routes indexable. Detailed replay states, historical inspectors, and data archives remain outside the sitemap and have intentional noindex rules. Race seed/variant parameters canonicalize to `/play`; opening the setup must not turn that canonical page into a noindex page.
 - Generated a four-URL XML sitemap and an unrestricted public robots.txt during the build, with no invented modification dates.

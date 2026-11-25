@@ -4,6 +4,9 @@ import {readFile, stat} from "node:fs/promises";
 import {INDEXABLE_PATHS, pageMetadata, SITE_ORIGIN} from "../../src/visualization/page-metadata";
 import {prerenderFile} from "../../src/visualization/prerender-route";
 const dir = process.argv[2] ?? "dist";
+// Canonical files would shadow query-conditioned rewrites on Vercel.
+for (const file of ["index.html", "play.html", "explore.html"])
+  await assert.rejects(stat(`${dir}/${file}`), {code: "ENOENT"});
 for (const route of INDEXABLE_PATHS) {
   const url = new URL(route, SITE_ORIGIN), file = prerenderFile(url)!;
   const html = await readFile(dir + file, "utf8"), metadata = pageMetadata(url);
@@ -22,7 +25,7 @@ for (const route of INDEXABLE_PATHS) {
   }
   console.log(`PASS ${route}: rendered content, unique metadata, schema, referenced assets`);
 }
-const home = await readFile(`${dir}/index.html`, "utf8");
+const home = await readFile(`${dir}/_pages/home.html`, "utf8");
 for (const text of ["Teaching the chicken to cross the road.", "The experiment", "Variant 2: Cars, trains, and logs", "Not affiliated with"]) assert.ok(home.includes(text));
 const sitemap = await readFile(`${dir}/sitemap.xml`, "utf8");
 assert.deepEqual([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(item=>item[1]), INDEXABLE_PATHS.map(route=>SITE_ORIGIN + route));

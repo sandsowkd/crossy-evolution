@@ -1,6 +1,6 @@
 /** Prerender the existing React views, then hydrate exactly those components. */
 import { build, createServer, type Manifest } from "vite";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { INDEXABLE_PATHS, metadataHtml, pageMetadata, safeJson, SITE_ORIGIN, escapeHtml } from "../../src/visualization/page-metadata";
 import type { SiteBootstrap } from "../../src/visualization/site-bootstrap";
@@ -17,9 +17,9 @@ try {
   homepage.phases = []; // Training history is not used by this view; the archive is untouched.
   const catalog = JSON.parse(await readFile("public/explorer-catalog.json", "utf8"));
   const pages: {file: string; url: string; bootstrap?: SiteBootstrap; component?: string}[] = [
-    {file: "index.html", url: "/", component: "Homepage", bootstrap: {page: "home", variant: 1, url: `${SITE_ORIGIN}/`, homepage}},
-    {file: "play.html", url: "/play", component: "Play", bootstrap: {page: "play", variant: 1, url: `${SITE_ORIGIN}/play`}},
-    {file: "explore.html", url: "/explore", component: "Explorer", bootstrap: {page: "explorer", variant: 1, url: `${SITE_ORIGIN}/explore`, catalog}},
+    {file: "_pages/home.html", url: "/", component: "Homepage", bootstrap: {page: "home", variant: 1, url: `${SITE_ORIGIN}/`, homepage}},
+    {file: "_pages/play.html", url: "/play", component: "Play", bootstrap: {page: "play", variant: 1, url: `${SITE_ORIGIN}/play`}},
+    {file: "_pages/explore-1.html", url: "/explore", component: "Explorer", bootstrap: {page: "explorer", variant: 1, url: `${SITE_ORIGIN}/explore`, catalog}},
     {file: "_pages/explore-2.html", url: "/explore?variant=2", component: "Explorer", bootstrap: {page: "explorer", variant: 2, url: `${SITE_ORIGIN}/explore?variant=2`, catalog}},
     {file: "_pages/replay.html", url: "/?generation=150"},
     {file: "_pages/inspector.html", url: "/?variant=2"},
@@ -46,6 +46,10 @@ try {
     await writeFile(path.join(outDir, page.file), html);
     console.log(`Prerendered ${page.file}: ${page.bootstrap ? "existing React view" : "interactive state shell"}`);
   }
+  // Public paths must have no competing physical HTML file: Vercel resolves
+  // existing files before query-conditioned rewrites. All variants use the
+  // same explicit static routing layer, including the homepage.
+  await rm(path.join(outDir, "index.html"));
   await writeFile(path.join(outDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`);
   await writeFile(path.join(outDir, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${INDEXABLE_PATHS.map(route=>`  <url><loc>${escapeHtml(SITE_ORIGIN + route)}</loc></url>`).join("\n")}\n</urlset>\n`);
 } finally { await server.close(); }
