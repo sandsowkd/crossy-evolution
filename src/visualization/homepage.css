@@ -139,10 +139,12 @@
 @media(max-width: 760px) { .home-experiment-panels { grid-template-columns: 1fr; gap: 18px; } }
 @media(max-width: 600px) { .home-experiment-panel { padding: 20px; } .home-future-variant { padding: 20px; } }
 
-.home-intro { padding-block: 44px 40px; gap: 24px 42px; }
-.home-intro-copy { min-width: 0; flex: 1 1 560px; max-width: 780px; }
+.home-intro { display: block; padding-block: 44px 40px; }
+.home-banner { display: flex; justify-content: space-between; align-items: start; gap: 24px 42px; }
+.home-overview { margin-top: 26px; }
+.home-intro-copy { min-width: 0; }
 .home-intro .home-subtitle { color: var(--home-green); font-size: clamp(18px,1.6vw,22px); font-weight: 650; line-height: 1.35; margin-top: 12px; }
-.home-intro .home-description { max-width: 78ch; }
+.home-intro .home-description { max-width: none; margin-top: 0; }
 .home-intro .home-inspiration { margin-top: 10px; }
 .home-title { display: flex; align-items: center; gap: 17px; }
 .home-title > svg { flex: none; width: 49px; height: 54px; }
@@ -162,5 +164,7 @@
 .home-bottom-actions { margin-top: 25px; justify-content: center; }
 .home-crowd-grid h3 { font-size: 18px; font-weight: 700; }
 @media(max-width: 600px) { .home-crowd-grid { grid-template-columns: 1fr; gap: 20px; } .home-experiment-step { --step-icon-size: 64px; gap: 12px; } .home-experiment-step:has(.home-model-icon) { --step-icon-size: 76px; } .home-experiment-step:has(.home-population-icon) { --step-icon-size: 88px; } }
-@media(max-width: 1100px) { .home-intro-aside { justify-items: start; } }
-@media(max-width: 760px) { .home-intro { display: grid; gap: 22px; padding-block: 28px 32px; } .home-intro .home-button { margin-top: 0; } .home-title { gap: 13px; } .home-title > svg { width: 40px; height: 45px; } .home-intro .home-title h1 { font-size: clamp(30px,6vw,42px); letter-spacing: -1px; } .home-launch-actions { gap: 11px; } .home-intro .home-inspiration { line-height: 1.7; } }
+@media(max-width: 980px) { .home-banner { flex-wrap: wrap; } .home-intro-aside { justify-items: start; } }
+@media(max-width: 760px) { .home-intro { padding-block: 28px 32px; } .home-banner { gap: 22px; } .home-overview { margin-top: 24px; } .home-intro .home-button { margin-top: 0; } .home-title { gap: 13px; } .home-title > svg { width: 40px; height: 45px; } .home-intro .home-title h1 { font-size: clamp(30px,6vw,42px); letter-spacing: -1px; } .home-launch-actions { gap: 11px; } .home-intro .home-inspiration { line-height: 1.7; } }
+
+@media(max-width: 600px) { .home-intro .home-launch-actions .home-button { padding: 10px 12px; font-size: 13px; } }

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PopulationCamera, populationDensity, populationFrame, SINGLE_CHICKEN_OPACITY,
+import { FRONT_PACK_ROWS, PopulationCamera, populationDensity, populationFrame, SINGLE_CHICKEN_OPACITY,
   type DensityGroup } from "../visualization/population-density";
 import { Replay } from "../evolution/replay";
 import { Trainer } from "../evolution/trainer";
@@ -80,6 +80,45 @@ function cameraGroup(id: number, count: number, row = 0): DensityGroup {
   return { id, populationCount: count, memberIds: Array.from({ length: count }, (_, i) => id + i),
     x: 0, row, alive: true };
 }
+
+test("bloodline camera selects the densest group within ten rows, ignoring a larger distant crowd", () => {
+  const camera = new PopulationCamera(FRONT_PACK_ROWS);
+  assert.equal(camera.follow([cameraGroup(0, 100, 70), cameraGroup(200, 2, 100),
+    cameraGroup(300, 8, 90), cameraGroup(400, 20, 89.99)], 0, 0), 300);
+});
+
+test("front-pack membership and density take priority over old targets and switch caps", () => {
+  const camera = new PopulationCamera(FRONT_PACK_ROWS);
+  assert.equal(camera.follow([cameraGroup(0, 20, 95), cameraGroup(100, 2, 100)], 0, 0), 0);
+  assert.equal(camera.follow([cameraGroup(0, 20, 95), cameraGroup(100, 2, 106)], 0, 10), 100,
+    "An interpolated frame must replace a target outside the band, even in the same decision");
+  for (let decision = 1; decision < 6; decision++) {
+    const first = decision % 2 === 0;
+    assert.equal(camera.follow([cameraGroup(0, first ? 21 : 20, 100),
+      cameraGroup(100, first ? 20 : 21, 106)], decision, decision * 20), first ? 0 : 100);
+  }
+});
+
+test("front-pack ties retain a living member, and a dead target is replaced", () => {
+  const camera = new PopulationCamera(FRONT_PACK_ROWS);
+  assert.equal(camera.follow([cameraGroup(0, 8, 95), cameraGroup(100, 8, 100)], 0, 0), 100);
+  assert.equal(camera.follow([cameraGroup(0, 8, 101), cameraGroup(100, 8, 100)], 1, 100), 100);
+  assert.equal(camera.follow([cameraGroup(0, 8, 101)], 2, 200), 0);
+});
+
+test("bloodline frames make the followed front group opaque without changing simulation", () => {
+  const trainer = new Trainer({ population: 50, simulation: { ...DEFAULT_CONFIG, maxTicks: 24 } });
+  const replay = new Replay(trainer.neat.population, 42, trainer.config.simulation);
+  for (const [index, agent] of replay.agents.entries()) {
+    agent.sim.agent.row = agent.previous.row = index < 40 ? 0 : index < 49 ? 95 : 100;
+  }
+  const states = replay.agents.map(agent => structuredClone(agent.sim.agent));
+  const snapshot = populationFrame(replay, .5, 0, true);
+  assert.equal(snapshot.focus, 95);
+  assert.equal(snapshot.agents.find(group => group.memberIds.includes(replay.selected))?.opacity, 1);
+  assert.equal(snapshot.population.alive, 50);
+  assert.deepEqual(replay.agents.map(agent => agent.sim.agent), states);
+});
 
 test("camera holds ties and one-chicken deficits, then switches on a two-chicken gap", () => {
   const camera = new PopulationCamera();

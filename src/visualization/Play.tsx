@@ -159,7 +159,7 @@ export function Play() {
       }}
       onPointerCancel={() => {gesture.current = undefined;}} onLostPointerCapture={() => {gesture.current = undefined;}} />
     <div className="race-label"><span>RACE THE AI · V{variant}</span><small title={seed}>MAP: {seed}</small></div>
-    <div className="race-scores" aria-label="Race scores"><div><span>YOU</span><b>{status.you.toLocaleString()}</b></div><div><span>AI</span><b>{status.ai.toLocaleString()}</b></div><small>{!status.aiAlive ? `AI ${cause(status.aiDeath)}` : "AI = GHOST CHICKEN"}</small></div>
+    <div className="race-scores" aria-label="Race scores"><div><span>YOU</span><b>{status.you.toLocaleString()}</b></div><div><span>AI</span><b>{status.ai.toLocaleString()}</b></div>{!status.aiAlive && <small>AI {cause(status.aiDeath)}</small>}</div>
     <div className="replay-menu"><ReplayButtons onSettings={() => {pause(); setSetup(true);}} settingsOpen={setup} /></div>
     <aside className={`race-ai-inset${offscreen && started ? " is-visible" : ""}`} aria-label="AI camera when off screen" aria-hidden={!offscreen || !started}>
       <div>AI CAMERA <span>{status.ai.toLocaleString()}</span></div><div ref={insetHost} className="race-inset-world" />
@@ -176,7 +176,7 @@ export function Play() {
     {!ready && <div className="race-loading" role="status">{error || "Loading the saved AI…"}</div>}
     {setup && <ReplayHelpDialog title="Race the AI" className="race-setup-dialog" closeLabel="Close race setup" onClose={() => setSetup(false)}>
       <div className="race-variant-toggle" role="group" aria-label="Race variant">{([1,2] as const).map(choice=><button type="button" key={choice} aria-pressed={variant===choice} onClick={()=>{pause();setVariant(choice);}}>Variant {choice}</button>)}</div>
-      <p className="race-variant-summary">{variant === 1 ? "Cars & roads · Final saved AI" : "Cars, trains & logs · Frozen final AI"}</p>
+      <p className="race-variant-summary">{variant === 1 ? "Cars & roads" : "Cars, trains & logs"}</p>
       <form className="race-setup-form" onSubmit={event => {event.preventDefault(); reset(draft, true);}}>
         <label htmlFor="race-seed">MAP SEED</label><div className="race-seed-entry"><input id="race-seed" value={draft} maxLength={80} onChange={event => setDraft(event.target.value)} placeholder="Any word or number" autoComplete="off" /><button className="race-start" disabled={!ready} type="submit">Play</button></div>
         <p>Any word or number. Move to start the AI.</p>

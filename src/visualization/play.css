@@ -59,3 +59,5 @@
 .race-move-up { grid-area: 1/2; } .race-move-left { grid-area: 2/1; } .race-move-down { grid-area: 2/2; } .race-move-right { grid-area: 2/3; }
 @media(pointer:coarse) { .race-touch-controls { display: grid; } }
 @media(max-width:600px) { .race-label { left: 16px; top: 22px; max-width: calc(100% - 180px); } .race-label > span { font-size: 11px; } .race-label small { font-size: 7px; } .race-scores { right: 16px; min-width: 118px; } .race-scores b { font-size: 22px; } .race-ai-inset { right: 16px; } .race-transport > span { font-size: 7px; } .race-result { bottom: 138px; } .race-transport > div { padding: 9px; } }
+
+.race-variant-toggle button:focus-visible { outline: none; text-decoration: underline; text-underline-offset: 4px; }

@@ -6,7 +6,7 @@ import { parseEvolution } from "../evolution/serialization";
 import { loadCohort } from "./cohorts";
 import { highlightAutomaticSpeed, highlightBestScore, highlightReplayConfig, HIGHLIGHT_REPLAY_OPTIONS } from "./highlight-playback";
 import type { HomepageData } from "./homepage-data";
-import { populationFrame } from "./population-density";
+import { FRONT_PACK_ROWS, populationFrame } from "./population-density";
 import { WorldView } from "./three/scene";
 import { renderExperimentIcons } from "./experiment-icon-recorder";
 
@@ -76,6 +76,7 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
       const speed = () => range ? 1 : highlightAutomaticSpeed(replay.decisions * scale, plan);
       let credit = 0, observedSpeed = 1, terminal = 0, frame = 0;
       const recordedSpeeds = new Set<number>();
+      const cameraFrames: {frame: number; decision: number; followedId: number; count: number; frontRow: number; focusRow: number; gap: number}[] = [];
       const lastFrame = range ? Math.round((range.end - range.start) * hop * fps) : Infinity;
       while (range ? frame <= lastFrame : terminal < 9) {
         let alpha: number;
@@ -103,7 +104,17 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
           alpha = replay.finished ? 1 : Math.min(1, credit / hop);
         }
         recordedSpeeds.add(range ? 1 : observedSpeed);
-        view.update(populationFrame(replay, alpha, frame / fps * 1000));
+        const snapshot = populationFrame(replay, alpha, frame / fps * 1000, clip.previewKind === "population-mix");
+        if (clip.previewKind === "population-mix" && snapshot.agents.length) {
+          const frontRow = Math.max(...snapshot.agents.map(group => group.row));
+          const tracked = snapshot.agents.find(group => group.memberIds.includes(replay.selected));
+          const largestEligible = Math.max(...snapshot.agents.filter(group => frontRow - group.row <= FRONT_PACK_ROWS).map(group => group.populationCount));
+          if (!tracked || frontRow - tracked.row > FRONT_PACK_ROWS || tracked.opacity !== 1 || tracked.populationCount !== largestEligible)
+            throw new Error(`Bloodline front-pack camera invariant failed at frame ${frame}`);
+          cameraFrames.push({frame, decision: replay.decisions, followedId: replay.selected,
+            count: tracked.populationCount, frontRow, focusRow: tracked.row, gap: frontRow - tracked.row});
+        }
+        view.update(snapshot);
         const score = range && alpha < 1 ? Math.max(...replay.agents.map(agent => agent.previous.maxRow)) : highlightBestScore(replay);
         const blob = await new Promise<Blob>((resolve, reject) => requestAnimationFrame(() => {
           context.drawImage(view!.renderer.domElement, 0, 0);
@@ -129,7 +140,10 @@ document.querySelector<HTMLButtonElement>("#record")!.onclick = async event => {
       const response = await fetch(`${sink}/finish/${clip.id}`, {method: "POST",
         body: JSON.stringify({fps, speed: range ? 1 : "auto", decisionRange: range, frameCount: frame,
           recordedSpeeds: [...recordedSpeeds], completed: replay.finished, decisions: replay.decisions,
-          highestScore: highlightBestScore(replay), population: genomes.length, mapSeed: replay.seed})});
+          highestScore: highlightBestScore(replay), population: genomes.length, mapSeed: replay.seed,
+          ...(cameraFrames.length ? {frontPackCamera: {maximumTrailingRows: FRONT_PACK_ROWS,
+            verifiedFrames: cameraFrames.length, maximumObservedTrailingRows: Math.max(...cameraFrames.map(item => item.gap)),
+            densestEligibleEveryFrame: true, followedGroupOpaqueEveryFrame: true}, cameraFrames} : {})})});
       if (!response.ok) throw new Error(await response.text());
       view.dispose(); view = undefined;
     }

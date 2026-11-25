@@ -2,6 +2,7 @@ import type { Replay } from "../evolution/replay";
 import type { SceneAgent, SceneSnapshot } from "./three/scene";
 
 export const SINGLE_CHICKEN_OPACITY = 0.20;
+export const FRONT_PACK_ROWS = 10;
 export type DensityGroup = SceneAgent & { populationCount: number; memberIds: number[] };
 
 /** Keep a living target through close density changes; rate-limit voluntary cuts. */
@@ -10,10 +11,27 @@ export class PopulationCamera {
   private switchTimes: number[] = [];
   private lastDecision = -1;
 
+  constructor(private readonly frontBandRows?: number) {}
+
   follow(groups: DensityGroup[], decision: number, now: number) {
     if (decision < this.lastDecision) {
       this.followedId = undefined;
       this.switchTimes = [];
+    }
+    if (this.frontBandRows !== undefined) {
+      // Bloodline footage follows the densest group near the living front,
+      // including during interpolated hops. A distant crowd cannot win focus.
+      this.lastDecision = decision;
+      const front = Math.max(-Infinity, ...groups.map(group => group.row));
+      const eligible = groups.filter(group => front - group.row <= this.frontBandRows!);
+      const leader = eligible.reduce<DensityGroup | undefined>((best, group) =>
+        !best || group.populationCount > best.populationCount ||
+          (group.populationCount === best.populationCount && group.row > best.row)
+          ? group : best, undefined);
+      if (!leader) return this.followedId;
+      const current = eligible.find(group => this.followedId !== undefined && group.memberIds.includes(this.followedId));
+      if (!current || current.populationCount < leader.populationCount) this.followedId = leader.id;
+      return this.followedId;
     }
     // Decide on completed hops, never on the render rate or an interpolated split.
     if (decision === this.lastDecision) return this.followedId;
@@ -38,7 +56,7 @@ export class PopulationCamera {
   }
 }
 
-const cameras = new WeakMap<Replay, { agents: Replay["agents"]; camera: PopulationCamera }>();
+const cameras = new WeakMap<Replay, { agents: Replay["agents"]; camera: PopulationCamera; frontPack: boolean }>();
 
 /** Collapse coincident living agents before drawing, so alpha never stacks. */
 export function populationDensity(agents: SceneAgent[]) {
@@ -65,17 +83,18 @@ export function populationDensity(agents: SceneAgent[]) {
 }
 
 /** All networks are simulated; the camera holds its target through close races. */
-export function populationFrame(replay: Replay, alpha = 1, now = performance.now()): SceneSnapshot & {
+export function populationFrame(replay: Replay, alpha = 1, now = performance.now(), frontPack = false): Omit<SceneSnapshot, "agents"> & {
+  agents: DensityGroup[];
   population: { alive: number; total: number; largest: number; groups: number; eagleDeaths: number };
 } {
   let snapshot = replay.snapshot(alpha, 0, true);
   const density = populationDensity(snapshot.agents);
   let state = cameras.get(replay);
-  if (!state || state.agents !== replay.agents) {
-    state = { agents: replay.agents, camera: new PopulationCamera() };
+  if (!state || state.agents !== replay.agents || state.frontPack !== frontPack) {
+    state = { agents: replay.agents, camera: new PopulationCamera(frontPack ? FRONT_PACK_ROWS : undefined), frontPack };
     cameras.set(replay, state);
   }
-  const settled = alpha === 1 ? density : populationDensity(replay.snapshot(1, 0, true).agents);
+  const settled = alpha === 1 || frontPack ? density : populationDensity(replay.snapshot(1, 0, true).agents);
   const followedId = state.camera.follow(settled.groups, replay.decisions, now);
   if (followedId !== undefined && followedId !== replay.selected) {
     replay.selected = followedId;
@@ -83,6 +102,10 @@ export function populationFrame(replay: Replay, alpha = 1, now = performance.now
   }
   // Follow the actual member, even when another member represents its glyph.
   const followed = snapshot.agents.find(agent => agent.id === followedId);
+  if (frontPack) {
+    const followedGroup = density.groups.find(group => followedId !== undefined && group.memberIds.includes(followedId));
+    if (followedGroup) followedGroup.opacity = 1;
+  }
   return { ...snapshot, agents: density.groups,
     focus: followed?.row ?? snapshot.focus, focusX: followed?.x,
     population: { alive: density.alive, total: replay.agents.length,

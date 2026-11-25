@@ -2,7 +2,7 @@
 
 **Teaching the chicken to cross the road.**
 
-An interactive machine learning experiment that teaches AI to play Crossy Road through neuroevolution. Watch neural networks evolve from random movement to navigating traffic, trains, and rivers over hundreds of generations—or race against the AI yourself!
+An interactive machine learning experiment that teaches AI to play Crossy Road through neuroevolution. Watch neural networks evolve from random movement to navigating traffic, trains, and rivers over hundreds of generations. Or race against the AI yourself!
 
 Inspired by [Trackmania AI experiments](https://www.youtube.com/watch?v=Dw3BZ6O_8LY) and [Code Bullet’s AI projects](https://www.youtube.com/@CodeBullet).
 
@@ -134,12 +134,12 @@ Ten saved networks from each of the 150 display generations run together on one 
     <th width="50%">Variant 2</th>
   </tr>
   <tr>
-    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/all-generations-1x.gif" width="384" height="216" alt="A mixed population of 1,500 saved Variant 1 chickens on one map"></a></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif?sequence=2" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
+    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 1 chickens on one map"></a></td>
+    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
   </tr>
 </table>
 
-Each variant mixes ten unchanged saved networks from every one of its 150 display generations: 1,500 chickens on the same map. The Variant 2 clip uses map 318, starting around row 25: logs begin at row 26, trains at row 31, and there are no lily-pad rows through row 150. These clips preserve the original networks and source manifests.
+Each variant mixes ten unchanged saved networks from every one of its 150 display generations: 1,500 chickens on the same map. The Variant 2 clip uses map 318, starting around row 25: logs begin at row 26, trains at row 31, and there are no lily-pad rows through row 150. The camera follows the largest group within ten rows of the living front, keeping that group solid white. These clips preserve the original networks and source manifests.
 
 ## Run locally
 

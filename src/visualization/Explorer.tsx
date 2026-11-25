@@ -55,7 +55,10 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
   const selected = {variant, phase: available.sequence ? "sequence" : available.phases[0].id, generation: record.generation, seed};
   const cards = homepageMilestones(variant).map(item => ({generation:item.generation,
     title:item.title,description:item.description,poster:sitePath(`/previews/${item.id}.jpg`)}));
-  useEffect(() => { dialog.current!.showModal(); }, []);
+  useEffect(() => {
+    dialog.current!.showModal();
+    dialog.current!.querySelector<HTMLElement>("#explorer-heading")!.focus({preventScroll: true});
+  }, []);
   const preview = (nextGeneration: number, nextSeed = homepageMilestones(variant).find(item=>item.generation===nextGeneration)?.previewSeed ?? seed) => {
     setGeneration(nextGeneration);setSeed(nextSeed);setSeedText(String(nextSeed));
     onPreview({variant,phase:available.sequence ? "sequence" : available.phases[0].id,generation:nextGeneration,seed:nextSeed});
@@ -63,7 +66,7 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
   return <dialog ref={dialog} className="explorer-dialog" aria-labelledby="explorer-heading"
     onClick={event => closeOnBackdrop(event, onClose)}
     onCancel={event => {event.preventDefault(); onClose();}}>
-    <div className="explorer-dialog-heading"><h1 id="explorer-heading">{advanced ? "Advanced Replay" : "Choose a replay"}</h1>
+    <div className="explorer-dialog-heading"><h1 id="explorer-heading" tabIndex={-1}>{advanced ? "Advanced Replay" : "Choose a replay"}</h1>
       <div className="explorer-heading-actions">
         <div className="explorer-variant-toggle" role="group" aria-label="Replay variant">
           {catalog.variants.map(item => <button type="button" key={item.id} aria-pressed={variant === item.id}
