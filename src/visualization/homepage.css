@@ -36,6 +36,7 @@
 .home-clip.is-playing video { opacity: 1; }
 .home-clip.is-playing img { opacity: 0; }
 .home-clip-error { position: absolute; left: 10px; bottom: 10px; background: #263e31d9; padding: 3px 9px; font: 12px/1.6 Arial,Helvetica,sans-serif; pointer-events: none; }
+.home-clip-tap { display: none; }
 .home-highlight .home-clip img { filter: grayscale(.25) brightness(.94); transition: filter .15s ease; }
 .home-highlight .home-clip:is(:hover,:focus-visible,.is-playing) img { filter: none; }
 .home-clip-placeholder { display: grid; place-items: center; color: #334b2d; }
@@ -102,6 +103,11 @@
 @media (min-width: 1500px) { .home-variant-row { gap: 42px; } }
 @media (max-width: 1100px) { .home-container { width: calc(100% - 56px); } .home-variant-row { gap: 25px; } .home-header nav { gap: 20px; } .home-intro { gap: 28px; } }
 @media (max-width: 760px) {
+  .home-highlight .home-clip:not(.is-playing) img,
+  .home-highlight .home-clip:not(.is-playing) video { filter: grayscale(.65) brightness(.72); }
+  .home-highlight .home-clip:not(.is-playing) .home-clip-tap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #fff; font: 600 11px/1.3 Arial,Helvetica,sans-serif; text-shadow: 0 1px 3px #172b22; pointer-events: none; }
+  .home-clip-tap svg { width: 28px; height: 28px; padding: 6px; border: 1px solid #ffffffa8; border-radius: 50%; background: #263e31b8; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .home-highlight .home-clip-error { display: none; }
   .home-variant-row { grid-template-columns: 1fr; gap: 22px; }
   .home-highlight-track { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-flow: row; grid-auto-columns: auto; gap: 23px 18px; overflow: visible; padding-bottom: 0; }
   .home-rail-controls { display: none; }

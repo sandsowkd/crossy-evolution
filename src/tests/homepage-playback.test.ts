@@ -61,6 +61,27 @@ test("only the next nearby main video warms metadata after current playback is r
   assert.equal(next.media.autoplay,false);assert.equal(next.media.plays,0);assert.equal(far.media.src,"");
 });
 
+test("a requested highlight cancels competing downloads and the latest tap wins immediately",async()=>{
+  for(const viewport of [phone,{...phone,width:1280}]){
+    const playback=new HomepagePlayback(),main=add(playback,100),next=add(playback,1000);
+    const first=add(playback,300,false),second=add(playback,500,false);
+    playback.refresh(viewport);await settle();main.media.readyState=3;
+    playback.refresh(viewport);assert.notEqual(next.media.src,"");
+    first.control.request(true);await settle();
+    assert.equal(first.media.paused,false);assert.equal(first.media.src,"/mobile.mp4","Small desktop cards use the compact recording too");
+    assert.equal(main.media.paused,true);assert.equal(main.media.src,"");assert.equal(next.media.src,"");
+    first.media.readyState=3;first.media.dispatchEvent(new Event("canplay"));
+    assert.equal(next.media.src,"","Requested highlights never warm a competing download");
+    second.control.request(true);await settle();
+    assert.equal(first.media.paused,true);assert.equal(first.media.src,"");assert.equal(second.media.paused,false);
+    first.control.request(false);await settle();
+    assert.equal(second.media.paused,false,"A delayed old release cannot cancel the latest tap");
+    second.control.request(false);await settle();
+    assert.equal(second.media.src,"");assert.equal(main.media.paused,false,"Automatic playback resumes when the request ends");
+    assert.equal(main.media.src,viewport.width>760?"/desktop.mp4":"/mobile.mp4");
+  }
+});
+
 test("autoplay rejection becomes a recoverable tap action, without retrying on every scroll",async()=>{
   for(const name of ["NotAllowedError","AbortError"]){
     const playback=new HomepagePlayback(),entry=add(playback,100);entry.media.denied=true;entry.media.denialName=name;

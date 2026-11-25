@@ -43,7 +43,11 @@ export class HomepagePlayback {
     };
     this.entries.set(entry.id,entry);this.observer?.observe(entry.host);this.schedule();
     return {
-      request:(requested: boolean)=>{entry.requested=requested;entry.blocked=false;this.refresh();},
+      request:(requested: boolean)=>{
+        // A new tap or hover supersedes the previous request immediately, before React commits.
+        if(requested)for(const other of this.entries.values())other.requested=false;
+        entry.requested=requested;entry.blocked=false;this.refresh();
+      },
       retry:()=>{
         entry.blocked=false;
         if(entry.state==="error")entry.media.load();
@@ -111,15 +115,20 @@ export class HomepagePlayback {
     }
     // Warm only the next nearby automatic preview after the current one can play.
     const active=measurements.filter(item=>selected.has(item.id));
+    const requested=active.some(item=>item.requested);
     const last=active.at(-1)?.id??-1;
-    const warm=!area.hidden&&active.some(item=>item.entry.media.readyState>=3)
+    const warm=!area.hidden&&!requested&&active.some(item=>item.entry.media.readyState>=3)
       ?measurements.find(item=>item.id>last&&item.automatic&&!selected.has(item.id)&&item.box.top<area.bottom+320&&item.box.bottom>area.top)?.id:undefined;
+    // Release competing downloads and decoders before starting the requested highlight.
     for(const {entry,box} of measurements){
-      if(entry.selected){this.source(entry,area.width<=760);this.play(entry);}
-      else if(entry.id===warm){entry.media.autoplay=false;this.source(entry,area.width<=760,"metadata");}
-      else if(entry.media.getAttribute("src")&&(area.hidden||box.bottom<area.top-(area.bottom-area.top)||box.top>area.bottom+(area.bottom-area.top))){
+      if(!entry.selected&&entry.id!==warm&&entry.media.getAttribute("src")&&
+        (requested||!entry.automatic||area.hidden||box.bottom<area.top-(area.bottom-area.top)||box.top>area.bottom+(area.bottom-area.top))){
         entry.media.autoplay=false;entry.media.removeAttribute("src");entry.media.load();this.state(entry,"idle");
       }
+    }
+    for(const {entry} of measurements){
+      if(entry.selected){this.source(entry,area.width<=760);this.play(entry);}
+      else if(entry.id===warm){entry.media.autoplay=false;this.source(entry,area.width<=760,"metadata");}
     }
   }
   private state(entry: Entry,state: PreviewState){if(entry.alive&&state!==entry.state){entry.state=state;entry.onState(state);}}
@@ -129,7 +138,8 @@ export class HomepagePlayback {
     entry.media.preload=preload;entry.media.autoplay=entry.selected&&entry.automatic;
     if(!entry.media.getAttribute("src")){
       if(entry.poster)entry.media.poster=entry.poster;
-      entry.media.src=narrow&&entry.mobileSource?entry.mobileSource:entry.source;
+      // Highlight cards are at most 260 CSS pixels wide, including on desktop.
+      entry.media.src=(narrow||!entry.automatic)&&entry.mobileSource?entry.mobileSource:entry.source;
       this.state(entry,"loading");entry.media.load();
     }
   }

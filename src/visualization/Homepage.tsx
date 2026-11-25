@@ -56,12 +56,17 @@ function Clip({ clip, title, active, activate, playback, eager = false }: {
   return <button ref={host} type="button" className={`home-clip${active ? " is-active" : ""}${active && state==="playing" ? " is-playing" : ""}`}
     data-preview-id={clip.id} data-playback-state={state}
     aria-label={`${active ? "Pause" : "Play"} preview: ${title}`} aria-pressed={active}
-    onPointerEnter={event => { if (event.pointerType === "mouse") change(true); }}
-    onPointerLeave={event => { if (event.pointerType === "mouse") change(false); }}
+    aria-busy={active && state==="loading"}
+    onPointerEnter={event => { if (event.pointerType === "mouse" && matchMedia("(min-width: 761px)").matches) change(true); }}
+    onPointerLeave={event => { if (event.pointerType === "mouse" && matchMedia("(min-width: 761px)").matches) change(false); }}
     onFocus={event => { if (event.currentTarget.matches(":focus-visible")) change(true); }}
     onBlur={() => change(false)} onClick={() => change(!active||state==="blocked"||state==="error")} onKeyDown={event => { if (event.key === "Escape") change(false); }}>
     <img src={sitePath(clip.poster)} alt={`${title}, saved generation ${clip.generation} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
     <video ref={video} muted loop playsInline preload="none" aria-hidden="true" />
+    <span className="home-clip-tap" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M13 17V7a2 2 0 0 1 4 0v7l2-1 3 1 3 1v7c0 4-3 7-7 7h-1c-3 0-5-1-7-4l-5-6a2 2 0 0 1 3-3l5 4" /><path d="M9 4 7 2m14 2 2-2M15 2V0" /></svg>
+      <span>{active ? state==="error" ? "Tap to retry" : state==="blocked" ? "Tap to play" : "Loading…" : "Tap to play"}</span>
+    </span>
     {active&&(state==="blocked"||state==="error")&&<span className="home-clip-error">{state==="blocked"?"Tap to play":"Tap to retry"}</span>}
   </button>;
 }
