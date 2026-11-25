@@ -15,7 +15,7 @@ const copy=(file:string)=>{
   const target=path.join(staging,file);fs.mkdirSync(path.dirname(target),{recursive:true});
   fs.cpSync(path.join(build,file),target,{recursive:true});
 };
-for(const file of ["index.html","assets","previews","upstream","homepage-data.json","highlights.json","explorer-catalog.json",
+for(const file of ["index.html","favicon.svg","favicon.ico","apple-touch-icon.png","assets","previews","upstream","homepage-data.json","highlights.json","explorer-catalog.json",
   "demo.json","trained-checkpoint.json","flock-preview.json","replay-audit.html","replay-audit","variant-2"]) copy(file);
 const archives=new Map<string,string>();
 function collect(value:unknown) {

@@ -67,4 +67,10 @@ npx tsx scripts/data/package-friends-preview.ts /path/to/website/crossyroadai
 
 The packager verifies every required population archive. The personal website serves this static snapshot through its existing Vercel configuration. Its homepage has a canonical URL and search/social metadata; parameterized replay pages and large data paths retain their crawler exclusions.
 
+### Standalone Vercel project
+
+Import `sandsowkd/crossy-road-ai` as its own Vercel project with repository root `./`, production branch `main`, and Node 24. The checked-in `vercel.json` selects Vite, fetches the pinned visual assets before building, and serves `dist/` at `/`. Replay and race deep links are rewritten to the app; saved populations and media remain static files. Nothing in this deployment runs training.
+
+Vercel's production URL supplies the canonical and social URLs during its build. When attaching a custom domain, set the production environment variable `VITE_SITE_URL` to its full origin (for example, `https://crossyroadai.com`) and redeploy. Leave it unset while using the project's Vercel URL. This project and the existing personal-site snapshot deploy independently.
+
 [Visual attribution and license](ATTRIBUTION.md)

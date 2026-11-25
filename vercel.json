@@ -1,0 +1,30 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run setup:assets && npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/play", "destination": "/" },
+    { "source": "/explore", "destination": "/" },
+    { "source": "/lab/:path*", "destination": "/" },
+    { "source": "/generation/:path*", "destination": "/" },
+    { "source": "/replay/:path*", "destination": "/" }
+  ],
+  "headers": [
+    {
+      "source": "/:section(play|explore|lab|generation|replay|training-cohorts|replay-audit|variant-2)/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "generation" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "replay" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    }
+  ]
+}
