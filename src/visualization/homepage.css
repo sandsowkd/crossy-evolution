@@ -170,3 +170,7 @@
 @media(max-width: 600px) { .home-intro .home-launch-actions .home-button { padding: 10px 12px; font-size: 13px; } }
 
 .home-affiliation { margin: -12px 0 30px; font-size: 12px; line-height: 1.6; color: var(--home-muted); }
+
+/* Native posters stay visible while loading; an opacity-hidden video can be suspended on phones. */
+.home-main-clip video, .home-clip.is-active video { opacity: 1; }
+.home-video-retry { position: absolute; inset: auto auto 12px 12px; padding: 8px 12px; border: 1px solid #fff; border-radius: 3px; background: #263e31e8; color: #fff; font: 13px/1.4 Arial,sans-serif; cursor: pointer; }

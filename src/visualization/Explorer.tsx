@@ -155,6 +155,6 @@ export function Explorer({initialUrl = window.location.href, initialCatalog}: {i
           {catalog && <button onClick={() => setMenu(true)}>Choose another replay</button>}</div>}
       </main>}
     {menu && catalog && <Picker catalog={catalog} selection={shown}
-      onChoose={choose} onPreview={next => {setAutoStart(false); setSelection(next);}} onClose={() => {setSelection(shown); setMenu(false);}} />}
+      onChoose={choose} onPreview={next => {setAutoStart(false); setSelection(next);}} onClose={() => choose(shown)} />}
   </>;
 }

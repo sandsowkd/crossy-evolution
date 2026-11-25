@@ -25,7 +25,7 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
   const session = useRef<RaceSession>(undefined);
   const clock = useRef({running: false, credit: 0});
   const cameraVisibility = useRef(new RaceCameraVisibility());
-  const controls = useRef({setup: true, started: false});
+  const controls = useRef({setup: true, started: false}), armOnReady = useRef(false);
   const gesture = useRef<{id: number; x: number; y: number; moved: boolean}>(undefined);
   const [variant, setVariant] = useState<1 | 2>(() => initialVariant(initialUrl));
   const [policies, setPolicies] = useState<Partial<Record<1 | 2, RacePolicy>>>({});
@@ -130,9 +130,10 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
   useEffect(() => {
     if (!assetsReady || !policy) return;
     session.current = new RaceSession(policy,currentSeed.current);
-    clock.current = {running:false,credit:0}; gesture.current = undefined;
+    const arm=armOnReady.current;armOnReady.current=false;
+    clock.current = {running:arm,credit:0}; gesture.current = undefined;
     cameraVisibility.current.reset();
-    setStatus(initialStatus);setOffscreen(false);setStarted(false);setRunning(false);
+    setStatus(initialStatus);setOffscreen(false);setStarted(arm);setRunning(arm);
     world.current!.clear();inset.current!.clear();
     world.current!.update(session.current.snapshot());inset.current!.update(session.current.snapshot(0,"bot"));
     history.replaceState(null,"",sitePath(`/play?${new URLSearchParams({seed:currentSeed.current,variant:String(variant)})}`));
@@ -142,6 +143,12 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
     if (!session.current || !ready || session.current.finished) return;
     if (!started) setStarted(true);
     if (clock.current.running) pause();
+    else resume();
+  };
+  const closeSetup = () => {
+    setSetup(false);
+    if (!ready) {armOnReady.current=true;return;}
+    if (!started || seedInput(draft.trim() || "561909326")!==currentSeed.current || session.current?.finished) reset(draft,true);
     else resume();
   };
   const move = (action: Action) => {if (clock.current.running) session.current?.command(action);};
@@ -167,8 +174,9 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
       }}
       onPointerCancel={() => {gesture.current = undefined;}} onLostPointerCapture={() => {gesture.current = undefined;}} />
     <div className="race-label"><span>RACE THE AI · V{variant}</span><small title={seed}>MAP: {formatMapSeed(raceSeed(seed))}</small></div>
-    <div className="race-scores" aria-label="Race scores"><div><span>YOU</span><b>{status.you.toLocaleString()}</b></div><div><span>AI</span><b>{status.ai.toLocaleString()}</b></div>{!status.aiAlive && <small>AI {cause(status.aiDeath)}</small>}</div>
-    <div className="replay-menu"><ReplayButtons onSettings={() => {pause(); setSetup(true);}} settingsOpen={setup} /></div>
+    <div className="race-scores" aria-label="Race scores"><div className="race-score-row"><span>YOU</span><b>{status.you.toLocaleString()}</b></div><div className="race-score-row"><span>AI</span><b>{status.ai.toLocaleString()}</b></div>{!status.aiAlive && <small>AI {cause(status.aiDeath)}</small>}
+      <div className="replay-menu"><ReplayButtons onSettings={() => {pause(); setSetup(true);}} settingsOpen={setup} /></div>
+    </div>
     <aside className={`race-ai-inset${offscreen && started ? " is-visible" : ""}`} aria-label="AI camera when off screen" aria-hidden={!offscreen || !started}>
       <div>AI CAMERA <span>{status.ai.toLocaleString()}</span></div><div ref={insetHost} className="race-inset-world" />
     </aside>
@@ -182,7 +190,7 @@ export function Play({initialUrl = window.location.href}: {initialUrl?: string})
     <div className="race-touch-controls" aria-label="Touch movement controls">{([["UP", "↑"], ["LEFT", "←"], ["DOWN", "↓"], ["RIGHT", "→"]] as const).map(([action, label]) => <button key={action} className={`race-move-${action.toLowerCase()}`} aria-label={`Move ${action.toLowerCase()}`} disabled={!running || !status.youAlive} onPointerDown={event => {event.preventDefault(); move(action);}} onClick={event => {if (event.detail === 0) move(action);}}>{label}</button>)}</div>
     <div className="race-transport"><span>ARROWS / WASD · TAP / SWIPE</span><div><button disabled={!ready || !status.youAlive} onClick={toggle}>{running ? "Pause" : started ? "Resume" : "Play"}</button><button disabled={!ready} onClick={() => reset(seed, true)}>Restart</button><button onClick={() => {pause(); setSetup(true);}}>Map</button></div></div>
     {!ready && <div className="race-loading" role="status">{error || "Loading the saved AI…"}</div>}
-    {setup && <ReplayHelpDialog title="Race the AI" className="race-setup-dialog" closeLabel="Close race setup" onClose={() => setSetup(false)}>
+    {setup && <ReplayHelpDialog title="Race the AI" className="race-setup-dialog" closeLabel="Close race setup" onClose={closeSetup}>
       <div className="race-variant-toggle" role="group" aria-label="Race variant">{([1,2] as const).map(choice=><button type="button" key={choice} aria-pressed={variant===choice} onClick={()=>{pause();setVariant(choice);}}>Variant {choice}</button>)}</div>
       <p className="race-variant-summary">{variant === 1 ? "Cars & roads" : "Cars, trains & logs"}</p>
       <form className="race-setup-form" onSubmit={event => {event.preventDefault(); reset(draft, true);}}>

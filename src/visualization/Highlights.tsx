@@ -187,8 +187,7 @@ export function ReplayStage({entry, mapSeed, children, autoStart = false, suspen
         <strong aria-label="Chickens alive">{status.alive} / {status.total || entry?.populationSize || 0} chickens alive</strong>
         <span aria-label="Elapsed time">{(status.tick / 60).toFixed(1)}s</span>
       </div>
-      <div className="highlight-score" aria-label="Best score"><strong>{status.score}</strong><span>BEST SCORE</span></div>
-      {children}
+      <div className="highlight-score" aria-label="Best score"><strong>{status.score}</strong><span>BEST SCORE</span>{children}</div>
       <div className="highlight-transport" aria-label="Replay controls">
         <div className="highlight-controls">
           <button disabled={!ready || !cohortReady} onClick={restart}>Restart</button>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AUTHOR_WEBSITE, homepageMilestones, REPOSITORY } from "./site-content";
 import { explorerUrl, milestoneUrl } from "./replay-links";
 import type { HomepageData, PreviewClip } from "./homepage-data";
+import { HomepagePlayback, type PreviewState } from "./homepage-playback";
 import { ExperimentIcon } from "./ExperimentIcon";
 import "./homepage.css";
 
@@ -26,39 +27,42 @@ function GithubLink() {
   return <a className="home-github" href={REPOSITORY} target="_blank" rel="noreferrer" aria-label="GitHub repository"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.4-1.22.71-1.5-2.5-.28-5.12-1.25-5.12-5.54 0-1.23.44-2.23 1.16-3.01-.12-.29-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15A10.8 10.8 0 0 1 12 6.15c.95 0 1.9.13 2.8.38 2.14-1.45 3.07-1.15 3.07-1.15.61 1.55.23 2.69.12 2.98.72.78 1.15 1.78 1.15 3.01 0 4.3-2.63 5.26-5.13 5.54.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z" /></svg></a>;
 }
 
-/** Recorded replays keep the homepage independent of WebGL simulation costs. */
-function Clip({ clip, title, active, activate, eager = false }: {
-  clip: PreviewClip; title: string; active: boolean; activate: (active: boolean) => void; eager?: boolean;
+function usePreviewVideo<T extends HTMLElement>(clip: PreviewClip, playback: HomepagePlayback, automatic: boolean, onHidden?: ()=>void) {
+  const host=useRef<T>(null),video=useRef<HTMLVideoElement>(null);
+  const control=useRef<ReturnType<HomepagePlayback["register"]>>(undefined);
+  const [state,setState]=useState<PreviewState>("idle");
+  const hidden=useRef(onHidden);hidden.current=onHidden;
+  useEffect(()=>{
+    const registration=playback.register({host:host.current!,media:video.current!,source:sitePath(clip.video),
+      mobileSource:clip.mobileVideo&&sitePath(clip.mobileVideo),poster:sitePath(clip.poster),paired:clip.previewKind==="population-mix",automatic,onState:setState,onHidden:()=>hidden.current?.()});
+    control.current=registration;
+    return ()=>{registration.dispose();control.current=undefined;};
+  },[playback,clip.video,clip.mobileVideo,automatic]);
+  return {host,video,control,state};
+}
+
+/** Recordings share a small decoder budget; highlights play only on request. */
+function Clip({ clip, title, active, activate, playback, eager = false }: {
+  clip: PreviewClip; title: string; active: boolean; activate: (active: boolean) => void; playback: HomepagePlayback; eager?: boolean;
 }) {
-  const video = useRef<HTMLVideoElement>(null);
-  const host = useRef<HTMLButtonElement>(null);
-  const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
-  useEffect(() => {
-    const media = video.current!;
-    if (active && !failed) {
-      if (!media.getAttribute("src")) media.src = sitePath(clip.video);
-      void media.play().catch(() => { /* Leaving before loading cancels play. */ });
-    } else {
-      media.pause();
-      media.currentTime = 0;
-      setReady(false);
-    }
-  }, [active, failed, clip.video]);
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) activate(false); });
-    observer.observe(host.current!);
-    return () => observer.disconnect();
-  }, [activate]);
-  return <button ref={host} type="button" className={`home-clip${active && ready ? " is-playing" : ""}`}
+  const {host,video,control,state}=usePreviewVideo<HTMLButtonElement>(clip,playback,false,()=>activate(false));
+  useEffect(()=>{control.current?.request(active);},[active,clip.video,control]);
+  const change=(next: boolean)=>{
+    control.current?.request(next);
+    if(next)control.current?.retry();
+    else if(video.current!.readyState)video.current!.currentTime=0;
+    activate(next);
+  };
+  return <button ref={host} type="button" className={`home-clip${active ? " is-active" : ""}${active && state==="playing" ? " is-playing" : ""}`}
+    data-preview-id={clip.id} data-playback-state={state}
     aria-label={`${active ? "Pause" : "Play"} preview: ${title}`} aria-pressed={active}
-    onPointerEnter={event => { if (event.pointerType === "mouse") activate(true); }}
-    onPointerLeave={event => { if (event.pointerType === "mouse") activate(false); }}
-    onFocus={event => { if (event.currentTarget.matches(":focus-visible")) activate(true); }}
-    onBlur={() => activate(false)} onClick={() => activate(!active)} onKeyDown={event => { if (event.key === "Escape") activate(false); }}>
+    onPointerEnter={event => { if (event.pointerType === "mouse") change(true); }}
+    onPointerLeave={event => { if (event.pointerType === "mouse") change(false); }}
+    onFocus={event => { if (event.currentTarget.matches(":focus-visible")) change(true); }}
+    onBlur={() => change(false)} onClick={() => change(!active||state==="blocked"||state==="error")} onKeyDown={event => { if (event.key === "Escape") change(false); }}>
     <img src={sitePath(clip.poster)} alt={`${title}, saved generation ${clip.generation} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
-    <video ref={video} muted loop playsInline preload="none" aria-hidden="true" onPlaying={() => setReady(true)} onError={() => setFailed(true)} />
-    {failed && <span className="home-clip-error">Open the replay below</span>}
+    <video ref={video} muted loop playsInline preload="none" aria-hidden="true" />
+    {active&&(state==="blocked"||state==="error")&&<span className="home-clip-error">{state==="blocked"?"Tap to play":"Tap to retry"}</span>}
   </button>;
 }
 
@@ -66,33 +70,18 @@ function ClipStats({ clip }: { clip: PreviewClip }) {
   return <div className="home-clip-stats"><b>High Score: {number(clip.highestScore)}</b></div>;
 }
 
-function MainClip({ clip, title, eager = false }: {clip: PreviewClip; title: string; eager?: boolean}) {
-  const host = useRef<HTMLDivElement>(null);
-  const video = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    const media = video.current!;
-    let visible = false;
-    const update = () => {
-      if (visible && !document.hidden) {
-        if (!media.getAttribute("src")) media.src = sitePath(clip.video);
-        void media.play().catch(() => { /* Muted playback resumes when permitted. */ });
-      }
-      else media.pause();
-    };
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
-    observer.observe(host.current!);
-    document.addEventListener("visibilitychange", update);
-    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); media.pause(); };
-  }, [clip.video]);
-  return <div ref={host} className={`home-clip home-main-clip${ready ? " is-playing" : ""}`} aria-label={`${title}, looping gameplay`}>
+function MainClip({ clip, title, playback, eager = false }: {clip: PreviewClip; title: string; playback: HomepagePlayback; eager?: boolean}) {
+  const {host,video,control,state}=usePreviewVideo<HTMLDivElement>(clip,playback,true);
+  return <div ref={host} className={`home-clip home-main-clip${state==="playing" ? " is-playing" : ""}`}
+    data-preview-id={clip.id} data-playback-state={state} aria-label={`${title}, looping gameplay`}>
     <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
-    <video ref={video} muted loop playsInline preload="none" aria-label={`${title} gameplay`} onPlaying={() => setReady(true)} />
+    <video ref={video} autoPlay muted loop playsInline preload="none" aria-label={`${title} gameplay`} />
+    {(state==="blocked"||state==="error")&&<button type="button" className="home-video-retry" onClick={()=>control.current?.retry()} aria-label={`Play ${title} gameplay`}>{state==="blocked"?"Tap to play":"Retry preview"}</button>}
   </div>;
 }
 
-function HighlightRail({ variant, clips, active, setActive }: {
-  variant: 1 | 2; clips: Map<string, PreviewClip>; active?: string;
+function HighlightRail({ variant, clips, active, setActive, playback }: {
+  variant: 1 | 2; clips: Map<string, PreviewClip>; active?: string; playback: HomepagePlayback;
   setActive: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
   const track = useRef<HTMLDivElement>(null);
@@ -124,7 +113,7 @@ function HighlightRail({ variant, clips, active, setActive }: {
         const clip = clips.get(item.id), key = `${variant}-${item.id}`;
         const title = `Gen ${item.generation}: ${item.title}`;
         return <article className="home-highlight" key={item.id}>
-          <div className="home-highlight-media">{clip ? <Clip clip={clip} title={title} active={active === key}
+          <div className="home-highlight-media">{clip ? <Clip clip={clip} title={title} active={active === key} playback={playback}
             activate={playing => setActive(current => playing ? key : current === key ? undefined : current)} /> : <div className="home-clip-placeholder">Loading preview…</div>}
           </div>
           <div className="home-highlight-copy"><h3 title={item.note}>{title}</h3>{clip && <ClipStats clip={clip} />}<p className="home-highlight-description">{item.description}</p>
@@ -156,6 +145,10 @@ function Experiment() {
 }
 
 export function Homepage({initialData}: {initialData?: HomepageData}) {
+  const host=useRef<HTMLElement>(null),manager=useRef<HomepagePlayback>(null);
+  if(!manager.current)manager.current=new HomepagePlayback();
+  const playback=manager.current;
+  useEffect(()=>playback.connect(host.current!),[playback]);
   const [data, setData] = useState<HomepageData | undefined>(initialData);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -176,7 +169,7 @@ export function Homepage({initialData}: {initialData?: HomepageData}) {
     return () => document.removeEventListener("visibilitychange", stop);
   }, []);
   const clips = new Map(data?.clips.map(clip => [clip.id, clip]));
-  return <main className="home-page">
+  return <main className="home-page" ref={host}>
     <a className="home-skip" href="#variants">Skip to previews</a>
     <div className="home-container" id="top">
       <section className="home-intro" aria-labelledby="home-heading">
@@ -190,16 +183,15 @@ export function Homepage({initialData}: {initialData?: HomepageData}) {
       <div className="home-variant-rows" id="variants">
         <section className="home-variant-row" aria-labelledby="variant-one-title">
           <article className="home-variant"><div className="home-card-heading"><h2 id="variant-one-title">Variant 1: Just cars and roads</h2><a className="home-button home-explore-button" href={explorerUrl()} target="_blank" rel="noreferrer" aria-label="Explore V1">Explore V1</a></div>
-            {clips.has("variant-1-main") ? <MainClip clip={clips.get("variant-1-main")!} title="Variant 1" eager /> : <div className="home-clip-placeholder">Loading preview…</div>}
+            {clips.has("variant-1-main") ? <MainClip playback={playback} clip={clips.get("variant-1-main")!} title="Variant 1" eager /> : <div className="home-clip-placeholder">Loading preview…</div>}
           </article>
-          <HighlightRail variant={1} clips={clips} active={active} setActive={setActive} />
+          <HighlightRail playback={playback} variant={1} clips={clips} active={active} setActive={setActive} />
         </section>
         <section className="home-variant-row" aria-labelledby="variant-two-title">
           <article className="home-variant"><div className="home-card-heading"><h2 id="variant-two-title">Variant 2: Cars, trains, and logs</h2><a className="home-button home-explore-button" href={explorerUrl(undefined, undefined, 2)} target="_blank" rel="noreferrer" aria-label="Explore V2">Explore V2</a></div>
-            {clips.has("variant-2-main") ? <MainClip clip={clips.get("variant-2-main")!} title="Variant 2" /> : <div className="home-clip-placeholder">Loading preview…</div>}
-            <div className="home-variant-caption"><span className="home-development-note">Frozen final AI · Training complete</span></div>
+            {clips.has("variant-2-main") ? <MainClip playback={playback} clip={clips.get("variant-2-main")!} title="Variant 2" /> : <div className="home-clip-placeholder">Loading preview…</div>}
           </article>
-          <HighlightRail variant={2} clips={clips} active={active} setActive={setActive} />
+          <HighlightRail playback={playback} variant={2} clips={clips} active={active} setActive={setActive} />
         </section>
       </div>
       <section className="home-future-variant" aria-labelledby="variant-three-title"><div><h2 id="variant-three-title">Variant 3: Speedruns (Coming soon!!!)</h2></div><p>Reach 100, 500, or 1,000 rows, or collect 10, 50, or 100 coins, as fast as possible, with time penalties for deaths.</p></section>
@@ -207,7 +199,7 @@ export function Homepage({initialData}: {initialData?: HomepageData}) {
       <section className="home-crowd" aria-labelledby="crowd-title"><div className="home-section-head"><div><h2 id="crowd-title">The entire bloodline (10 chickens from each generation)</h2></div></div>
         <div className="home-crowd-grid">{([1,2] as const).map(variant => <article key={variant}>
           <div className="home-card-heading"><h3>Variant {variant}</h3></div>
-          {clips.has(variant===1 ? "all-generations" : "variant-2-all-generations") ? <MainClip clip={clips.get(variant===1 ? "all-generations" : "variant-2-all-generations")!} title={`Variant ${variant} chickens from 150 saved generations`} /> : <div className="home-clip-placeholder">Loading population preview…</div>}
+          {clips.has(variant===1 ? "all-generations" : "variant-2-all-generations") ? <MainClip playback={playback} clip={clips.get(variant===1 ? "all-generations" : "variant-2-all-generations")!} title={`Variant ${variant} chickens from 150 saved generations`} /> : <div className="home-clip-placeholder">Loading population preview…</div>}
         </article>)}</div>
         <div className="home-launch-actions home-bottom-actions">
           <a className="home-button" href={sitePath("/play")} target="_blank" rel="noreferrer">Race against the AI</a>

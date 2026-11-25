@@ -2,6 +2,7 @@ export type PreviewClip = {
   id: string; variant: 1 | 2; generation: number; sourceGeneration?: number; population: number; mapSeed: number;
   highestScore: number; decisions: number; seconds: number; sourceArchive: string;
   video: string; poster: string;
+  mobileVideo?: string;
   automaticPlayback?: { finalGenomeId: number; finalScore: number; slowAtDecision: number; finishAtDecision: number };
   /** A normal-speed population excerpt; the linked live replay remains complete. */
   videoDecisionRange?: { start: number; end: number };

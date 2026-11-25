@@ -9,11 +9,11 @@
 .race-label > span { color: #fff461; font-size: 14px; }
 .race-label small { font: 9px/1.6 retro,monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .race-scores { position: absolute; top: max(22px,env(safe-area-inset-top)); right: max(20px,env(safe-area-inset-right)); min-width: 130px; text-shadow: 2px 2px #273c3f; pointer-events: none; }
-.race-scores > div { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.race-scores > .race-score-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .race-scores span { font-size: 10px; color: #fff461; }
 .race-scores b { font: 25px/1.45 retro,monospace; }
 .race-scores small { display: block; max-width: 210px; font: 7px/1.6 retro,monospace; text-align: right; }
-.race-page .replay-menu { top: 137px; }
+.race-scores .replay-menu { position: static; margin-top: 8px; pointer-events: auto; }
 .race-page button { cursor: pointer; }
 .race-page :is(a,button,input):focus-visible { outline: 3px solid #fff461; outline-offset: 3px; }
 .race-ai-inset { position: absolute; top: 188px; right: 20px; width: clamp(160px,19vw,230px); border: 2px solid white; background: #285768; box-shadow: 3px 3px #273c3f80; visibility: hidden; pointer-events: none; }
@@ -61,3 +61,8 @@
 @media(max-width:600px) { .race-label { left: 16px; top: 22px; max-width: calc(100% - 180px); } .race-label > span { font-size: 11px; } .race-label small { font-size: 7px; } .race-scores { right: 16px; min-width: 118px; } .race-scores b { font-size: 22px; } .race-ai-inset { right: 16px; } .race-transport > span { font-size: 7px; } .race-result { bottom: 138px; } .race-transport > div { padding: 9px; } }
 
 .race-variant-toggle button:focus-visible { outline: none; text-decoration: underline; text-underline-offset: 4px; }
+
+@media(max-width:600px) {
+  .race-ai-inset { left: max(8px,env(safe-area-inset-left)); right: auto; top: calc(max(18px,env(safe-area-inset-top)) + 52px); width: clamp(122px,35vw,154px); }
+  .race-ai-inset > div:first-child { padding: 5px 6px; font-size: 7px; }
+}
