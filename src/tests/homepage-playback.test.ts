@@ -8,7 +8,7 @@ const phone: PreviewViewport={top:0,bottom:800,left:0,width:390,hidden:false};
 const settle=async()=>{await new Promise(resolve=>setImmediate(resolve));};
 class Media extends EventTarget {
   src="";paused=true;readyState=0;muted=false;defaultMuted=false;playsInline=false;autoplay=false;preload="none";
-  plays=0;pauses=0;denied=false;deferred?: Promise<void>;
+  plays=0;pauses=0;denied=false;denialName="NotAllowedError";deferred?: Promise<void>;
   attributes=new Map<string,string>();
   getAttribute(name:string){return name==="src"?this.src||null:this.attributes.get(name)??null;}
   setAttribute(name:string,value:string){this.attributes.set(name,value);}
@@ -16,7 +16,7 @@ class Media extends EventTarget {
   load(){this.readyState=0;}
   play(){
     this.plays++;
-    if(this.denied)return Promise.reject(new DOMException("Autoplay declined","NotAllowedError"));
+    if(this.denied)return Promise.reject(new DOMException("Autoplay declined",this.denialName));
     this.paused=false;return this.deferred??Promise.resolve();
   }
   pause(){if(!this.paused){this.paused=true;this.pauses++;this.dispatchEvent(new Event("pause"));}}
@@ -62,13 +62,15 @@ test("only the next nearby main video warms metadata after current playback is r
 });
 
 test("autoplay rejection becomes a recoverable tap action, without retrying on every scroll",async()=>{
-  const playback=new HomepagePlayback(),entry=add(playback,100);entry.media.denied=true;
-  playback.refresh(phone);await settle();
-  assert.equal(entry.states.at(-1),"blocked");assert.equal(entry.media.plays,1);
-  assert.ok(entry.media.muted&&entry.media.defaultMuted&&entry.media.playsInline);
-  playback.refresh(phone);await settle();assert.equal(entry.media.plays,1);
-  entry.media.denied=false;entry.control.retry();await settle();
-  assert.equal(entry.media.paused,false);assert.equal(entry.states.at(-1),"playing");
+  for(const name of ["NotAllowedError","AbortError"]){
+    const playback=new HomepagePlayback(),entry=add(playback,100);entry.media.denied=true;entry.media.denialName=name;
+    playback.refresh(phone);await settle();
+    assert.equal(entry.states.at(-1),"blocked",`${name} must offer recovery instead of silently freezing`);assert.equal(entry.media.plays,1);
+    assert.ok(entry.media.muted&&entry.media.defaultMuted&&entry.media.playsInline);
+    playback.refresh(phone);await settle();assert.equal(entry.media.plays,1);
+    entry.media.denied=false;entry.control.retry();await settle();
+    assert.equal(entry.media.paused,false);assert.equal(entry.states.at(-1),"playing");
+  }
 });
 
 test("late play promises cannot restart an off-screen or unmounted video",async()=>{

@@ -142,8 +142,8 @@ export class HomepagePlayback {
       if(token===entry.token)this.state(entry,"playing");
     }).catch(error=>{
       if(!entry.alive||!entry.selected||token!==entry.token)return;
-      if(error?.name==="AbortError")return;
-      entry.blocked=true;this.state(entry,error?.name==="NotAllowedError"?"blocked":"error");
+      entry.blocked=true;
+      this.state(entry,error?.name==="NotAllowedError"||error?.name==="AbortError"?"blocked":"error");
     }).finally(()=>{if(token===entry.token)entry.pending=false;});
   }
 }
