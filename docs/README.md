@@ -58,19 +58,14 @@ The homepage serves recordings so it does not run several WebGL simulations at o
 
 For recording, run the dev server and `npx tsx scripts/media/render-homepage-previews.ts`, then open its temporary recording page. Use `--readme --variant2` with `?readme&variant2` for Variant 2 GIF sources. `?clips=id,id` selects specific recordings. The recorder exports real gameplay frames through the local receiver; it does not synthesize actions.
 
-Build the deployed subpath with:
+The standalone site deploys from this repository to Vercel at [crossyroadai.com](https://crossyroadai.com/). `npm run build` compiles the browser app and prerenders the existing homepage, race setup, and replay selectors with matching React hydration. JavaScript initializes game canvases on the client. Parameterized replay and inspector views remain interactive client-rendered states.
+
+The canonical production origin is defined in `src/visualization/page-metadata.ts`; it intentionally does not follow a preview hostname or an old `VITE_SITE_URL` value. The build generates `robots.txt` and `sitemap.xml`. Run `npm run check:seo` after building to validate release HTML, structured data, assets, and routing. `npm run preview` mirrors the production page selection for local QA.
+
+The old portfolio subpath permanently redirects to this domain. Subpath builds remain available for archival packaging:
 
 ```bash
 npm run build -- --base=/crossyroadai/ --outDir=.publication/friends-preview-build
-npx tsx scripts/data/package-friends-preview.ts /path/to/website/crossyroadai
 ```
 
-The packager verifies every required population archive. The personal website serves this static snapshot through its existing Vercel configuration. Its homepage has a canonical URL and search/social metadata; parameterized replay pages and large data paths retain their crawler exclusions.
-
-### Standalone Vercel project
-
-Import `sandsowkd/crossy-road-ai` as its own Vercel project with repository root `./`, production branch `main`, and Node 24. The checked-in `vercel.json` selects Vite, fetches the pinned visual assets before building, and serves `dist/` at `/`. Replay and race deep links are rewritten to the app; saved populations and media remain static files. Nothing in this deployment runs training.
-
-Vercel's production URL supplies the canonical and social URLs during its build. When attaching a custom domain, set the production environment variable `VITE_SITE_URL` to its full origin (for example, `https://crossyroadai.com`) and redeploy. Leave it unset while using the project's Vercel URL. This project and the existing personal-site snapshot deploy independently.
-
-[Visual attribution and license](ATTRIBUTION.md)
+See [the technical SEO report](seo.md) for deployment checks, measurements, and Search Console steps.

@@ -4,27 +4,232 @@
   "buildCommand": "npm run setup:assets && npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "crossy-road-ai.vercel.app"
+        }
+      ],
+      "destination": "https://crossyroadai.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/play", "destination": "/" },
-    { "source": "/explore", "destination": "/" },
-    { "source": "/lab/:path*", "destination": "/" },
-    { "source": "/generation/:path*", "destination": "/" },
-    { "source": "/replay/:path*", "destination": "/" }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "generation"
+        }
+      ],
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "variant"
+        }
+      ],
+      "destination": "/_pages/inspector"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "highlights"
+        }
+      ],
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "explore"
+        }
+      ],
+      "destination": "/_pages/inspector"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "replay"
+        }
+      ],
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/play",
+      "has": [
+        {
+          "type": "query",
+          "key": "seed"
+        }
+      ],
+      "destination": "/_pages/play-state"
+    },
+    {
+      "source": "/play",
+      "has": [
+        {
+          "type": "query",
+          "key": "variant"
+        }
+      ],
+      "destination": "/_pages/play-state"
+    },
+    {
+      "source": "/explore",
+      "has": [
+        {
+          "type": "query",
+          "key": "variant",
+          "value": "2"
+        }
+      ],
+      "destination": "/_pages/explore-2"
+    },
+    {
+      "source": "/generation/:generation(\\d+)/seed/:seed(\\d+)",
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/replay",
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/replay/variant-1/:milestone(initial-population|early-five-generations|binary-road-learner|binary-road-progress|two-hop-lookahead|lookahead-progress|lookahead-memory|variant-1-final)",
+      "destination": "/_pages/replay"
+    },
+    {
+      "source": "/lab/variant-1",
+      "destination": "/_pages/inspector"
+    },
+    {
+      "source": "/explore/variant-1",
+      "destination": "/_pages/inspector"
+    }
   ],
   "headers": [
     {
-      "source": "/:section(play|explore|lab|generation|replay|training-cohorts|replay-audit|variant-2)/:path*",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "source": "/assets/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:section(_pages|lab|generation|replay|training-cohorts|replay-audit|variant-2)/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     },
     {
       "source": "/",
-      "has": [{ "type": "query", "key": "generation" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "has": [
+        {
+          "type": "query",
+          "key": "generation"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     },
     {
       "source": "/",
-      "has": [{ "type": "query", "key": "replay" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "has": [
+        {
+          "type": "query",
+          "key": "variant"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "replay"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/replay-audit.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/replay-audit",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     }
   ]
 }

@@ -5,10 +5,10 @@ import populationIcon from "./icons/population-formation.png";
 
 export function ExperimentIcon({kind}: {kind: "surroundings" | "action" | "decision" | "population" | "score" | "evolution"}) {
   if(kind === "surroundings" || kind === "decision") return <span className={`home-step-icon home-model-icon ${kind === "decision" ? "home-hopping-chicken" : ""}`} aria-hidden="true">
-    <img src={kind === "surroundings" ? carIcon : chickenIcon} alt="" width="256" height="256" />
+    <img src={kind === "surroundings" ? carIcon : chickenIcon} alt="" loading="lazy" width="256" height="256" />
   </span>;
   if(kind === "population") return <span className="home-step-icon home-population-icon" aria-hidden="true">
-    <img src={populationIcon} alt="" width="256" height="256" />
+    <img src={populationIcon} alt="" loading="lazy" width="256" height="256" />
   </span>;
   const key=(x:number,y:number,rotation:number)=><g transform={`translate(${x} ${y})`}>
     <path fill="#518293" d="M0 2h18v17l-3 3H0z" />

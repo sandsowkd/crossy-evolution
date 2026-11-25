@@ -4,7 +4,7 @@ The final network averages **1,361.21 rows on 512 held-out maps**. It reaches ro
 
 The main result is a single frozen policy, not the best chicken chosen separately for each map. Its development score was 1,393.31 across 768 maps. The 512-map closing assessment happened after selection and freezing.
 
-[Watch the replays](https://jeremyhua.ng/crossyroadai/explore?variant=1) · [Race the AI](https://jeremyhua.ng/crossyroadai/play?variant=1) · [Evaluation data](../../results/variant-1/final/evaluation.json)
+[Watch the replays](https://crossyroadai.com/explore?variant=1) · [Race the AI](https://crossyroadai.com/play?variant=1) · [Evaluation data](../../results/variant-1/final/evaluation.json)
 
 ## The task
 

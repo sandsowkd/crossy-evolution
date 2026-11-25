@@ -4,7 +4,7 @@ The frozen default network averages **763.05 rows on 256 development maps**, wit
 
 Training is complete. The 1,000-average target was not reached. These are development-selection results, not an independent final-test result; **all 512 reserved final maps remain unopened**.
 
-[Watch the replays](https://jeremyhua.ng/crossyroadai/explore?variant=2) · [Race the final AI](https://jeremyhua.ng/crossyroadai/play?variant=2) · [Default-policy evaluation](../../results/variant-2/final/main/evaluation.json)
+[Watch the replays](https://crossyroadai.com/explore?variant=2) · [Race the final AI](https://crossyroadai.com/play?variant=2) · [Default-policy evaluation](../../results/variant-2/final/main/evaluation.json)
 
 ## What changed from Variant 1
 

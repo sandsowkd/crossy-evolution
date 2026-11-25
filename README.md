@@ -6,11 +6,11 @@ An interactive machine learning experiment that teaches AI to play Crossy Road t
 
 Inspired by [Trackmania AI experiments](https://www.youtube.com/watch?v=Dw3BZ6O_8LY) and [Code Bullet’s AI projects](https://www.youtube.com/@CodeBullet).
 
-**[Click for some cool visualizations!](https://jeremyhua.ng/crossyroadai)** · **[Race against the AI](https://jeremyhua.ng/crossyroadai/play)** · **[Explore replays](https://jeremyhua.ng/crossyroadai/explore?variant=1)**
+**[Click for some cool visualizations!](https://crossyroadai.com)** · **[Race against the AI](https://crossyroadai.com/play)** · **[Explore replays](https://crossyroadai.com/explore?variant=1)**
 
 ## Variant 1: Just cars and roads
 
-[![One chicken running the final Variant 1 policy](docs/media/variant-1-main-1x.gif)](https://jeremyhua.ng/crossyroadai/explore?variant=1)
+[![One chicken running the final Variant 1 policy](docs/media/variant-1-main-1x.gif)](https://crossyroadai.com/explore?variant=1)
 
 [Full results and evaluation details for Variant 1](docs/results/variant-1.md)
 
@@ -25,40 +25,40 @@ These clips show the entire saved population on one selected map. Chickens at th
     <th width="28%">Description</th>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=1&amp;seed=561909326&amp;variant=1">Gen 1: Random movement</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=1&amp;seed=561909326&amp;variant=1"><img src="docs/media/initial-population-1x.gif" width="320" height="180" alt="Generation 1 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=1&amp;seed=561909326&amp;variant=1">Gen 1: Random movement</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=1&amp;seed=561909326&amp;variant=1"><img src="docs/media/initial-population-1x.gif" width="320" height="180" alt="Generation 1 population replay"></a></td>
     <td>Randomly wired networks send chickens in different directions.<br><br><strong>High Score: 10</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=5&amp;seed=627233379&amp;variant=1">Gen 5: Forward selection</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=5&amp;seed=627233379&amp;variant=1"><img src="docs/media/early-five-generations-1x.gif" width="320" height="180" alt="Generation 5 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=5&amp;seed=627233379&amp;variant=1">Gen 5: Forward selection</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=5&amp;seed=627233379&amp;variant=1"><img src="docs/media/early-five-generations-1x.gif" width="320" height="180" alt="Generation 5 population replay"></a></td>
     <td>Movement is still scattered, but more and more chickens move forward.<br><br><strong>High Score: 34</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=346364751&amp;variant=1">Gen 50: Traffic timing</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=346364751&amp;variant=1"><img src="docs/media/lookahead-progress-1x.gif" width="320" height="180" alt="Generation 50 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=50&amp;seed=346364751&amp;variant=1">Gen 50: Traffic timing</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=50&amp;seed=346364751&amp;variant=1"><img src="docs/media/lookahead-progress-1x.gif" width="320" height="180" alt="Generation 50 population replay"></a></td>
     <td>The chickens learn to time their moves around nearby traffic.<br><br><strong>High Score: 946</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=85&amp;seed=27099291&amp;variant=1">Gen 85: Longer crossings</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=85&amp;seed=27099291&amp;variant=1"><img src="docs/media/two-hop-lookahead-1x.gif" width="320" height="180" alt="Generation 85 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=85&amp;seed=27099291&amp;variant=1">Gen 85: Longer crossings</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=85&amp;seed=27099291&amp;variant=1"><img src="docs/media/two-hop-lookahead-1x.gif" width="320" height="180" alt="Generation 85 population replay"></a></td>
     <td>The chickens learn to use traffic farther ahead when choosing a crossing.<br><br><strong>High Score: 4,140</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=27099291&amp;variant=1">Gen 100: Action memory</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=27099291&amp;variant=1"><img src="docs/media/lookahead-memory-1x.gif" width="320" height="180" alt="Generation 100 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=100&amp;seed=27099291&amp;variant=1">Gen 100: Action memory</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=100&amp;seed=27099291&amp;variant=1"><img src="docs/media/lookahead-memory-1x.gif" width="320" height="180" alt="Generation 100 population replay"></a></td>
     <td>The chickens learn to use previous actions when choosing their next move.<br><br><strong>High Score: 9,520</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=150&amp;seed=561909326&amp;variant=1">Gen 150: Final population</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=150&amp;seed=561909326&amp;variant=1"><img src="docs/media/variant-1-final-1x.gif" width="320" height="180" alt="Generation 150 population replay"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=150&amp;seed=561909326&amp;variant=1">Gen 150: Final population</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=150&amp;seed=561909326&amp;variant=1"><img src="docs/media/variant-1-final-1x.gif" width="320" height="180" alt="Generation 150 population replay"></a></td>
     <td>The final saved population combines traffic lookahead and action memory.<br><br><strong>High Score: 13,639</strong></td>
   </tr>
 </table>
 
 ## Variant 2: Cars, trains, and logs
 
-[![The frozen final Variant 2 AI](docs/media/variant-2-main-final-1x.gif)](https://jeremyhua.ng/crossyroadai/play?variant=2)
+[![The frozen final Variant 2 AI](docs/media/variant-2-main-final-1x.gif)](https://crossyroadai.com/play?variant=2)
 
 [Full results and evaluation details for Variant 2](docs/results/variant-2.md)
 
@@ -73,33 +73,33 @@ The six clips show authentic complete saved populations. GIFs run at 1×; later 
     <th width="28%">Description</th>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=1&amp;seed=318&amp;variant=2">Gen 1: Random movement</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=1&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-initial-1x.gif" width="320" height="180" alt="Variant 2 generation 1 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=1&amp;seed=318&amp;variant=2">Gen 1: Random movement</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=1&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-initial-1x.gif" width="320" height="180" alt="Variant 2 generation 1 population"></a></td>
     <td>Chickens move in random directions.<br><br><strong>High Score: 13</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=5&amp;seed=4984&amp;variant=2">Gen 5: Forward selection</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=5&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-early-1x.gif" width="320" height="180" alt="Variant 2 generation 5 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=5&amp;seed=4984&amp;variant=2">Gen 5: Forward selection</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=5&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-early-1x.gif" width="320" height="180" alt="Variant 2 generation 5 population"></a></td>
     <td>Early selection starts to favor chickens that keep moving forward.<br><br><strong>High Score: 26</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=318&amp;variant=2">Gen 50: River crossings</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=50&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-rivers-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 50 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=50&amp;seed=318&amp;variant=2">Gen 50: River crossings</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=50&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-rivers-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 50 population"></a></td>
     <td>Road skills develop, but river crossings are still tricky.<br><br><strong>High Score: 275</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=85&amp;seed=14232&amp;variant=2">Gen 85: Consistent crossings</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=85&amp;seed=14232&amp;variant=2"><img src="docs/media/variant-2-consistent-1x.gif" width="320" height="180" alt="Variant 2 generation 85 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=85&amp;seed=14232&amp;variant=2">Gen 85: Consistent crossings</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=85&amp;seed=14232&amp;variant=2"><img src="docs/media/variant-2-consistent-1x.gif" width="320" height="180" alt="Variant 2 generation 85 population"></a></td>
     <td>The chickens combine signals to cross train tracks and logs more consistently.<br><br><strong>High Score: 989</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=4984&amp;variant=2">Gen 100: Longer journeys</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=100&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-longer-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 100 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=100&amp;seed=4984&amp;variant=2">Gen 100: Longer journeys</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=100&amp;seed=4984&amp;variant=2"><img src="docs/media/variant-2-longer-1x.gif?sequence=2" width="320" height="180" alt="Variant 2 generation 100 population"></a></td>
     <td>The chickens build on earlier skills for longer, more consistent crossings.<br><br><strong>High Score: 1,454</strong></td>
   </tr>
   <tr>
-    <td><strong><a href="https://jeremyhua.ng/crossyroadai/?generation=150&amp;seed=318&amp;variant=2">Gen 150: Final population</a></strong></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/?generation=150&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-final-1x.gif" width="320" height="180" alt="Variant 2 generation 150 population"></a></td>
+    <td><strong><a href="https://crossyroadai.com/?generation=150&amp;seed=318&amp;variant=2">Gen 150: Final population</a></strong></td>
+    <td><a href="https://crossyroadai.com/?generation=150&amp;seed=318&amp;variant=2"><img src="docs/media/variant-2-final-1x.gif" width="320" height="180" alt="Variant 2 generation 150 population"></a></td>
     <td>The final saved population combines traffic timing, train warnings, and log crossings.<br><br><strong>High Score: 2,063</strong></td>
   </tr>
 </table>
@@ -134,8 +134,8 @@ Ten saved networks from each of the 150 display generations run together on one 
     <th width="50%">Variant 2</th>
   </tr>
   <tr>
-    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 1 chickens on one map"></a></td>
-    <td><a href="https://jeremyhua.ng/crossyroadai/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
+    <td><a href="https://crossyroadai.com/#crowd-title"><img src="docs/media/all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 1 chickens on one map"></a></td>
+    <td><a href="https://crossyroadai.com/#crowd-title"><img src="docs/media/variant-2-all-generations-1x.gif?camera=front-pack-10" width="384" height="216" alt="A mixed population of 1,500 saved Variant 2 chickens on one map"></a></td>
   </tr>
 </table>
 
@@ -190,3 +190,5 @@ npm run build
 ## Credits
 
 The visual layer uses original assets and source adaptations from [Evan Bacon’s Expo-Crossy-Road](https://github.com/EvanBacon/Expo-Crossy-Road). The README GIFs are recorded gameplay excerpts from this project. [Attribution and retained license notices](docs/ATTRIBUTION.md) · [GIF sources](docs/media/README.md).
+
+Independent educational AI project. Not affiliated with, sponsored by, or endorsed by Hipster Whale. Crossy Road is a trademark of Hipster Whale Pty Ltd.

@@ -1,3 +1,4 @@
+import { applyPageMetadata } from "./page-metadata";
 import { sitePath } from "./site-path";
 import { useEffect, useRef, useState } from "react";
 import type { Action } from "../core/types";
@@ -9,14 +10,14 @@ import { ReplayButtons, ReplayHelpDialog } from "./ReplayChrome";
 import "./replay-menu.css";
 import "./play.css";
 
-const initialSeed = () => new URL(location.href).searchParams.get("seed")?.slice(0, 80) || "561909326";
-const initialVariant = () => new URL(location.href).searchParams.get("variant") === "2" ? 2 as const : 1 as const;
+const initialSeed = (url: string) => new URL(url).searchParams.get("seed")?.slice(0, 80) || "561909326";
+const initialVariant = (url: string) => new URL(url).searchParams.get("variant") === "2" ? 2 as const : 1 as const;
 const cause = (reason?: string) => ({car: "hit by a car", train: "hit by a train", water: "lost in the water", eagle: "caught by the eagle", bounds: "out of bounds", timeout: "out of time"}[reason ?? ""] ?? "out");
 type Status = {you: number; ai: number; youAlive: boolean; aiAlive: boolean; death?: string; aiDeath?: string;
   waiting: boolean; trailing: boolean; capturing: boolean};
 const initialStatus: Status = {you: 0, ai: 0, youAlive: true, aiAlive: true, waiting: true, trailing: false, capturing: false};
 
-export function Play() {
+export function Play({initialUrl = window.location.href}: {initialUrl?: string}) {
   const shell = useRef<HTMLElement>(null), host = useRef<HTMLDivElement>(null), insetHost = useRef<HTMLDivElement>(null);
   const world = useRef<WorldView>(undefined), inset = useRef<WorldView>(undefined);
   const session = useRef<RaceSession>(undefined);
@@ -24,13 +25,13 @@ export function Play() {
   const cameraVisibility = useRef(new RaceCameraVisibility());
   const controls = useRef({setup: true, started: false});
   const gesture = useRef<{id: number; x: number; y: number; moved: boolean}>(undefined);
-  const [variant, setVariant] = useState<1 | 2>(initialVariant);
+  const [variant, setVariant] = useState<1 | 2>(() => initialVariant(initialUrl));
   const [policies, setPolicies] = useState<Partial<Record<1 | 2, RacePolicy>>>({});
   const policy = policies[variant];
   const [assetsReady, setAssetsReady] = useState(false), [errors, setErrors] = useState<Partial<Record<1 | 2, string>>>({});
   const ready = assetsReady && !!policy, error = errors[variant];
   const [setup, setSetup] = useState(true);
-  const [draft, setDraft] = useState(initialSeed), [seed, setSeed] = useState(initialSeed);
+  const [draft, setDraft] = useState(() => initialSeed(initialUrl)), [seed, setSeed] = useState(() => initialSeed(initialUrl));
   const [running, setRunning] = useState(false), [started, setStarted] = useState(false);
   const [status, setStatus] = useState<Status>(initialStatus), [offscreen, setOffscreen] = useState(false);
   controls.current = {setup, started};
@@ -54,10 +55,10 @@ export function Play() {
     world.current!.clear(); inset.current!.clear();
     world.current!.update(session.current!.snapshot()); inset.current!.update(session.current!.snapshot(1, "bot"));
     history.replaceState(null, "", sitePath(`/play?${new URLSearchParams({seed: normalized, variant: String(variant)})}`));
+    applyPageMetadata();
     if (start) {setSetup(false); shell.current?.focus({preventScroll: true});}
   };
   useEffect(() => {
-    document.title = "Race against the AI · Crossy Road AI";
     let active = true, frame = 0;
     const abort = new AbortController();
     const main = new WorldView(host.current!, undefined, {focusScreenY: -.35, focusScreenX: 0, responsiveFollow: true});

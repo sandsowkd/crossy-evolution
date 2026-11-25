@@ -65,7 +65,7 @@ function ClipStats({ clip }: { clip: PreviewClip }) {
   return <div className="home-clip-stats"><b>High Score: {number(clip.highestScore)}</b></div>;
 }
 
-function MainClip({ clip, title }: {clip: PreviewClip; title: string}) {
+function MainClip({ clip, title, eager = false }: {clip: PreviewClip; title: string; eager?: boolean}) {
   const host = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
@@ -73,7 +73,10 @@ function MainClip({ clip, title }: {clip: PreviewClip; title: string}) {
     const media = video.current!;
     let visible = false;
     const update = () => {
-      if (visible && !document.hidden) void media.play().catch(() => { /* Muted playback resumes when permitted. */ });
+      if (visible && !document.hidden) {
+        if (!media.getAttribute("src")) media.src = sitePath(clip.video);
+        void media.play().catch(() => { /* Muted playback resumes when permitted. */ });
+      }
       else media.pause();
     };
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
@@ -82,8 +85,8 @@ function MainClip({ clip, title }: {clip: PreviewClip; title: string}) {
     return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); media.pause(); };
   }, [clip.video]);
   return <div ref={host} className={`home-clip home-main-clip${ready ? " is-playing" : ""}`} aria-label={`${title}, looping gameplay`}>
-    <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${clip.mapSeed}`} width="768" height="432" />
-    <video ref={video} src={sitePath(clip.video)} muted autoPlay loop playsInline preload="metadata" aria-label={`${title} gameplay`} onPlaying={() => setReady(true)} />
+    <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${clip.mapSeed}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
+    <video ref={video} muted loop playsInline preload="none" aria-label={`${title} gameplay`} onPlaying={() => setReady(true)} />
   </div>;
 }
 
@@ -151,13 +154,13 @@ function Experiment() {
   </section>;
 }
 
-export function Homepage() {
-  const [data, setData] = useState<HomepageData>();
+export function Homepage({initialData}: {initialData?: HomepageData}) {
+  const [data, setData] = useState<HomepageData | undefined>(initialData);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [active, setActive] = useState<string>();
-  useEffect(() => { document.title = "Crossy Road AI — Teaching the chicken to cross the road."; }, []);
   useEffect(() => {
+    if (initialData && attempt === 0) return;
     const controller = new AbortController();
     setError(false);
     void fetch(sitePath("/homepage-data.json"), {signal: controller.signal}).then(async response => {
@@ -165,7 +168,7 @@ export function Homepage() {
       setData(await response.json() as HomepageData);
     }).catch(() => { if (!controller.signal.aborted) setError(true); });
     return () => controller.abort();
-  }, [attempt]);
+  }, [attempt, initialData]);
   useEffect(() => {
     const stop = () => { if (document.hidden) setActive(undefined); };
     document.addEventListener("visibilitychange", stop);
@@ -186,7 +189,7 @@ export function Homepage() {
       <div className="home-variant-rows" id="variants">
         <section className="home-variant-row" aria-labelledby="variant-one-title">
           <article className="home-variant"><div className="home-card-heading"><h2 id="variant-one-title">Variant 1: Just cars and roads</h2><a className="home-button home-explore-button" href={explorerUrl()} target="_blank" rel="noreferrer" aria-label="Explore V1">Explore V1</a></div>
-            {clips.has("variant-1-main") ? <MainClip clip={clips.get("variant-1-main")!} title="Variant 1" /> : <div className="home-clip-placeholder">Loading preview…</div>}
+            {clips.has("variant-1-main") ? <MainClip clip={clips.get("variant-1-main")!} title="Variant 1" eager /> : <div className="home-clip-placeholder">Loading preview…</div>}
           </article>
           <HighlightRail variant={1} clips={clips} active={active} setActive={setActive} />
         </section>
@@ -212,6 +215,7 @@ export function Homepage() {
         </div>
       </section>
       <footer className="home-footer"><span>Original Crossy Road assets by Evan Bacon.</span><div><a href={REPOSITORY} target="_blank" rel="noreferrer">Source code</a><a href={`${REPOSITORY}/blob/main/docs/ATTRIBUTION.md`} target="_blank" rel="noreferrer">Credits</a><a href="#top">Back to top</a><AuthorCredit /></div></footer>
+      <p className="home-affiliation">Independent educational AI project. Not affiliated with, sponsored by, or endorsed by Hipster Whale. Crossy Road is a trademark of Hipster Whale Pty Ltd.</p>
     </div>
   </main>;
 }

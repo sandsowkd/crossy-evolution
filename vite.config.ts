@@ -1,21 +1,21 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
+import { prerenderFile } from "./src/visualization/prerender-route";
 import react from "@vitejs/plugin-react";
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-  const productionHost = env.VERCEL_PROJECT_PRODUCTION_URL;
-  const siteUrl = env.VITE_SITE_URL || (productionHost ? `https://${productionHost}` : undefined);
-  const siteOrigin = siteUrl ? new URL(siteUrl).origin : undefined;
-  if (siteOrigin && !/^https?:\/\//.test(siteOrigin)) throw new Error("VITE_SITE_URL must be an HTTP(S) URL");
-  return {
-    plugins: [react(), {
-      name: "standalone-site-metadata",
-      transformIndexHtml: (html) => siteOrigin
-        ? html.replaceAll("https://jeremyhua.ng/crossyroadai", siteOrigin)
-        : html,
-    }],
-    server: {
-      // Frozen training copies and growing research archives are not application sources.
-      watch: { ignored: ["**/.publication/**", "**/results/**", "**/.reference/**", "**/artifacts/**"] },
+import { metadataHtml, pageMetadata, SITE_ORIGIN } from "./src/visualization/page-metadata";
+export default defineConfig({
+  plugins: [react(), {
+    name: "site-metadata",
+    configurePreviewServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const url = new URL(req.url ?? "/", "http://localhost");
+        const file = prerenderFile(url);
+        if (file) req.url = file;
+        else if (!/\.[a-z0-9]+$/i.test(url.pathname)) { res.statusCode = 404; res.end("Not found"); return; }
+        next();
+      });
     },
-  };
+    transformIndexHtml: html => html.replace(/<!-- SEO:START -->[\s\S]*?<!-- SEO:END -->/, `<!-- SEO:START -->\n${metadataHtml(pageMetadata(new URL(SITE_ORIGIN)))}\n<!-- SEO:END -->`),
+  }],
+  build: {manifest: true},
+  server: {watch: {ignored: ["**/.publication/**", "**/results/**", "**/.reference/**", "**/artifacts/**"]}},
 });

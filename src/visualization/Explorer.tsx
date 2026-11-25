@@ -1,3 +1,4 @@
+import { applyPageMetadata } from "./page-metadata";
 import { sitePath } from "./site-path";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ExplorerCatalog } from "./explorer-data";
@@ -9,8 +10,8 @@ import "./explorer.css";
 import { closeOnBackdrop, ReplayButtons, ReplayHelpDialog } from "./ReplayChrome";
 
 import { defaultSelection, mapSeedOptions, menuRecords, resolveEntry, type Selection } from "./explorer-selection";
-function selectionFromUrl(): Selection | undefined {
-  const route = siteRoute(new URL(window.location.href));
+function selectionFromUrl(href = window.location.href): Selection | undefined {
+  const route = siteRoute(new URL(href));
   if (route.page === "explorer" && route.generation !== undefined && route.seed !== undefined && route.phase !== undefined)
     return {variant: route.variant, phase: route.phase, generation: route.generation, seed: route.seed};
   if (route.page === "highlight") {
@@ -118,32 +119,36 @@ function Picker({catalog, selection, onChoose, onPreview, onClose}: {
   </dialog>;
 }
 
-export function Explorer() {
-  const initial = siteRoute(new URL(window.location.href));
+export function Explorer({initialUrl = window.location.href, initialCatalog}: {initialUrl?: string; initialCatalog?: ExplorerCatalog}) {
+  const initial = siteRoute(new URL(initialUrl));
   const initialVariant = initial.page === "explorer" ? initial.variant : 1;
-  const [catalog, setCatalog] = useState<ExplorerCatalog>();
-  const [selection, setSelection] = useState(selectionFromUrl);
+  const [catalog, setCatalog] = useState<ExplorerCatalog | undefined>(initialCatalog);
+  const [selection, setSelection] = useState(() => selectionFromUrl(initialUrl));
   const [menu, setMenu] = useState(!selection);
   const [error, setError] = useState("");
   const [autoStart, setAutoStart] = useState(false);
   const [runId, setRunId] = useState(0);
   useEffect(() => {
     const abort = new AbortController();
-    void fetch(sitePath("/explorer-catalog.json"), {signal: abort.signal}).then(async response => {
+    if (!initialCatalog) void fetch(sitePath("/explorer-catalog.json"), {signal: abort.signal}).then(async response => {
       if (!response.ok) throw new Error("Saved generation catalog unavailable");
       setCatalog(await response.json() as ExplorerCatalog);
     }).catch(e => {if (!abort.signal.aborted) setError(String(e));});
     const back = () => {const next = selectionFromUrl(); setSelection(next); setMenu(!next); setAutoStart(false);};
     window.addEventListener("popstate", back);
     return () => {abort.abort(); window.removeEventListener("popstate", back);};
-  }, []);
+  }, [initialCatalog]);
   const shown = selection ?? defaultSelection(initialVariant, catalog);
   const entry = useMemo(() => catalog && resolveEntry(catalog, shown), [catalog, shown.variant, shown.phase, shown.generation]);
   useEffect(() => {
-    if (selection && entry && !menu) window.history.replaceState(null, "", replayUrl(selection.generation, selection.seed, selection.variant, selection.phase));
+    if (selection && entry && !menu) {
+      window.history.replaceState(null, "", replayUrl(selection.generation, selection.seed, selection.variant, selection.phase));
+      applyPageMetadata();
+    }
   }, [selection, entry, menu]);
   const choose = (next: Selection) => {
     window.history.pushState(null, "", replayUrl(next.generation, next.seed, next.variant, next.phase));
+    applyPageMetadata();
     setRunId(id => id + 1); setAutoStart(true); setSelection(next); setMenu(false);
   };
   const navigation = <Navigation variant={shown.variant} selection={shown} onMenu={() => setMenu(true)} />;

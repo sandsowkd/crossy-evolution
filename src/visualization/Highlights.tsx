@@ -113,7 +113,7 @@ export function ReplayStage({entry, mapSeed, children, autoStart = false, suspen
     bestScore.current = 0;
     world.current?.clear();
     setStatus({ ...emptyStatus, total: entry.populationSize });
-    document.title = `${entry.title} · ${entry.populationSize} chickens · map ${mapSeed}`;
+    // Document metadata follows the URL; replay statistics stay in the existing HUD.
     void loadCohort({ generation: entry.generation, contenders: [],
       populationSize: entry.populationSize, cohortFile: entry.cohortFile, cohortHash: entry.cohortHash,
     }).then(record => {
