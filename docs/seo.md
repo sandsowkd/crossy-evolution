@@ -69,7 +69,12 @@ Lighthouse is a synthetic lab measurement, not field Core Web Vitals or a rankin
 | Mobile | 97 | 100 | 100 | 100 | 2.0 s | 0 | 170 ms |
 | Desktop | 100 | 100 | 100 | 100 | 0.4 s | 0.01 | 10 ms |
 
-Production measurements after publication are recorded below once the deployed revision is verified. The preliminary local mobile measurement was 98 performance, 100 accessibility/best-practices/SEO, LCP 2.5 s, CLS 0, and 0 ms blocking. Local and remote measurements are not interchangeable; individual runs vary. No real-user INP or CrUX data was available in this audit. Total blocking time is reported as a lab responsiveness indicator, not as INP.
+| Published site after changes | Performance | Accessibility | Best practices | SEO | LCP | CLS | Total blocking time |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Mobile | 100 | 100 | 100 | 100 | 1.4 s | 0 | 0 ms |
+| Desktop | 100 | 100 | 100 | 100 | 0.4 s | 0 | 0 ms |
+
+Mobile Speed Index changed from 1.5 to 1.0 seconds; desktop changed from 0.5 to 0.3 seconds. These are single lab runs on the same machine and presets, not guaranteed real-user performance. The mobile measurement used the published homepage from the first SEO deployment; its HTML was subsequently verified byte-for-byte identical to the corrected static-route release. The desktop measurement used the corrected release. The preliminary local mobile result was 98, illustrating normal environment/run variation. No real-user INP was measured; these Lighthouse runs provide lab data only. Total blocking time is a lab responsiveness indicator, not INP.
 
 The Three.js scene chunk remains large and loads only on interactive game/replay routes. It is not part of homepage execution. Large authentic population archives stay on demand; the SEO release does not alter or regenerate them. Fonts and game rendering quality are unchanged.
 
@@ -77,7 +82,7 @@ The Three.js scene chunk remains large and loads only on interactive game/replay
 
 `npm test` passed 173 tests, including the existing simulation, replay, cohort, navigation, and race checks and three new SEO tests. Lint, type checking, production build, and `npm run check:seo` pass. The release checker reads actual generated HTML, checks metadata/schema/assets, verifies rendered content and the sitemap, and checks route configuration. It performs no training or evaluation episodes.
 
-Browser QA exercised Variant 2 generation 150 on custom seed 0, all 150 selector options, replay play/pause/restart/jump/speed controls, race variant and seed selection, movement, and pause/resume. Browser console and hydration checks are part of release verification. Desktop 1280 × 720 and mobile 390 × 844 snapshots preserve all existing homepage text and every measured layout rectangle exactly; the approved notice extends the footer area. There is no horizontal overflow. Animated video frames naturally differ between screenshots.
+Browser QA exercised Variant 2 generation 150 on custom seed 0, all 150 selector options, replay play/pause/restart/jump/speed controls, race variant and seed selection, movement, and pause/resume. No console or hydration warnings/errors were observed in the tested pages. Deployed Variant 2 chooser metadata and selection were verified after correcting Vercel filesystem precedence. Both bloodline videos play in view and pause offscreen; homepage highlight playback remains the existing full Auto recording. Desktop 1280 × 720 and mobile 390 × 844 snapshots preserve all existing homepage text and every measured layout rectangle exactly; the approved notice extends the footer area. There is no horizontal overflow. Animated video frames naturally differ between screenshots.
 
 Main project changes:
 
@@ -91,6 +96,14 @@ Main project changes:
 - `README.md`, `docs/README.md`, `docs/results/variant-1.md`, `docs/results/variant-2.md`, this report: current domain links and documentation.
 
 Personal-site changes are confined to `vercel.json`, `robots.txt`, the project card's destination in `index.html`, `scripts/check-seo.py`, and `docs/search-discovery.md`. Other concurrent personal-site changes were preserved.
+
+## Published verification
+
+The implementation is published in [8a83e9e0](https://github.com/sandsowkd/crossy-road-ai/commit/8a83e9e0a6894d831f165e750682a816dbc7f90f) with the static-route correction in [aaa4d101](https://github.com/sandsowkd/crossy-road-ai/commit/aaa4d101). Both Vercel deployments completed successfully; the corrected [production deployment](https://vercel.com/jeremys-projects-f2bb3745/crossy-road-ai/CgR4dydJ5khwNaNmhdYxCWuq9q6N) was tested on the custom domain. The personal-site migration is published in [5aeb5ae](https://github.com/sandsowkd/jeremyhuang.dev/commit/5aeb5ae); its Vercel deployment and local/live SEO checks passed.
+
+Live HTTP verification confirmed all four canonical pages return 200 with the correct raw-HTML metadata, one H1, and no accidental noindex response header. Robots and sitemap return 200 with `text/plain` and `application/xml` content types. The social image and PNG icon return 200. Replay states retain intentional noindex; invalid ordinary, lab, and milestone paths return 404. WWW, the default production alias, and old portfolio paths return 308 while preserving their meaningful query strings. Hashed browser assets return `public, max-age=31536000, immutable`. Googlebot and ordinary requests receive byte-identical homepage HTML. The unique Vercel deployment hostname redirects unauthenticated requests to Vercel sign-in; preview access/security settings were not weakened.
+
+The corrected homepage's SHA-256 is `23d7f7fe8a68ac128866d1ae4f7c6e060530e89a14011347376a01c39a47f3cd`, matching the local rendered release exactly. The simulation/evolution source, saved policy, replay catalog, homepage media data, and population archives have no changes in this release. No training or reserved final-map assessment was run.
 
 ## Owner actions after deployment
 
