@@ -81,7 +81,7 @@ function MainClip({ clip, title, playback, eager = false }: {clip: PreviewClip; 
     data-preview-id={clip.id} data-playback-state={state} aria-label={`${title}, looping gameplay`}>
     <img src={sitePath(clip.poster)} alt={`${title}, ${clip.population === 1 ? "one saved chicken" : `${number(clip.population)} saved chickens`} on map ${formatMapSeed(clip.mapSeed)}`} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} width="768" height="432" />
     <video ref={video} autoPlay muted loop playsInline preload="none" aria-label={`${title} gameplay`} />
-    {(state==="blocked"||state==="error")&&<button type="button" className="home-video-retry" onClick={()=>control.current?.retry()} aria-label={`Play ${title} gameplay`}>{state==="blocked"?"Tap to play":"Retry preview"}</button>}
+    {state==="error"&&<button type="button" className="home-video-retry" onClick={()=>control.current?.retry()} aria-label={`Play ${title} gameplay`}>Retry preview</button>}
   </div>;
 }
 
